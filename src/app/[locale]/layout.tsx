@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/components/theme-provider';
+import { PageTransition } from '@/components/transitions/PageTransition';
+import { Dock } from '@/components/dock/Dock';
+import { Header } from '@/components/header/Header';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -15,6 +19,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const stanley = localFont({
+  src: "../../../public/fonts/Stanley.otf",
+  variable: "--font-stanley",
 });
 
 export const metadata: Metadata = {
@@ -36,7 +45,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as 'en' | 'fr')) {
+  if (!routing.locales.includes(locale as 'en-GB' | 'fr')) {
     notFound();
   }
 
@@ -47,7 +56,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${stanley.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -55,7 +64,11 @@ export default async function LocaleLayout({
           enableSystem
         >
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <Header />
+            <PageTransition>
+              {children}
+            </PageTransition>
+            <Dock />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

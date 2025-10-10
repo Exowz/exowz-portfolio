@@ -1,0 +1,30 @@
+{
+  "HoldingPage": {
+    "name": "Exowz",
+    "intro1": "Mathew Kristoffer Ewan KAPOOR is a developer passionate about Data, AI, and building interactive web experiences.",
+    "intro2": "Currently studying Data & AI at ECE Paris.",
+    "construction": "My portfolio is currently getting a fresh coat of paint. In the meantime, let's connect on LinkedIn, check out my projects on GitHub—or drop me a line at",
+    "email": "contact@mke-kapoor.com"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "pages": {
+    "about": {
+      "title": "About Me",
+      "description": "Learn more about my journey and what I do"
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "description": "Let's connect and build something together"
+    },
+    "projects": {
+      "title": "My Projects",
+      "description": "Explore my work in data, AI, and web development"
+    }
+  }
+}

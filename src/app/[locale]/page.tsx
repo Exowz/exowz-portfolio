@@ -1,6 +1,5 @@
-
-import HoldingPage from '@/components/HoldingPage';
+import { Desktop } from '@/components/desktop/Desktop';
 
 export default function Home() {
-  return <HoldingPage />;
+  return <Desktop />;
 }

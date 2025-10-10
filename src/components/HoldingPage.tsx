@@ -9,7 +9,7 @@ export default function HoldingPage() {
   const t = useTranslations('HoldingPage');
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12 md:px-12 bg-[#FDF0D5] dark:bg-[#003049] text-[#003049] dark:text-[#FDF0D5] transition-colors relative">
+    <div className="min-h-screen flex items-center justify-center px-6 py-12 md:px-12 bg-[#ffffff] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#ffffff] transition-colors relative">
       {/* Top Left - Language Switcher */}
       <div className="fixed top-4 left-4 z-10">
         <LanguageSwitcher />
@@ -39,11 +39,11 @@ export default function HoldingPage() {
             </p>
           </div>
 
-          <p className="text-base text-[#003049]/70 dark:text-[#e8dfc5] transition-colors">
+          <p className="text-base text-[#1a1a1a]/70 dark:text-[#b0bec5] transition-colors">
             {t('construction')}{' '}
             <a
               href={`mailto:${t('email')}`}
-              className="text-[#003049]/80 dark:text-[#FDF0D5]/80 hover:opacity-70 transition-all underline"
+              className="text-[#1a1a1a]/80 dark:text-[#ffffff]/80 hover:opacity-70 transition-all underline"
             >
               {t('email')}
             </a>

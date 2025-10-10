@@ -5,5 +5,26 @@
     "intro2": "Actuellement étudiant en Data & IA à l'ECE Paris.",
     "construction": "Mon portfolio fait peau neuve en ce moment. En attendant, connectons-nous sur LinkedIn, découvrez mes projets sur GitHub—ou envoyez-moi un message à",
     "email": "contact@mke-kapoor.com"
+  },
+  "nav": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "about": "À propos",
+    "contact": "Contact",
+    "resume": "CV"
+  },
+  "pages": {
+    "about": {
+      "title": "À Propos",
+      "description": "Découvrez mon parcours et ce que je fais"
+    },
+    "contact": {
+      "title": "Contactez-moi",
+      "description": "Connectons-nous et construisons quelque chose ensemble"
+    },
+    "projects": {
+      "title": "Mes Projets",
+      "description": "Explorez mon travail en data, IA et développement web"
+    }
   }
 }

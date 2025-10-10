@@ -28,7 +28,7 @@ export function LanguageSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="rounded-full border-[#003049] text-[#003049] hover:bg-[#003049]/10 dark:border-[#FDF0D5] dark:text-[#FDF0D5] dark:hover:bg-[#FDF0D5]/10 transition-colors gap-2"
+          className="rounded-full border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a]/10 dark:border-[#ffffff] dark:text-[#ffffff] dark:hover:bg-[#ffffff]/10 transition-colors gap-2"
         >
           <Globe className="h-[1.1rem] w-[1.1rem]" />
           <span className="text-sm font-medium">{locale.toUpperCase()}</span>
@@ -36,11 +36,11 @@ export function LanguageSwitcher() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="start"
-        className="bg-[#FDF0D5] dark:bg-[#003049] border-[#003049] dark:border-[#FDF0D5] text-[#003049] dark:text-[#FDF0D5]"
+        className="bg-[#ffffff] dark:bg-[#1a1a1a] border-[#1a1a1a] dark:border-[#ffffff] text-[#1a1a1a] dark:text-[#ffffff]"
       >
         <DropdownMenuItem
           onClick={() => switchLocale('en')}
-          className="cursor-pointer hover:bg-[#003049]/10 dark:hover:bg-[#FDF0D5]/10 focus:bg-[#003049]/10 dark:focus:bg-[#FDF0D5]/10"
+          className="cursor-pointer hover:bg-[#1a1a1a]/10 dark:hover:bg-[#ffffff]/10 focus:bg-[#1a1a1a]/10 dark:focus:bg-[#ffffff]/10"
         >
           <Check
             className={`mr-2 h-4 w-4 ${locale === 'en' ? 'opacity-100' : 'opacity-0'}`}
@@ -49,7 +49,7 @@ export function LanguageSwitcher() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => switchLocale('fr')}
-          className="cursor-pointer hover:bg-[#003049]/10 dark:hover:bg-[#FDF0D5]/10 focus:bg-[#003049]/10 dark:focus:bg-[#FDF0D5]/10"
+          className="cursor-pointer hover:bg-[#1a1a1a]/10 dark:hover:bg-[#ffffff]/10 focus:bg-[#1a1a1a]/10 dark:focus:bg-[#ffffff]/10"
         >
           <Check
             className={`mr-2 h-4 w-4 ${locale === 'fr' ? 'opacity-100' : 'opacity-0'}`}

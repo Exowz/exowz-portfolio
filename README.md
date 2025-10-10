@@ -95,8 +95,11 @@ bun start
 
 ### Colors
 I use a custom color scheme:
-- **Ivory Drift** (#FDF0D5) - Light mode background
-- **Abyss Blue** (#003049) - Dark mode background / Light mode text
+- **White** (#ffffff) - Light mode background / Dark mode text
+- **Dark Gray** (#1a1a1a) - Dark mode background / Light mode text
+- **Blue Accent** (#64b5f6) - Links and accents
+- **Gray** (#b0bec5) - Secondary text
+- **Light Gray** (#cfd8dc) - Tertiary elements
 
 Colors are defined in Tailwind config and can be customized in `src/app/globals.css`.
 
