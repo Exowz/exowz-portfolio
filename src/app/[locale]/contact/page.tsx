@@ -7,6 +7,8 @@ import { useState } from 'react';
 
 export default function ContactPage() {
   const t = useTranslations('pages.contact');
+
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',

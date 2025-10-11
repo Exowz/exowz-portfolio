@@ -39,6 +39,7 @@ const projects = [
 export default function ProjectsPage() {
   const t = useTranslations('pages.projects');
 
+
   return (
     <div className="min-h-screen p-6 md:p-12 bg-background">
       <motion.div

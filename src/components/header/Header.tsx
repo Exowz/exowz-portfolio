@@ -12,7 +12,7 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
   const [isClockHovered, setIsClockHovered] = useState(false);
   const { theme } = useTheme();
-
+  
   // Update time every second
   useEffect(() => {
     setMounted(true);
@@ -68,27 +68,9 @@ export function Header() {
         : '0 4px 12px rgba(0, 0, 0, 0.08)',
     };
   };
-
+  
   if (!mounted) {
-    return (
-      <>
-        {/* Language Switcher Loading */}
-        <div className="fixed top-4 left-4 z-50">
-          <div className="w-[100px] h-12 rounded-2xl animate-pulse" style={getGlassStyle()} />
-        </div>
-
-        <header className="fixed top-0 left-0 right-0 z-40 pt-4 px-4">
-          <div className="w-full flex items-center justify-between">
-            {/* Spacer */}
-            <div className="flex-shrink-0 w-[100px]"></div>
-            {/* Clock Loading */}
-            <div className="absolute left-1/2 -translate-x-1/2 w-[140px] h-12 rounded-2xl animate-pulse" style={getGlassStyle()} />
-            {/* Theme Toggle Loading */}
-            <div className="w-12 h-12 rounded-2xl animate-pulse flex-shrink-0" style={getGlassStyle()} />
-          </div>
-        </header>
-      </>
-    );
+    return null;
   }
 
   return (
