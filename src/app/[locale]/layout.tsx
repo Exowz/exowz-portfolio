@@ -64,9 +64,11 @@ export default async function LocaleLayout({
           enableSystem
         >
           <NextIntlClientProvider messages={messages}>
+            <Header />
             <PageTransition>
               {children}
             </PageTransition>
+            <Dock />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
