@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion"; // Changed to framer-motion, your 'motion/react' import is also fine.
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 export type DockItem = {
@@ -58,6 +59,25 @@ const FloatingDockMobile = ({
             {items.map((item, idx) => {
               if (item.isDivider) return null;
 
+              const isExternal = item.href.startsWith('http') || item.href.startsWith('/resume');
+              const linkContent = (
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl transition-all duration-300"
+                  style={{
+                    background: 'var(--dock-item-bg)',
+                    backdropFilter: 'blur(20px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                    border: '1px solid var(--dock-item-border)',
+                    boxShadow: 'var(--dock-item-shadow)',
+                    color: 'var(--dock-text)'
+                  }}
+                >
+                  <div className="h-4 w-4">
+                    {item.icon}
+                  </div>
+                </div>
+              );
+
               return (
                 <motion.div
                   key={item.title}
@@ -70,24 +90,19 @@ const FloatingDockMobile = ({
                   }}
                   transition={{ delay: (items.length - 1 - idx) * 0.05 }}
                 >
-                  <a
-                    href={item.href}
-                    className="flex h-10 w-10 items-center justify-center rounded-2xl transition-all duration-300"
-                    style={{
-                      background: 'var(--dock-item-bg)',
-                      backdropFilter: 'blur(20px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                      border: '1px solid var(--dock-item-border)',
-                      boxShadow: 'var(--dock-item-shadow)',
-                      color: 'var(--dock-text)'
-                    }}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  >
-                    <div className="h-4 w-4">
-                      {item.icon}
-                    </div>
-                  </a>
+                  {isExternal ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {linkContent}
+                    </a>
+                  ) : (
+                    <Link href={item.href}>
+                      {linkContent}
+                    </Link>
+                  )}
                 </motion.div>
               );
             })}
@@ -194,86 +209,94 @@ function IconContainer({
   const widthIcon = useSpring(widthTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
   const heightIcon = useSpring(heightTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
 
-  return (
-    <a
-      href={href}
-      target={href.startsWith('http') ? '_blank' : undefined}
-      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+  const iconContent = (
+    <motion.div
+      ref={ref}
+      style={{ width, height }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative flex aspect-square items-center justify-center rounded-full"
     >
-      <motion.div
-        ref={ref}
-        style={{ width, height }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full"
-      >
-        <div
-          className="absolute inset-0 rounded-full transition-all duration-300"
-          style={{
-            background: hovered ? 'var(--dock-item-hover-bg)' : 'var(--dock-item-bg)',
-            backdropFilter: 'blur(20px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            border: hovered
-              ? '1px solid var(--dock-item-hover-border)'
-              : '1px solid var(--dock-item-border)',
-            boxShadow: hovered
-              ? 'var(--dock-item-hover-shadow)'
-              : 'var(--dock-item-shadow)'
-          }}
-        />
-        {/* Tooltip */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10, x: "-50%" }}
-              animate={{ opacity: 1, y: 0, x: "-50%" }}
-              exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit rounded-xl px-3 py-1.5 text-xs whitespace-pre z-50"
-              style={{
-                background: 'var(--dock-item-bg)',
-                backdropFilter: 'blur(15px) saturate(150%)',
-                WebkitBackdropFilter: 'blur(15px) saturate(150%)',
-                border: '1px solid var(--dock-item-border)',
-                boxShadow: 'var(--dock-item-shadow)',
-                color: 'var(--dock-text)'
-              }}
-            >
-              {title}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Icon */}
-        <motion.div
-          style={{
-            width: widthIcon,
-            height: heightIcon,
-          }}
-          className="flex items-center justify-center"
-        >
-          <div
-            className="transition-colors duration-300"
+      <div
+        className="absolute inset-0 rounded-full transition-all duration-300"
+        style={{
+          background: hovered ? 'var(--dock-item-hover-bg)' : 'var(--dock-item-bg)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          border: hovered
+            ? '1px solid var(--dock-item-hover-border)'
+            : '1px solid var(--dock-item-border)',
+          boxShadow: hovered
+            ? 'var(--dock-item-hover-shadow)'
+            : 'var(--dock-item-shadow)'
+        }}
+      />
+      {/* Tooltip */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 2, x: "-50%" }}
+            className="absolute -top-8 left-1/2 w-fit rounded-xl px-3 py-1.5 text-xs whitespace-pre z-50"
             style={{
-              color: hovered ? 'var(--accent)' : 'var(--dock-text)',
-              filter: hovered ? 'drop-shadow(0 0 8px var(--accent))' : 'none'
+              background: 'var(--dock-item-bg)',
+              backdropFilter: 'blur(15px) saturate(150%)',
+              WebkitBackdropFilter: 'blur(15px) saturate(150%)',
+              border: '1px solid var(--dock-item-border)',
+              boxShadow: 'var(--dock-item-shadow)',
+              color: 'var(--dock-text)'
             }}
           >
-            {icon}
-          </div>
-        </motion.div>
-
-        {/* Active indicator dot */}
-        {isActive && (
-          <div
-            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-300"
-            style={{
-              backgroundColor: hovered ? 'var(--accent)' : 'var(--dock-text)',
-              opacity: hovered ? 1 : 0.4,
-              boxShadow: hovered ? '0 0 8px var(--accent)' : 'none'
-            }}
-          />
+            {title}
+          </motion.div>
         )}
+      </AnimatePresence>
+
+      {/* Icon */}
+      <motion.div
+        style={{
+          width: widthIcon,
+          height: heightIcon,
+        }}
+        className="flex items-center justify-center"
+      >
+        <div
+          className="transition-colors duration-300"
+          style={{
+            color: hovered ? 'var(--accent)' : 'var(--dock-text)',
+            filter: hovered ? 'drop-shadow(0 0 8px var(--accent))' : 'none'
+          }}
+        >
+          {icon}
+        </div>
       </motion.div>
+
+      {/* Active indicator dot */}
+      {isActive && (
+        <div
+          className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-300"
+          style={{
+            backgroundColor: hovered ? 'var(--accent)' : 'var(--dock-text)',
+            opacity: hovered ? 1 : 0.4,
+            boxShadow: hovered ? '0 0 8px var(--accent)' : 'none'
+          }}
+        />
+      )}
+    </motion.div>
+  );
+
+  return isExternal ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {iconContent}
     </a>
+  ) : (
+    <Link href={href}>
+      {iconContent}
+    </Link>
   );
 }

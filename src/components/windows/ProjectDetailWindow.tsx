@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { ArrowLeft, Github, ExternalLink, Calendar } from 'lucide-react';
@@ -76,14 +76,11 @@ const projectsData: Record<string, Project> = {
   }
 };
 
-// Props type where 'params' is correctly typed as a Promise
-interface ProjectPageProps {
-  params: Promise<{ slug: string }>;
+interface ProjectDetailWindowProps {
+  slug: string;
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  // 'use' hook to correctly unwrap the params promise
-  const { slug } = use(params);
+export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) {
   const project = projectsData[slug];
 
   // State and effect to prevent hydration errors from framer-motion
@@ -94,7 +91,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="flex items-center justify-center p-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <Link href="/projects" className="text-primary hover:underline">
