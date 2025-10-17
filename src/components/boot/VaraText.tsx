@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-import Vara from "vara";
+import { useEffect, useRef } from "react";
 import { IconArrowRight } from "@tabler/icons-react";
 import LiquidEther from "@/components/desktop/LiquidEther";
 
@@ -10,51 +9,98 @@ interface VaraTextProps {
 }
 
 const VaraText: React.FC<VaraTextProps> = ({ onComplete }) => {
-  const startAnimation = () => {
-    const container = document.getElementById("container");
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    let fontSize = 72;
-    if (window.innerWidth < 700) fontSize = 32;
-    else if (window.innerWidth < 1200) fontSize = 56;
-
-    const vara = new Vara(
-      "#container",
-      "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Parisienne/Parisienne.json",
-      [
-        { text: "hello", y: 150, fromCurrentPosition: { y: false }, duration: 3000 },
-        { text: "salut", y: 150, fromCurrentPosition: { y: false }, delay: 3000, duration: 3000 },
-        { text: "hola", y: 150, fromCurrentPosition: { y: false }, delay: 3000, duration: 3000 },
-        { text: "ciao", y: 150, fromCurrentPosition: { y: false }, delay: 3000, duration: 3000 },
-      ],
-      {
-        strokeWidth: 2,
-        color: "#FFFFFF",
-        fontSize: fontSize,
-        textAlign: "center",
-      }
-    );
-
-    vara.ready(() => {
-      let erase = true;
-
-      vara.animationEnd((i, o) => {
-        if (erase) {
-          o.container.style.transition = "opacity 1s 1s";
-          o.container.style.opacity = "0";
-        }
-
-        if (i === 3) {
-          setTimeout(() => startAnimation(), 2000);
-        }
-      });
-    });
-  };
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isAnimatingRef = useRef(false);
+  const wordIndexRef = useRef(0);
 
   useEffect(() => {
-    startAnimation();
+    let mounted = true;
+    const words = ["hello", "salut", "hola", "ciao"];
+
+    const animateWord = async () => {
+      if (!mounted || isAnimatingRef.current) return;
+
+      isAnimatingRef.current = true;
+
+      const container = document.getElementById("container");
+      if (!container) {
+        isAnimatingRef.current = false;
+        return;
+      }
+
+      // Clear container completely
+      container.innerHTML = "";
+      container.style.opacity = "1";
+      container.style.transition = "";
+
+      let fontSize = 72;
+      if (window.innerWidth < 700) fontSize = 32;
+      else if (window.innerWidth < 1200) fontSize = 56;
+
+      const { default: Vara } = await import("vara");
+
+      // Small delay to ensure container is ready
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      if (!mounted) {
+        isAnimatingRef.current = false;
+        return;
+      }
+
+      const currentWord = words[wordIndexRef.current];
+
+      const vara = new Vara(
+        "#container",
+        "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Parisienne/Parisienne.json",
+        [
+          { text: currentWord, y: 150, fromCurrentPosition: { y: false }, duration: 3000 },
+        ],
+        {
+          strokeWidth: 2,
+          color: "#FFFFFF",
+          fontSize: fontSize,
+          textAlign: "center",
+        }
+      );
+
+      vara.ready(() => {
+        if (!mounted) return;
+
+        vara.animationEnd((_i, o) => {
+          if (!mounted) return;
+
+          // Fade out current text
+          o.container.style.transition = "opacity 1s";
+          o.container.style.opacity = "0";
+
+          // Wait for fade out, then prepare next word
+          animationTimeoutRef.current = setTimeout(() => {
+            if (!mounted) return;
+
+            // Move to next word
+            wordIndexRef.current = (wordIndexRef.current + 1) % words.length;
+
+            // Reset animation flag and start next word
+            isAnimatingRef.current = false;
+            animateWord();
+          }, 1500);
+        });
+      });
+    };
+
+    animateWord();
+
+    return () => {
+      mounted = false;
+      isAnimatingRef.current = false;
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+      const container = document.getElementById("container");
+      if (container) {
+        container.innerHTML = "";
+      }
+    };
   }, []);
 
   return (

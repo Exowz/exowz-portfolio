@@ -76,7 +76,7 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
 
   // Check if this project has full case study data
   let hasMetadata = false;
-  let keyFeatures: any[] = [];
+  let keyFeatures: Array<{ title: string; description: string; implementation: string; challenges: string }> = [];
   let learnings: string[] = [];
   let futureEnhancements: string[] = [];
 
@@ -341,7 +341,7 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
               <section>
                 <h2 className="text-3xl font-semibold mb-6">{tSections('keyFeatures')}</h2>
                 <div className="space-y-6">
-                  {keyFeatures.map((feature: any, index: number) => (
+                  {keyFeatures.map((feature, index: number) => (
                     <div key={index} className="rounded-lg border bg-card p-6">
                       <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
                       <p className="text-muted-foreground mb-4">{feature.description}</p>
