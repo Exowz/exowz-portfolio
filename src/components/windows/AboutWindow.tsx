@@ -24,33 +24,31 @@ export function AboutWindow() {
           <div className="prose dark:prose-invert max-w-none">
             <div className="grid gap-8 mt-12">
               <section>
-                <h2 className="text-3xl font-semibold mb-4 text-foreground">Background</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-foreground">{t('backgroundTitle')}</h2>
                 <p className="text-lg leading-relaxed text-foreground/80">
-                  I&apos;m Mathew Kristoffer Ewan KAPOOR, a developer passionate about Data, AI,
-                  and creating interactive web experiences. Currently studying Data & AI at ECE Paris,
-                  I combine technical expertise with creative problem-solving.
+                  {t('backgroundText')}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-3xl font-semibold mb-4 text-foreground">Skills & Focus</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-foreground">{t('skillsTitle')}</h2>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="p-6 rounded-lg border border-accent/20 bg-card/80 backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-2 text-foreground">Data & AI</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">{t('skills.dataAI.title')}</h3>
                     <p className="text-muted-foreground">
-                      Machine learning, data analysis, and AI-powered solutions
+                      {t('skills.dataAI.description')}
                     </p>
                   </div>
                   <div className="p-6 rounded-lg border border-accent/20 bg-card/80 backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-2 text-foreground">Web Development</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">{t('skills.webDev.title')}</h3>
                     <p className="text-muted-foreground">
-                      Modern web applications with React, Next.js, and TypeScript
+                      {t('skills.webDev.description')}
                     </p>
                   </div>
                   <div className="p-6 rounded-lg border border-accent/20 bg-card/80 backdrop-blur-sm">
-                    <h3 className="text-xl font-semibold mb-2 text-foreground">UI/UX Design</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">{t('skills.uiux.title')}</h3>
                     <p className="text-muted-foreground">
-                      Creating beautiful, intuitive user experiences
+                      {t('skills.uiux.description')}
                     </p>
                   </div>
                 </div>

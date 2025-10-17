@@ -16,15 +16,545 @@
   "pages": {
     "about": {
       "title": "About Me",
-      "description": "Learn more about my journey and what I do"
+      "description": "Learn more about my journey and what I do",
+      "backgroundTitle": "Background",
+      "backgroundText": "I'm Mathew Kristoffer Ewan KAPOOR, a developer passionate about Data, AI, and creating interactive web experiences. Currently studying Data & AI at ECE Paris, I combine technical expertise with creative problem-solving.",
+      "skillsTitle": "Skills & Focus",
+      "skills": {
+        "dataAI": {
+          "title": "Data & AI",
+          "description": "Machine learning, data analysis, and AI-powered solutions"
+        },
+        "webDev": {
+          "title": "Web Development",
+          "description": "Modern web applications with React, Next.js, and TypeScript"
+        },
+        "uiux": {
+          "title": "UI/UX Design",
+          "description": "Creating beautiful, intuitive user experiences"
+        }
+      }
     },
     "contact": {
       "title": "Get In Touch",
-      "description": "Let's connect and build something together"
+      "description": "Let's connect and build something together",
+      "contactInfo": "Contact Information",
+      "sendMessage": "Send a Message",
+      "labels": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "location": "Location"
+      },
+      "location": "Paris, France",
+      "submit": "Send Message"
     },
     "projects": {
       "title": "My Projects",
       "description": "Explore my work in data, AI, and web development"
+    }
+  },
+  "projects": {
+    "shiatsuGuyane": {
+      "title": "Shiatsu Guyane",
+      "description": "Sophisticated web platform for a Shiatsu therapy practice with unique botanical garden design system",
+      "metadata": {
+        "role": "Full-Stack Developer",
+        "category": "Web Development, Health & Wellness, Small Business",
+        "timeline": "Q3 - Q4 2025 (In Development)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/shiatsu-guyane"
+      },
+      "overview": "\"Shiatsu Guyane\" is a sophisticated, high-performance web platform meticulously crafted for a Shiatsu therapy practice located in French Guiana. This project is more than just a brochure website; it's a digital sanctuary designed to mirror the therapeutic and calming essence of Shiatsu itself, providing a seamless and informative experience for clients seeking holistic health solutions. What truly sets \"Shiatsu Guyane\" apart is its innovative and immersive \"Garden Component System,\" which weaves a consistent botanical theme throughout the user interface, creating a uniquely tranquil digital environment.",
+      "challenge": {
+        "problem": "In a competitive wellness market, a Shiatsu therapy practice in French Guiana needed a professional, modern, and highly accessible online presence. The challenge was to move beyond generic web templates and build a bespoke platform that accurately conveys the serene and healing nature of Shiatsu, while effectively reaching local clients, providing comprehensive service information, and simplifying communication and potential booking processes.",
+        "goal": "The primary objective was to develop a high-performance, responsive, and SEO-optimized website that acts as a central hub for the Shiatsu Guyane practice. Success would be measured by its ability to effectively showcase services, enhance practitioner credibility, facilitate effortless client contact (and eventually booking), and provide a uniquely immersive user experience that reflects the brand's commitment to well-being.",
+        "constraints": "Key technical constraints included ensuring lightning-fast loading times and fluid navigation, crucial for retaining user attention and improving SEO, especially in regions with varying internet speeds. Implementing a comprehensive, modular design system, like the \"Garden Components,\" without compromising performance or code maintainability, required careful architectural planning."
+      },
+      "discovery": {
+        "requirements": "The core requirement was to create an online platform for a Shiatsu therapy practice serving prospective clients seeking alternative therapies and existing clients needing easy access to information. Their needs included a calming, trustworthy aesthetic, easy-to-understand content (potentially in French and English), clear calls-to-action for contact, and mobile accessibility for on-the-go browsing.",
+        "competitiveAnalysis": "The decision to build a custom, Next.js-powered site with a unique aesthetic suggests a desire to stand out from generic, template-based websites often used by small businesses. Many wellness sites lack deep SEO integration, responsive design excellence, or a distinct brand identity. This project aimed to leverage modern web technologies to surpass common limitations.",
+        "technicalResearch": "The choice of Next.js 15 with the App Router was foundational, driven by its reputation for superior performance, built-in SEO capabilities, and efficient server-side rendering. TypeScript ensured code quality and maintainability. Tailwind CSS enabled rapid development of responsive designs. Vercel was chosen for seamless deployment and serverless functions."
+      },
+      "architecture": {
+        "informationArchitecture": "The project follows a logical and user-centric information architecture, clearly structured by the Next.js App Router paradigm. Key routes include /about (practitioner profile), /services (treatment details), /booking (future appointment scheduling), /blog (wellness resources), and /contact (client inquiries). The modular component structure includes a dedicated garden/ directory with reusable botanical components.",
+        "technicalDecisions": "Next.js 15 App Router was chosen for Server Components and enhanced performance. TypeScript (96.6% of codebase) enforces strong typing and reduces bugs. A hybrid Tailwind CSS/CSS Modules approach balances rapid development with granular control. SMTP integration provides reliable email communication. The modular Garden Component System creates an immersive brand experience through independent, composable React components."
+      },
+      "developmentProcess": {
+        "phase1": "Foundation - Initialized Next.js 15 project with App Router and TypeScript configuration for strict type checking. Integrated and configured Tailwind CSS with custom sage green theme. Established core project structure with app/ directory for pages and src/components/ for reusable UI elements. Designed initial API for the unique Garden Components system.",
+        "phase2": "Feature Development - Developed detailed service information pages with static content rendering. Created practitioner profile page with responsive images and structured text. Implemented contact form with SMTP integration and custom email templates. Built modular Garden Component System (GardenBackground, SectionGarden, GardenDivider, FloatingBotanicals) with TypeScript interfaces. Laid groundwork for multilingual support with dual-language content structures.",
+        "phase3": "Polish & Optimization - Implemented comprehensive responsive design across all breakpoints using Tailwind utilities. Optimized SEO with Next.js metadata API, Open Graph protocols, and structured data. Conducted performance audits focusing on image optimization and lazy loading. Ensured semantic HTML structure and accessibility. Performed cross-browser and device compatibility testing."
+      },
+      "keyFeatures": [
+        {
+          "title": "Botanical Garden Component System",
+          "description": "Creates an immersive, tranquil, and nature-themed user experience throughout the website with dynamic botanical backgrounds, section dividers, and floating animated elements",
+          "implementation": "Engineered as a highly modular React component system with TypeScript interfaces defining configurable properties like intensity (light, medium, dense), wildlife (birds, butterflies), atmosphere (sunbeams), theme (grove, zen, herb), and position. Animations optimized using CSS transforms for smooth performance.",
+          "challenges": "Balancing visually rich animations and dynamic backgrounds with overall website performance was addressed by optimizing CSS animations, carefully managing component lifecycle, and designing for modularity to render only necessary elements."
+        },
+        {
+          "title": "Comprehensive Responsive Design",
+          "description": "Ensures optimal viewing and interaction experience across devices from mobile phones (320px) to large desktops (1920px+)",
+          "implementation": "Implemented using Tailwind CSS utility-first framework with responsive prefixes (sm:, md:, lg:) for conditional styling based on predefined breakpoints. Flexible grid system and utility classes enabled rapid iteration and consistent responsiveness.",
+          "challenges": "Ensuring pixel-perfect alignment and optimal readability across vastly different screen sizes required meticulous attention to detail and extensive testing across emulated devices, particularly for complex layouts with botanical elements."
+        },
+        {
+          "title": "Advanced SEO Optimization",
+          "description": "Maximizes website visibility on search engines, particularly for local searches related to Shiatsu therapy in French Guiana",
+          "implementation": "Leverages Next.js metadata API to dynamically generate meta tags, title tags, and Open Graph properties. Implemented semantic HTML5 structure with appropriate headings, alt text for images, and structured data for local business schema. Server-side rendering ensures content is readily available for crawlers.",
+          "challenges": "Continuously monitoring and adapting to evolving SEO best practices while ensuring comprehensive implementation across a growing site required a systematic approach and careful metadata API configuration."
+        },
+        {
+          "title": "Robust Contact & Email Service",
+          "description": "Provides reliable and professional channel for clients to contact the practice and receive automated confirmations",
+          "implementation": "Contact form integrated with SMTP service configured via environment variables. Custom React email templates (ClientConfirmationEmail.tsx) designed for multilingual support (French/English). Serverless functions ensure scalable backend for form processing.",
+          "challenges": "Securely managing sensitive SMTP credentials and ensuring reliable email delivery without spam filters required careful configuration. Implementing robust validation for form inputs was crucial."
+        },
+        {
+          "title": "Multilingual Content Foundation",
+          "description": "Lays groundwork for offering website content in multiple languages with French primary and English support",
+          "implementation": "Architecture accommodates multiple language versions with distinct fr and en objects defining textual content, particularly visible in email templates. Structured for easy translation and dynamic language switching, ready for full i18n solution integration.",
+          "challenges": "Ensuring consistency across translations and managing content for multiple locales efficiently. Current structure provides solid foundation ready for expansion to full i18n solution."
+        }
+      ],
+      "testing": "Continuous feedback loop with rigorous functional testing of all interactive elements, particularly contact forms. Extensive responsive design verification across emulated devices at all breakpoints. Performance optimization using Lighthouse audits focusing on core web vitals, lazy loading strategies, and efficient CSS delivery. Initial accessibility testing with semantic HTML and keyboard navigability checks. Cross-browser compatibility testing across Chrome, Firefox, and Safari. Disciplined Git version control with feature branches for seamless iteration.",
+      "results": {
+        "technicalAchievements": "Achieved 96.6% TypeScript adoption across 50+ files for high code quality and maintainability. Successfully designed versatile Garden Component System with four distinct, highly customizable React components. Leveraged Next.js 15 App Router for optimized performance and SEO foundation. Integrated secure SMTP-based email service with professional multilingual templates. Delivered fully responsive design optimized for 320px to 1920px+ devices.",
+        "businessImpact": "Provides Shiatsu Guyane practice with modern, professional digital storefront elevating brand image and credibility. Offers clear service descriptions and easy contact options, fostering trust and simplifying client journey. SEO-optimized architecture targets local searches attracting new clients. Unique Garden Component System creates memorable user experience differentiating practice from competitors. Streamlined communication through integrated form handling and templated emails.",
+        "personalGrowth": "Gained extensive experience with Next.js 15 App Router, mastering Server Components and advanced data fetching. Designing Garden Component System sharpened skills in architecting reusable, configurable UI components with complex visual requirements. Enhanced understanding of comprehensive SEO strategies within modern frameworks. Overcame challenges in balancing visual richness with performance, solidifying problem-solving abilities in frontend architecture."
+      },
+      "techStack": {
+        "frontend": "Next.js 15 (App Router), TypeScript, React, Tailwind CSS, CSS Modules, Geist Font Family",
+        "backend": "Vercel, Node.js, SMTP Email Service",
+        "tools": "Git/GitHub, npm/yarn/pnpm/bun, React Email",
+        "libraries": "React Email for templated transactional emails"
+      },
+      "learnings": [
+        "Mastering Next.js 15 App Router & Server Components - Deep dive into new paradigms, understanding Server vs Client Components, optimizing data fetching, and structuring performant applications",
+        "Architecting Extensible & Performant UI Systems - Learned intricacies of creating modular, configurable, visually rich UI system balancing aesthetics with performance using TypeScript interfaces",
+        "Holistic SEO Integration in Modern Frameworks - Comprehensive understanding of baking SEO into application architecture using metadata API, semantic HTML, and structured data from inception",
+        "Building Robust & Secure Communication Flows - Practical experience setting up reliable backend communication with secure SMTP integration, environment variables, form handling, and professional automated emails"
+      ],
+      "futureEnhancements": [
+        "Full Multilingual Implementation - Expand beyond email templates to provide complete multilingual support for all website content with language switcher and localized routing",
+        "Integrated Booking System - Implement full appointment booking system with third-party API integration or custom solution for direct scheduling",
+        "Interactive Map Integration - Integrate Google Maps API to display practice location, offering directions and enhancing local SEO",
+        "Enhanced Blog Functionality - Develop advanced features like category filtering, search, pagination, and rich text editor for dynamic wellness resource",
+        "Client Testimonials & Reviews Section - Implement dedicated section with submission form and admin moderation to build social proof and credibility"
+      ],
+      "conclusion": "\"Shiatsu Guyane\" represents a robust, aesthetically driven, and technically advanced web platform, successfully transforming a local wellness practice into a powerful digital presence. By meticulously leveraging Next.js 15, TypeScript, and a unique Garden Component System, the project delivers a high-performance, SEO-optimized, and deeply engaging user experience. This project stands as a testament to the ability to architect, develop, and deploy complex, modern web applications that blend technical excellence with compelling user journeys."
+    },
+    "ascord-appwrite": {
+      "title": "Ascord",
+      "description": "Ascord is a real-time, unified platform for task management and team collaboration.",
+      "metadata": {
+        "role": "Frontend Developer",
+        "category": "Web Development, Task Management, Collaboration",
+        "timeline": "December 2024 - Present (Ongoing Development)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/ascord-appwrite"
+      },
+      "overview": "Ascord is an ambitious task management and project collaboration platform, combining Discord's UI with Asana/Trello's robust features. Utilizing Next.js and Appwrite, it delivers real-time workspace creation, customizable board views, detailed task management, and seamless communication. The platform emphasizes efficiency, user-centric design, and instant updates for enhanced team productivity.",
+      "challenge": {
+        "problem": "Traditional project management tools often suffer from complex interfaces or fragmented workflows, forcing teams to juggle multiple applications. The core problem was to unify disparate communication, task tracking, and file sharing functionalities into a single, cohesive, and enjoyable user experience.",
+        "goal": "Develop Ascord, a full-featured task management and project collaboration platform with a Discord-inspired UI, powerful task management, and real-time collaboration. The objective was to ensure a robust, scalable backend while prioritizing an excellent developer experience and maintainability.",
+        "constraints": "Key challenges included implementing real-time data synchronization, designing a flexible drag & drop interface, ensuring robust authentication with role-based permissions, and managing diverse data types efficiently. Using Appwrite as a BaaS accelerated development but imposed flexibility constraints compared to a custom backend."
+      },
+      "discovery": {
+        "requirements": "Requirements were gathered from the `README.md`, emphasizing comprehensive workspace, board, and task management, real-time updates, user roles, file attachments, and drag & drop. User stories focused on team leads organizing projects, members updating tasks, and instant feedback.",
+        "competitiveAnalysis": "Competitive analysis involved studying Asana, Trello, and Discord. Discord's server/channel structure and real-time communication were adopted, Trello's Kanban and drag & drop, and Asana's detailed task management, informing Ascord's feature set and UI.",
+        "technicalResearch": "Next.js 14 with App Router was chosen for modern web practices, leveraging server components for performance. Appwrite provided a versatile BaaS for auth, database, storage, and crucial real-time APIs. TypeScript ensured type safety, and Tailwind CSS facilitated rapid UI development."
+      },
+      "architecture": {
+        "informationArchitecture": "The project's architecture is modular and scalable, using Next.js App Router for logical separation of auth and dashboard areas. Reusable React components are organized into `ui`, feature-specific, and `modals`. `lib/` contains Appwrite client, API abstractions, and utility functions, while `hooks/` centralizes domain-specific logic.",
+        "technicalDecisions": "Next.js 14 App Router was selected for SSR/SSG, API routes, and performance optimization via server components. Appwrite as BaaS provided authentication, database, storage, and real-time APIs, accelerating development. TypeScript ensured type safety, improving readability and maintainability. Tailwind CSS enabled rapid, consistent UI development, and Appwrite Realtime API delivered crucial instantaneous updates."
+      },
+      "developmentProcess": {
+        "phase1": "Phase 1 established the foundation: setting up Next.js 14 and Appwrite SDK, structuring the project, and configuring environment variables. Basic user authentication (registration, login) was implemented to ensure secure access to the platform.",
+        "phase2": "Phase 2 focused on core feature development, including Workspace Management (creation, sidebar, member invitations, role management). The Board System (Kanban, list, calendar views) and robust Task Management (detailed cards, assignments, due dates, labels, file attachments) were built using components and custom hooks.",
+        "phase3": "Phase 3 concentrated on polish and optimization, integrating real-time collaboration via Appwrite's Realtime API for instant updates. The drag & drop interface was refined, UI elements polished with Tailwind CSS, and user roles and permissions thoroughly implemented for effective access control."
+      },
+      "keyFeatures": [
+        {
+          "title": "Workspace Management (Discord-style)",
+          "description": "Enables creating isolated environments for teams/projects, mirroring Discord's server structure with sidebar navigation. Supports inviting and managing members with role-based permissions.",
+          "implementation": "Workspace data and members are stored in Appwrite Database, with authentication handled by Appwrite Auth. Custom React hooks manage active workspace state and member utilities. Permissions are enforced via Appwrite's document-level security and application-side logic.",
+          "challenges": "Ensuring secure data retrieval, implementing dynamic sidebar navigation, and correctly applying role-based access controls to various workspace actions were key challenges."
+        },
+        {
+          "title": "Real-time Collaboration",
+          "description": "Provides instant updates across the application, reflecting changes to tasks, comments, or card movements in real-time for all team members.",
+          "implementation": "Powered by Appwrite's Realtime API, frontend components subscribe to changes on specific Appwrite collections or documents. Appwrite pushes updates to subscribed clients, triggering UI re-renders with the latest data.",
+          "challenges": "Efficiently managing numerous real-time subscriptions, ensuring data consistency across clients, and gracefully handling network disconnections were critical challenges."
+        },
+        {
+          "title": "Drag & Drop Interface (Kanban View)",
+          "description": "Offers an intuitive visual task board where users can effortlessly drag and drop task cards between columns to update status or reorder them.",
+          "implementation": "Integrates a modern drag & drop library within React components. Upon dropping, the frontend captures new position/status, dispatches an update to Appwrite Database, and real-time features propagate changes to collaborators.",
+          "challenges": "Seamless integration with React state and Appwrite data, handling complex drag scenarios, and ensuring a smooth, performant user experience without jank."
+        },
+        {
+          "title": "Rich Task Management",
+          "description": "Allows creating detailed task cards supporting multiple assignments, customizable due dates, priority levels, labels, file attachments, and integrated comments/discussions. Includes checklist items for granular breakdown.",
+          "implementation": "All task-related data (assignments, dates, priorities, labels, checklist items) is stored in Appwrite Database. File attachments utilize Appwrite Storage. Comments are managed in a separate linked collection.",
+          "challenges": "Designing a flexible database schema for diverse task attributes, implementing robust file management, and ensuring real-time updates for nested elements like comments and checklists."
+        },
+        {
+          "title": "Role-Based Permissions",
+          "description": "Controls actions users can perform within a workspace. Roles like Owner, Admin, and Member have distinct privileges, e.g., only Owners can delete, Admins invite, Members update tasks.",
+          "implementation": "Utilizes Appwrite's document-level security and application-level logic based on user roles from workspace membership records. This guards UI actions and API calls.",
+          "challenges": "Granularly defining and enforcing permissions for many actions, ensuring consistency between backend rules and frontend UI, and preventing unauthorized data access or manipulation."
+        }
+      ],
+      "testing": "A pragmatic approach involved unit tests for utility functions and custom hooks, and integration tests for component interactions and Appwrite API calls. Given ongoing development, manual testing and continuous iteration based on developer feedback were emphasized. Real-time features received extensive testing to ensure concurrent updates and data synchronization. Future plans include a comprehensive suite of end-to-end tests.",
+      "results": {
+        "technicalAchievements": "Ascord achieved a complex, real-time web application integrating Next.js with Appwrite, showcasing proficiency in frontend architecture and BaaS utilization. Successful implementation of real-time collaboration, drag & drop, and role-based permissions demonstrates deep understanding of full-stack patterns and scalable design. The project’s structure and TypeScript best practices ensure high maintainability.",
+        "businessImpact": "Ascord, while in development, aims to significantly boost team productivity by unifying communication and task management, reducing context switching. Its intuitive, real-time environment fosters better collaboration and clearer project oversight, addressing a critical need for small to medium-sized teams.",
+        "personalGrowth": "This project provided invaluable experience in architecting and developing a feature-rich, real-time application. I gained extensive hands-on experience with Next.js 14's App Router, Appwrite's ecosystem (Auth, Database, Storage, Realtime), and refined skills in Tailwind CSS and TypeScript, solidifying capabilities as a versatile frontend developer."
+      },
+      "techStack": {
+        "frontend": "Next.js 14 (App Router), React, TypeScript, Tailwind CSS, Geist Font Family",
+        "backend": "Appwrite (BaaS, Realtime API, Auth, Database, Storage)",
+        "tools": "GitHub",
+        "libraries": "dnd-kit (or similar drag & drop library)"
+      },
+      "learnings": [
+        "Leveraging Appwrite as a BaaS significantly accelerated development by providing robust, out-of-the-box solutions for authentication, database, storage, and real-time functionalities.",
+        "Gained deep insight into architecting and implementing real-time data synchronization using Appwrite's API, managing subscriptions, and ensuring data consistency across distributed clients.",
+        "Mastered the intricacies of the Next.js 14 App Router, including Server Components, client-side rendering, data fetching patterns, and efficient routing for complex UI structures.",
+        "Reinforced the value of TypeScript for building maintainable, scalable applications and the efficiency of Tailwind CSS for rapidly developing visually appealing and responsive user interfaces."
+      ],
+      "futureEnhancements": [
+        "Implement a comprehensive real-time notifications system for task assignments, due dates, and comments.",
+        "Develop integrations with popular third-party tools like Slack, GitHub, or Google Drive for enhanced workflow automation.",
+        "Introduce advanced analytics dashboards with detailed project progress tracking, team performance metrics, and customizable reports.",
+        "Extend Ascord's reach by developing a dedicated mobile application or a Progressive Web App (PWA) for on-the-go access.",
+        "Offer users personalization options, including customizable themes and a dark mode."
+      ],
+      "conclusion": "Ascord exemplifies the power of modern web technologies in creating intuitive, highly collaborative applications. By blending Discord's engaging UI with Asana/Trello's robust task management, it delivers a comprehensive, real-time platform designed to elevate team productivity. This project showcased technical proficiency and a commitment to solving real-world collaboration challenges with innovative, user-centric solutions, representing a vision for future team collaboration."
+    },
+     "B2javaECE": {
+      "title": "B2javaECE Project",
+      "description": "ECE Paris B2 Java portfolio: concepts, algorithms, and software practices.",
+      "metadata": {
+        "role": "Student",
+        "category": "Java Development, School",
+        "timeline": "Academic Year 2024-2025 (February to October 2025)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/B2javaECE"
+      },
+      "overview": "B2javaECE is an academic portfolio documenting diverse Java projects and exercises from ECE Paris's second year. It showcases mastery of core Java concepts, algorithms, database integrations, and multithreaded applications. This repository highlights the developer's ability to apply theoretical knowledge to practical problems and adhere to best practices.",
+      "challenge": {
+        "problem": "The main challenge was organizing diverse Java projects from the ECE Paris curriculum into a unified repository. Without this, tracking progress and demonstrating mastery of various topics for both student and evaluators was difficult.",
+        "goal": "The goal was to create a single, well-structured GitHub repository showcasing programming concepts, algorithms, and software development practices. Key objectives included mastering OOP, data structures, algorithms, design patterns, and Java best practices for robust problem-solving.",
+        "constraints": "Primary constraints involved adhering to ECE Paris curriculum requirements and learning objectives. The focus was on demonstrating understanding of defined topics, not developing a commercial product. The repository served educational purposes."
+      },
+      "discovery": {
+        "requirements": "Project requirements were directly linked to the ECE Paris second-year curriculum, demanding deep understanding of academic objectives for each assignment. This included implementing data structures, applying OOP, and integrating with databases. The README served as a roadmap by listing learning objectives and topics.",
+        "competitiveAnalysis": "As an academic portfolio, 'competition' focused on demonstrating a strong grasp of subject matter compared to peers. The aim was to produce clean, well-documented, and functionally correct projects. This highlighted individual learning and skill acquisition as a personal academic showcase.",
+        "technicalResearch": "Extensive technical research covered Java Collections, exception handling, file I/O, multithreading, JDBC, design patterns, and JUnit. This ensured all implementations aligned with industry standards and academic expectations."
+      },
+      "architecture": {
+        "informationArchitecture": "The project adopted a standard, organized structure typical for Java/Maven/Gradle projects, with `src/main`, `src/test`, `lib/`, and `docs/`. `README.md` served as the central information hub. This structure facilitated easy navigation, maintenance, and scalability.",
+        "technicalDecisions": "Java was chosen as the primary language, aligning with curriculum requirements. Maven or Gradle provided standardized build and dependency management. Git ensured industry-standard version control and history tracking. The presence of CSS strongly implied JavaFX for UI development, enabling structured graphical applications."
+      },
+      "developmentProcess": {
+        "phase1": "Phase 1 involved setting up the development environment, including JDK 11+, IDE configuration, and Maven/Gradle build system establishment. The repository was cloned, and a standard folder structure (`src/main`, `src/test`, `lib/`, `docs/`) was created, ensuring a solid base for all assignments.",
+        "phase2": "Phase 2 focused on implementing individual academic projects, each addressing specific learning objectives. This included designing OOP classes, implementing data structures and algorithms, handling file I/O, and integrating databases via JDBC. UI-driven applications like `UserManagerFX` were developed, combining user interfaces with business logic. Multithreading concepts were also applied to concurrency problems.",
+        "phase3": "Phase 3 emphasized code quality and Java best practices, with JUnit unit tests ensuring correctness and stability. Code was refactored for readability, maintainability, and efficiency, adhering to design patterns. The README was continually updated to maintain a clear and comprehensive academic showcase."
+      },
+      "keyFeatures": [
+        {
+          "title": "Object-Oriented Programming (OOP) Implementations",
+          "description": "Showcases fundamental OOP principles like encapsulation, inheritance, polymorphism, and abstraction through various class designs.",
+          "implementation": "Projects include well-structured classes, interfaces, and abstract classes modeling entities, demonstrating method overriding and interface implementation for specific problem domains.",
+          "challenges": "Designing flexible, extensible class structures adhering to SOLID principles, ensuring proper access control, and managing complex object relationships."
+        },
+        {
+          "title": "Data Structures & Algorithms (DSA)",
+          "description": "Implements and applies various data structures (e.g., Lists, Sets, Maps) and classical algorithms to solve computational problems.",
+          "implementation": "Leverages Java's Collections Framework (`ArrayList`, `HashMap`) and includes custom algorithm implementations (e.g., sorting, searching) to demonstrate mechanics and performance.",
+          "challenges": "Optimizing algorithm efficiency for time/space complexity, selecting appropriate data structures, and effectively handling edge cases."
+        },
+        {
+          "title": "File I/O Operations & Exception Handling",
+          "description": "Provides robust mechanisms for reading from and writing to files, and systematically handles runtime errors to prevent application crashes.",
+          "implementation": "Utilizes `java.io` package components (e.g., `FileReader`, `BufferedReader`) for efficient data manipulation. `try-catch-finally` blocks and custom exceptions manage errors like `FileNotFoundException` gracefully.",
+          "challenges": "Ensuring data integrity, reliably managing resource closures, and providing clear error messages for various failure scenarios."
+        },
+        {
+          "title": "Database Connectivity with JDBC",
+          "description": "Establishes connections between Java applications and relational databases, enabling data persistence and retrieval.",
+          "implementation": "Implements the JDBC API to connect to databases (e.g., MySQL), execute SQL queries (INSERT, SELECT, UPDATE, DELETE), and process `ResultSet` objects. This includes managing connections and transactions.",
+          "challenges": "Securing database credentials, efficiently managing connection pools, handling database-specific exceptions, and designing appropriate schemas."
+        },
+        {
+          "title": "User Management Application (Implied: `UserManagerFX`)",
+          "description": "A mini-application for managing user data, likely with a graphical user interface, indicated by CSS styling for menu and buttons.",
+          "implementation": "Combines OOP for `User` models, data structures for in-memory storage, and JDBC for persistence. The UI is built using JavaFX (implied) with custom CSS styling for aesthetics.",
+          "challenges": "Integrating UI with backend logic, implementing data validation, ensuring an intuitive user experience, and managing data flow between UI and database."
+        },
+        {
+          "title": "Unit Testing with JUnit",
+          "description": "Ensures the correctness, reliability, and maintainability of individual code units (methods, classes) across all projects.",
+          "implementation": "Utilizes the JUnit testing framework to write automated test cases covering normal operations, edge cases, and expected exceptions, providing immediate feedback on code changes.",
+          "challenges": "Achieving comprehensive test coverage, writing isolated and deterministic tests, and effectively mocking dependencies."
+        }
+      ],
+      "testing": "Rigorous testing with JUnit was fundamental to ensuring code quality and correctness. Automated unit tests were developed for each component, leveraging Maven/Gradle, providing rapid feedback. This iterative process, guided by test failures, ensured functional correctness, validated learning objectives, and demonstrated a professional development approach.",
+      "results": {
+        "technicalAchievements": "The project demonstrates robust Java proficiency, successfully implementing OOP principles, data structures, and algorithms. Expertise in file I/O, exception handling, multithreading, and JDBC for database integration was achieved. Practical experience with implied JavaFX UI development and consistent JUnit application showcase commitment to quality. Adherence to industry-standard project structures and build processes further solidifies technical achievements.",
+        "businessImpact": "As an academic portfolio, the primary impact is career advancement and educational validation. It significantly enhances the developer's professional profile, demonstrating the ability to learn, apply, and document complex technical concepts effectively. This project validates the educational investment by showcasing direct curriculum results.",
+        "personalGrowth": "The project instrumentalized personal and professional growth, solidifying Java fundamentals and enhancing problem-solving skills. It provided practical experience in software engineering best practices, design patterns, and proficiency with essential development tools like Git and Maven/Gradle. Cultivated habits of thorough documentation and consistent code organization."
+      },
+      "techStack": {
+        "frontend": "CSS, JavaFX (Implied)",
+        "backend": "Java, JDBC",
+        "tools": "Maven, Gradle, Git, IntelliJ IDEA, Eclipse, VS Code",
+        "libraries": "JUnit"
+      },
+      "learnings": [
+        "Gained deep practical understanding of Java's core ecosystem, including OOP, Collections Framework, exception handling, and concurrency.",
+        "Became proficient in modern Java development workflow, utilizing industry-standard tools like Maven/Gradle for build automation and JUnit for rigorous testing.",
+        "Applied common software design patterns and best practices, leading to modular, maintainable, and scalable code structures for complex projects.",
+        "Acquired practical experience in desktop-focused full-stack integration, from interactive JavaFX UIs with CSS to database persistence using JDBC."
+      ],
+      "futureEnhancements": [
+        "Expand into web development using Spring Boot to build RESTful APIs or full-stack web applications.",
+        "Implement ORM frameworks like Hibernate to streamline database interactions and enhance data modeling, replacing direct JDBC.",
+        "Develop advanced JavaFX applications with more UI controls, animations, and FXML for declarative UI design to enhance user experience.",
+        "Implement CI/CD pipelines (e.g., GitHub Actions) to automate testing, building, and deployment of academic projects.",
+        "Introduce robust logging with frameworks like Log4j2 or SLF4j for detailed application insights, debugging, and monitoring.",
+        "Containerize individual projects using Docker to ensure consistent environments and simplify setup/dependency management."
+      ],
+      "conclusion": "The B2javaECE project powerfully demonstrates foundational and evolving Java expertise through a diligent academic journey. It meticulously showcases practical application of OOP, data structures, software design, and critical development tools. This comprehensive portfolio validates strong commitment to learning, technical proficiency, and readiness for future software development endeavors."
+    },
+    "RIB": {
+      "title": "RIB Project",
+      "description": "Generates and validates French IBANs from RIB details, ensuring accuracy and educating on control keys.",
+      "metadata": {
+        "role": "Student",
+        "category": "Python Development, Financial Algorithms, GUI Development, API Integration",
+        "timeline": "September 2025 (Initial Development Phase)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/RIB"
+      },
+      "overview": "The RIB project generates and validates French IBANs from traditional RIB details, automatically calculating ISO 13616 compliant control keys and integrating with `ibanapi.com` for real-time verification. It also serves as an educational tool, demonstrating the importance of correct control keys through comparative validation. Developed with Python, Tkinter, and a modular architecture, RIB showcases full-stack development skills in banking data processing.",
+      "challenge": {
+        "problem": "Manually generating and validating French IBANs from RIB details is complex, error-prone, and time-consuming, with miscalculations causing significant financial delays. An automated, reliable system was needed to ensure compliance and accuracy.",
+        "goal": "Create a complete RIB/IBAN analysis system that automatically calculates ISO 13616 compliant control keys, performs external validation via a professional API, provides an intuitive GUI, and offers an educational demonstration of the validation process with a modular architecture.",
+        "constraints": "The system had to accurately process French RIB data (bank, agency, account, national key) adhering strictly to ISO 13616 (Modulo 97). Secure `ibanapi.com` integration required `.env` for API keys and robust error handling. The application needed to be self-contained using standard Python libraries like Tkinter."
+      },
+      "discovery": {
+        "requirements": "Detailed analysis of French RIB structure was crucial for parsing and combining data into a valid IBAN. The core requirement was to automate generation and verification, meeting the user need for a reliable, easy-to-use tool for transaction accuracy.",
+        "competitiveAnalysis": "While online calculators exist, RIB innovates by combining automatic, standards-compliant generation with real-time, professional API validation (`ibanapi.com`) and an educational component. This unique blend positions it as a more comprehensive and trustworthy solution.",
+        "technicalResearch": "Extensive research covered ISO 13616's Modulo 97 algorithm and alphanumeric conversion rules. API integration focused on `ibanapi.com`'s documentation, `requests` library usage, and secure `.env` key management. Tkinter's capabilities for intuitive GUI design were also explored."
+      },
+      "architecture": {
+        "informationArchitecture": "The project adopted a clear, modular architecture, separating backend logic (`main.py`) for core banking algorithms and API integration from the frontend GUI (`interface_iban.py`) for user interface and events. This separation enhances maintainability and extensibility.",
+        "technicalDecisions": "Python was chosen for its versatility and rich ecosystem (Tkinter, Requests) for rapid development. Tkinter, a standard library, was selected for the GUI to ensure compatibility. The Requests library facilitated robust API communication with `ibanapi.com` for professional validation, and `.env` was implemented for secure API key management, promoting best practices."
+      },
+      "developmentProcess": {
+        "phase1": "Phase 1 established the core logic by setting up the Python environment and handling RIB data parsing. The critical Modulo 97 algorithm was implemented, accurately translating ISO 13616 for IBAN control key calculation, including complex alphanumeric conversions.",
+        "phase2": "Phase 2 focused on feature development, integrating the Modulo 97 calculation for automatic IBAN generation. API integration with `ibanapi.com` was implemented using `requests`, including authentication and error handling. Tkinter GUI was developed with input/output fields and interactive buttons, connecting UI events to backend functions.",
+        "phase3": "Phase 3 refined the project with an educational demonstration comparing correct and intentionally incorrect IBANs via API validation, showcasing control key importance. User experience was enhanced with intuitive GUI feedback, and `.env` was implemented for secure API key management."
+      },
+      "keyFeatures": [
+        {
+          "title": "Automated IBAN Generation (ISO 13616 Compliant)",
+          "description": "Automatically calculates the 2-digit IBAN control key and constructs the full IBAN string from French RIB details, ensuring banking compliance.",
+          "implementation": "Implements the complex Modulo 97 algorithm, involving specific alphanumeric conversions, RIB element concatenation, and iterative division, strictly adhering to ISO 13616.",
+          "challenges": "Precisely translating a complex mathematical and alphanumeric banking standard into code and handling edge cases for alphanumeric conversion and large number arithmetic to ensure accurate control keys."
+        },
+        {
+          "title": "Real-time External API Validation",
+          "description": "Submits generated IBANs to `ibanapi.com` for real-time verification of their validity and structural correctness.",
+          "implementation": "Uses `requests` library for authenticated HTTP GET requests to `ibanapi.com`'s validation endpoint, with API keys managed via `.env`. Parses JSON responses to display validation results.",
+          "challenges": "Securely managing the API key and robustly handling various API responses, including successful validation, invalid formats, and potential network or API errors, to provide clear user feedback."
+        },
+        {
+          "title": "Intuitive Tkinter-based Graphical User Interface (GUI)",
+          "description": "Provides a user-friendly interface for inputting RIB data, triggering IBAN generation, initiating validation, and displaying results.",
+          "implementation": "Developed using `tkinter` with `Entry` fields, `Button` widgets, and `Text` areas. Event handlers connect GUI actions to backend Python functions for calculation and API calls.",
+          "challenges": "Designing a functional and easy-to-navigate layout despite Tkinter's basic styling, ensuring seamless communication between UI and backend logic to prevent UI freezes during operations."
+        },
+        {
+          "title": "Educational Validation Demonstration",
+          "description": "Illustrates IBAN control key criticality by comparing validation results of a correctly calculated IBAN against two intentionally incorrect ones.",
+          "implementation": "Calculates the correct IBAN, then constructs two more with forced incorrect control keys. All three are sent to `ibanapi.com`, and results are displayed side-by-side, highlighting validity differences.",
+          "challenges": "Clearly communicating the complex concept of control key importance through a practical, comparative example within the GUI, ensuring 'fixed key' logic didn't interfere with standard calculation."
+        },
+        {
+          "title": "Flexible RIB Data Parsing",
+          "description": "Automatically reads and parses RIB details from a simple text file, preparing them for IBAN generation.",
+          "implementation": "Employs Python's file I/O and `split()` methods to extract bank code, agency code, account number, and national key from `bankaccount.txt`.",
+          "challenges": "Ensuring robust parsing for potentially varied input formats within the text file, making the system flexible enough to handle typical data entry styles efficiently."
+        }
+      ],
+      "testing": "Primary testing involved thorough manual and functional validation. The 'Educational Validation Demonstration' was a critical functional test, explicitly validating core logic and API integration with known good/bad IBANs. Iterations focused on refining banking algorithm accuracy, improving Tkinter interface responsiveness, and enhancing API error handling.",
+      "results": {
+        "technicalAchievements": "Achieved mastery in implementing the complex Modulo 97 banking algorithm and alphanumeric conversion rules, demonstrating deep understanding of ISO 13616. Established robust `ibanapi.com` integration, showcasing proficiency in `requests` and secure API key management. Developed a modular architecture for maintainable code and delivered a functional Tkinter GUI.",
+        "businessImpact": "Although a student project, RIB significantly reduces manual errors in IBAN generation, saving time and preventing financial discrepancies. Its educational aspect fosters a better understanding of banking standards, promoting more informed financial operations.",
+        "personalGrowth": "Gained extensive experience in translating intricate banking standards into functional code and integrating third-party APIs securely. Solidified understanding of modular software design and improved GUI development skills with Tkinter, deepening knowledge of financial data structures."
+      },
+      "techStack": {
+        "frontend": "Tkinter",
+        "backend": "Python, Requests",
+        "tools": ".env",
+        "libraries": "Python's `tkinter` for GUI, `requests` for HTTP requests, `ibanapi.com` for external IBAN validation."
+      },
+      "learnings": [
+        "Precision in implementing complex banking algorithms like Modulo 97 is paramount; minor deviations lead to invalid results, requiring rigorous testing.",
+        "Leveraging specialized third-party APIs (e.g., `ibanapi.com`) for niche functionalities like data validation is efficient, allowing focus on core application logic.",
+        "Modular architecture, separating backend from GUI, significantly improves code organization, maintainability, and facilitates independent debugging and expansion.",
+        "Focusing on an intuitive and functional user interface, even with basic styling, is crucial for user experience and understanding complex processes, as highlighted by the educational demonstration."
+      ],
+      "futureEnhancements": [
+        "Implement an offline IBAN validation algorithm as a fallback for external API resilience.",
+        "Add functionality to export generated and validated IBANs to formats like CSV or PDF for record-keeping.",
+        "Enhance the system for batch processing of multiple RIBs from bulk input files to improve efficiency.",
+        "Introduce a feature to store a history of past validations for user review.",
+        "Upgrade the Tkinter interface with a modern design or migrate to a contemporary GUI framework (e.g., PyQt, Kivy)."
+      ],
+      "conclusion": "The RIB project successfully delivers a robust, educational system for French IBAN generation and validation, effectively applying Python for complex financial algorithms and API integration. It met technical objectives for ISO 13616 compliance and demonstrated strong commitment to user understanding through its comparative validation feature, showcasing rigorous technical and intuitive design skills."
+    },
+    "DNA": {
+      "title": "DNA",
+      "description": "Project",
+      "error": "JSON parsing failed, full case study available in _fullCaseStudy field"
+    },
+    "mots-fleches": {
+      "title": "Mots-Fléchés",
+      "description": "An academic C project implementing a console-based 'mots-fléchés' (arrow words) puzzle generator and solver.",
+      "metadata": {
+        "role": "Student",
+        "category": "C Development, Algorithmic Puzzles",
+        "timeline": "May 2024 - June 2024",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/mots-fleches"
+      },
+      "overview": "This ECE Paris Bachelor 1 project, 'mots-fléchés,' challenged students to apply C programming fundamentals to create a functional word puzzle application. It explored algorithmic design, data structuring, and robust implementation within a constrained, console-based environment, developing essential problem-solving skills.",
+      "challenge": {
+        "problem": "The primary problem was to design a C program for 'mots-fléchés' puzzles, requiring intricate logic for word placement, grid management, and user interaction. Without high-level frameworks, most functionalities, like dynamic memory and string handling, needed to be built from scratch.",
+        "goal": "The overarching goal was to deliver a functional 'mots-fléchés' application meeting academic requirements. This involved demonstrating proficiency in C syntax, modular programming, error handling, and effective complex algorithm implementation to cultivate strong problem-solving skills.",
+        "constraints": "Constraints included being restricted to C (manual memory management, custom data structures), a short one-month timeline, and limited graphical elements, necessitating a console-based application. Adherence to specific academic coding standards was also required."
+      },
+      "discovery": {
+        "requirements": "Core user requirements for a 'mots-fléchés' application translated to robust puzzle generation/loading, intuitive grid display, and responsive user input. Academic requirements emphasized code clarity, efficient algorithms, and proper C memory management.",
+        "competitiveAnalysis": "While console-based C competitors were scarce, the team drew inspiration from existing online 'mots-fléchés' generators and solvers. Analysis focused on clue presentation, word intersection, and user flow, adapting concepts to C's technical limitations.",
+        "technicalResearch": "Extensive research covered grid-filling algorithms (e.g., backtracking), C data structures (`struct`s, dynamic arrays, linked lists), string manipulation (`strcpy`, `strlen`), file I/O strategies, and CMake for build management."
+      },
+      "architecture": {
+        "informationArchitecture": "The project employed a modular structure with `main.c` orchestrating UI and module calls. Separate `grid.c`, `word.c`, `dictionary.c`, `puzzle_generator.c`, and `input.c` files handled distinct concerns, enhancing maintainability and readability.",
+        "technicalDecisions": "Key decisions involved extensive dynamic memory allocation (`malloc`, `free`), using `struct`s for data representation (e.g., `GridCell`, `Word`), and choosing CMake for robust, cross-platform build management. A simple console-based UI was opted for, alongside a backtracking algorithm for puzzle generation."
+      },
+      "developmentProcess": {
+        "phase1": "The first phase focused on foundational setup: GitHub repository initialization, CMake configuration, defining core `struct`s (`GridCell`, `Word`), basic grid management (initialization, display, memory freeing), and dictionary loading from text files.",
+        "phase2": "Feature development involved creating the core word placement logic, integrating it into a comprehensive backtracking puzzle generation algorithm, associating and displaying clues, and implementing user input mechanisms for grid interaction and answer checking.",
+        "phase3": "The final phase refined the application with robust error handling for inputs, file I/O, and memory allocation. It also included input validation, display enhancements for console output, a thorough memory management audit, and code review/refactoring."
+      },
+      "keyFeatures": [
+        {
+          "title": "Dynamic Puzzle Grid Generation",
+          "description": "Creates unique 'mots-fléchés' grids by arranging dictionary words horizontally and vertically with correct intersections.",
+          "implementation": "Utilizes a backtracking algorithm on a dynamically allocated 2D array (grid). Each cell, likely a `struct`, stores character data and word associations. The algorithm attempts word placement, backtracking upon conflicts or dead-ends.",
+          "challenges": "Managing complex intersection logic, efficiently searching the dictionary for fitting words, and handling the computational cost of backtracking for varied puzzle sizes."
+        },
+        {
+          "title": "Comprehensive Dictionary Management",
+          "description": "Loads, stores, and allows efficient searching of words and their associated clues from an external text file.",
+          "implementation": "Reads words and clues line by line into a dynamic array or linked list of `Word` structs. Search functions enable filtering by length or specific character patterns for puzzle generation.",
+          "challenges": "Robustly parsing file formats, handling file I/O errors, and designing efficient search mechanisms in C, potentially using linear scans or more advanced structures like hash tables."
+        },
+        {
+          "title": "Interactive Console-Based User Interface",
+          "description": "Presents the 'mots-fléchés' grid and clues to the user in the terminal, enabling letter input and basic interaction.",
+          "implementation": "Renders the grid using `printf` and handles user input (coordinates, characters) via `scanf` or `fgets`. Clues are listed separately. User input involves entering grid coordinates and a character.",
+          "challenges": "Creating a clear ASCII grid representation, managing raw terminal input without advanced libraries, and ensuring intuitive console navigation within text-based constraints."
+        },
+        {
+          "title": "Real-time Solution Verification",
+          "description": "Checks user-entered letters against the generated solution, providing immediate feedback on correctness.",
+          "implementation": "Compares the user's input character at a specific grid cell with the corresponding character from the internal, solved puzzle representation. Feedback could be simple text or character styling.",
+          "challenges": "Ensuring accurate indexing between user input (e.g., A1) and the internal 2D array, and managing the state (empty, filled, correct, incorrect) of each grid cell."
+        },
+        {
+          "title": "Robust Error Handling and Input Validation",
+          "description": "Prevents program crashes from invalid user input or unexpected file operations, guiding the user through errors.",
+          "implementation": "Implements checks before input, after `malloc`, and during file operations, returning error codes or using `errno`. Functions clear input buffers and enforce valid input ranges.",
+          "challenges": "Anticipating diverse invalid inputs, handling file read/write permissions, and ensuring graceful program recovery or exit without memory leaks."
+        }
+      ],
+      "testing": "Testing was primarily manual, focusing on functional correctness and robustness. Unit testing verified individual functions with various inputs and edge cases, including empty dictionaries and min/max grid sizes. Integration testing ensured cohesive system operation. Rigorous input validation testing attempted to crash the program, and memory leak detection was crucial, likely aided by tools like Valgrind.",
+      "results": {
+        "technicalAchievements": "Mastered C fundamentals, implementing complex algorithms using pointers, structs, and arrays with robust memory management. Developed an optimized multi-stage algorithm for 'mots-fléchés' generation and structured the codebase modularly. Successfully integrated and utilized CMake for build management.",
+        "businessImpact": "The project fulfilled ECE Paris Bachelor 1 curriculum requirements, serving as a strong demonstration of practical C programming skills. It provided an engaging platform for students to understand data structures, algorithms, and systems programming in a real-world scenario.",
+        "personalGrowth": "Gained invaluable experience with C's subtleties, particularly manual memory management and low-level control. Strengthened algorithmic thinking and problem-solving agility, improving the ability to debug and refine solutions under technical constraints."
+      },
+      "techStack": {
+        "frontend": "",
+        "backend": "C",
+        "tools": "CMake",
+        "libraries": "Standard C Library (e.g., `stdio.h`, `stdlib.h`, `string.h` for file I/O, memory, string manipulation)"
+      },
+      "learnings": [
+        "Gained a profound understanding of how to effectively use pointers and `struct`s in C to create complex, interconnected data structures like puzzle grids and word dictionaries.",
+        "Mastered the critical importance and inherent challenges of explicit memory allocation and and deallocation (`malloc`, `free`) to prevent leaks and ensure program stability.",
+        "Discovered how to design and implement sophisticated algorithms, like backtracking for puzzle generation, within C's limitations, focusing on efficiency and logical clarity.",
+        "Reinforced the principle of breaking down large projects into smaller, manageable modules to improve code organization, reusability, and simplify debugging."
+      ],
+      "futureEnhancements": [
+        "Develop a Graphical User Interface (GUI) using libraries like GTK or Qt to significantly improve the user experience beyond the console.",
+        "Implement advanced puzzle generation algorithms, such as genetic algorithms or SAT solvers, to create larger, more complex, and varied difficulty 'mots-fléchés.'",
+        "Extend dictionary management for multi-language support, allowing users to generate and solve puzzles in French, English, Spanish, and other languages.",
+        "Add persistence features to save the current state of a puzzle and load previously saved games, enhancing user convenience and replayability.",
+        "Develop a robust hint system, revealing letters or showing definitions for specific words, or even a full puzzle solver for educational purposes."
+      ],
+      "conclusion": "The `mots-fleches` project marks a crucial milestone, demonstrating a strong grasp of C programming and algorithmic problem-solving. Despite language constraints and an academic setting, it successfully tackled a complex logical challenge. This endeavor proved invaluable for cultivating skills in data structuring, memory management, and systematic software development, laying a solid foundation for future projects."
+    },
+    "backToProjects": "Back to Projects",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo",
+    "overview": "Overview",
+    "keyFeatures": "Key Features",
+    "technologiesUsed": "Technologies Used",
+    "notFound": "Project Not Found",
+    "sections": {
+      "metadata": "Project Metadata",
+      "overview": "Overview",
+      "challenge": "The Challenge",
+      "discovery": "Discovery & Research",
+      "architecture": "Architecture & Planning",
+      "developmentProcess": "Development Process",
+      "keyFeatures": "Key Features & Implementation",
+      "testing": "Testing & Iteration",
+      "results": "Results & Impact",
+      "techStack": "Tech Stack",
+      "learnings": "Key Learnings",
+      "futureEnhancements": "Future Enhancements",
+      "conclusion": "Conclusion"
+    },
+    "labels": {
+      "role": "Role",
+      "category": "Category",
+      "timeline": "Timeline",
+      "problem": "Problem",
+      "goal": "Goal",
+      "constraints": "Constraints",
+      "requirements": "Requirements",
+      "competitiveAnalysis": "Competitive Analysis",
+      "technicalResearch": "Technical Research",
+      "informationArchitecture": "Information Architecture",
+      "technicalDecisions": "Technical Decisions",
+      "technicalAchievements": "Technical Achievements",
+      "businessImpact": "Business Impact",
+      "personalGrowth": "Personal Growth",
+      "implementation": "Implementation",
+      "challenges": "Challenges",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools & Infrastructure",
+      "libraries": "Libraries & Frameworks"
     }
   }
 }

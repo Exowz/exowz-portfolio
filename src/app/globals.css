@@ -221,4 +221,34 @@
   .accent-glow-hover:hover {
     box-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
   }
+
+  /* Custom Animations */
+  @keyframes blink {
+    0%, 49% {
+      opacity: 1;
+    }
+    50%, 100% {
+      opacity: 0;
+    }
+  }
+
+  .blink {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient ease infinite;
+  }
 }

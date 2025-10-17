@@ -5,39 +5,55 @@ import { motion } from 'motion/react';
 import { Link } from '@/i18n/routing';
 import { ExternalLink, Github } from 'lucide-react';
 
-// Sample project data - replace with your actual projects
+// Project slugs and metadata
 const projects = [
   {
-    slug: 'ai-portfolio-analyzer',
-    title: 'AI Portfolio Analyzer',
-    description: 'Machine learning tool for analyzing investment portfolios using Python and TensorFlow',
-    tags: ['Python', 'TensorFlow', 'Data Science'],
-    image: '/projects/placeholder-1.jpg',
-    github: 'https://github.com/exowz/project-1',
+    slug: 'ascord-appwrite',
+    key: 'ascord-appwrite',
+    tags: ['Next.js 14', 'TypeScript', 'Appwrite', 'Tailwind CSS', 'Real-time'],
+    github: 'https://github.com/Exowz/ascord-appwrite',
     demo: null
   },
   {
-    slug: 'interactive-data-viz',
-    title: 'Interactive Data Visualization',
-    description: 'Real-time data visualization dashboard built with React and D3.js',
-    tags: ['React', 'D3.js', 'TypeScript'],
-    image: '/projects/placeholder-2.jpg',
-    github: 'https://github.com/exowz/project-2',
-    demo: 'https://demo.example.com'
+    slug: 'shiatsu-guyane',
+    key: 'shiatsuGuyane',
+    tags: ['Next.js 15', 'TypeScript', 'React', 'Tailwind CSS', 'Vercel'],
+    github: 'https://github.com/Exowz/shiatsu-guyane',
+    demo: 'https://www.shiatsu-guyane.com/fr'
   },
   {
-    slug: 'ml-classification-system',
-    title: 'ML Classification System',
-    description: 'Advanced classification system using ensemble learning methods',
-    tags: ['Python', 'Scikit-learn', 'AI'],
-    image: '/projects/placeholder-3.jpg',
-    github: 'https://github.com/exowz/project-3',
+    slug: 'b2javaece',
+    key: 'B2javaECE',
+    tags: ['Java', 'OOP', 'JDBC', 'JUnit', 'Maven'],
+    github: 'https://github.com/Exowz/B2javaECE',
+    demo: null
+  },
+  {
+    slug: 'rib',
+    key: 'RIB',
+    tags: ['Python', 'Tkinter', 'API Integration', 'Financial Algorithms'],
+    github: 'https://github.com/Exowz/RIB',
+    demo: null
+  },
+  {
+    slug: 'mots-fleches',
+    key: 'mots-fleches',
+    tags: ['C', 'Algorithms', 'Console Application', 'Academic Project'],
+    github: 'https://github.com/Exowz/mots-fleches',
+    demo: null
+  },
+  {
+    slug: 'dna',
+    key: 'DNA',
+    tags: ['Project'],
+    github: 'https://github.com/Exowz/DNA',
     demo: null
   }
 ];
 
 export function ProjectsWindow() {
   const t = useTranslations('pages.projects');
+  const tProjects = useTranslations('projects');
 
   return (
     <div className="p-6 md:p-12">
@@ -70,7 +86,7 @@ export function ProjectsWindow() {
                     className="flex aspect-video bg-gradient-to-br from-accent/10 to-accent/5 items-center justify-center"
                   >
                     <div className="text-4xl font-bold text-muted-foreground/30">
-                      {project.title.charAt(0)}
+                      {tProjects(`${project.key}.title`).charAt(0)}
                     </div>
                   </Link>
 
@@ -79,11 +95,11 @@ export function ProjectsWindow() {
                     <div>
                       <Link href={`/projects/${project.slug}`}>
                         <h2 className="text-2xl font-semibold mb-2 text-foreground group-hover:text-foreground/80 transition-colors">
-                          {project.title}
+                          {tProjects(`${project.key}.title`)}
                         </h2>
                       </Link>
                       <p className="text-muted-foreground line-clamp-2">
-                        {project.description}
+                        {tProjects(`${project.key}.description`)}
                       </p>
                     </div>
 
@@ -110,7 +126,7 @@ export function ProjectsWindow() {
                           onClick={(e) => e.stopPropagation()}
                         >
                           <Github className="w-4 h-4" />
-                          Code
+                          {tProjects('viewCode')}
                         </a>
                       )}
                       {project.demo && (
@@ -122,7 +138,7 @@ export function ProjectsWindow() {
                           onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink className="w-4 h-4" />
-                          Demo
+                          {tProjects('liveDemo')}
                         </a>
                       )}
                     </div>

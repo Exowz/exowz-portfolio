@@ -38,7 +38,7 @@ export function ContactWindow() {
             {/* Contact Information */}
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-semibold mb-6 text-foreground">Contact Information</h2>
+                <h2 className="text-2xl font-semibold mb-6 text-foreground">{t('contactInfo')}</h2>
                 <div className="space-y-4">
                   <a
                     href="mailto:contact@mke-kapoor.com"
@@ -46,7 +46,7 @@ export function ContactWindow() {
                   >
                     <Mail className="w-5 h-5" />
                     <div>
-                      <p className="font-medium">Email</p>
+                      <p className="font-medium">{t('labels.email')}</p>
                       <p className="text-sm text-muted-foreground">contact@mke-kapoor.com</p>
                     </div>
                   </a>
@@ -80,8 +80,8 @@ export function ContactWindow() {
                   <div className="flex items-center gap-3 p-4 rounded-lg dark:glass-dark glass-light text-foreground">
                     <MapPin className="w-5 h-5" />
                     <div>
-                      <p className="font-medium">Location</p>
-                      <p className="text-sm text-muted-foreground">Paris, France</p>
+                      <p className="font-medium">{t('labels.location')}</p>
+                      <p className="text-sm text-muted-foreground">{t('location')}</p>
                     </div>
                   </div>
                 </div>
@@ -90,11 +90,11 @@ export function ContactWindow() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-2xl font-semibold mb-6 text-foreground">Send a Message</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-foreground">{t('sendMessage')}</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
-                    Name
+                    {t('labels.name')}
                   </label>
                   <input
                     type="text"
@@ -108,7 +108,7 @@ export function ContactWindow() {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">
-                    Email
+                    {t('labels.email')}
                   </label>
                   <input
                     type="email"
@@ -122,7 +122,7 @@ export function ContactWindow() {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground">
-                    Message
+                    {t('labels.message')}
                   </label>
                   <textarea
                     id="message"
@@ -138,7 +138,7 @@ export function ContactWindow() {
                   type="submit"
                   className="w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium dark:neu-raised-dark neu-raised-light hover:scale-105 transition-all accent-glow-hover"
                 >
-                  Send Message
+                  {t('submit')}
                 </button>
               </form>
             </div>
