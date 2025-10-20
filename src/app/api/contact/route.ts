@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function POST(request: NextRequest) {
   try {
-    // Initialize Resend inside the function to avoid build-time errors
-    const resend = new Resend(process.env.RESEND_API_KEY || '');
-
     // Debug: Check if API key is loaded
     console.log('API Key loaded:', process.env.RESEND_API_KEY ? `Yes (starts with ${process.env.RESEND_API_KEY.substring(0, 8)})` : 'NO - MISSING!');
 
