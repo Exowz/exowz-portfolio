@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRouter, usePathname } from '@/i18n/routing';
-import { FiCheck } from 'react-icons/fi';
+import { IconCheck } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import { perspective } from "./languageAnimations";
 import { LanguagePanelProps } from './languageTypes';
@@ -131,7 +131,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.2, delay: 0.1 }}
                       >
-                        <FiCheck className="h-4 w-4 text-[#64b5f6]" />
+                        <IconCheck className="h-4 w-4 text-[#64b5f6]" />
                       </motion.div>
                     )}
                   </div>

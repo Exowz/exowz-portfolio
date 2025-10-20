@@ -44,7 +44,7 @@ export function Desktop() {
           >
             {/* Main title */}
             <h1
-              className="font-stanley text-black dark:text-white text-8xl font-bold"
+              className="font-stanley text-black dark:text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold"
               style={{
                 textShadow: '0 4px 20px rgba(100, 181, 246, 0.3), 0 2px 8px rgba(0, 0, 0, 0.5)',
                 filter: 'drop-shadow(0 0 30px rgba(100, 181, 246, 0.2))'

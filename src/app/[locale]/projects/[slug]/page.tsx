@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
-import { ArrowLeft, Github, ExternalLink, Calendar } from 'lucide-react';
+import { IconArrowLeft, IconBrandGithub, IconExternalLink, IconCalendar } from '@tabler/icons-react';
 
 // Defines the shape of a project object for type safety
 interface Project {
@@ -120,7 +120,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             href="/projects"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <IconArrowLeft className="w-4 h-4" />
             Back to Projects
           </Link>
 
@@ -137,7 +137,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-4 mb-6">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="w-4 h-4" />
+                  <IconCalendar className="w-4 h-4" />
                   {new Date(project.date).toLocaleDateString('en-US', {
                     month: 'long',
                     year: 'numeric'
@@ -150,7 +150,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border bg-card hover:bg-accent transition-colors"
                   >
-                    <Github className="w-4 h-4" />
+                    <IconBrandGithub className="w-4 h-4" />
                     View Code
                   </a>
                 )}
@@ -161,7 +161,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <IconExternalLink className="w-4 h-4" />
                     Live Demo
                   </a>
                 )}

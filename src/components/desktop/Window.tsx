@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Minus, Maximize2 } from 'lucide-react';
+import { IconX, IconMinus, IconMaximize } from '@tabler/icons-react';
 import { useWindowManager } from './WindowManager';
 
 type WindowProps = {
@@ -93,7 +93,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
             }}
             aria-label="Close"
           >
-            <X
+            <IconX
               className="w-2 h-2 opacity-0 group-hover:opacity-100 transition-opacity"
               style={{ color: 'var(--window-btn-icon)' }}
             />
@@ -106,7 +106,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
             }}
             aria-label="Minimize"
           >
-            <Minus
+            <IconMinus
               className="w-2 h-2 opacity-0 group-hover:opacity-100 transition-opacity"
               style={{ color: 'var(--window-btn-icon)' }}
             />
@@ -119,7 +119,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
             }}
             aria-label="Maximize"
           >
-            <Maximize2
+            <IconMaximize
               className="w-2 h-2 opacity-0 group-hover:opacity-100 transition-opacity"
               style={{ color: 'var(--window-btn-icon)' }}
             />

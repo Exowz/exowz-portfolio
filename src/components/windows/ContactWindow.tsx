@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
-import { Mail, Github, Linkedin, MapPin } from 'lucide-react';
+import { IconMail, IconBrandGithub, IconBrandLinkedin, IconMapPin, IconLoader2, IconCircleCheck, IconCircleX } from '@tabler/icons-react';
 
 export function ContactWindow() {
   const t = useTranslations('pages.contact');
@@ -14,9 +14,41 @@ export function ContactWindow() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:contact@mke-kapoor.com?subject=Contact from ${formData.name}&body=${formData.message}`;
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'An error occurred');
+
+      // Reset error message after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -44,7 +76,7 @@ export function ContactWindow() {
                     href="mailto:contact@mke-kapoor.com"
                     className="flex items-center gap-3 p-4 rounded-lg dark:glass-dark glass-light hover:scale-105 transition-all text-foreground"
                   >
-                    <Mail className="w-5 h-5" />
+                    <IconMail className="w-5 h-5" />
                     <div>
                       <p className="font-medium">{t('labels.email')}</p>
                       <p className="text-sm text-muted-foreground">contact@mke-kapoor.com</p>
@@ -57,7 +89,7 @@ export function ContactWindow() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 rounded-lg dark:glass-dark glass-light hover:scale-105 transition-all text-foreground"
                   >
-                    <Github className="w-5 h-5" />
+                    <IconBrandGithub className="w-5 h-5" />
                     <div>
                       <p className="font-medium">GitHub</p>
                       <p className="text-sm text-muted-foreground">@exowz</p>
@@ -70,7 +102,7 @@ export function ContactWindow() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 rounded-lg dark:glass-dark glass-light hover:scale-105 transition-all text-foreground"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <IconBrandLinkedin className="w-5 h-5" />
                     <div>
                       <p className="font-medium">LinkedIn</p>
                       <p className="text-sm text-muted-foreground">mke-kapoor</p>
@@ -78,7 +110,7 @@ export function ContactWindow() {
                   </a>
 
                   <div className="flex items-center gap-3 p-4 rounded-lg dark:glass-dark glass-light text-foreground">
-                    <MapPin className="w-5 h-5" />
+                    <IconMapPin className="w-5 h-5" />
                     <div>
                       <p className="font-medium">{t('labels.location')}</p>
                       <p className="text-sm text-muted-foreground">{t('location')}</p>
@@ -103,6 +135,7 @@ export function ContactWindow() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-2 rounded-lg dark:neu-pressed-dark neu-pressed-light text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
                     required
+                    disabled={status === 'loading'}
                   />
                 </div>
 
@@ -117,6 +150,7 @@ export function ContactWindow() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-2 rounded-lg dark:neu-pressed-dark neu-pressed-light text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
                     required
+                    disabled={status === 'loading'}
                   />
                 </div>
 
@@ -131,14 +165,38 @@ export function ContactWindow() {
                     rows={5}
                     className="w-full px-4 py-2 rounded-lg dark:neu-pressed-dark neu-pressed-light text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent resize-none"
                     required
+                    disabled={status === 'loading'}
                   />
                 </div>
 
+                {/* Status Messages */}
+                {status === 'success' && (
+                  <div className="flex items-center gap-2 p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400">
+                    <IconCircleCheck className="w-5 h-5" />
+                    <p className="text-sm font-medium">Message sent successfully!</p>
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="flex items-center gap-2 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400">
+                    <IconCircleX className="w-5 h-5" />
+                    <p className="text-sm font-medium">{errorMessage || 'Failed to send message. Please try again.'}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium dark:neu-raised-dark neu-raised-light hover:scale-105 transition-all accent-glow-hover"
+                  disabled={status === 'loading'}
+                  className="w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium dark:neu-raised-dark neu-raised-light hover:scale-105 transition-all accent-glow-hover disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
                 >
-                  {t('submit')}
+                  {status === 'loading' ? (
+                    <>
+                      <IconLoader2 className="w-5 h-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    t('submit')
+                  )}
                 </button>
               </form>
             </div>

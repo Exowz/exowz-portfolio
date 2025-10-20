@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-import { Folder, User, Mail } from 'lucide-react';
+import { IconFolder, IconUser, IconMail } from '@tabler/icons-react';
 import { Window } from './Window';
 import { ProjectsWindow } from '../windows/ProjectsWindow';
 import { AboutWindow } from '../windows/AboutWindow';
@@ -99,7 +99,7 @@ function WindowContent({
           key="projects"
           id="projects"
           title={tProjects('title')}
-          icon={<Folder className="w-full h-full" />}
+          icon={<IconFolder className="w-full h-full" />}
         >
           {/* Show project detail if on detail page, otherwise show projects grid */}
           {isProjectDetailPage && projectSlug ? (
@@ -115,7 +115,7 @@ function WindowContent({
           key="about"
           id="about"
           title={tAbout('title')}
-          icon={<User className="w-full h-full" />}
+          icon={<IconUser className="w-full h-full" />}
         >
           <AboutWindow />
         </Window>
@@ -126,7 +126,7 @@ function WindowContent({
           key="contact"
           id="contact"
           title={tContact('title')}
-          icon={<Mail className="w-full h-full" />}
+          icon={<IconMail className="w-full h-full" />}
         >
           <ContactWindow />
         </Window>

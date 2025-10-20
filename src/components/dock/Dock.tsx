@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { FloatingDock, DockItem } from "@/components/ui/floating-dock";
-import { Home, Folder, User, Mail, FileText, Github, Linkedin } from "lucide-react";
+import { IconHome, IconFolder, IconUser, IconMail, IconFileText, IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
 export function Dock() {
   const params = useParams();
@@ -13,28 +13,28 @@ export function Dock() {
     {
       title: "Home",
       icon: (
-        <Home className="h-full w-full" />
+        <IconHome className="h-full w-full" />
       ),
       href: `/${locale}`,
     },
     {
       title: "Projects",
       icon: (
-        <Folder className="h-full w-full" />
+        <IconFolder className="h-full w-full" />
       ),
       href: `/${locale}/projects`,
     },
     {
       title: "About",
       icon: (
-        <User className="h-full w-full" />
+        <IconUser className="h-full w-full" />
       ),
       href: `/${locale}/about`,
     },
     {
       title: "Contact",
       icon: (
-        <Mail className="h-full w-full" />
+        <IconMail className="h-full w-full" />
       ),
       href: `/${locale}/contact`,
     },
@@ -48,21 +48,21 @@ export function Dock() {
     {
       title: "Resume",
       icon: (
-        <FileText className="h-full w-full" />
+        <IconFileText className="h-full w-full" />
       ),
-      href: "/resume.pdf",
+      href: `/resume-${locale}.pdf`,
     },
     {
       title: "GitHub",
       icon: (
-        <Github className="h-full w-full" />
+        <IconBrandGithub className="h-full w-full" />
       ),
       href: "https://github.com/exowz",
     },
     {
       title: "LinkedIn",
       icon: (
-        <Linkedin className="h-full w-full" />
+        <IconBrandLinkedin className="h-full w-full" />
       ),
       href: "https://linkedin.com/in/mke-kapoor",
     },

@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 import { Link } from '@/i18n/routing';
-import { ExternalLink, Github } from 'lucide-react';
+import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
 
 // Project slugs and metadata
 const projects = [
@@ -22,6 +22,20 @@ const projects = [
     demo: 'https://www.shiatsu-guyane.com/fr'
   },
   {
+    slug: 'portfolio-projects-ai',
+    key: 'portfolio-projects-ai',
+    tags: ['Python', 'RAG', 'LangChain', 'ChromaDB', 'Gemini API', 'AI/ML'],
+    github: 'https://github.com/Exowz/portfolio-projects-ai',
+    demo: null
+  },
+  {
+    slug: 'wine-cultivar-classification',
+    key: 'wine-cultivar-classification',
+    tags: ['Python', 'Machine Learning', 'Scikit-learn', 'Data Analysis', 'Classification'],
+    github: 'https://github.com/Exowz/wine-cultivar-classification',
+    demo: null
+  },
+  {
     slug: 'b2javaece',
     key: 'B2javaECE',
     tags: ['Java', 'OOP', 'JDBC', 'JUnit', 'Maven'],
@@ -36,6 +50,13 @@ const projects = [
     demo: null
   },
   {
+    slug: 'dna',
+    key: 'DNA',
+    tags: ['Python', 'Bioinformatics', 'Matplotlib', 'Tkinter', 'Data Analysis'],
+    github: 'https://github.com/Exowz/DNA',
+    demo: null
+  },
+  {
     slug: 'mots-fleches',
     key: 'mots-fleches',
     tags: ['C', 'Algorithms', 'Console Application', 'Academic Project'],
@@ -43,10 +64,17 @@ const projects = [
     demo: null
   },
   {
-    slug: 'dna',
-    key: 'DNA',
-    tags: ['Project'],
-    github: 'https://github.com/Exowz/DNA',
+    slug: 'scraping',
+    key: 'Scraping',
+    tags: ['Python', 'Web Scraping', 'BeautifulSoup', 'Automation'],
+    github: 'https://github.com/Exowz/Scraping',
+    demo: null
+  },
+  {
+    slug: 'trip-hackathon',
+    key: 'TripHackathon',
+    tags: ['Hackathon', 'Team Project', 'Innovation', 'Travel Tech'],
+    github: null,
     demo: null
   }
 ];
@@ -125,7 +153,7 @@ export function ProjectsWindow() {
                           className="flex items-center gap-1 text-sm text-foreground hover:text-foreground/70 transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <Github className="w-4 h-4" />
+                          <IconBrandGithub className="w-4 h-4" />
                           {tProjects('viewCode')}
                         </a>
                       )}
@@ -137,7 +165,7 @@ export function ProjectsWindow() {
                           className="flex items-center gap-1 text-sm text-foreground hover:text-foreground/70 transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <ExternalLink className="w-4 h-4" />
+                          <IconExternalLink className="w-4 h-4" />
                           {tProjects('liveDemo')}
                         </a>
                       )}

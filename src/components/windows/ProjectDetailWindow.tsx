@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
-import { ArrowLeft, Github, ExternalLink, Briefcase, FolderKanban, Clock } from 'lucide-react';
+import { IconArrowLeft, IconBrandGithub, IconExternalLink, IconBriefcase, IconFolder, IconClock } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 
 // Project metadata (tags, github, demo, date)
@@ -136,7 +136,7 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
             href="/projects"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <IconArrowLeft className="w-4 h-4" />
             {t('backToProjects')}
           </Link>
 
@@ -159,7 +159,7 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border bg-card hover:bg-accent transition-colors"
                   >
-                    <Github className="w-4 h-4" />
+                    <IconBrandGithub className="w-4 h-4" />
                     {t('viewCode')}
                   </a>
                 )}
@@ -170,7 +170,7 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <IconExternalLink className="w-4 h-4" />
                     {t('liveDemo')}
                   </a>
                 )}
@@ -195,21 +195,21 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
                 <h2 className="text-2xl font-semibold mb-4">{tSections('metadata')}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
-                    <Briefcase className="w-5 h-5 text-accent mt-0.5" />
+                    <IconBriefcase className="w-5 h-5 text-accent mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground">{tLabels('role')}</p>
                       <p className="font-medium">{t(`${projectMeta.key}.metadata.role`)}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <FolderKanban className="w-5 h-5 text-accent mt-0.5" />
+                    <IconFolder className="w-5 h-5 text-accent mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground">{tLabels('category')}</p>
                       <p className="font-medium">{t(`${projectMeta.key}.metadata.category`)}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-accent mt-0.5" />
+                    <IconClock className="w-5 h-5 text-accent mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground">{tLabels('timeline')}</p>
                       <p className="font-medium">{t(`${projectMeta.key}.metadata.timeline`)}</p>

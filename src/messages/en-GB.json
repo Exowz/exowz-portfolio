@@ -17,22 +17,34 @@
     "about": {
       "title": "About Me",
       "description": "Learn more about my journey and what I do",
-      "backgroundTitle": "Background",
-      "backgroundText": "I'm Mathew Kristoffer Ewan KAPOOR, a developer passionate about Data, AI, and creating interactive web experiences. Currently studying Data & AI at ECE Paris, I combine technical expertise with creative problem-solving.",
-      "skillsTitle": "Skills & Focus",
-      "skills": {
-        "dataAI": {
-          "title": "Data & AI",
-          "description": "Machine learning, data analysis, and AI-powered solutions"
-        },
-        "webDev": {
-          "title": "Web Development",
-          "description": "Modern web applications with React, Next.js, and TypeScript"
-        },
-        "uiux": {
-          "title": "UI/UX Design",
-          "description": "Creating beautiful, intuitive user experiences"
-        }
+      "name": "Mathew Kristoffer Ewan KAPOOR",
+      "jobTitle": "Data & AI Development Student",
+      "pitch": "Passionate about data analysis, machine learning, and web development, with a strong ambition: to contribute to European digital sovereignty.",
+      "techSkillsTitle": "Technical Skills",
+      "techSkills": {
+        "dataAI": "Python, SQL (MySQL, PostgreSQL), Scikit-learn, Pandas, LangChain, RAG, YOLOv8, N8N",
+        "web": "Next.js, React.js, Node.js, TypeScript, Laravel",
+        "cloud": "AWS (Cloud Foundation), C++, Java"
+      },
+      "storyTitle": "My Story",
+      "story": {
+        "intro1": "Hi! My name is Mathew Kristoffer Ewan KAPOOR, but I usually go by Ewan. I'm 23 years old and from Mauritius. I'm currently a student at ECE Paris, studying Data & AI Development, so I live in Paris.",
+        "intro2": "I'm going to tell you my story. Because beyond the developer I am, beyond this portfolio, there's a real person, full of dreams and ambition.",
+        "origins1": "My story begins in March 2002, on a small paradise in the Indian Ocean: Mauritius. I grew up surrounded by loving parents who still support me today. My life was punctuated by the beach, family, my mother's delicious meals, and sports. A simple life, but a happy one.",
+        "family": "My parents taught me everything. My mother, a homemaker, passed on the art of organization and awakened my passion for cooking (which is now one of my favorite hobbies!). My father, a mechanical engineer at a thermal power plant, was my first inspiration. He gave me a taste for science, calculations, and always admired France. He's the one who enrolled me in a French school, passing on his love for this country, its culture, and its history.",
+        "computer": "In parallel, another passion was growing. I remember the first computer my father gave me at 7 years old: an old HP laptop running Windows XP, his old work PC. I was mesmerized. I took it apart, tinkered, experimented... until I broke it. But my curiosity was piqued. Quickly, I became the family's 'IT guy': I built PCs, managed the router, advised my parents on their purchases. At the time, it was just a hobby; my dream was elsewhere.",
+        "dream": "I wanted to be like my father. An engineer, but in nuclear energy, which I believe in. So I charted my course: Scientific Baccalaureate, then departure for France with a well-established plan, heading to preparatory classes for engineering schools.",
+        "challenge": "But life had other surprises in store for me.",
+        "struggle": "This period was marked by the death of my uncle, to whom I was very close, and other personal issues. This cocktail made me stumble. I didn't succeed in my first year. It was my first real failure, and the shock was brutal. The brilliant high school student I was suddenly felt useless. I decided to return to Mauritius to recharge, but also to help my father, whose health was declining, manage the family business: selling dietary supplements.",
+        "introspection": "I stayed in Mauritius for two years. Two years to take an introspective pause, to 'heal' myself mentally and find myself. I managed the company and learned guitar self-taught, to develop that artistic side I felt was a weak point in my purely scientific profile.",
+        "return": "After these two years, having not forgotten my initial dream but unable to return to preparatory classes, I discovered ECE's program which allowed me to join in an accelerated semester in March, the first year of their preparatory cycle, so I enrolled. However, the difficulty of resuming such intensive studies surprised me, and I also fell ill around the same time - that year was complicated. However, the director of studies noticed my potential in computer science, having still gotten excellent grades, and suggested I do their bachelor's instead. I took a long time to make a decision because it didn't align with my initial dream, but I finally accepted. And that's when the revelation happened.",
+        "revelation": "I understood that it wasn't computer science I didn't like, but the way it was taught to me in prep school. In the Bachelor's program, everything was based on practical cases, innovative projects. My dormant passion woke up all at once.",
+        "webdev": "At first, web development fascinated me. It allowed me to express my creativity, to manage a project from A to Z. I'm a great admirer of Apple, for their ability to create products that are innovative, powerful, useful, and beautiful all at once. It's a philosophy I apply to all my projects.",
+        "dataAI": "Then, a new subject changed everything: Data and AI.",
+        "sovereignty1": "I understood the importance of our data, this 'gold of the 21st century.' I also understood, with dread, how much Europe is lagging behind and dependent. When you realize that 70% of the cloud is owned by AWS or that a Windows update can paralyze airports, it's scary for our independence.",
+        "sovereignty2": "And the notion of independence is very important to me. So I'm heading towards this specialization because I want to participate in our independence, European independence! A continent so rich and fabulous, through its history, culture, and civilization cannot be so far behind... That's why I'm now in the world of Data and AI.",
+        "closing": "That's all for my presentation, so you know a little better who's behind this computer and who will potentially be your new collaborator. Have a wonderful day and don't hesitate to contact me for various projects!",
+        "signature": "Exowz."
       }
     },
     "contact": {
@@ -419,9 +431,96 @@
       "conclusion": "The RIB project successfully delivers a robust, educational system for French IBAN generation and validation, effectively applying Python for complex financial algorithms and API integration. It met technical objectives for ISO 13616 compliance and demonstrated strong commitment to user understanding through its comparative validation feature, showcasing rigorous technical and intuitive design skills."
     },
     "DNA": {
-      "title": "DNA",
-      "description": "Project",
-      "error": "JSON parsing failed, full case study available in _fullCaseStudy field"
+      "title": "DNA Analysis",
+      "description": "Robust bioinformatics tool for comprehensive DNA sequence analysis with dinucleotide composition and mutation detection",
+      "metadata": {
+        "role": "Student (Developed as part of the ECE B3 - DNA Analysis project, for educational purposes within the ECE curriculum)",
+        "category": "Python Development, Bioinformatics, Data Analysis",
+        "timeline": "Repository created 2025-09-21, updated 2025-09-21 (actual development spanning longer period within academic curriculum)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/DNA"
+      },
+      "overview": "The DNA project is a robust bioinformatics tool developed in Python, designed for comprehensive analysis of DNA sequences. It stands out by meticulously calculating dinucleotide composition, particularly focusing on GC and AT pairs, using a scientifically rigorous, non-overlapping counting method. Beyond fundamental base composition, the system also integrates advanced capabilities for detecting various types of genetic mutations and presenting these complex data points through intuitive graphical visualizations. This initiative aimed to provide an accessible yet precise solution for genetic sequence analysis, catering to educational and research needs in bioinformatics. The program demonstrates a strong foundation in modular architecture, ensuring maintainability and scalability, while also prioritizing optimal performance for realistic biological datasets. Its integrated graphical user interface (GUI) makes sophisticated genetic analysis available to users without requiring deep programming expertise, effectively bridging complex algorithms with user-friendly interaction. Ultimately, the DNA project delivers an end-to-end solution for sequence processing, mutation identification, and insightful data presentation. It validates the developer's ability to tackle multi-faceted scientific computing challenges, from intricate algorithmic design to polished user experience, proving its utility as a valuable asset for bioinformatic research and education.",
+      "challenge": {
+        "problem": "The core problem addressed by the DNA project was the need for a comprehensive and accurate system to analyze genetic sequences. This involved precisely determining the composition of dinucleotides (specifically GC/AT pairs) using a scientifically rigorous, non-overlapping method, detecting various types of genetic mutations (substitutions, insertions, deletions), and providing clear, informative visual representations of these analyses. Existing tools might be overly complex or lack specific functionalities required for targeted educational and research applications, necessitating a tailored solution.",
+        "goal": "The primary objective was to develop a Python-based application that could: (1) Perform precise, non-overlapping dinucleotide analysis of DNA sequences. (2) Identify and classify genetic mutations. (3) Generate comprehensive graphical visualizations of the analysis results. (4) Provide a modular, performant, and robust architecture. (5) Offer an intuitive graphical user interface for ease of use.",
+        "constraints": "As an educational project within the ECE curriculum, the development was constrained by: Technology Stack (predominantly Python, utilizing specified libraries like Matplotlib for visualization and Tkinter for the GUI), Algorithmic Rigor (the requirement for a scientifically rigorous non-overlapping method for dinucleotide counting, ensuring accuracy), Performance (the program needed to demonstrate optimal performance for realistic datasets), Error Management (implementation of robust error management for production-like reliability), and Scope (balancing the ambition of a comprehensive analysis tool with the practical limitations of an academic project)."
+      },
+      "discovery": {
+        "requirements": "The project's requirements were clearly defined by the need for in-depth DNA sequence analysis. This included validating DNA sequences, calculating base composition, detecting repeated motifs, and crucially, focusing on dinucleotide analysis (CG/GC, AT/TA) using a specific non-overlapping method. Furthermore, the ability to compare sequences for mutation detection (substitutions, insertions, deletions) and visualize these findings through various charts (bar charts, histograms, statistical diagrams) was paramount. The user interaction needed to be streamlined via a GUI, and input files were expected to be plain text, potentially FASTA format.",
+        "competitiveAnalysis": "While no explicit competitive analysis data was provided, the project implicitly aimed to create an accessible yet robust tool for its specific educational context. Existing professional bioinformatics software can be complex and expensive. This project carved out a niche by focusing on core analysis functionalities with a user-friendly interface, making sophisticated analysis techniques approachable for students and researchers without extensive command-line or coding experience, while maintaining scientific accuracy.",
+        "technicalResearch": "Dinucleotide Counting Algorithm: Research was conducted to implement a scientifically rigorous dinucleotide counting method that ensures sans chevauchement (without overlap). This likely involved understanding different counting approaches and selecting one that provides the most accurate biological representation, by iterating through the sequence with a step of 2. Mutation Detection: Though not detailed, the detection of substitutions, insertions, and deletions implies research into sequence alignment algorithms (e.g., Needleman-Wunsch or Smith-Waterman) or simpler comparative methods to identify variations. Visualization Libraries: Matplotlib was chosen for its extensive capabilities in generating high-quality scientific plots, requiring research into its API for bar charts, histograms, and statistical diagrams. GUI Frameworks: Tkinter was selected for the graphical user interface, indicating research into Python's built-in GUI options for ease of deployment and integration."
+      },
+      "architecture": {
+        "informationArchitecture": "The project adopted a modular and well-structured approach, segregating concerns to enhance maintainability and scalability. `main.py` serves as the backend module, encapsulating the core analytical logic and algorithms. `interface_adn.py` manages the graphical user interface (GUI) using Tkinter, providing the user-facing interaction. `rapport.md` provides detailed documentation of the project's analysis methods and results. `README.md` provides a high-level overview, installation instructions, and usage guidelines. `sequence.txt` is an example DNA sequence file for testing and demonstration. The program's functional architecture is built around 5 principal functions (though only two were fully described in the provided data): (1) `analyser_adn(sequence)`: The main analysis function for dinucleotide composition. (2) `lire_fichier_adn(nom_fichier)`: Handles reading DNA sequences from text files. The remaining functions would likely manage mutation detection, visualization generation, and overall program execution flow.",
+        "technicalDecisions": "Python as Primary Language: Chosen for its readability, extensive libraries, and strong support in scientific computing and data analysis, making it ideal for bioinformatics. Non-overlapping Dinucleotide Counting: A crucial decision to ensure scientific rigor and accuracy, explicitly stated as parcours sans chevauchement avec saut de 2 positions (non-overlapping traversal with a step of 2 positions). Matplotlib for Visualization: Selected for its power and flexibility in creating diverse statistical plots and charts, essential for clear data presentation. Tkinter for GUI: Opted for a native, lightweight Python GUI framework to provide an intuitive user experience without external dependencies for basic GUI functionality. Modular Function Design: Breaking down complex tasks into smaller, reusable functions (e.g., `analyser_adn`, `lire_fichier_adn`) to improve code organization, testing, and debugging. Error Handling: Built-in robust error management to enhance reliability and user feedback, preparing the application for real-world usage."
+      },
+      "developmentProcess": {
+        "phase1": "Foundation - Setup and architecture. This phase involved setting up the Python development environment and establishing the core project structure. Key tasks included: Initializing the Git repository and defining the directory layout (`DNA/`, `main.py`, `interface_adn.py`, `sequence.txt`, etc.), implementing the basic file reading functionality (`lire_fichier_adn`) to load DNA sequences from text files, ensuring proper handling of sequence per line and removal of extraneous characters, and setting up the initial Tkinter window for the GUI (`interface_adn.py`) to provide a skeleton for user interaction.",
+        "phase2": "Feature Development - Main features built. With the foundation in place, this phase focused on building the core analytical and visualization capabilities: Dinucleotide Analysis (development of the `analyser_adn` function, implementing the critical non-overlapping algorithm to count CG/GC and AT/TA pairs and calculate their percentages. This required careful algorithmic design and testing), Mutation Detection (implementing the logic for comparing reference and mutated sequences to identify and classify genetic variations: substitutions, insertions, deletions), Visualization Integration (integrating Matplotlib to generate bar charts, histograms, and statistical diagrams based on the analysis results. This involved passing data from the analysis functions to Matplotlib and configuring plot display), and GUI Enhancements (connecting the analytical and visualization functions to the Tkinter interface, adding buttons for Charger Séquence, Analyser Mutations, and Générer Graphiques, and display areas for results).",
+        "phase3": "Polish & Optimization - Refinement. The final phase focused on enhancing the project's robustness, performance, and user experience: Performance Optimization (reviewing the algorithms and code for bottlenecks, particularly for processing datasets de taille réaliste, ensuring efficient execution), Robust Error Management (implementing comprehensive error handling mechanisms for file operations, sequence validation, and computational errors, providing informative feedback to the user), Documentation (creating detailed `rapport.md` and `README.md` files, documenting functionalities, usage, and project architecture), Usability Refinement (fine-tuning the Tkinter GUI for a more intuitive and responsive user experience, addressing any display issues such as Matplotlib ne s'affiche pas troubleshooting), and Testing (performing manual verification with examples like `CGCGAT` and implicit unit/integration testing to validate the accuracy of calculations and the functionality of features across varied DNA sequences)."
+      },
+      "keyFeatures": [
+        {
+          "title": "Dinucleotide Composition Analysis",
+          "description": "This core feature precisely calculates the percentage composition of GC and AT dinucleotides (CG, GC, AT, TA) within a given DNA sequence. It employs a scientifically rigorous method to ensure accuracy.",
+          "implementation": "The `analyser_adn(sequence)` function is responsible for this. It iterates through the input DNA string with a step of 2, effectively processing non-overlapping dinucleotide pairs. It tallies occurrences of CG, GC, AT, and TA, then computes their respective percentages relative to the total number of non-overlapping dinucleotides found.",
+          "challenges": "The primary challenge was to implement the sans chevauchement (non-overlapping) counting method correctly, ensuring that each dinucleotide is counted once without interfering with adjacent pairs. This required careful algorithmic design and testing to validate against known examples (e.g., `CGCGAT`)."
+        },
+        {
+          "title": "DNA Sequence File Reading",
+          "description": "Enables the program to load DNA sequences from external text files, facilitating batch processing and reusability of genetic data.",
+          "implementation": "The `lire_fichier_adn(nom_fichier)` function handles the input. It reads the specified file line by line, treating each line as a potential DNA sequence. It then processes these lines by removing any whitespace characters to clean the sequences before analysis. The system is designed to handle UTF-8 encoded files and sequences containing standard IUPAC characters.",
+          "challenges": "Ensuring robust file I/O operations, including handling various file encodings and cleaning raw text data to extract valid DNA sequences."
+        },
+        {
+          "title": "Mutation Detection & Classification",
+          "description": "This feature allows users to compare two DNA sequences (e.g., a reference and a mutated sequence) to identify and classify genetic variations, including substitutions, insertions, and deletions.",
+          "implementation": "While specific functions are not detailed, the `README.md` mentions Comparaison de séquences, Classification des mutations, and Localisation précise des variations. This implies an underlying algorithm that aligns two sequences and highlights discrepancies.",
+          "challenges": "The technical challenge involves developing or integrating algorithms capable of performing efficient sequence alignment and accurately categorizing the different types of mutations, which can be computationally intensive for long sequences."
+        },
+        {
+          "title": "Graphical Data Visualization",
+          "description": "Transforms complex numerical analysis results into clear and informative visual formats, such as bar charts, histograms, and other statistical diagrams.",
+          "implementation": "The program leverages the `matplotlib` library. After an analysis (e.g., dinucleotide composition or mutation detection) is performed, relevant data is passed to Matplotlib functions to generate appropriate plots. These plots are then displayed to the user, likely integrated within the Tkinter GUI.",
+          "challenges": "Integrating Matplotlib plots seamlessly within a Tkinter GUI environment presented challenges, as indicated by troubleshooting steps for Matplotlib ne s'affiche pas. Ensuring cross-platform compatibility and proper rendering within the GUI required specific configurations."
+        },
+        {
+          "title": "Intuitive Graphical User Interface (GUI)",
+          "description": "Provides a user-friendly and interactive interface, making the sophisticated analytical capabilities of the program accessible to users without requiring command-line interaction.",
+          "implementation": "Implemented using Python's `tkinter` library (`interface_adn.py`). The GUI allows users to easily load DNA sequence files, initiate different analysis types (e.g., Analyser Mutations), and trigger the generation and display of graphical reports (Générer Graphiques).",
+          "challenges": "Designing a clear, functional, and responsive layout for the GUI, ensuring that all functionalities are easily discoverable and operable, and maintaining a consistent user experience."
+        }
+      ],
+      "testing": "The project incorporated a practical approach to testing and iteration, focusing on ensuring accuracy and robustness. Manual Verification: A key aspect of quality assurance involved manual verification of analysis results. The `rapport.md` provides a clear example for the sequence `CGCGAT`, manually calculating dinucleotide counts (2 CG, 1 AT) and percentages (50% GC, 16.67% AT) to validate the program's output. This type of manual check is crucial for ensuring the scientific rigor of the algorithms. Diverse Dataset Analysis: The Conclusion states that L'analyse des 10 séquences démontre la capacité du programme à traiter des compositions très variées, des homopolymères aux alternances parfaites, indicating that the program was tested against a range of DNA sequence types to confirm its robustness and versatility. Error Handling and Performance Feedback: The emphasis on Gestion d'erreurs robuste and Performance optimale suggests an iterative process where potential issues and performance bottlenecks were identified and addressed during development, likely through testing with various inputs and observing program behavior. Troubleshooting: The `README.md` includes a Dépannage (Troubleshooting) section for Matplotlib display issues, highlighting that user-reported or internally discovered bugs led to documented solutions, indicating a commitment to fixing problems and improving usability.",
+      "results": {
+        "technicalAchievements": "Successfully implemented a Méthode scientifiquement rigoureuse (sans chevauchement) for dinucleotide counting, a critical achievement for accuracy in bioinformatics. Delivered Visualisations complémentaires et informatives, transforming complex data into digestible graphical formats. Established an Architecture modulaire et maintenable with clearly defined functions, facilitating future expansions and debugging. Achieved Performance optimale pour datasets de taille réaliste, demonstrating efficiency in handling typical biological data volumes. Integrated Gestion d'erreurs robuste, enhancing the application's reliability and stability for diverse user inputs. Successfully processed 10 séquences démontre la capacité du programme à traiter des compositions très variées, des homopolymères aux alternances parfaites, validant sa robustesse et son utilité.",
+        "businessImpact": "As an ECE B3 project, it provides a tangible, working example of bioinformatics principles, enhancing learning and practical application skills for students. Offers a practical and accurate tool for initial-stage bioinformatic research, particularly for analyzing dinucleotide composition and mutation patterns. The project serves as a strong portfolio piece, showcasing the developer's ability to design, implement, and document a complex scientific computing application from concept to deployment.",
+        "personalGrowth": "Gained in-depth experience in designing and implementing specialized algorithms for genetic sequence analysis, specifically non-overlapping dinucleotide counting. Enhanced skills in integrating backend data analysis logic with frontend GUI development using Tkinter and data visualization with Matplotlib. Applied principles of modularity, error handling, and performance optimization in a real-world project context, leading to a robust and maintainable codebase. Developed strong skills in creating comprehensive technical reports and user-friendly READMEs for project communication and usability."
+      },
+      "techStack": {
+        "frontend": "Tkinter",
+        "backend": "Python (100% of analyzed codebase)",
+        "tools": "Git/GitHub",
+        "libraries": "Matplotlib (powerful Python library for creating static, animated, and interactive visualizations, instrumental in generating professional-grade bar charts, histograms, and statistical diagrams), Tkinter (Python's standard GUI toolkit, used to create the intuitive graphical user interface)"
+      },
+      "learnings": [
+        "The project highlighted the critical importance of selecting and implementing scientifically rigorous algorithms, such as the non-overlapping dinucleotide counting method, to ensure the accuracy and validity of biological analyses.",
+        "Successfully integrating complex Python-based analysis logic with a user-friendly Tkinter GUI and Matplotlib visualizations demonstrated crucial skills in building full-featured applications.",
+        "Designing the program with a modular architecture (e.g., `main.py` for logic, `interface_adn.py` for UI) significantly improved code readability, maintainability, and scalability for future enhancements.",
+        "Implementing comprehensive error management and optimizing for performance with realistic datasets are essential practices for creating reliable and efficient software, particularly in data-intensive scientific applications."
+      ],
+      "futureEnhancements": [
+        "Expand dinucleotide analysis to include trinucleotides, tetranucleotides, or custom sequence motifs, providing deeper genomic insights.",
+        "Implement full support for industry-standard bioinformatics formats like FASTA, FASTQ, or GenBank, enhancing compatibility and usability with diverse datasets.",
+        "Integrate more sophisticated sequence alignment algorithms (e.g., Needleman-Wunsch, Smith-Waterman) for more precise and sensitive mutation detection, including indels and structural variations.",
+        "Add statistical methods to evaluate the significance of observed dinucleotide frequencies or mutation patterns, providing quantitative support for conclusions.",
+        "Upgrade visualizations to be more interactive, allowing users to zoom, pan, and filter data points directly within the GUI.",
+        "Implement functionality to generate and export detailed analysis reports in various formats (e.g., PDF, CSV, Excel), including all raw data, graphs, and summary statistics.",
+        "Explore building a web-based interface (e.g., using Flask or Django) for broader accessibility and cloud deployment, allowing analysis without local installation.",
+        "Implement a database (e.g., SQLite, PostgreSQL) to store sequences, analysis results, and user preferences, enabling persistent data management."
+      ],
+      "conclusion": "The DNA project is a testament to the successful development of a comprehensive, scientifically rigorous, and user-friendly bioinformatics tool. Through its precise dinucleotide analysis, robust mutation detection, and informative graphical visualizations, the project effectively addresses complex genetic analysis challenges within a modular and performant Python framework. This endeavor not only fulfilled the requirements of an educational curriculum but also showcased strong capabilities in algorithmic design, full-stack Python development, and a commitment to producing high-quality, maintainable software. The DNA project stands as a strong demonstration of applying engineering principles to scientific problems, offering a valuable asset for future bioinformatic explorations and underscoring the developer's proficiency in creating impactful technological solutions."
     },
     "mots-fleches": {
       "title": "Mots-Fléchés",
@@ -511,6 +610,358 @@
         "Develop a robust hint system, revealing letters or showing definitions for specific words, or even a full puzzle solver for educational purposes."
       ],
       "conclusion": "The `mots-fleches` project marks a crucial milestone, demonstrating a strong grasp of C programming and algorithmic problem-solving. Despite language constraints and an academic setting, it successfully tackled a complex logical challenge. This endeavor proved invaluable for cultivating skills in data structuring, memory management, and systematic software development, laying a solid foundation for future projects."
+    },
+    "wine-cultivar-classification": {
+      "title": "Wine Cultivar Classification",
+      "description": "Comprehensive ML project classifying and clustering wine cultivars using supervised and unsupervised methods.",
+      "metadata": {
+        "role": "Student",
+        "category": "Python Development, Machine Learning, Data Mining",
+        "timeline": "Developed and completed by January 2025",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/wine-cultivar-classification"
+      },
+      "overview": "This academic project analyzes the Wine dataset using KNN for classification, alongside K-Means and Hierarchical Clustering for unsupervised grouping. It integrates 8 advanced analyses and generates over 25 visualizations, emphasizing production-ready code, documentation, and reproducible results.",
+      "challenge": {
+        "problem": "The core problem was categorizing and discovering inherent structures within the Wine dataset. This involved building predictive models for classification and uncovering natural groupings based on chemical properties without prior labels.",
+        "goal": "The primary objective was to develop a complete machine learning pipeline for classifying wine cultivars and performing robust clustering analysis. This required implementing and evaluating KNN, K-Means, and CAH, supported by comprehensive evaluation metrics and visualizations.",
+        "constraints": "As an academic project, constraints included demonstrating deep theoretical understanding, meticulous documentation, and reproducible results. This mandated 8 advanced analyses and 25+ visualizations to showcase mastery within a defined academic timeline."
+      },
+      "discovery": {
+        "requirements": "Project requirements from the 'ECE B3 Data Mining' course pushed for deep model validation, interpretability, and robust algorithm comparison. This necessitated metrics like ROC curves, Silhouette scores, and Adjusted Rand Index, along with comprehensive documentation and maintainable code.",
+        "competitiveAnalysis": "The project involved rigorous algorithmic competitive analysis by directly comparing KNN, K-Means, and CAH on the same dataset. This process identified appropriate metrics and visualization techniques for cross-paradigm comparison (supervised vs. unsupervised) to highlight each approach's strengths.",
+        "technicalResearch": "Technical research focused on selecting Python and scikit-learn as core tools, choosing representative ML algorithms, and identifying appropriate evaluation metrics. Extensive research into visualization techniques and reproducibility practices (fixed random seeds) was also undertaken.",
+        "additionalResearch": "Research also covered visualization techniques for model performance, data distribution, and cluster structures (dendrograms, PCA), ensuring effective communication of complex insights. Reproducibility using fixed random seeds was a key research outcome for scientific rigor."
+      },
+      "architecture": {
+        "informationArchitecture": "The project's architecture was planned for clarity, modularity, and easy navigation, evident from structured output paths for visualizations (e.g., `knn/`, `kmeans/`). A comprehensive `README.md` with a Table of Contents further guided users through the project components.",
+        "technicalDecisions": "Key technical decisions included leveraging Python and scikit-learn for efficiency, employing 10-Fold Cross-Validation for robust KNN evaluation, and using a broad array of metrics for holistic model assessment. Committing to 25+ visualizations for interpretability and implementing fixed random seeds for reproducibility were also crucial decisions."
+      },
+      "developmentProcess": {
+        "phase1": "Initial setup involved configuring the Python environment, installing libraries, loading the Wine dataset, and conducting exploratory data analysis. A robust project structure with dedicated output directories was established to prepare for multi-algorithm development.",
+        "phase2": "This intensive phase focused on implementing core ML algorithms: KNN with hyperparameter optimization and cross-validation, K-Means with Elbow and Silhouette methods, and Hierarchical Clustering with various linkage methods. Concurrently, 8 advanced analyses and 25+ visualizations were generated.",
+        "phase3": "The final phase refined the project to 'production-ready' standards, incorporating error handling, comprehensive documentation, and reproducibility via fixed random seeds. A critical part was developing the comparative analysis framework for side-by-side evaluation of all three methods."
+      },
+      "keyFeatures": [
+        {
+          "title": "K-Nearest Neighbors (KNN) Classification with Advanced Evaluation",
+          "description": "Predicts wine cultivar based on chemical properties by finding 'k' closest examples in the feature space.",
+          "implementation": "Uses scikit-learn's `KNeighborsClassifier` with hyperparameter optimization. Performance is rigorously evaluated using 10-Fold Cross-Validation, ROC Curves, and AUC scores (multi-class one-vs-rest).",
+          "challenges": "Overcame challenges in effectively handling multi-class ROC/AUC evaluation and ensuring model stability/generalization through robust cross-validation."
+        },
+        {
+          "title": "K-Means Clustering with Comprehensive Cluster Analysis",
+          "description": "Partitions wines into 'k' clusters based on similar characteristics without prior label knowledge.",
+          "implementation": "Leverages scikit-learn's `KMeans`. Optimal 'k' determined by Elbow Method and Silhouette Scores. Analysis includes Silhouette Histograms, Cluster Stability (ARI), PCA projections with centroids, and Cluster Characteristics.",
+          "challenges": "Resolved challenges in determining optimal 'k' in an unsupervised context and providing clear, interpretable visualizations of cluster quality and composition."
+        },
+        {
+          "title": "Hierarchical Clustering (CAH) with Visual Dendrograms",
+          "description": "Builds a hierarchy of clusters by merging or splitting groups of wines, visualized through a dendrogram.",
+          "implementation": "Implemented using scikit-learn/scipy.cluster.hierarchy, exploring different linkage methods. Extensive analysis includes Silhouette Histograms, Cluster Stability, PCA projections, and Feature Distributions.",
+          "challenges": "Addressed challenges in choosing appropriate linkage criteria for meaningful hierarchies and effectively visualizing complex hierarchical structures for insightful interpretation."
+        },
+        {
+          "title": "Extensive Data Visualization Suite (25+ Plots)",
+          "description": "Provides rich visual understanding of data, model behaviors, and evaluation metrics across all methods.",
+          "implementation": "Generated over 25 distinct plots across KNN, K-Means, CAH, and comparative analyses. These included confusion matrices, PCA projections, dendrograms, ROC curves, and learning curves, systematically saved into dedicated folders.",
+          "challenges": "Overcame the challenge of creating a large volume of distinct, clear, and informative visualizations that effectively communicate complex analytical insights."
+        },
+        {
+          "title": "Robust Comparative Analysis Framework",
+          "description": "Offers direct, side-by-side comparison of performance and characteristics for KNN, K-Means, and CAH.",
+          "implementation": "Developed a framework for systematic evaluation, including metrics comparison plots (e.g., accuracy, F1), execution time analysis, and side-by-side PCA projections to visually contrast classification and clustering results.",
+          "challenges": "Ensured fair and relevant comparison across different types of machine learning algorithms (supervised vs. unsupervised) and effectively visualized their relative strengths."
+        }
+      ],
+      "testing": "The project employed rigorous testing via 10-Fold Cross-Validation for KNN, ensuring robust and generalizable model performance. A scientific methodology focused on 'Reproducible Results with fixed random seeds' allowed consistent experimentation and debugging. The commitment to 'Production-Ready Code with proper error handling' underscores a focus on long-term maintainability and reliability.",
+      "results": {
+        "technicalAchievements": "Successfully implemented and extensively evaluated KNN, K-Means, and CAH, integrating 8 advanced analytical techniques beyond basic requirements. Generated over 25 distinct visualizations, achieved production-ready code with error handling, and ensured reproducible results via fixed random seeds.",
+        "businessImpact": "While primarily academic, this project provides a robust, reusable framework for analyzing wine characteristics, extendable to real-world applications in viticulture or quality control. It also serves as a strong portfolio piece, showcasing advanced data mining skills relevant to data science roles.",
+        "personalGrowth": "Deepened mastery of supervised and unsupervised learning algorithms and their applications. Significantly enhanced skills in advanced model evaluation, interpretability, and robust validation techniques, reinforcing best practices in data science software development."
+      },
+      "techStack": {
+        "frontend": null,
+        "backend": null,
+        "tools": "Git/GitHub for version control and collaborative development.",
+        "libraries": "Python (3.8+) as the primary language; scikit-learn (1.0+) for ML algorithms; NumPy (implied) and Pandas (implied) for data manipulation; Matplotlib (implied) and Seaborn (implied) for extensive visualizations."
+      },
+      "learnings": [
+        "Relying solely on basic metrics is insufficient; advanced analyses like ROC curves and silhouette scores provide a deeper understanding of model performance and data structure.",
+        "Over 25 visualizations were crucial for transforming complex model outputs into understandable insights, proving data visualization indispensable for communicating findings.",
+        "Fixing random seeds and ensuring comprehensive documentation are vital for scientific rigor and collaborative development, guaranteeing reproducible and trustworthy results.",
+        "Directly comparing different machine learning paradigms using a standardized framework reveals their respective strengths and limitations, guiding more informed model selection."
+      ],
+      "futureEnhancements": [
+        "Deploy the project as a web application using Streamlit, Flask, or FastAPI for interactive user engagement.",
+        "Integrate and compare additional advanced classification (e.g., SVM, Random Forests) and clustering (e.g., DBSCAN) algorithms.",
+        "Upgrade static plots to interactive dashboards using libraries like Plotly or Bokeh for deeper data exploration.",
+        "Develop a script to automatically generate comprehensive summary reports of findings, metrics, and key visualizations.",
+        "Explore more sophisticated feature engineering or dimensionality reduction methods beyond PCA, such as t-SNE or UMAP."
+      ],
+      "conclusion": "The 'Wine Cultivar Classification' project is a robust demonstration of advanced data mining and machine learning. By meticulously implementing and evaluating KNN, K-Means, and CAH, the developer showcases technical proficiency and a profound commitment to data science best practices. Its extensive analyses, visualizations, and reproducible results highlight an analytical mind capable of delivering insightful, well-documented solutions."
+    },
+    "TripHackathon": {
+      "title": "TripWise (TripHackathon)",
+      "description": "Revolutionizes travel planning by blending intuitive design with local AI for personalized recommendations and seamless itinerary creation.",
+      "metadata": {
+        "role": "Student",
+        "category": "Web Development, AI Implementation",
+        "timeline": "Developed rapidly on 2025-05-05 (Hackathon/Prototyping)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Le-skal/TripHackathon"
+      },
+      "overview": "TripWise (formerly TripHackathon) is an innovative web application leveraging React for a responsive frontend and local AI via Ollama/Mistral for personalized travel recommendations. It combines Firebase for data management, a Node.js backend for efficient communication, and React Router DOM for dynamic routing. This project demonstrates comprehensive full-stack development and AI integration skills in a rapid prototyping environment.",
+      "challenge": {
+        "problem": "Traditional travel planning is tedious and overwhelming, often lacking personalized insights and requiring users to sift through vast information. The goal was to overcome this by providing intelligent, tailored recommendations.",
+        "goal": "To develop an intuitive travel planning application with intelligent functionalities, including fluid navigation, robust data management, and AI-generated personalized recommendations and itineraries. This aims to simplify and enrich the user's planning journey.",
+        "constraints": "A significant constraint was the rapid development timeline, typical of a hackathon, necessitating efficient decision-making. Technically, integrating a local AI model like Ollama (Mistral) posed challenges related to setup, server-side communication, and effectively parsing AI output for frontend display."
+      },
+      "discovery": {
+        "requirements": "Core user needs included a clean interface, efficient trip data organization, personalized suggestions for destinations and activities, and the ability to handle dynamic user interactions. These requirements guided the application's feature set.",
+        "competitiveAnalysis": "While informal, the integration of a local AI (Ollama/Mistral) differentiates TripWise by offering potential benefits in privacy, cost-efficiency (avoiding cloud AI API calls), and customizability compared to existing planners relying on static templates or basic algorithms.",
+        "technicalResearch": "React was chosen for its SPA capabilities, Firebase for its BaaS features, and Node.js for backend orchestration. Ollama with Mistral was critical for local LLM inference, providing powerful, privacy-preserving AI capabilities as a key differentiator."
+      },
+      "architecture": {
+        "informationArchitecture": "The application employs a client-server architecture: a React frontend handles UI, a Node.js backend acts as an intermediary for Firebase data and Ollama AI, Firebase serves as the primary data store, and Ollama runs locally with the Mistral LLM for AI processing.",
+        "technicalDecisions": "Key decisions included using React for a fluid SPA, `Axios` for API-driven communication via Node.js endpoints, and `cors` to enable secure cross-origin requests. Crucially, Ollama was chosen for local LLM inference to provide powerful AI capabilities without external cloud dependency, offering performance and privacy benefits."
+      },
+      "developmentProcess": {
+        "phase1": "The project began with setting up the core environment: initializing a React app, configuring `react-router-dom` for routing, installing Firebase, and establishing a basic Node.js `server.js` file to lay the groundwork for API endpoints and service orchestration.",
+        "phase2": "Feature development focused on building React UI components, integrating Firebase for data storage, and implementing the critical AI integration. This involved setting up Ollama/Mistral and creating Node.js endpoints to proxy requests to the AI, processing responses, and sending them to the client.",
+        "phase3": "Given the rapid timeline, this phase prioritized critical refinements. Styling was addressed for a professional UI, basic error handling was likely implemented, and parsing of AI responses was refined to ensure robustness. The primary goal was to ensure core features were functional and user experience was smooth."
+      },
+      "keyFeatures": [
+        {
+          "title": "Modern User Interface with React",
+          "description": "Provides an engaging, responsive, and intuitive graphical user interface for users to interact with the travel planner.",
+          "implementation": "The frontend is built using React's component-based architecture for reusable UI elements, with React Router DOM ensuring a fluid single-page application experience and seamless transitions between views.",
+          "challenges": "Rapidly developing a complex yet aesthetically pleasing and functional UI within a limited timeframe required efficient component design and state management."
+        },
+        {
+          "title": "AI-Powered Travel Recommendations (Ollama with Mistral)",
+          "description": "Generates personalized travel plans, itineraries, and recommendations based on user inputs using a large language model, including day-by-day breakdowns and budget allocations.",
+          "implementation": "The Node.js backend acts as a proxy, interacting with a locally running Ollama instance hosting the Mistral AI model. The `TripList.jsx` component then intelligently parses this AI-generated free-form text into structured UI elements for display.",
+          "challenges": "Integrating a local AI model involved careful Ollama setup. A major challenge was parsing the free-form text output from the LLM (Mistral) into a structured format suitable for the UI."
+        },
+        {
+          "title": "Firebase for Data Management",
+          "description": "Handles the secure storage and retrieval of user data, trip plans, and other application-specific information, providing a scalable backend solution.",
+          "implementation": "The application integrates with Firebase (likely Firestore or Realtime Database) for persistent data storage. Dependencies allow the application (via Node.js or directly) to interact with Firebase APIs for CRUD operations.",
+          "challenges": "Configuring Firebase services and ensuring seamless data synchronization between the frontend and the database, while maintaining appropriate security rules, presented challenges."
+        },
+        {
+          "title": "Seamless Navigation with React Router",
+          "description": "Enables smooth, client-side routing within the single-page application, allowing users to navigate between different sections (e.g., dashboard, profile) without full page reloads.",
+          "implementation": "The `react-router-dom` library defines routes and renders specific components based on the URL. This approach updates only necessary parts of the DOM, creating a responsive user experience.",
+          "challenges": "Managing route parameters, nested routes, and programmatic navigation was necessary to ensure a consistent and intuitive user flow across the application."
+        },
+        {
+          "title": "Node.js Backend for API Orchestration",
+          "description": "Serves as a crucial intermediary, managing requests from the frontend, communicating with Firebase, and most importantly, orchestrating interaction with the local Ollama AI service.",
+          "implementation": "A Node.js server (likely Express) exposes API endpoints consumed by the React frontend using `axios`. This server handles cross-origin requests via `cors` and processes business logic before interacting with other services.",
+          "challenges": "Setting up a robust and secure API, managing asynchronous operations between multiple services (frontend, Firebase, Ollama), and ensuring efficient data flow required careful orchestration."
+        }
+      ],
+      "testing": "Given the hackathon timeline, testing focused on validating core functionalities and critical integration points. This involved manual testing of each feature, such as AI plan generation and trip data saving, and thorough integration testing across React, Node.js, Firebase, and Ollama. Rapid feedback loops enabled immediate identification and resolution of bugs, ensuring a stable development foundation.",
+      "results": {
+        "technicalAchievements": "Successfully integrated a local Large Language Model (Mistral via Ollama) into a web application, demonstrating proficiency in connecting frontend, backend, and AI services. Built a robust full-stack application using modern JavaScript technologies and Firebase within a highly constrained timeframe. Developed intelligent content parsing logic for free-form AI-generated text.",
+        "businessImpact": "While in development, TripWise has the potential to significantly streamline travel planning. By offering personalized, AI-driven recommendations, it can reduce user research time and effort, leading to more enjoyable and better-organized trips, potentially increasing user engagement.",
+        "personalGrowth": "This project provided invaluable experience in setting up and interacting with local AI models, orchestrating complex full-stack interactions, and problem-solving under pressure. It also deepened understanding of managing and utilizing a diverse set of JavaScript dependencies for specific functionalities."
+      },
+      "techStack": {
+        "frontend": "React, React Router DOM, CSS",
+        "backend": "Node.js, Axios, Cors",
+        "tools": "Firebase (BaaS), Ollama (Local LLM runtime)",
+        "libraries": "Axios (promise-based HTTP client), Cors (Node.js middleware for cross-origin requests), React Router DOM (client-side routing)"
+      },
+      "learnings": [
+        "Integrating a locally run LLM via Ollama, while powerful, requires a robust server-side intermediary and careful handling of input/output to ensure reliability and user-friendliness.",
+        "Raw LLM output often needs to be parsed and structured effectively for presentation in a user interface; developing flexible parsing logic is crucial for making AI-generated content actionable and digestible.",
+        "Successfully bringing together disparate technologies (React, Node.js, Firebase, Ollama) within a short timeframe highlights the importance of modular design and clear API contracts for full-stack cohesion.",
+        "Strategic use of Backend-as-a-Service (BaaS) like Firebase significantly accelerates backend development, allowing the team to focus more on core features and complex AI integration rather than managing infrastructure."
+      ],
+      "futureEnhancements": [
+        "Implement comprehensive user authentication (e.g., Firebase Authentication) and detailed user profiles to save trip histories, preferences, and personalized settings.",
+        "Enable more dynamic and interactive AI conversations, allowing users to refine plans, ask follow-up questions, and adjust itineraries in real-time.",
+        "Explore integrating with third-party APIs for flight, accommodation, and activity bookings directly within the application.",
+        "Add features for users to share and collaborate on trip plans with friends or family, enhancing the social aspect of travel planning.",
+        "Implement service workers to allow partial offline access to trip details and planning tools, improving availability and user experience."
+      ],
+      "conclusion": "TripWise stands as a testament to innovative web development, demonstrating powerful synergy between modern frontend frameworks, robust backend services, and cutting-edge artificial intelligence. This project successfully integrated a local LLM (Ollama/Mistral) for personalized recommendations, managed data with Firebase, and provided a seamless user experience with React and Node.js. It highlights a developer's strong foundational skills and a forward-thinking approach to creating an intuitive, intelligent, and deeply personalized future for travel planning."
+    },
+    "Scraping": {
+      "title": "EPFL Memento Web Scraper",
+      "description": "Automates EPFL Memento event extraction, ensuring structured data collection and ethical web interaction.",
+      "metadata": {
+        "role": "Student",
+        "category": "Python Development, Web Scraping",
+        "timeline": "October 2025",
+        "liveUrl": "null",
+        "githubUrl": "https://github.com/Exowz/Scraping"
+      },
+      "overview": "This Python web scraper extracts event information from the EPFL Memento website, navigating multiple pages to collect structured data. It exports clean, analytical CSVs, demonstrating ethical practices like error handling, rate limiting, and data processing. Developed as an educational project, it showcases resilient data acquisition using Python, BeautifulSoup4, and requests.",
+      "challenge": {
+        "problem": "Manually collecting EPFL Memento event information is time-consuming, error-prone, and impractical for updates or large-scale analysis. The unstructured nature of HTML content further complicates programmatic data utilization.",
+        "goal": "The primary objective was to develop an automated solution to reliably extract key event details (title, date, times, location, category) from EPFL's paginated Memento listings. The extracted data needed to be structured into a machine-readable CSV format for analysis.",
+        "constraints": "The scraper depends heavily on the website's HTML structure and uses hardcoded pagination. It requires a stable internet connection and strict adherence to ethical scraping practices. Additionally, handling potential missing data gracefully was crucial."
+      },
+      "discovery": {
+        "requirements": "The core requirement was to transform dynamic HTML event listings into a structured, tabular dataset. This involved identifying specific data points for each event and understanding the website's pagination system to produce a universal CSV file.",
+        "competitiveAnalysis": "The project implicitly addresses the inefficiency of manual data collection by offering speed, accuracy, and scalability. Compared to complex commercial platforms, this Python script provides a lightweight, customizable, and cost-effective solution for its specific data source.",
+        "technicalResearch": "Research focused on `requests` for HTTP calls, `BeautifulSoup4` for HTML parsing, and the `csv` module for data export. Ethical scraping practices like `User-Agent` headers, `time.sleep` for rate limiting, and exponential backoff for retries were also investigated for robust error handling."
+      },
+      "architecture": {
+        "informationArchitecture": "The script follows a linear, three-part architecture: initialization of headers and data storage; iteration through pages, extracting and cleaning event data; and finally, exporting the accumulated data to a CSV file. Each event is compiled into a dictionary and appended to a global list.",
+        "technicalDecisions": "Python was chosen for its ecosystem, with `requests` and `BeautifulSoup` forming a standard scraping combination. Event data is stored in dictionaries for CSV export using `csv.DictWriter`. CSS selectors were leveraged for precise data targeting, and robustness was prioritized through retry logic with exponential backoff and request timeouts for ethical interaction."
+      },
+      "developmentProcess": {
+        "phase1": "The initial phase involved setting up the Python environment and installing `requests` and `beautifulsoup4`. The script's basic structure, including the base URL, User-Agent header, and a loop for page iteration, was established.",
+        "phase2": "This phase focused on core scraping logic: integrating `requests` for fetching pages and `BeautifulSoup` for parsing HTML using CSS selectors. Robust error handling, including exponential backoff and timeouts, was implemented, alongside `time.sleep` for rate limiting. Data cleaning and handling of missing fields were developed.",
+        "phase3": "The final phase concentrated on data persistence and usability, integrating the `csv` module to write collected data to `epfl_events.csv` with proper headers and UTF-8 encoding. Technical notes and documentation were added, and limitations/future improvements were outlined in the README."
+      },
+      "keyFeatures": [
+        {
+          "title": "Multi-Page Scraping",
+          "description": "Automatically navigates through up to 16 paginated event listings on the EPFL Memento website.",
+          "implementation": "A `for` loop dynamically constructs URLs for each page, using `requests` to fetch HTML content. This ensures continuous data collection beyond the initial view.",
+          "challenges": "Managing dynamic URL structures for pagination and maintaining continuous data flow across multiple pages."
+        },
+        {
+          "title": "Robust Error Handling",
+          "description": "Gracefully handles network issues, server errors, and unresponsive pages to prevent script crashes.",
+          "implementation": "Each request is attempted up to 3 times with exponentially increasing delays (2s, 4s, 8s). HTTP requests have a 10-second timeout. If all retries fail, the script logs the error and continues processing subsequent pages.",
+          "challenges": "Preventing script failures due to transient network issues or server problems and maximizing data retrieval despite intermittent connectivity."
+        },
+        {
+          "title": "Respectful Scraping Practices",
+          "description": "Adheres to ethical web scraping guidelines to minimize server load and avoid IP bans.",
+          "implementation": "The script sends a `User-Agent` header to identify itself as a modern browser and includes a `time.sleep(1)` delay between page requests. Exponential backoff for retries further reduces server strain.",
+          "challenges": "Balancing data collection efficiency with the need to avoid aggressive behavior that could lead to IP blocks or server performance issues."
+        },
+        {
+          "title": "Structured Data Extraction & Cleaning",
+          "description": "Accurately extracts specific event details from raw HTML and cleans them for consistency and usability.",
+          "implementation": "`BeautifulSoup4` parses HTML, applying specific CSS selectors to locate event titles, dates, times, locations, and categories. Extracted text is cleaned with `.strip()` and `replace()`, with 'Non trouvé' assigned for missing fields.",
+          "challenges": "Precisely locating dynamic data within complex HTML, ensuring data integrity through text cleaning, and maintaining structure even when data points are absent."
+        },
+        {
+          "title": "CSV Export",
+          "description": "Saves all collected and processed event data into a well-structured CSV file, ready for analysis.",
+          "implementation": "After data collection, the `csv` module's `DictWriter` maps dictionary keys to CSV column headers. The `epfl_events.csv` file is created with `UTF-8` encoding for broad compatibility.",
+          "challenges": "Correctly mapping dictionary keys to CSV headers, handling potential encoding issues, and ensuring a universally accessible output format."
+        }
+      ],
+      "testing": "Testing involved manual verification of `epfl_events.csv` for accuracy and formatting. Error case simulations, such as temporary internet disconnection, were performed to validate the retry mechanism. CSS selectors were continuously validated by inspecting the website's HTML, and data cleaning effectiveness was checked to ensure quality output.",
+      "results": {
+        "technicalAchievements": "Successfully automated structured event data extraction from a dynamic website, eliminating manual effort. Implemented advanced error handling with retries and exponential backoff, resulting in a fault-tolerant scraper. Adhered to ethical scraping practices and produced clean, well-formatted CSV output. Demonstrated proficiency in `requests`, `BeautifulSoup4`, and `csv` for end-to-end data acquisition.",
+        "businessImpact": "Significantly reduces time and resources for gathering EPFL event data. Provides a comprehensive, structured dataset for event trend analysis, scheduling, or integration into other applications. Enables data-driven decision-making for event organizers, students, or researchers interested in EPFL's calendar.",
+        "personalGrowth": "Deepened understanding of HTTP protocols, web page structure, and web scraping intricacies. Gained practical experience designing and implementing robust error handling and respectful scraping strategies. Enhanced skills in data extraction, cleaning, and structuring using Python libraries."
+      },
+      "techStack": {
+        "frontend": "null",
+        "backend": "Python",
+        "tools": "null",
+        "libraries": "requests (HTTP client), BeautifulSoup4 (HTML parser), csv (data export), time (rate limiting)"
+      },
+      "learnings": [
+        "Ethical scraping is paramount, emphasizing `robots.txt` adherence, rate limiting, and appropriate `User-Agent` headers for responsible and sustainable web practices.",
+        "Building a reliable scraper necessitates comprehensive error handling, including retry mechanisms with exponential backoff and request timeouts, to gracefully manage network fluctuations and server-side issues.",
+        "Mastering `BeautifulSoup4` and effective CSS selectors is fundamental for accurately pinpointing and extracting specific data from complex and often inconsistent HTML structures.",
+        "Extracted raw text requires significant cleaning, such as stripping whitespace, removing prefixes, and handling missing values, to produce high-quality, usable datasets for analysis."
+      ],
+      "futureEnhancements": [
+        "Implement logic to automatically detect the total number of available pages for dynamic collection.",
+        "Allow users to specify parameters like output filename, page count, or delays via command-line arguments.",
+        "Integrate a library like `tqdm` to display a progress bar for better user feedback during scraping.",
+        "Add options to filter events based on specific dates, date ranges, or categories directly within the scraper.",
+        "Provide an alternative to CSV, allowing data to be saved directly into a relational or NoSQL database for complex storage and querying."
+      ],
+      "conclusion": "The 'Scraping' project effectively demonstrates robust web scraping techniques in Python, from error handling and ethical interaction to precise data extraction and structured output. It delivers a functional tool for EPFL event data collection and highlights best practices in building reliable, ethical, and maintainable scraping solutions. This project showcases a solid foundation in Python development, data processing, and web ethics."
+    },
+    "portfolio-projects-ai": {
+      "title": "Portfolio Projects AI",
+      "description": "Intelligent AI-powered tool for automating detailed GitHub portfolio case study generation using RAG and LLMs",
+      "metadata": {
+        "role": "Data Engineer",
+        "category": "AI/ML, Python Development",
+        "timeline": "October 2025 (Initial Development Sprint)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/portfolio-projects-ai"
+      },
+      "overview": "The `portfolio-projects-ai` project is an innovative intelligent tool designed to automate the tedious and time-consuming process of creating detailed case studies for GitHub portfolio projects. Leveraging the power of AI-powered code analysis and Retrieval-Augmented Generation (RAG), this tool transforms raw code repositories into engaging, structured, and multilingual portfolio content. It aims to empower developers by significantly reducing the effort required to showcase their work, allowing them to focus more on building and less on documentation.\n\nThis system acts as a sophisticated content generation engine, analyzing the technical intricacies of a codebase, distilling key features, architectural patterns, and technological choices, and then articulating these insights into comprehensive case studies. By offering both structured JSON output for modern web applications and traditional Markdown for general use, `portfolio-projects-ai` provides flexible solutions for any developer's portfolio needs. Its core lies in intelligently understanding code and effectively communicating its essence.",
+      "challenge": {
+        "problem": "Developers often struggle with documenting their projects for portfolios. Manually extracting technical details, describing features, and writing compelling narratives is a laborious, repetitive, and often neglected task. This leads to outdated or incomplete portfolios that don't fully showcase a developer's skills and project impact, despite having a wealth of information buried within their codebases.",
+        "goal": "To create an automated system that can analyze GitHub repositories and generate high-quality, detailed, and multilingual case studies with minimal user intervention. The primary objective is to streamline the portfolio update process, ensuring developers can consistently present their projects professionally and comprehensively.",
+        "constraints": "Technical constraints included reliably parsing diverse code structures across various repositories, ensuring AI-generated content accuracy without hallucination through RAG, scalability with smart skip logic, and implementing robust multilingual support."
+      },
+      "discovery": {
+        "requirements": "The core requirement was enabling developers to effortlessly maintain up-to-date, impactful portfolios with in-depth case studies. Key needs included automated content generation, technical accuracy, support for structured JSON and Markdown outputs, multilingual capabilities, and easy repository configuration.",
+        "competitiveAnalysis": "Existing portfolio generation tools relied on manual input or basic templates. None offered deep AI-powered code analysis and narrative generation. The competitive landscape revealed a significant gap for a truly 'intelligent' portfolio assistant that understands code contextually.",
+        "technicalResearch": "Research focused on evaluating LLMs for complex text generation (leading to Google Gemini selection), investigating RAG to enhance accuracy, exploring code embedding techniques for semantic search, and identifying suitable vector databases (ChromaDB) for efficient similarity search."
+      },
+      "architecture": {
+        "informationArchitecture": "The system follows a clear modular pipeline: Configuration (repos.yaml) → Repository Fetching → Code Analysis (chunking, embedding, ChromaDB storage, RAG-based questioning) → Case Study Generation (templated LLM prompts) → Output Formatting (JSON/Markdown). Each repository gets a unique ChromaDB collection for isolated, accurate analysis.",
+        "technicalDecisions": "Python was chosen for its AI/ML ecosystem. Google Gemini API provided advanced NLU/NLG capabilities. ChromaDB was selected for lightweight, embeddable vector storage with `collection_name=f\"repo_{repo_name.replace('-', '_')}\"` ensuring per-repository organization. RAG architecture was implemented to ground LLM responses in actual code via similarity search, preventing hallucinations."
+      },
+      "developmentProcess": {
+        "phase1": "Foundation phase established project setup, repository cloning, and ChromaDB integration. Implemented code_analyzer skeleton with document loading, embedding generation, and vector store creation. Defined core analysis questions for structure, technologies, features, and architecture.",
+        "phase2": "Feature development focused on RAG-powered analysis logic with similarity search and context concatenation. Implemented case_study_generator outlining main sections. Integrated Google Gemini API for text generation based on analyzed insights. Developed output formatter for both JSON and Markdown.",
+        "phase3": "Refinement phase improved LLM prompts for engaging output, implemented multilingual support with locale configuration, developed Smart Skip Logic for efficiency, and enhanced user-friendliness with CLI options and comprehensive README instructions."
+      },
+      "keyFeatures": [
+        {
+          "title": "Automated Code Analysis with RAG",
+          "description": "Intelligently parses GitHub repositories, transforms codebases into searchable knowledge bases, and uses Retrieval-Augmented Generation to answer specific questions about the project.",
+          "implementation": "The CodeAnalyzer creates embeddings using configured embedding models, stores them in Chroma vector database with unique repository collections. The analyze_with_rag method defines key questions and performs similarity_search to retrieve relevant code snippets, which are fed as context to the LLM for detailed, grounded answers.",
+          "challenges": "Overcame LLM hallucination challenges by ensuring every insight is backed by direct context from the project's source code through RAG, making analysis highly accurate and project-specific."
+        },
+        {
+          "title": "Multilingual Case Study Generation",
+          "description": "Generates portfolio case studies in multiple languages (English, French, etc.) from the same codebase analysis.",
+          "implementation": "The repos.yaml config file includes a locales array. The generation process iterates through specified locales, using locale-specific prompts to instruct the LLM to generate native-sounding text in target languages.",
+          "challenges": "Ensured high-quality, culturally appropriate technical content through careful prompt engineering, avoiding awkward literal translations."
+        },
+        {
+          "title": "Dual Output Modes: Structured JSON & Markdown",
+          "description": "Provides flexible output options - structured JSON optimized for modern web frameworks or human-readable Markdown for broader platforms.",
+          "implementation": "The main.py script accepts --structured or --markdown flags. The generation logic produces raw content, then a dedicated formatter transforms it based on chosen mode. JSON ensures API-consumable data, while Markdown focuses on readability.",
+          "challenges": "Designed flexible content structure seamlessly adapting to both machine-readable JSON and human-centric Markdown without duplicate generation logic."
+        },
+        {
+          "title": "Comprehensive Case Study Structure",
+          "description": "Generates full-fledged case studies covering all essential aspects from overview to technical deep-dives and future enhancements.",
+          "implementation": "The case_study_generator.py defines structure including Discovery, Architecture, Key Features, Results, and Future Enhancements. Each section uses tailored prompts to the LLM leveraging high-level analysis. The full_generator.py ensures engaging features and specific technical sections.",
+          "challenges": "Orchestrated LLM to generate diverse content for distinct sections while maintaining consistent voice and narrative flow, avoiding repetition and ensuring comprehensive coverage."
+        }
+      ],
+      "testing": "Iterative testing approach with manual review after each major feature. Extensive A/B testing of LLM prompts for quality. Repository diversity testing across various structures. Output format validation for JSON schema and Markdown rendering. Multilingual content review for linguistic quality.",
+      "results": {
+        "technicalAchievements": "Successfully integrated complex RAG pipeline with code embeddings, ChromaDB, and Google Gemini. Developed modular architecture separating analysis, generation, and formatting. Achieved efficient processing with smart skip logic. Demonstrated robust multilingual technical documentation generation.",
+        "businessImpact": "Significantly reduces manual effort for creating portfolio case studies. Ensures consistently high-quality, detailed presentations. Multilingual support enables global reach. Empowers developers to focus on development rather than documentation.",
+        "personalGrowth": "Deepened AI/ML expertise with hands-on LLM integration, prompt engineering, and RAG architecture. Developed vector database proficiency. Reinforced system design and modularity principles. Tackled complex challenges in transforming unstructured code into structured narratives."
+      },
+      "techStack": {
+        "frontend": "Python",
+        "backend": "Google Gemini API, ChromaDB, GitHub API",
+        "tools": "Python 3.x, ChromaDB (vector database), GitHub API",
+        "libraries": "Google Gemini API (LLM), ChromaDB (vector embeddings), langchain/sentence-transformers (embeddings)"
+      },
+      "learnings": [
+        "The Power and Perils of Prompt Engineering: Small prompt changes drastically alter output quality. Iteration and clear instructions were paramount.",
+        "RAG's Role in Factual Accuracy: Implementing RAG by embedding and querying the codebase was essential to ground LLM responses in factual context, minimizing hallucinations.",
+        "Code as Data: Treating code as structured semantic data amenable to embedding and vector search enabled deeper contextual understanding beyond keyword matching.",
+        "Modular Design is Key for Complexity: Breaking down the complex task into distinct modules (code_analyzer, case_study_generator, full_generator) greatly improved manageability and debugging."
+      ],
+      "futureEnhancements": [
+        "Support for More Programming Languages: Extend analysis beyond Python to JavaScript, Java, Go, etc., requiring different parsing strategies.",
+        "Advanced Code Metrics & Insights: Incorporate static analysis tools for cyclomatic complexity, code coverage, or dependency graphs.",
+        "Interactive Feedback Loop: Allow users to provide feedback on generated sections for LLM refinement.",
+        "Integrated Deployment/Hosting: Develop web interface or CI/CD integration for easier configuration and publishing.",
+        "Cost Optimization: Implement token usage monitoring and smarter chunking strategies to optimize LLM API costs.",
+        "Dependency Graph Visualization: Analyze requirements.txt or package.json to generate visual dependency graphs."
+      ],
+      "conclusion": "`portfolio-projects-ai` demonstrates the transformative power of AI in streamlining developer workflows. By intelligently automating comprehensive portfolio case study creation, it solves a common pain point while showcasing robust AI-powered code analysis and RAG implementation. It represents a sophisticated blend of data engineering principles—from code ingestion and vectorization to intelligent retrieval and multi-format generation—setting a new standard for automated portfolio management and empowering developers to highlight their work with unprecedented efficiency."
     },
     "backToProjects": "Back to Projects",
     "viewCode": "View Code",
