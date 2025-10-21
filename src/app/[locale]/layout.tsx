@@ -12,6 +12,7 @@ import { Header } from '@/components/header/Header';
 import { WindowManagerProvider } from '@/components/desktop/WindowManager';
 import { LayoutContent } from '@/components/layout/LayoutContent';
 import BootWrapper from '@/components/boot/BootWrapper';
+import { Analytics } from '@vercel/analytics/react';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -78,6 +79,7 @@ export default async function LocaleLayout({
             </BootWrapper>
           </NextIntlClientProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
