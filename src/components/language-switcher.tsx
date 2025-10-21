@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Globe, Check } from 'lucide-react';
+import { IconWorld, IconCheck } from '@tabler/icons-react';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
@@ -30,7 +30,7 @@ export function LanguageSwitcher() {
           variant="outline"
           className="rounded-full border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a]/10 dark:border-[#ffffff] dark:text-[#ffffff] dark:hover:bg-[#ffffff]/10 transition-colors gap-2"
         >
-          <Globe className="h-[1.1rem] w-[1.1rem]" />
+          <IconWorld className="h-[1.1rem] w-[1.1rem]" />
           <span className="text-sm font-medium">{locale.toUpperCase()}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -42,7 +42,7 @@ export function LanguageSwitcher() {
           onClick={() => switchLocale('en')}
           className="cursor-pointer hover:bg-[#1a1a1a]/10 dark:hover:bg-[#ffffff]/10 focus:bg-[#1a1a1a]/10 dark:focus:bg-[#ffffff]/10"
         >
-          <Check
+          <IconCheck
             className={`mr-2 h-4 w-4 ${locale === 'en' ? 'opacity-100' : 'opacity-0'}`}
           />
           English
@@ -51,7 +51,7 @@ export function LanguageSwitcher() {
           onClick={() => switchLocale('fr')}
           className="cursor-pointer hover:bg-[#1a1a1a]/10 dark:hover:bg-[#ffffff]/10 focus:bg-[#1a1a1a]/10 dark:focus:bg-[#ffffff]/10"
         >
-          <Check
+          <IconCheck
             className={`mr-2 h-4 w-4 ${locale === 'fr' ? 'opacity-100' : 'opacity-0'}`}
           />
           Français

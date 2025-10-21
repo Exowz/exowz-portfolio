@@ -70,6 +70,17 @@
   --dock-text: #333333;
   --dock-divider: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.15) 20%, rgba(0, 0, 0, 0.15) 80%, transparent);
 
+  /* Window specific - light mode */
+  --window-bg: rgba(255, 255, 255, 0.25);
+  --window-titlebar-bg: rgba(255, 255, 255, 0.3);
+  --window-content-bg: rgba(255, 255, 255, 0.2);
+  --window-border: rgba(0, 0, 0, 0.08);
+  --window-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 60px rgba(100, 181, 246, 0.08);
+  --window-close-btn: #ff5f57;
+  --window-minimize-btn: #ffbd2e;
+  --window-maximize-btn: #28ca42;
+  --window-btn-icon: rgba(0, 0, 0, 0.7);
+
   /* Charcoal variants */
   --charcoal-dark: #1a1a1a;
   --charcoal-base: #333333;
@@ -128,6 +139,17 @@
   --dock-item-hover-shadow: 0 4px 16px rgba(100, 181, 246, 0.3), 0 0 20px rgba(100, 181, 246, 0.2) !important;
   --dock-text: #ffffff !important;
   --dock-divider: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, transparent) !important;
+
+  /* Window specific - dark mode */
+  --window-bg: rgba(26, 26, 26, 0.6);
+  --window-titlebar-bg: rgba(26, 26, 26, 0.7);
+  --window-content-bg: rgba(26, 26, 26, 0.5);
+  --window-border: rgba(255, 255, 255, 0.15);
+  --window-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(100, 181, 246, 0.1);
+  --window-close-btn: #ff5f57;
+  --window-minimize-btn: #ffbd2e;
+  --window-maximize-btn: #28ca42;
+  --window-btn-icon: rgba(255, 255, 255, 0.7);
 
   /* Theme mappings */
   --background: var(--bg-primary);
@@ -198,5 +220,35 @@
 
   .accent-glow-hover:hover {
     box-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
+  }
+
+  /* Custom Animations */
+  @keyframes blink {
+    0%, 49% {
+      opacity: 1;
+    }
+    50%, 100% {
+      opacity: 0;
+    }
+  }
+
+  .blink {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient ease infinite;
   }
 }

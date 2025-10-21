@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sun, Moon } from 'lucide-react';
+import { IconSun, IconMoon } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
@@ -66,9 +66,9 @@ export function ThemeToggle() {
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       {isDark ? (
-        <Moon size={20} className="text-white transition-all duration-300" />
+        <IconMoon size={20} className="text-white transition-all duration-300" />
       ) : (
-        <Sun size={20} className="text-[#333333] transition-all duration-300" />
+        <IconSun size={20} className="text-[#333333] transition-all duration-300" />
       )}
     </motion.button>
   );

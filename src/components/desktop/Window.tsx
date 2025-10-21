@@ -1,135 +1,178 @@
 'use client';
 
-import { motion, useDragControls } from 'motion/react';
-import { X, Minus, Maximize2 } from 'lucide-react';
-import { useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { IconX, IconMinus, IconMaximize } from '@tabler/icons-react';
+import { useWindowManager } from './WindowManager';
 
-export interface WindowData {
-  id: string;
+type WindowProps = {
+  id: 'projects' | 'about' | 'contact';
   title: string;
-  content: React.ReactNode;
-  initialPosition?: { x: number; y: number };
-  initialSize?: { width: number; height: number };
-}
+  icon: ReactNode;
+  children: ReactNode;
+  className?: string;
+};
 
-interface WindowProps extends WindowData {
-  isActive: boolean;
-  onClose: () => void;
-  onMinimize: () => void;
-  onClick: () => void;
-}
+export function Window({ id, title, icon, children, className = '' }: WindowProps) {
+  const { openWindow, closeWindow } = useWindowManager();
+  const isOpen = openWindow === id;
+  const [windowSpacing, setWindowSpacing] = useState({ top: '80px', bottom: '100px', left: '1rem', right: '1rem' });
 
-export function Window({
-  title,
-  content,
-  initialPosition = { x: 100, y: 100 },
-  initialSize = { width: 800, height: 600 },
-  isActive,
-  onClose,
-  onMinimize,
-  onClick
-}: WindowProps) {
-  const dragControls = useDragControls();
-  const [isMaximized, setIsMaximized] = useState(false);
+  // Update spacing based on screen size
+  useEffect(() => {
+    const updateSpacing = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) { // lg breakpoint
+        setWindowSpacing({ top: '80px', bottom: '100px', left: '4rem', right: '4rem' });
+      } else if (width >= 768) { // md breakpoint
+        setWindowSpacing({ top: '80px', bottom: '100px', left: '2rem', right: '2rem' });
+      } else {
+        setWindowSpacing({ top: '80px', bottom: '100px', left: '1rem', right: '1rem' });
+      }
+    };
 
-  const handleMaximize = () => {
-    setIsMaximized(!isMaximized);
+    updateSpacing();
+    window.addEventListener('resize', updateSpacing);
+    return () => window.removeEventListener('resize', updateSpacing);
+  }, []);
+
+  const handleClose = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    closeWindow();
   };
+
+  const handleMinimize = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Minimize just closes for now
+    closeWindow();
+  };
+
+  const handleMaximize = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // TODO: Could implement fullscreen toggle
+  };
+
+  if (!isOpen) return null;
 
   return (
     <motion.div
-      drag
-      dragControls={dragControls}
-      dragListener={false}
-      dragMomentum={false}
-      initial={initialPosition}
-      animate={
-        isMaximized
-          ? {
-              x: 0,
-              y: 0,
-              width: '100vw',
-              height: 'calc(100vh - 100px)' // Leave space for dock
-            }
-          : {
-              x: initialPosition.x,
-              y: initialPosition.y,
-              width: initialSize.width,
-              height: initialSize.height
-            }
-      }
-      style={{
-        position: 'absolute',
-        zIndex: isActive ? 50 : 40
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }}
+      transition={{
+        duration: 0.3,
+        ease: [0.16, 1, 0.3, 1] // Custom easing for smooth feel
       }}
-      onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-2xl backdrop-blur-xl ${
-        isActive ? 'ring-2 ring-white/20' : ''
-      }`}
+      className={`fixed z-[45] flex flex-col rounded-2xl overflow-hidden ${className}`}
+      style={{
+        background: 'var(--window-bg)',
+        border: '1px solid var(--window-border)',
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        boxShadow: 'var(--window-shadow)',
+        // Proper spacing: top for header, bottom for dock, sides for margins (responsive)
+        ...windowSpacing,
+      }}
+      onClick={(e) => e.stopPropagation()} // Prevent backdrop click when clicking window
     >
-      {/* Window Chrome */}
+      {/* Title Bar */}
       <div
-        onPointerDown={(e) => {
-          if (!isMaximized) {
-            dragControls.start(e);
-          }
+        className="flex items-center justify-between px-4 py-3 border-b"
+        style={{
+          background: 'var(--window-titlebar-bg)',
+          borderColor: 'var(--window-border)',
         }}
-        className="bg-white/10 backdrop-blur-md border-b border-white/10 px-4 py-3 flex items-center justify-between cursor-move select-none"
       >
-        <div className="flex items-center gap-3 flex-1">
-          {/* Traffic Lights (Mac style) */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onClose}
-              className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors"
-              aria-label="Close"
-            />
-            <button
-              onClick={onMinimize}
-              className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors"
-              aria-label="Minimize"
-            />
-            <button
-              onClick={handleMaximize}
-              className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors"
-              aria-label="Maximize"
-            />
-          </div>
-
-          {/* Window Title */}
-          <span className="text-sm font-medium text-white/90">{title}</span>
-        </div>
-
-        {/* Window Controls (Alternative style) */}
-        <div className="flex items-center gap-1">
+        {/* Traffic Lights (macOS style) */}
+        <div className="flex items-center gap-2">
           <button
-            onClick={onMinimize}
-            className="p-1.5 rounded hover:bg-white/10 transition-colors"
+            onClick={handleClose}
+            className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
+            style={{
+              background: 'var(--window-close-btn)',
+            }}
+            aria-label="Close"
+          >
+            <IconX
+              className="w-2 h-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ color: 'var(--window-btn-icon)' }}
+            />
+          </button>
+          <button
+            onClick={handleMinimize}
+            className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
+            style={{
+              background: 'var(--window-minimize-btn)',
+            }}
             aria-label="Minimize"
           >
-            <Minus className="w-4 h-4 text-white/70" />
+            <IconMinus
+              className="w-2 h-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ color: 'var(--window-btn-icon)' }}
+            />
           </button>
           <button
             onClick={handleMaximize}
-            className="p-1.5 rounded hover:bg-white/10 transition-colors"
+            className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
+            style={{
+              background: 'var(--window-maximize-btn)',
+            }}
             aria-label="Maximize"
           >
-            <Maximize2 className="w-4 h-4 text-white/70" />
-          </button>
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded hover:bg-white/10 transition-colors"
-            aria-label="Close"
-          >
-            <X className="w-4 h-4 text-white/70" />
+            <IconMaximize
+              className="w-2 h-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ color: 'var(--window-btn-icon)' }}
+            />
           </button>
         </div>
+
+        {/* Title */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+          <div
+            className="w-4 h-4"
+            style={{ color: 'var(--accent)' }}
+          >
+            {icon}
+          </div>
+          <span
+            className="text-sm font-medium"
+            style={{ color: 'var(--foreground)' }}
+          >
+            {title}
+          </span>
+        </div>
+
+        {/* Right spacer for symmetry */}
+        <div className="w-[52px]" />
       </div>
 
-      {/* Window Content */}
-      <div className="bg-white/5 backdrop-blur-md h-[calc(100%-48px)] overflow-auto">
-        <div className="text-white">{content}</div>
+      {/* Content Area */}
+      <div
+        className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar"
+        style={{
+          background: 'var(--window-content-bg)',
+        }}
+      >
+        {children}
       </div>
+
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: var(--accent);
+          border-radius: 4px;
+          opacity: 0.5;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: var(--accent);
+          opacity: 0.8;
+        }
+      `}</style>
     </motion.div>
   );
 }

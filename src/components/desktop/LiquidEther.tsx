@@ -648,7 +648,7 @@ export default function LiquidEther({
       }
 
       // Allows subclasses to override init with arguments
-      init(..._args: unknown[]) {
+      init() {
         if (this.props.material) {
           this.material = new THREE.RawShaderMaterial(this.props.material);
           const geometry = new THREE.PlaneGeometry(2, 2);
@@ -713,12 +713,15 @@ export default function LiquidEther({
 
     class ExternalForce extends ShaderPass {
       mouse!: THREE.Mesh;
+      private simProps: ExternalForceProps;
       constructor(simProps: ExternalForceProps) {
         super({ output: simProps.dst });
-        this.init(simProps);
+        this.simProps = simProps;
+        this.init();
       }
-      init(simProps: ExternalForceProps) {
+      init() {
         super.init();
+        const simProps = this.simProps;
         const mouseG = new THREE.PlaneGeometry(1, 1);
         const mouseM = new THREE.RawShaderMaterial({
           vertexShader: mouse_vert,

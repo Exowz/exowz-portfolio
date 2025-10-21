@@ -78,13 +78,13 @@ export function Header() {
       {/* Language Switcher - Fixed Position */}
       <Language />
 
-      <header className="fixed top-0 left-0 right-0 z-40 pt-4 px-4">
+      <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 pointer-events-none">
         <div className="w-full flex items-center justify-between">
           {/* Spacer for left side to maintain center alignment */}
           <div className="flex-shrink-0 w-[100px]"></div>
 
           {/* Live Clock - Absolute Center with Glassmorphism */}
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
           <div
             onMouseEnter={() => setIsClockHovered(true)}
             onMouseLeave={() => setIsClockHovered(false)}
@@ -107,7 +107,7 @@ export function Header() {
         </div>
 
         {/* Theme Toggle - Far Right */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 pointer-events-auto">
           <ThemeToggle />
         </div>
       </div>

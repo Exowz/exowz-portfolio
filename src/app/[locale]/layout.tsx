@@ -9,6 +9,9 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { PageTransition } from '@/components/transitions/PageTransition';
 import { Dock } from '@/components/dock/Dock';
 import { Header } from '@/components/header/Header';
+import { WindowManagerProvider } from '@/components/desktop/WindowManager';
+import { LayoutContent } from '@/components/layout/LayoutContent';
+import BootWrapper from '@/components/boot/BootWrapper';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -64,9 +67,15 @@ export default async function LocaleLayout({
           enableSystem
         >
           <NextIntlClientProvider messages={messages}>
-            <PageTransition>
-              {children}
-            </PageTransition>
+            <BootWrapper>
+              <WindowManagerProvider>
+                <Header />
+                <PageTransition>
+                  <LayoutContent>{children}</LayoutContent>
+                </PageTransition>
+                <Dock />
+              </WindowManagerProvider>
+            </BootWrapper>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

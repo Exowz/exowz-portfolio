@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe } from 'lucide-react';
+import { IconWorld } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { LanguageButtonProps } from './language-types';
@@ -17,7 +17,7 @@ export default function LanguageButton({ isActive, toggleMenu, currentLocale }: 
 
   if (!mounted) {
     return (
-      <div className="w-[100px] h-12 rounded-2xl bg-white/5 backdrop-blur-md animate-pulse" />
+      <div className="w-12 md:w-[100px] h-12 rounded-2xl bg-white/5 backdrop-blur-md animate-pulse" />
     );
   }
 
@@ -54,10 +54,9 @@ export default function LanguageButton({ isActive, toggleMenu, currentLocale }: 
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="relative rounded-2xl cursor-pointer transition-all duration-300"
+      className="relative rounded-2xl cursor-pointer transition-all duration-300 w-12 md:w-[100px]"
       style={{
         ...getStyles(),
-        width: '100px',
         height: '48px',
         padding: 0,
         display: 'flex',
@@ -86,12 +85,12 @@ export default function LanguageButton({ isActive, toggleMenu, currentLocale }: 
               transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
               className="absolute inset-0 flex items-center justify-center gap-2"
             >
-              <Globe
+              <IconWorld
                 size={18}
                 className={theme === 'dark' ? 'text-white' : 'text-[#333333]'}
               />
               <span
-                className={`text-base font-medium uppercase tracking-wide ${
+                className={`hidden md:inline text-base font-medium uppercase tracking-wide ${
                   theme === 'dark' ? 'text-white' : 'text-[#333333]'
                 }`}
               >
