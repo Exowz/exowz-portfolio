@@ -44,7 +44,7 @@
         "sovereignty1": "I understood the importance of our data, this 'gold of the 21st century.' I also understood, with dread, how much Europe is lagging behind and dependent. When you realize that 70% of the cloud is owned by AWS or that a Windows update can paralyze airports, it's scary for our independence.",
         "sovereignty2": "And the notion of independence is very important to me. So I'm heading towards this specialization because I want to participate in our independence, European independence! A continent so rich and fabulous, through its history, culture, and civilization cannot be so far behind... That's why I'm now in the world of Data and AI.",
         "closing": "That's all for my presentation, so you know a little better who's behind this computer and who will potentially be your new collaborator. Have a wonderful day and don't hesitate to contact me for various projects!",
-        "signature": "Exowz."
+        "signature": "EXOWZ"
       }
     },
     "contact": {
@@ -902,7 +902,7 @@
       },
       "architecture": {
         "informationArchitecture": "The system follows a clear modular pipeline: Configuration (repos.yaml) → Repository Fetching → Code Analysis (chunking, embedding, ChromaDB storage, RAG-based questioning) → Case Study Generation (templated LLM prompts) → Output Formatting (JSON/Markdown). Each repository gets a unique ChromaDB collection for isolated, accurate analysis.",
-        "technicalDecisions": "Python was chosen for its AI/ML ecosystem. Google Gemini API provided advanced NLU/NLG capabilities. ChromaDB was selected for lightweight, embeddable vector storage with `collection_name=f\"repo_{repo_name.replace('-', '_')}\"` ensuring per-repository organization. RAG architecture was implemented to ground LLM responses in actual code via similarity search, preventing hallucinations."
+        "technicalDecisions": "Python was chosen for its AI/ML ecosystem. Google Gemini API provided advanced NLU/NLG capabilities. ChromaDB was selected for lightweight, embeddable vector storage with dynamic collection naming ensuring per-repository organization. RAG architecture was implemented to ground LLM responses in actual code via similarity search, preventing hallucinations."
       },
       "developmentProcess": {
         "phase1": "Foundation phase established project setup, repository cloning, and ChromaDB integration. Implemented code_analyzer skeleton with document loading, embedding generation, and vector store creation. Defined core analysis questions for structure, technologies, features, and architecture.",

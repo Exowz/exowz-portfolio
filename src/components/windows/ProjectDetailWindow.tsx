@@ -6,7 +6,7 @@ import { IconArrowLeft, IconBrandGithub, IconExternalLink, IconBriefcase, IconFo
 import { useTranslations } from 'next-intl';
 
 // Project metadata (tags, github, demo, date)
-const projectsMetadata: Record<string, {key: string, tags: string[], github: string, demo: string | null, date: string}> = {
+const projectsMetadata: Record<string, {key: string, tags: string[], github: string | null, demo: string | null, date: string}> = {
   'ascord-appwrite': {
     key: 'ascord-appwrite',
     tags: ['Next.js 14', 'TypeScript', 'Appwrite', 'Tailwind CSS', 'Real-time'],
@@ -20,6 +20,20 @@ const projectsMetadata: Record<string, {key: string, tags: string[], github: str
     github: 'https://github.com/Exowz/shiatsu-guyane',
     demo: 'https://www.shiatsu-guyane.com/fr',
     date: '2025-07'
+  },
+  'portfolio-projects-ai': {
+    key: 'portfolio-projects-ai',
+    tags: ['Python', 'RAG', 'LangChain', 'ChromaDB', 'Gemini API', 'AI/ML'],
+    github: 'https://github.com/Exowz/portfolio-projects-ai',
+    demo: null,
+    date: '2025-01'
+  },
+  'wine-cultivar-classification': {
+    key: 'wine-cultivar-classification',
+    tags: ['Python', 'Machine Learning', 'Scikit-learn', 'Data Analysis', 'Classification'],
+    github: 'https://github.com/Exowz/wine-cultivar-classification',
+    demo: null,
+    date: '2024-11'
   },
   'b2javaece': {
     key: 'B2javaECE',
@@ -35,6 +49,13 @@ const projectsMetadata: Record<string, {key: string, tags: string[], github: str
     demo: null,
     date: '2025-09'
   },
+  'dna': {
+    key: 'DNA',
+    tags: ['Python', 'Bioinformatics', 'Matplotlib', 'Tkinter', 'Data Analysis'],
+    github: 'https://github.com/Exowz/DNA',
+    demo: null,
+    date: '2024-01'
+  },
   'mots-fleches': {
     key: 'mots-fleches',
     tags: ['C', 'Algorithms', 'Console Application', 'Academic Project'],
@@ -42,13 +63,20 @@ const projectsMetadata: Record<string, {key: string, tags: string[], github: str
     demo: null,
     date: '2024-05'
   },
-  'dna': {
-    key: 'DNA',
-    tags: ['Project'],
-    github: 'https://github.com/Exowz/DNA',
+  'scraping': {
+    key: 'Scraping',
+    tags: ['Python', 'Web Scraping', 'BeautifulSoup', 'Automation'],
+    github: 'https://github.com/Exowz/Scraping',
     demo: null,
-    date: '2024-01'
-  }
+    date: '2024-03'
+  },
+  'trip-hackathon': {
+    key: 'TripHackathon',
+    tags: ['Hackathon', 'Team Project', 'Innovation', 'Travel Tech'],
+    github: null,
+    demo: null,
+    date: '2024-06'
+  },
 };
 
 interface ProjectDetailWindowProps {
@@ -401,29 +429,39 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
             )}
 
             {/* Tech Stack (if available) */}
-            {hasMetadata && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('techStack')}</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="rounded-lg border bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-3">{tLabels('frontend')}</h3>
-                    <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.frontend`)}</p>
+            {hasMetadata && (() => {
+              // Check if techStack exists and which fields have non-null values
+              let techStackData: Record<string, string | null> | null = null;
+              try {
+                techStackData = t.raw(`${projectMeta.key}.techStack`) as Record<string, string | null>;
+              } catch {
+                return null;
+              }
+
+              if (!techStackData || typeof techStackData !== 'object') return null;
+
+              const techStackFields = ['frontend', 'backend', 'tools', 'libraries'] as const;
+              const availableFields = techStackFields.filter(field => {
+                const value = techStackData[field];
+                return value !== null && value !== undefined && value !== 'null';
+              });
+
+              if (availableFields.length === 0) return null;
+
+              return (
+                <section>
+                  <h2 className="text-3xl font-semibold mb-6">{tSections('techStack')}</h2>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {availableFields.map(field => (
+                      <div key={field} className="rounded-lg border bg-card p-4">
+                        <h3 className="text-lg font-semibold mb-3">{tLabels(field)}</h3>
+                        <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.${field}`)}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div className="rounded-lg border bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-3">{tLabels('backend')}</h3>
-                    <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.backend`)}</p>
-                  </div>
-                  <div className="rounded-lg border bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-3">{tLabels('tools')}</h3>
-                    <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.tools`)}</p>
-                  </div>
-                  <div className="rounded-lg border bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-3">{tLabels('libraries')}</h3>
-                    <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.libraries`)}</p>
-                  </div>
-                </div>
-              </section>
-            )}
+                </section>
+              );
+            })()}
 
             {/* Key Learnings (if available) */}
             {learnings.length > 0 && (

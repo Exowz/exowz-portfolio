@@ -3,6 +3,11 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import localFont from 'next/font/local';
+
+const takenByVultures = localFont({
+  src: '../../../public/fonts/TakenByVultures.otf',
+});
 
 export function AboutWindow() {
   const t = useTranslations('pages.about');
@@ -160,7 +165,7 @@ export function AboutWindow() {
             {/* Closing */}
             <div className="space-y-4 pt-6 border-t border-accent/20">
               <p>{t('story.closing')}</p>
-              <p className="text-right italic text-lg md:text-xl font-semibold text-accent">
+              <p className={`text-right text-3xl md:text-4xl text-accent ${takenByVultures.className}`}>
                 {t('story.signature')}
               </p>
             </div>

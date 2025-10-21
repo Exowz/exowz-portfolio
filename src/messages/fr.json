@@ -44,7 +44,7 @@
         "sovereignty1": "J'ai compris l'importance de nos données, cet \"or du 21e siècle\". J'ai aussi compris, avec effroi, à quel point l'Europe est en retard et dépendante. Quand on réalise que 70% du cloud est détenu par AWS ou qu'une mise à jour Windows peut paralyser des aéroports, cela fait peur pour notre indépendance.",
         "sovereignty2": "Et la notion d'indépendance est très importante pour moi. Je me dirige donc vers cette spécialisation car je souhaite participer à notre indépendance, l'indépendance européenne ! Un continent si riche et si fabuleux, de part son histoire, sa culture, sa civilisation ne peut pas être autant à la traine… Voilà pourquoi me voilà dans le monde de la Data et de l'IA.",
         "closing": "Voilà, c'était tout pour ma présentation, pour que vous en sachiez un peu mieux qui se cache derrière cet ordinateur et qui sera potentiellement votre nouveau collaborateur. Je vous souhaite une excellente journée et n'hésitez pas à me contacter pour divers projets !",
-        "signature": "Exowz."
+        "signature": "EXOWZ"
       }
     },
     "contact": {
@@ -819,7 +819,7 @@
       },
       "architecture": {
         "informationArchitecture": "Le système suit un pipeline modulaire clair : Configuration (repos.yaml) → Récupération de Dépôt → Analyse de Code (découpage, embedding, stockage ChromaDB, interrogation basée sur RAG) → Génération d'Étude de Cas (prompts LLM templés) → Formatage de Sortie (JSON/Markdown). Chaque dépôt obtient une collection ChromaDB unique pour une analyse isolée et précise.",
-        "technicalDecisions": "Python a été choisi pour son écosystème IA/ML. L'API Google Gemini a fourni des capacités avancées de NLU/NLG. ChromaDB a été sélectionné pour un stockage vectoriel léger et intégrable avec `collection_name=f\"repo_{repo_name.replace('-', '_')}\"` assurant l'organisation par dépôt. L'architecture RAG a été implémentée pour ancrer les réponses LLM dans le code réel via la recherche de similarité, prévenant les hallucinations."
+        "technicalDecisions": "Python a été choisi pour son écosystème IA/ML. L'API Google Gemini a fourni des capacités avancées de NLU/NLG. ChromaDB a été sélectionné pour un stockage vectoriel léger et intégrable avec un nommage de collection dynamique assurant l'organisation par dépôt. L'architecture RAG a été implémentée pour ancrer les réponses LLM dans le code réel via la recherche de similarité, prévenant les hallucinations."
       },
       "developmentProcess": {
         "phase1": "La phase de fondation a établi la configuration du projet, le clonage de dépôts et l'intégration ChromaDB. Implémentation du squelette code_analyzer avec chargement de documents, génération d'embeddings et création de vector store. Définition des questions d'analyse principales pour la structure, les technologies, les fonctionnalités et l'architecture.",
