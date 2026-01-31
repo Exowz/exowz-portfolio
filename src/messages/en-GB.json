@@ -156,6 +156,355 @@
       ],
       "conclusion": "\"Shiatsu Guyane\" represents a robust, aesthetically driven, and technically advanced web platform, successfully transforming a local wellness practice into a powerful digital presence. By meticulously leveraging Next.js 15, TypeScript, and a unique Garden Component System, the project delivers a high-performance, SEO-optimized, and deeply engaging user experience. This project stands as a testament to the ability to architect, develop, and deploy complex, modern web applications that blend technical excellence with compelling user journeys."
     },
+    "Cancer": {
+      "title": "Cancer Research Analytics",
+      "description": "Compares cancer research funding against mortality rates to expose resource allocation disparities.",
+      "metadata": {
+        "role": "Student",
+        "category": "Python Development - Data Analytics & Future Machine Learning",
+        "timeline": "December 2025 - January 2026",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Le-skal/Cancer"
+      },
+      "overview": "This project analyzes resource allocation in oncological research by comparing funding with cancer mortality rates. It uses an ETL pipeline to collect, process, and visualize data from authoritative sources. A key finding: Lung Cancer, with 6x higher mortality than Leukemia, receives 3.7x less budget per death, highlighting significant disparities.",
+      "challenge": {
+        "problem": "The core challenge was the disconnect between cancer severity (global mortality) and research investment. Traditional approaches lacked comparative analysis, preventing clarity on optimal resource alignment with disease burden.",
+        "goal": "The primary goal was to develop a comprehensive data analytics solution. It aimed to integrate diverse cancer data into comparative metrics like 'budget per death' and present these via an interactive dashboard, answering if investment correlates with severity.",
+        "constraints": "Constraints included data heterogeneity from various sources (web scraping, APIs, files), large data volume requiring efficient Pandas processing and batch uploads, and quality issues necessitating rigorous cleaning. Interactive visualization of complex findings also posed a challenge."
+      },
+      "discovery": {
+        "requirements": "Requirements were driven by the hypothesis that investment might not correlate with disease severity. This necessitated access to reliable, current data on mortality (WHO), budgets (NCI), trials (ClinicalTrials.gov), and public interest (Google Trends) for standardized comparison.",
+        "competitiveAnalysis": "While individual cancer datasets exist, comprehensive analytical platforms directly comparing research investment against global mortality rates are less common. This project aimed to fill that gap by providing a unique, data-driven perspective on resource allocation, generating actionable insights.",
+        "technicalResearch": "Python was chosen for its data science libraries. Pandas was key for data manipulation, Selenium for web scraping dynamic content, and PostgreSQL (Supabase) for scalable storage. Streamlit and Plotly were selected for rapid, interactive dashboard development and rich visualizations."
+      },
+      "architecture": {
+        "informationArchitecture": "The project uses an ETLV pipeline: Extract (web scraping, APIs, open data), Transform (Pandas for cleaning, normalization, metric calculation, geolocation), Load (PostgreSQL via Supabase with batch uploads), and Visualize (Streamlit dashboard with Plotly graphs).",
+        "technicalDecisions": "Python's data science ecosystem, especially Pandas, was foundational. Supabase offered a scalable PostgreSQL backend simplifying database management. Streamlit facilitated rapid development of an interactive web application, paired with Plotly for high-quality, dynamic visualizations. Selenium was crucial for scraping dynamic content from websites like ClinicalTrials.gov not accessible via APIs."
+      },
+      "developmentProcess": {
+        "phase1": "Foundation focused on setting up the Python environment, establishing connections to diverse data sources via Selenium and APIs, and designing the Supabase PostgreSQL schema. Initial data extraction scripts were developed and tested.",
+        "phase2": "Feature Development built the full ETL pipeline and dashboard. Pandas implemented data cleaning, normalization, joining, and 'dollars per death' calculations. The batch upload mechanism for PostgreSQL was optimized, and the Streamlit dashboard integrated Plotly graphs with dynamic filtering.",
+        "phase3": "Polish & Optimization refined data processing algorithms for efficiency and accuracy. Database queries were optimized, and indexes fine-tuned for dashboard performance. The Streamlit UI was improved iteratively for better user experience and clarity, preparing for future enhancements."
+      },
+      "keyFeatures": [
+        {
+          "title": "Multi-Source Data Extraction",
+          "description": "Gathers comprehensive data from PubMed API, WHO GLOBOCAN, NCI Budget, ClinicalTrials.gov (via Selenium), and Google Trends.",
+          "implementation": "Python scripts use `requests` for APIs, `Selenium` for dynamic web scraping, and direct parsing for CSV/JSON open data, handling distinct source methods.",
+          "challenges": "Overcame API rate limits, anti-bot measures, and inconsistent data formats through robust error handling and standardized parsing."
+        },
+        {
+          "title": "Robust Data Transformation",
+          "description": "Cleans, standardizes, and enriches raw data, normalizing nomenclature, performing complex joins, calculating derived metrics, and adding geographic context.",
+          "implementation": "`Pandas` DataFrames and custom Python functions are used for cleaning, `merge`/`join` operations for integration, and a dictionary of 800+ keywords for geolocation.",
+          "challenges": "Reconciling diverse terminologies and data granularity across sources required mapping tables and fuzzy matching algorithms for accurate joins."
+        },
+        {
+          "title": "Scalable Data Storage",
+          "description": "Persists cleaned, transformed data into a structured and queryable database, ensuring integrity, efficiency, and scalability for analysis.",
+          "implementation": "A `PostgreSQL` database via `Supabase` stores data. Python scripts upload data in batches of 1000 records, with normalized and indexed tables optimizing query performance.",
+          "challenges": "Designing an optimal relational schema and managing batch uploads for atomicity and error handling during large insertions were key."
+        },
+        {
+          "title": "Interactive Data Visualization",
+          "description": "Presents complex analytical findings through an intuitive, interactive web dashboard, enabling users to explore disparities and trends with dynamic filters.",
+          "implementation": "`Streamlit` builds the dashboard, integrating `Plotly` for interactive graphs like bar charts and time-series. Streamlit widgets provide dynamic filters that re-render charts in real-time.",
+          "challenges": "Creating performant visualizations for large, filterable datasets and designing an intuitive UI for complex data to prevent user overwhelm were critical."
+        },
+        {
+          "title": "Comparative Metrics Calculation",
+          "description": "Computes critical comparative metrics, such as '$ per death' for various cancer types, directly addressing the project's central question about resource allocation.",
+          "implementation": "Within the TRANSFORM stage, after merging budget (NCI) and mortality (WHO) data, `Pandas` performs arithmetic operations (`budget / mortality_count`) to derive and store the metric.",
+          "challenges": "Ensuring perfect alignment of budget and mortality data by specific cancer type and year was crucial to prevent misleading calculations, requiring meticulous data cleaning."
+        }
+      ],
+      "testing": "Testing was integral, validating each ETL stage. Extraction verified data fetching, transformation used unit tests for Pandas functions and data profiling, and loading confirmed correct database insertion with optimized batch uploads. The Streamlit dashboard's interactivity and data accuracy were rigorously tested, cross-referencing displayed metrics with raw data.",
+      "results": {
+        "technicalAchievements": "Successfully integrated diverse data sources (web scraping, APIs, open data) demonstrating robust data engineering. Developed a resilient ETL pipeline using Pandas for cleaning and enrichment. Implemented an efficient batch loading mechanism into a normalized PostgreSQL database, and created an interactive Streamlit/Plotly dashboard.",
+        "businessImpact": "The project provides critical, data-driven analysis revealing significant disparities in oncology research funding relative to global mortality. This analysis can inform policymakers and funding bodies to re-evaluate resource allocation strategies, ensuring investments align with the actual disease burden.",
+        "personalGrowth": "Enhanced proficiency in end-to-end data analytics workflow, from data collection to interactive visualization. Gained expertise in Python's data science ecosystem, Pandas, Streamlit/Plotly, and deepened understanding of database design and cloud-based solutions like Supabase."
+      },
+      "techStack": {
+        "frontend": "Streamlit 1.30, Plotly 5",
+        "backend": "Supabase, PostgreSQL",
+        "tools": "Selenium 4",
+        "libraries": "Python 3.8+, Pandas 2.0, Requests"
+      },
+      "learnings": [
+        "Orchestrating diverse data sources underscored the complexity of integrating varied data (APIs, web scraping, open data), highlighting the need for robust connectors and validation.",
+        "Mastering Pandas for cleaning, normalizing, merging, and deriving insights from messy data was core, demonstrating how thoughtful transformation is paramount for accurate analytical results.",
+        "Gained hands-on experience across the entire data analytics pipeline, from raw data ingestion to interactive user-facing dashboards, highlighting the interconnectedness of each stage.",
+        "Realized how compelling, interactive visualizations with Streamlit and Plotly can effectively communicate complex data findings and disparities, transforming raw numbers into actionable insights."
+      ],
+      "futureEnhancements": [
+        "Implement scheduled jobs for automated web scraping and data extraction, ensuring the dashboard displays the most current information.",
+        "Develop machine learning models to identify emerging cancer research trends, predict future mortality rates, or forecast funding needs.",
+        "Explore streaming data architectures for near real-time dashboard updates, particularly for continuously fed sources.",
+        "Enhance geolocation capabilities and visualize research/mortality data on interactive global maps for expanded geographic analysis.",
+        "Deploy the Streamlit application to a public cloud platform (e.g., Streamlit Cloud, AWS, GCP) to make the interactive analysis accessible to a wider audience."
+      ],
+      "conclusion": "The 'Cancer Research Analytics' project powerfully demonstrates data-driven inquiry in global health, revealing significant disparities in oncology research funding versus mortality. Showcasing robust technical skills in data engineering, Python, and visualization, it leverages technology for meaningful societal impact. As an 'In Development' project, it holds immense potential for further expansion and contribution to equitable medical research resource allocation."
+    },
+    "reviewai-platform": {
+      "title": "ReviewAI Platform",
+      "description": "Revolutionizing customer review management and analysis with AI-driven insights.",
+      "metadata": {
+        "role": "Full-Stack Developer",
+        "category": "Full-Stack Development - AI Integration",
+        "timeline": "Q1 2026 (Ongoing Development)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/reviewai-platform"
+      },
+      "overview": "ReviewAI Platform is a cutting-edge full-stack web application designed to automate customer review analysis using AI. It combines a Vue.js 3 frontend with a Laravel 12 backend to collect, organize, and derive actionable insights from feedback. Integrating Mistral AI, it provides automated sentiment detection, satisfaction scoring, and topic extraction, enabling businesses to make data-driven decisions swiftly.",
+      "challenge": {
+        "problem": "Businesses are overwhelmed by vast quantities of customer reviews, making manual processing time-consuming, biased, and insightful. The problem was to create an automated system for clear, concise review data.",
+        "goal": "The primary objective was to build an intuitive, secure full-stack application for managing customer reviews, integrating advanced AI for sentiment analysis and topic extraction. It needed to present these insights via an interactive dashboard with a modern, responsive UI.",
+        "constraints": "Key technical challenges included seamlessly integrating Mistral AI for reliable text analysis, designing a scalable architecture for growing review volumes, and ensuring secure user authentication and data protection. Furthermore, it required a responsive UI across devices and a maintainable, extensible codebase."
+      },
+      "discovery": {
+        "requirements": "Initial analysis identified core needs: user authentication, CRUD for reviews, and actionable insights like sentiment, satisfaction, and recurring themes. Secure data handling and a modern, accessible interface were paramount for user adoption.",
+        "competitiveAnalysis": "While many review platforms exist, few offer integrated, real-time AI sentiment analysis as a core feature. ReviewAI aimed to differentiate by automating sophisticated AI analysis, providing deeper insights without extensive user configuration.",
+        "technicalResearch": "Laravel 12 was chosen for its robust MVC and ecosystem for backend development. Vue.js 3 with TypeScript provided performance, scalability, and type safety for the frontend. Mistral AI API was selected for efficient and accurate NLP tasks, while Shadcn-vue and Tailwind CSS ensured a customizable, responsive UI. Laravel Sanctum and Pinia completed the tech stack for secure authentication and state management."
+      },
+      "architecture": {
+        "informationArchitecture": "The application follows a client-server architecture, decoupling the Vue.js 3/TypeScript frontend from the Laravel 12 backend. The frontend manages views, Pinia stores, and Axios for API communication, while the backend adheres to MVC, handling requests, database interactions, and Mistral AI integration.",
+        "technicalDecisions": "Full-stack decoupling allows independent scaling and flexibility. Laravel Sanctum was chosen for stateless, token-based API authentication suitable for SPAs. Vue 3 Composition API and TypeScript ensured maintainable, type-safe frontend code. Shadcn-vue and Tailwind CSS prioritized rapid, customizable, and responsive UI development. Pinia streamlined state management, and Mistral AI API integration was handled entirely by the backend."
+      },
+      "developmentProcess": {
+        "phase1": "Initialized Laravel and Vue projects, configured environment variables, and defined database schemas. Integrated Laravel Sanctum for user authentication and established basic RESTful API endpoints for fundamental review CRUD operations.",
+        "phase2": "Implemented full CRUD for reviews on the backend with validation and developed corresponding frontend components. Integrated Mistral AI by creating Laravel services to send review text, parse responses for sentiment/topics, and store results. Built backend logic and frontend views for the interactive dashboard.",
+        "phase3": "Enhanced UI/UX with Shadcn-vue and Tailwind CSS, focusing on modern aesthetics, responsiveness, and dark mode. Implemented comprehensive backend unit and feature tests using Pest PHP for critical modules, ensuring high code coverage and stability."
+      },
+      "keyFeatures": [
+        {
+          "title": "User Authentication",
+          "description": "Provides secure user registration and login, protecting private data and application features.",
+          "implementation": "Uses Laravel Sanctum for token-based authentication. Upon login, the backend issues an API token for subsequent authenticated frontend requests.",
+          "challenges": "Ensuring stateless authentication for SPAs, managing token expiry, and protecting sensitive routes from unauthorized access."
+        },
+        {
+          "title": "Review Management (CRUD Operations)",
+          "description": "Enables authenticated users to create, read, update, and delete their customer reviews.",
+          "implementation": "The backend offers a RESTful API with dedicated endpoints (`/api/reviews`), managed by `ReviewController`. The frontend uses Axios to interact with these endpoints, displaying review lists and forms.",
+          "challenges": "Implementing robust backend data validation, managing optimistic updates on the frontend, and handling API interaction errors."
+        },
+        {
+          "title": "AI-Powered Analysis (Mistral AI Integration)",
+          "description": "Automatically analyzes review content for sentiment, satisfaction scores, and key topic extraction.",
+          "implementation": "When a review is submitted, the backend sends its text to the Mistral AI API via HTTP. The AI processes it and returns structured data, which the backend stores alongside the review.",
+          "challenges": "Handling API request limits, efficiently parsing AI responses, managing network latency, and effectively storing diverse AI results."
+        },
+        {
+          "title": "Interactive Dashboard",
+          "description": "Offers a centralized view of aggregated review statistics and visualizations for quick insights.",
+          "implementation": "The backend's `StatisticsController` fetches and processes review data from MySQL to calculate metrics. The frontend consumes these aggregated data points via API, rendering them with Vue.js components and potentially charting libraries.",
+          "challenges": "Efficiently querying large datasets, designing clear visualizations, and ensuring real-time data updates."
+        },
+        {
+          "title": "Responsive Design & Dark Mode",
+          "description": "Delivers an adaptive user interface that works seamlessly across devices and supports user-preferred light/dark themes.",
+          "implementation": "UI built with inherently responsive Shadcn-vue components and styled with Tailwind CSS. Dark mode uses VueUse's `useColorMode` composable to dynamically apply theme classes.",
+          "challenges": "Ensuring visual consistency across breakpoints, managing application-wide theme state, and custom styling Shadcn-vue components."
+        }
+      ],
+      "testing": "A robust backend testing suite, leveraging Pest PHP, ensures quality and reliability. This includes 48 unit and feature tests, achieving high code coverage (95% for AuthController, 90% for ReviewController, 85% for AnalysisController, 90% for StatisticsController). This iterative testing approach facilitated early issue detection and continuous refinement, contributing to a stable and performant application.",
+      "results": {
+        "technicalAchievements": "Successfully developed a full-stack web application with modern frameworks, secure token-based authentication (Laravel Sanctum), and seamless Mistral AI integration. Implemented comprehensive review CRUD with robust validation and an interactive dashboard. Achieved high code quality via extensive backend testing (Pest PHP) and a responsive, accessible UI with Shadcn-vue and Tailwind CSS.",
+        "businessImpact": "Automated AI-driven review analysis saves businesses significant operational costs and time, transitioning from manual processes. It provides clear, actionable data on customer sentiment and trends, enabling quicker, more informed strategic decisions and enhancing customer experience through faster identification of pain points.",
+        "personalGrowth": "Deepened expertise in architecting complex full-stack applications with Laravel 12 and Vue 3/TypeScript. Gained invaluable experience integrating external AI APIs and solidified skills in comprehensive backend testing with Pest PHP. Mastered modern UI development with Shadcn-vue and Tailwind CSS, enhancing understanding of decoupled architectures and state management."
+      },
+      "techStack": {
+        "frontend": "Vue.js 3, TypeScript, Tailwind CSS, Shadcn-vue, Pinia, Axios, Vue Router, VueUse, Phosphor Icons",
+        "backend": "Laravel 12, PHP, MySQL/SQLite, Laravel Sanctum, Pest PHP, Mistral AI API",
+        "tools": "",
+        "libraries": "Laravel Sanctum (authentication), Pinia (state management), Axios (HTTP client), Shadcn-vue (UI components), Vue Router (routing), VueUse (utilities), Phosphor Icons (icons)"
+      },
+      "learnings": [
+        "Learned to effectively integrate and abstract third-party AI services into a full-stack application, designing careful API clients, handling errors, and storing AI results efficiently.",
+        "Gained deeper insights into designing a clean, decoupled client-server architecture using Laravel and Vue 3, emphasizing API-first development and secure communication.",
+        "Realized the significant benefits of TypeScript for improving code quality, maintainability, and collaboration in complex Vue.js applications when combined with Pinia and the Composition API.",
+        "Reinforced the importance of extensive backend testing with tools like Pest PHP to ensure API stability, data integrity, and minimize regressions, leading to a more reliable application."
+      ],
+      "futureEnhancements": [
+        "Implement more sophisticated data visualizations, custom report generation, and trend analysis over time for sentiment and topics.",
+        "Introduce different user roles (e.g., Administrator, Reviewer, Analyst) with varying levels of access and capabilities.",
+        "Enable multi-tenancy support for the platform to host multiple independent businesses, each with isolated data and settings.",
+        "Allow users to provide domain-specific context or keywords to fine-tune the AI analysis for more accurate, industry-relevant results.",
+        "Add capabilities to pull reviews automatically from external platforms like Google My Business or Yelp.",
+        "Implement real-time notifications for new reviews, significant shifts in sentiment, or mentions of critical topics.",
+        "Enhance backend performance and resource management through API rate limiting and data caching mechanisms.",
+        "Package the application into Docker containers for easier deployment, scalability, and environment consistency."
+      ],
+      "conclusion": "The ReviewAI Platform effectively combines robust backend engineering with modern frontend development and intelligent AI integration, addressing the critical need for automated review analysis. This project successfully empowers businesses with actionable insights, driven by secure authentication, comprehensive features, intuitive design, and rigorous testing. The experience solidified my full-stack expertise and showcased my ability to deliver innovative, data-driven solutions with significant business impact."
+    },
+    "purecontrol-ml-technical-test": {
+      "title": "Purecontrol ML Technical Test",
+      "description": "Predicts pool temp & optimizes heat pump for anticipatory, cost-efficient control.",
+      "metadata": {
+        "role": "Test Candidate",
+        "category": "Machine Learning, Data Analysis, Technical Test",
+        "timeline": "Rapid Development (Completed within a day for technical test on 2026-01-30)",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/Exowz/purecontrol-ml-technical-test"
+      },
+      "overview": "This project provides an intelligent solution for swimming pool temperature management. It accurately predicts temperature fluctuations using ML and optimizes heat pump activation for target temperature maintenance and energy cost minimization. The system uses anticipatory strategies, showcasing a robust data science workflow from EDA to model training and control optimization.",
+      "challenge": {
+        "problem": "The core problem involved accurately modeling and predicting pool water temperature, accounting for exogenous and control variables. Second, it required designing an intelligent control system to maintain a minimum temperature while minimizing heat pump energy costs.",
+        "goal": "The goal was to create a predictive and prescriptive system. This involved developing a robust ML model for temperature variation prediction, then integrating it into an optimization framework for cost-efficient temperature regulation, ensuring the pool never drops below a desired minimum.",
+        "constraints": "A significant challenge was the pool's inherent thermal inertia, making reactive control inefficient. The solution had to incorporate anticipatory and predictive capabilities to overcome this lag, requiring a forward-looking approach to optimization."
+      },
+      "discovery": {
+        "requirements": "Requirements focused on predicting temperature variation `y[k+1] - y[k]` and using this for control optimization. This necessitated time-series analysis and an intelligent agent balancing temperature goals with cost minimization.",
+        "competitiveAnalysis": "While not explicit, the project aimed to surpass basic reactive thermostat controls, which waste energy due to thermal inertia. The goal was to build a proactive, predictive system, inherently outperforming simpler alternatives.",
+        "technicalResearch": "Research focused on time-series prediction of temperature *variations* for stability, and feature engineering from key variables. XGBoost was chosen for its robust performance, and control theory concepts like anticipatory control guided the solution."
+      },
+      "architecture": {
+        "informationArchitecture": "The project used a modular structure: `data/`, `notebooks/`, `src/` (for `modeling/` and `control/`), and `outputs/`. This promoted maintainability and logical separation of concerns.",
+        "technicalDecisions": "Key decisions included modeling `temp_variation` for stability and using XGBoost for its efficiency, accuracy, and interpretability. Iterative control optimization was implemented with both a 'greedy' and an 'improved look-ahead' strategy to address thermal inertia. Comprehensive visualization was prioritized for understanding data and comparing control strategies."
+      },
+      "developmentProcess": {
+        "phase1": "Initial setup involved structuring the repository and ingesting raw data. Preliminary data exploration in `notebooks/exploration.py` helped understand data types, missing values, and calculate descriptive statistics, including target variable variations.",
+        "phase2": "This phase developed the core system: `data_preparation.py` for feature engineering, `model_training.py` for XGBoost, and `optimizer.py` for basic control. An `evaluation.py` framework integrated model predictions and assessed initial performance over an 8-hour horizon.",
+        "phase3": "Refinement included `optimizer_improved.py` with a look-ahead mechanism to better manage thermal inertia. The visualization suite in `outputs/figures/` was expanded for detailed analyses, providing thorough insights into system behavior and performance comparisons."
+      },
+      "keyFeatures": [
+        {
+          "title": "Intelligent Water Temperature Prediction",
+          "description": "Accurately predicts the *variation* in pool water temperature for the next time step, forming the backbone of the anticipatory control system.",
+          "implementation": "An XGBoost regressor, trained on historical data, learns relationships between current conditions to forecast temperature changes. `temp_variation` is engineered as `data['water temp'].diff()`.",
+          "challenges": "Overcame noise in absolute temperature prediction by focusing on the rate of change, making predictions more stable and robust for effective control."
+        },
+        {
+          "title": "Data Exploration & Feature Engineering",
+          "description": "Provides deep understanding of the dataset's characteristics and prepares it for machine learning.",
+          "implementation": "`exploration.py` uses Pandas to display data types, identify missing values, and compute descriptive statistics. It also engineers the `temp_variation` feature.",
+          "challenges": "Ensured data quality and relevance; understanding statistical properties of data is fundamental to building an effective model."
+        },
+        {
+          "title": "Anticipatory Control Optimization",
+          "description": "Strategically activates the heat pump to maintain a minimum water temperature constraint while minimizing energy consumption.",
+          "implementation": "`optimizer_improved.py` uses the trained ML model to simulate future temperature changes under different heat pump scenarios. A 'look-ahead' strategy evaluates actions over a horizon, selecting the lowest-cost sequence.",
+          "challenges": "Directly addressed the pool's thermal inertia by planning actions based on predicted future states, ensuring proactive temperature management rather than inefficient reactive control."
+        },
+        {
+          "title": "Comprehensive Performance Evaluation & Visualization",
+          "description": "Provides a thorough assessment of model accuracy and control system effectiveness through illustrative plots.",
+          "implementation": "`evaluation.py` generates numerous visualizations (e.g., time series, correlation, feature importance, control comparisons) saved in `outputs/figures/`.",
+          "challenges": "Effectively communicated complex ML and control system performance, providing immediate, actionable insights into model reliability, feature influence, and strategy efficacy."
+        }
+      ],
+      "testing": "The `evaluation.py` script served as a dedicated testing framework, evaluating the predictive model over an 8-hour horizon with quantitative metrics and visual feedback. The iterative development of basic and improved optimizers, guided by error accumulation and control comparison visualizations, refined the control strategy. This iterative cycle of predict, control, evaluate, and refine was key to achieving an effective solution.",
+      "results": {
+        "technicalAchievements": "Successfully implemented an end-to-end ML pipeline for dynamic system modeling and control using XGBoost. Identified influential variables via feature importance, validating physical intuition. Engineered an anticipatory control system that demonstrably outperforms purely reactive approaches, effectively managing thermal inertia. Created a comprehensive visualization suite to explain data, model behavior, and control strategy effectiveness.",
+        "businessImpact": "The solution offers significant operational cost savings by minimizing heat pump energy consumption while maintaining desired temperatures. It optimizes resource usage, promotes sustainability, and enhances user experience with an always-optimal pool temperature.",
+        "personalGrowth": "Deepened understanding of time-series modeling, especially predicting variations, and gained practical experience in designing intelligent ML-feedback control systems. Enhanced skills in data exploration, feature engineering, and robust model evaluation, appreciating problem decomposition and iterative refinement."
+      },
+      "techStack": {
+        "frontend": null,
+        "backend": null,
+        "tools": "Python (Primary language for development)",
+        "libraries": "Pandas (data manipulation, feature engineering), NumPy (numerical operations), XGBoost (ML model for prediction), Matplotlib/Seaborn (data visualization), Scikit-learn (implied for preprocessing, metrics)"
+      },
+      "learnings": [
+        "Predicting *variations* in time series leads to more stable and robust models than absolute values, reducing cumulative error and providing a clearer control signal.",
+        "Thermal inertia demands an anticipatory approach (e.g., 'look-ahead' strategies) for successful optimization, as reactive systems are inefficient for such dynamic systems.",
+        "XGBoost is effective for structured data, offering high predictive accuracy and easily extractable feature importance for understanding temperature change drivers.",
+        "Comprehensive visualization is invaluable for understanding data, diagnosing model errors, and comparing control strategy efficacy, transforming abstract data into actionable insights."
+      ],
+      "futureEnhancements": [
+        "Implement advanced reinforcement learning algorithms to allow the control system to learn optimal policies through environmental interaction.",
+        "Integrate more sophisticated rolling features like lag variables or moving averages to capture temporal dependencies effectively.",
+        "Explore recurrent neural networks (LSTMs/GRUs) for temperature prediction, well-suited for modeling sequences and long-term dependencies.",
+        "Implement a full Model Predictive Control (MPC) framework using the ML model as the system's prediction engine, handling constraints and multi-step horizons.",
+        "Add uncertainty estimates to predictions for confidence intervals, enabling the control system to make more robust decisions."
+      ],
+      "conclusion": "This project successfully addressed intelligent pool temperature management, integrating predictive modeling and cost-optimized control. By leveraging ML and adopting an anticipatory strategy, the system efficiently maintains temperatures while minimizing energy. It stands as a robust example of applying data science to real-world challenges, showcasing strong ML, system design, and practical optimization skills."
+    },
+    "blue-gold-analytics": {
+      "title": "Blue Gold Analytics",
+      "description": "Illuminates the link between water access and child mortality to guide humanitarian aid.",
+      "metadata": {
+        "role": "Data Analyst",
+        "category": "Data Analysis, Visualization",
+        "timeline": "2026-01-30",
+        "liveUrl": "null",
+        "githubUrl": "https://github.com/Exowz/blue-gold-analytics"
+      },
+      "overview": "Blue Gold Analytics visualizes the relationship between safe drinking water access and child mortality, creating a 'Humanitarian Priority Score (SPH)' to direct aid. Implemented in Python and R, it delivers diverse visualizations and dashboards, offering actionable insights for global public health.",
+      "challenge": {
+        "problem": "Unequal access to safe drinking water contributes to high child mortality, and humanitarian aid lacks precise, data-backed insights for efficient resource allocation. A quantifiable metric was needed to prioritize interventions.",
+        "goal": "Quantify the water access-child mortality correlation, develop a Humanitarian Priority Score (SPH) for ranking regions, provide diverse high-quality visualizations (static, animated, interactive), and implement interactive dashboards in both Python (Streamlit) and R (Shiny).",
+        "constraints": "The analysis covered ~170 countries over 8 years (2015-2022). It required parallel development in both Python and R, maintaining consistency, and generating diverse high-resolution outputs (300 DPI PNGs, GIFs, interactive HTML)."
+      },
+      "discovery": {
+        "requirements": "The project needed to move beyond anecdotal evidence, providing statistically validated, data-driven insights through clear visual communication and user-friendly interfaces. Outputs had to suit formal reports, dynamic presentations, and interactive exploration.",
+        "competitiveAnalysis": "The project differentiates itself by offering dual-language implementations (Python/R) and a comprehensive suite of visualization types, maximizing flexibility and reach. This caters to a broader audience of data practitioners and decision-makers.",
+        "technicalResearch": "Researched ggplot2 (R) for static charts, gganimate (R) for animations, and Plotly (Python/R) for interactive HTML visualizations, with htmlwidgets in R facilitating integration. Streamlit (Python) and Shiny (R) were chosen for rapid dashboard development, and World Bank for data."
+      },
+      "architecture": {
+        "informationArchitecture": "A modular architecture separates Python and R implementations, with distinct output directories for static charts, animations, and interactive visualizations. This structure ensures easy navigation and retrieval of specific output types.",
+        "technicalDecisions": "A dual-stack approach maximized appeal and leveraged both language ecosystems. Standardized output formats (PNG, GIF, HTML) ensured broad compatibility, with 300 DPI for static charts. Plotly generated interactive HTML outputs for modern web practices, and all files were designed for automatic generation, emphasizing reproducibility."
+      },
+      "developmentProcess": {
+        "phase1": "Initial setup involved configuring Python and R environments, connecting to the World Bank data API, and performing essential cleaning/preprocessing for ~170 countries (2015-2022).",
+        "phase2": "Developed core features: statistical analysis (correlation, regression, ANOVA), calculated the Humanitarian Priority Score (SPH), and generated diverse visualizations (static, animated, interactive). Dashboard frameworks (Streamlit/Shiny) were then used to integrate these elements into interactive web applications.",
+        "phase3": "Focused on refining outputs to meet high-resolution (300 DPI) and quality standards, optimizing interactive elements, and crafting comprehensive documentation. This phase was crucial for ensuring accessibility and clarity across both language implementations."
+      },
+      "keyFeatures": [
+        {
+          "title": "Dual Language Implementation (Python & R)",
+          "description": "The entire analytical pipeline is independently implemented in both Python and R, offering flexibility and broad appeal to different data science communities.",
+          "implementation": "Separate Python and R project directories house distinct codebases leveraging each language's ecosystem (e.g., Streamlit/Plotly in Python, Shiny/ggplot2/gganimate in R). This maintains consistency in project goals across both.",
+          "challenges": "Ensured analytical consistency and comparable results while adhering to best practices specific to each language and its libraries."
+        },
+        {
+          "title": "Interactive Dashboards (Streamlit & Shiny)",
+          "description": "Provides dynamic, web-based interfaces for users to explore data, interact with visualizations, and gain insights without coding.",
+          "implementation": "Python's Streamlit (`partie_6_app.py`) integrates Plotly charts, while R's Shiny (`app.R`) presents R-generated plots. These dashboards enable exploration of regional trends, vulnerability matrices, and priority maps.",
+          "challenges": "Designed intuitive user experiences for complex humanitarian data and efficiently rendered diverse interactive plots within web applications, ensuring high performance."
+        },
+        {
+          "title": "Geospatial Analysis & Humanitarian Priority Score (SPH)",
+          "description": "Identifies global hotspots of urgent humanitarian need by combining low water access and high child mortality into an SPH.",
+          "implementation": "Interactive choropleth maps (e.g., `choropleth_sph_map.html`) generated with Plotly visually represent the derived SPH across regions. The score is a statistically aggregated and weighted metric.",
+          "challenges": "Accurately calculated and visually represented a composite priority score across diverse geographic regions, making the map interactive for detailed regional drill-downs."
+        },
+        {
+          "title": "Comprehensive Visualization Output Formats",
+          "description": "Offers versatile visualizations—high-resolution static images for reports, animated GIFs for temporal trends, and interactive HTML for exploration.",
+          "implementation": "Static charts use ggplot2 (R) for 300 DPI PNGs. gganimate (R) creates GIF animations. Plotly (Python & R, via htmlwidgets in R) generates interactive HTML files for in-browser exploration with zoom and hover features.",
+          "challenges": "Managed automated generation of multiple file types, ensured visual consistency and quality across formats, and optimized file sizes for web delivery."
+        }
+      ],
+      "testing": "Testing encompassed rigorous data validation for completeness and consistency across ~170 countries (2015-2022). Statistical validation verified all calculations including correlation, regression, and the SPH. Visualization integrity checks ensured accurate data representation and functional interactivity. Crucially, cross-platform consistency validated that both Python and R implementations yielded comparable analytical results and visualizations. Dashboard functionality was tested for ease of use, responsiveness, and accurate display.",
+      "results": {
+        "technicalAchievements": "Successfully implemented a comprehensive analysis in both Python and R, showcasing expertise in both ecosystems. Developed robust pipelines for publication-ready PNGs (300 DPI), dynamic GIFs, and interactive HTML charts. Created functional dashboards using Streamlit and Shiny, validating a strong statistical relationship between water access and child mortality (r = -0.70, p < 0.001; ~50% variance explained).",
+        "businessImpact": "Enabled data-driven aid allocation with the Humanitarian Priority Score (SPH), providing an objective metric for intervention prioritization. Informed policymakers with clear insights into global trends (+3.2% water access, -12.4% child mortality, 2015-2022). Enhanced communication through diverse visualization formats for various audiences.",
+        "personalGrowth": "Deepened expertise in multi-language data analysis workflows and mastered advanced visualization techniques across ggplot2, gganimate, and Plotly. Gained valuable experience designing and implementing interactive web dashboards, reinforcing the ability to translate humanitarian data into actionable insights for social good."
+      },
+      "techStack": {
+        "frontend": "HTML, JavaScript",
+        "backend": "Python, R",
+        "tools": "Jupyter Notebook, Git/GitHub, World Bank Data",
+        "libraries": "Python: pandas, NumPy, SciPy/statsmodels (implied), Plotly, Streamlit. R: tidyverse (dplyr, tidyr implied), ggplot2, gganimate, Plotly, htmlwidgets, Shiny."
+      },
+      "learnings": [
+        "Executing a complex project in both Python and R demonstrated the value of multi-language proficiency, widening project reach and impact.",
+        "The importance of diverse visualization formats (static, animated, interactive) was highlighted, each serving distinct purposes for detailed reports, dynamic storytelling, and user-driven exploration.",
+        "Developing user-friendly dashboards with Streamlit and Shiny underscored their power in democratizing data, empowering non-technical stakeholders to interact with data for insights.",
+        "This project reinforced data science's profound impact on global challenges, demonstrating how quantifying complex relationships can directly optimize life-saving humanitarian aid allocation."
+      ],
+      "futureEnhancements": [
+        "Implement advanced time-series forecasting models (e.g., ARIMA, Prophet) for proactive aid planning.",
+        "Integrate additional data sources like satellite imagery, climate data, or socio-economic indicators for holistic analysis.",
+        "Develop pipelines for real-time data integration, ensuring dashboards reflect the most current global situation.",
+        "Implement user authentication and role-based access to tailor dashboard views and functionalities.",
+        "Deploy dashboards to cloud platforms (e.g., AWS, Azure, GCP) for scalability and broader public access.",
+        "Extend analysis to sub-national levels for more localized insights and targeted interventions.",
+        "Conduct thorough ethical AI and bias mitigation reviews of data and models for equitable aid allocation."
+      ],
+      "conclusion": "The blue-gold-analytics project is a significant achievement leveraging data science for humanitarian impact. By meticulously analyzing the link between water access and child mortality and developing a practical Humanitarian Priority Score, it empowers decision-makers to allocate aid more effectively. Its dual-language implementation and diverse, interactive visualizations underscore a commitment to robust, accessible, and impactful data solutions for global health."
+    },
     "ascord-appwrite": {
       "title": "Ascord",
       "description": "Ascord is a real-time, unified platform for task management and team collaboration.",

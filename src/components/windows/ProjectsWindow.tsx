@@ -8,6 +8,34 @@ import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
 // Project slugs and metadata
 const projects = [
   {
+    slug: 'blue-gold-analytics',
+    key: 'blue-gold-analytics',
+    tags: ['Python', 'R', 'Streamlit', 'Shiny', 'Plotly', 'Data Visualization'],
+    github: 'https://github.com/Exowz/blue-gold-analytics',
+    demo: null
+  },
+  {
+    slug: 'purecontrol-ml-technical-test',
+    key: 'purecontrol-ml-technical-test',
+    tags: ['Python', 'XGBoost', 'Pandas', 'Machine Learning', 'Control Systems'],
+    github: 'https://github.com/Exowz/purecontrol-ml-technical-test',
+    demo: null
+  },
+  {
+    slug: 'cancer-research-analytics',
+    key: 'Cancer',
+    tags: ['Python', 'Pandas', 'Streamlit', 'Plotly', 'PostgreSQL', 'Selenium'],
+    github: 'https://github.com/Le-skal/Cancer',
+    demo: null
+  },
+  {
+    slug: 'reviewai-platform',
+    key: 'reviewai-platform',
+    tags: ['Vue.js 3', 'Laravel 12', 'TypeScript', 'Mistral AI', 'Tailwind CSS'],
+    github: 'https://github.com/Exowz/reviewai-platform',
+    demo: null
+  },
+  {
     slug: 'ascord-appwrite',
     key: 'ascord-appwrite',
     tags: ['Next.js 14', 'TypeScript', 'Appwrite', 'Tailwind CSS', 'Real-time'],
