@@ -67,6 +67,160 @@
     }
   },
   "projects": {
+    "risk-lens": {
+      "title": "RiskLens",
+      "description": "Demystifying institutional portfolio risk analysis through quantitative models & AI.",
+      "metadata": {
+        "role": "Data Engineer & Full-Stack AI Developer",
+        "category": "FinTech, Quantitative Finance, Data Engineering",
+        "timeline": "March 2026",
+        "liveUrl": "null",
+        "githubUrl": "https://github.com/Exowz/risk-lens"
+      },
+      "overview": "RiskLens is an advanced risk management platform that simplifies complex institutional analytics for retail investors. Built as an ECE Paris capstone, it bridges the gap between raw finance metrics and actionable insights by combining a Python analytical core with a state-of-the-art Next.js frontend.",
+      "challenge": {
+        "problem": "Retail investors lack professional-grade tools to analyze multi-asset correlations. Key metrics like Value at Risk (VaR), asset covariance, and Modern Portfolio Theory are locked behind complex platforms or academic code bases.",
+        "goal": "Build an intuitive web application providing interactive Markowitz Efficient Frontier plotting, historical crisis stress testing, and structured, AI-generated portfolio health reports.",
+        "constraints": "Managing high latency from dynamic Yahoo Finance API calls, handling multi-dimensional matrix transfers between Python and TypeScript, and maintaining snappy state persistence."
+      },
+      "discovery": {
+        "requirements": "Identified two user personas: Novices wanting straightforward risk assessments and Quantitative Analysts requiring raw covariance matrices. This led directly to a togglable Beginner/Expert UI mode.",
+        "competitiveAnalysis": "Traditional retail brokers display simple historical charts but fail to show how assets behave together during systematic market disruptions, highlighting a clear need for interactive retail correlation tools.",
+        "technicalResearch": "Selected Python for calculations due to PyPortfolioOpt and NumPy, utilized PostgreSQL JSONB caching to minimize DB operational overhead, and selected Mistral AI for high-performance bilingual synthesis."
+      },
+      "architecture": {
+        "informationArchitecture": "A decoupled microservices architecture separating a Python FastAPI backend for analytical processing from a Next.js 15+ frontend for user session management and visualization.",
+        "technicalDecisions": "Implemented a SHA-256 calculation cache in PostgreSQL to bypass third-party rate limits. Used Zustand for lightweight frontend state and TanStack Query v5 for seamless asynchronous server sync."
+      },
+      "developmentProcess": {
+        "phase1": "Orchestrated PostgreSQL and backend environments with Docker Compose, configured FastAPI endpoints, and established BetterAuth database migrations.",
+        "phase2": "Developed the PyPortfolioOpt core mathematical engine, built the historical drawdown simulation routines, and implemented structured Mistral AI prompts for localized financial reports.",
+        "phase3": "Engineered the Next.js 15 client using next-intl for localization, built interactive Recharts scatter plots, and added polished Framer Motion transitions."
+      },
+      "keyFeatures": [
+        {
+          "title": "Quantitative Markowitz Optimization Engine",
+          "description": "Computes optimal portfolio asset weights based on Modern Portfolio Theory.",
+          "implementation": "Uses PyPortfolioOpt to generate expected historical returns and covariance matrices, rendering the Max Sharpe Ratio and plotting the Efficient Frontier curve via Recharts.",
+          "challenges": "Ensured mathematical solvers converged correctly and consistently returned valid weightings summing to 1.0."
+        },
+        {
+          "title": "Historical Stress-Testing Engine",
+          "description": "Simulates portfolio performances across major historical economic crises.",
+          "implementation": "Re-runs normalized portfolio returns over specific historical date windows (e.g., 2008 GFC, 2020 COVID) to compute Maximum Drawdown and recovery metrics.",
+          "challenges": "Aggregating historical asset prices reliably when data points are sparse or assets did not exist during selected historical windows."
+        },
+        {
+          "title": "AI-Driven Narrative Explainer",
+          "description": "Translates complex statistical metrics into structured natural language portfolios reports.",
+          "implementation": "Injects deterministic quantitative calculations into structured Mistral AI prompts to generate precise bilingual executive summaries tailored to Beginner or Expert users.",
+          "challenges": "Eliminating LLM numerical hallucinations by executing all math deterministically in Python before parsing results into the LLM context."
+        }
+      ],
+      "testing": "Executed pytest validation to ensure mathematical engine output consistency and check asset weight sums. Implemented API fallback routines for invalid stock tickers and short-lived IPO assets. Conducted usability tests to refine the responsiveness of the beginner-to-expert interface toggle.",
+      "results": {
+        "technicalAchievements": "Reduced asset analytical rendering times from 3.4 seconds to 180 milliseconds using localized PostgreSQL caching. Achieved zero-lag UI updates and a 100% type-safe integration bridge between FastAPI and Next.js.",
+        "businessImpact": "Succeeded in making complex portfolio correlation metrics understandable, interactive, and actionable for retail investors without mathematical backgrounds.",
+        "personalGrowth": "Deepened knowledge in quantitative financial mathematics, decoupled API structures, and defensive prompt engineering to translate numerical datasets into natural language."
+      },
+      "techStack": {
+        "frontend": "Next.js 15+, TypeScript, Tailwind CSS, Zustand, Recharts, Framer Motion",
+        "backend": "Python 3.12, FastAPI, PostgreSQL 16, Docker Compose",
+        "tools": "Git, Docker, BetterAuth, TanStack Query v5",
+        "libraries": "PyPortfolioOpt, Pandas, NumPy, yfinance, Mistral AI SDK, next-intl"
+      },
+      "learnings": [
+        "Caching dynamic stock market API responses is crucial to ensure sub-second response times and prevent rate-limiting.",
+        "Deterministic math must always be isolated from generative AI to eliminate hallucination vectors.",
+        "Bridging the execution gap requires translating dry, academic quantitative output into adaptive, user-friendly UI designs.",
+        "Strict type-safety across backend schemas and frontend interfaces drastically reduces runtime integration errors."
+      ],
+      "futureEnhancements": [
+        "Plaid and Brokerage APIs integration to automatically import user portfolio holdings.",
+        "Integration of the Black-Litterman model to combine subjective market views with historical allocations.",
+        "Stochastic Monte Carlo simulation engine executing 10,000+ randomized forecasting scenarios.",
+        "Automated drift alerts notifying users when current portfolios deviate from target risk profiles.",
+        "Support for expanded asset classes including commodities, global currencies, and major cryptocurrencies."
+      ],
+      "conclusion": "RiskLens demonstrates how modern web architectures and generative AI can democratize institutional wealth management. By merging quantitative Python computation with Next.js and structured LLMs, it converts intimidating portfolio math into clear, actionable intelligence."
+    },
+    "ThoraxAI": {
+      "title": "ThoraxAI",
+      "description": "Explainable deep learning pipeline for highly accurate chest X-ray classification.",
+      "metadata": {
+        "role": "Lead Machine Learning Engineer & Deep Learning Developer",
+        "category": "Computer Vision, Medical Imaging, Explainable AI (XAI)",
+        "timeline": "March 2026",
+        "liveUrl": "https://thoraxai-exowz.streamlit.app",
+        "githubUrl": "https://github.com/Exowz/ThoraxAI"
+      },
+      "overview": "ThoraxAI is an end-to-end, production-ready deep learning pipeline designed to classify chest X-ray images into Normal and Pneumonia classes. It pairs state-of-the-art CNNs with advanced Explainable AI algorithms like Grad-CAM and Integrated Gradients. The system was trained, optimized, and deployed as a lightweight web application during an intense 4-day sprint.",
+      "challenge": {
+        "problem": "Pneumonia is a leading cause of global mortality, yet clinical manual diagnosis from chest X-rays is often bottlenecked by fatigue, cognitive load, and subtle early-stage lung consolidations.",
+        "goal": "Develop a highly accurate binary classifier that minimizes false negatives (maximizing recall) while providing clear, interpretable visual justifications for clinical validation.",
+        "constraints": "Medical data exhibits heavy class imbalance. Deploying massive deep learning networks on free, memory-constrained hosting platforms risks out-of-memory crashes, while black-box predictions prevent clinical trust."
+      },
+      "discovery": {
+        "requirements": "Clinical workflows dictate that false negatives are far more dangerous than false positives, necessitating an F2-score optimized decision boundary over standard 0.5 thresholds.",
+        "competitiveAnalysis": "While traditional deep learning applications hide decision-making logic, clinical adoption requires visual verification to confirm the network focuses on pathological anomalies rather than image artifacts.",
+        "technicalResearch": "Evaluated a lightweight custom CNN against ResNet18, DenseNet121, and EfficientNet-B0 architectures, paired with custom backpropagation hook implementations for Grad-CAM, Grad-CAM++, and Integrated Gradients."
+      },
+      "architecture": {
+        "informationArchitecture": "Structured as a modular Python package containing decoupled model factory, evaluation, and visualization engines, controlled by an interactive Streamlit UI.",
+        "technicalDecisions": "Enforced strict reproducibility with seeded, multi-platform PyTorch configurations. Chose DenseNet121 as the flagship model for dense feature reuse. Streamed model weight checkpoints dynamically from Hugging Face Hub to remain within web runtime RAM limits."
+      },
+      "developmentProcess": {
+        "phase1": "Conducted exploratory data analysis, handled class imbalance with stratified splits, and built a preprocessing pipeline featuring ImageNet normalization and 224x224 input sizing.",
+        "phase2": "Engineered the PyTorch model factory and transfer learning architectures, optimizing training using Cross-Entropy loss, Adam optimizer, and learning rate scheduling.",
+        "phase3": "Developed lightweight gradient backpropagation hook managers to extract high-fidelity saliency maps without relying on bloated external XAI libraries."
+      },
+      "keyFeatures": [
+        {
+          "title": "Unified Model Factory",
+          "description": "Decouples model loading and configuration from the deployment runtime.",
+          "implementation": "Implements an abstract factory pattern to dynamically instantiate and load weights for Custom CNN, ResNet18, DenseNet121, or EfficientNet-B0.",
+          "challenges": "Allowed seamless cross-model performance evaluations and consensus voting mechanisms."
+        },
+        {
+          "title": "High-Fidelity Interpretability Engine",
+          "description": "Generates localized activation heatmaps overlaying raw X-ray inputs.",
+          "implementation": "Leverages custom PyTorch forward and backward hooks to capture target convolutional layer gradients for Grad-CAM, Grad-CAM++, and Integrated Gradients.",
+          "challenges": "Exposed and corrected shortcut learning where early models erroneously focused on text overlays instead of anatomical lung fields."
+        },
+        {
+          "title": "Dynamic Threshold Optimizer",
+          "description": "Adjusts classification decision boundaries based on clinical priority.",
+          "implementation": "Iteratively searches for a decision threshold that maximizes the F2-score, weighting Recall twice as heavily as Precision.",
+          "challenges": "Successfully boosted the flagship model's sensitivity to 98.97%, minimizing dangerous false-negative predictions."
+        }
+      ],
+      "testing": "Validated performance on an independent stratified test partition using AUC-ROC, Precision-Recall, and confusion matrices. Conducted saliency verification to ensure model attention aligned with lung fields. Benchmarked deployment memory consumption on Streamlit Cloud to prevent container crashes.",
+      "results": {
+        "technicalAchievements": "The flagship DenseNet121 model achieved an AUC-ROC of 0.971 and an optimized clinical recall of 98.97%. EfficientNet-B0 delivered a close 97.23% recall with a significantly reduced parameter footprint.",
+        "businessImpact": "Demonstrated that medical deep learning can be deployed safely and transparently on resource-constrained platforms by pairing dynamic weight streaming with rigorous explainability checks.",
+        "personalGrowth": "Gained deep experience in low-level PyTorch backpropagation hooks, high-sensitivity clinical threshold optimization, and lightweight model serving strategies."
+      },
+      "techStack": {
+        "frontend": "Streamlit",
+        "backend": "PyTorch (2.0+), Hugging Face Hub",
+        "tools": "UV Package Manager, Git, Jupyter Notebooks",
+        "libraries": "Torchvision, Scikit-Learn, OpenCV, Pillow, Matplotlib, Seaborn"
+      },
+      "learnings": [
+        "Neural networks are highly opportunistic; without XAI tools, shortcut learning on textual film markers would go undetected.",
+        "Standard accuracy is deceptive in medical AI; optimizing for F2-score is essential to ensure clinical utility and patient safety.",
+        "Streaming model weights dynamically at runtime bypasses platform storage limits and keeps repositories lightweight.",
+        "Transfer learning with DenseNet121 is exceptionally suited for medical tasks due to continuous feature reuse capturing subtle pathological gradients."
+      ],
+      "futureEnhancements": [
+        "Extend the classification pipeline to support multi-class diagnoses including viral vs. bacterial pneumonia, tuberculosis, and pneumothorax.",
+        "Incorporate direct parsing and processing of DICOM medical imaging files within the interactive user interface.",
+        "Upgrade training to 5-fold cross-validation and implement a weighted soft-voting consensus ensemble.",
+        "Synthesize bounding boxes around peak Grad-CAM activations to automatically isolate regions of interest.",
+        "Integrate SHAP values to overlay tabular patient metadata alongside pixel-level visual attributions."
+      ],
+      "conclusion": "ThoraxAI proves that high-performance medical AI doesn't have to be an uninterpretable black box. By pairing state-of-the-art architectures with dynamic, lightweight visualization and F2 optimization, the system provides a robust, clinically safe diagnostic aid."
+    },
     "shiatsuGuyane": {
       "title": "Shiatsu Guyane",
       "description": "Sophisticated web platform for a Shiatsu therapy practice with unique botanical garden design system",

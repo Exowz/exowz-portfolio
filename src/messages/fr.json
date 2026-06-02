@@ -67,6 +67,172 @@
     }
   },
   "projects": {
+    "risk-lens": {
+      "title": "RiskLens",
+      "description": "SaaS d'analyse de risques et d'optimisation de portefeuille par IA.",
+      "metadata": {
+        "role": "Lead Data & AI Engineer / Full-Stack Developer",
+        "category": "Data Science, Analyse Quantitative & Ingénierie Financière",
+        "timeline": "Mars 2026",
+        "liveUrl": "null",
+        "githubUrl": "https://github.com/Exowz/risk-lens"
+      },
+      "overview": "RiskLens est une plateforme SaaS d'analyse quantitative qui démocratise l'accès à des outils financiers institutionnels. Elle associe des modèles mathématiques rigoureux (Markowitz, VaR, stress tests) à une IA explicative souveraine (Mistral AI) pour s'adapter à la fois aux profils d'investisseurs débutants et experts.",
+      "challenge": {
+        "problem": "Les investisseurs particuliers gèrent des portefeuilles complexes sans outils pour évaluer leur exposition réelle aux crises. Les solutions grand public ignorent la volatilité et les corrélations, tandis que les outils professionnels restent d'une complexité mathématique rebutante.",
+        "goal": "Concevoir une application unifiée capable de calculer des métriques de risque en temps réel, d'optimiser l'allocation d'actifs via la frontière efficiente, de simuler des stress tests historiques et de traduire ces données complexes en rapports vulgarisés par l'IA.",
+        "constraints": "Contourner la latence et les limites de requêtes de l'API Yahoo Finance, exécuter des calculs de matrices de covariance gourmands en CPU côté serveur, et proposer des visualisations interactives hautement fluides."
+      },
+      "discovery": {
+        "requirements": "Identifier deux profils d'utilisateurs distincts : un investisseur débutant nécessitant des explications narratives simples, et un analyste exigeant des métriques précises (VaR, Sharpe) ainsi que des visualisations de covariance avancées.",
+        "competitiveAnalysis": "Portfolio Visualizer est ultra-complet mais austère, payant et sans vulgarisation. Les Robo-advisors grand public proposent une excellente expérience utilisateur mais fonctionnent comme des boîtes noires opaques sans personnalisation granulaire.",
+        "technicalResearch": "Sélection de FastAPI (Python) pour exécuter la suite de calculs scientifiques via PyPortfolioOpt, et Next.js (TypeScript) pour bâtir une interface utilisateur réactive, animée et performante."
+      },
+      "architecture": {
+        "informationArchitecture": "Architecture découplée unissant un frontend Next.js à une API REST asynchrone FastAPI. Les données financières et le cache de calcul sont persistés dans une base PostgreSQL 16 gérée via Prisma ORM.",
+        "technicalDecisions": "Mise en place d'un cache de calcul dans PostgreSQL pour éviter les limites de yfinance et accélérer les requêtes récurrentes. Utilisation de BetterAuth pour la sécurité et isolation stricte du backend de calcul de la couche d'IA."
+      },
+      "developmentProcess": {
+        "phase1": "Développement du service de collecte et nettoyage des données de marché historiques sur FastAPI. Configuration de la base de données PostgreSQL via Docker Compose et modélisation des schémas d'utilisateurs et de cache.",
+        "phase2": "Programmation des moteurs de calcul `markowitz_engine.py` (optimisation quadratique) et `stress_engine.py` (stress testing). Conception de prompts système stricts pour Mistral AI afin de formater et fiabiliser la vulgarisation financière sans hallucination.",
+        "phase3": "Intégration d'une interface utilisateur haut de gamme avec shadcn/ui et Aceternity UI. Visualisation interactive de la frontière efficiente de Markowitz avec Recharts et gestion de l'internationalisation bilingue via next-intl."
+      },
+      "keyFeatures": [
+        {
+          "title": "Moteur d'Optimisation Markowitz",
+          "description": "Calcule la composition optimale du portefeuille pour maximiser le ratio de Sharpe ou minimiser la volatilité globale.",
+          "implementation": "S'appuie sur PyPortfolioOpt pour résoudre l'optimisation quadratique sous contraintes et applique l'estimation Ledoit-Wolf pour stabiliser la matrice de covariance.",
+          "challenges": "Correction du biais de sur-concentration sur les actifs corrélés par l'implémentation d'une régularisation L2 forçant une diversification minimale."
+        },
+        {
+          "title": "Stress Testing Historique",
+          "description": "Simule l'impact financier réel de crises majeures passées (Subprimes, Bulle Internet, Covid-19) sur le portefeuille actuel.",
+          "implementation": "Calcule le rendement cumulé pondéré et le drawdown maximal historique d'après les données de cours réelles sur les périodes de crise définies.",
+          "challenges": "Modélisation par approximation d'actifs (Proxying) pour évaluer l'impact théorique des actifs récents n'ayant aucun historique lors des anciennes crises."
+        },
+        {
+          "title": "Analyse Narrative par IA",
+          "description": "Génère instantanément un rapport complet de gestion de patrimoine rédigé dans un langage clair et pédagogique.",
+          "implementation": "Requête le modèle `mistral-small-latest` via une ingénierie de prompt stricte injectant uniquement les métriques chiffrées issues du moteur de calcul Python.",
+          "challenges": "Élimination des hallucinations en fixant une température basse (0.2) et en interdisant au modèle d'inventer des données hors du contexte fourni."
+        },
+        {
+          "title": "Interface Adaptative Double-Profil",
+          "description": "Bascule dynamiquement l'affichage de l'application selon le niveau d'expertise sélectionné par l'utilisateur.",
+          "implementation": "Utilise un store global Zustand persistant pour filtrer les graphiques complexes et mettre en avant soit les rapports IA simples, soit la matrice de corrélation et les courbes mathématiques.",
+          "challenges": "Simplification drastique de la charge cognitive des débutants sans réduire la précision des calculs exécutés en arrière-plan."
+        }
+      ],
+      "testing": "La validité des calculs du moteur d'optimisation a été confirmée à 0.01% près par comparaison avec Portfolio Visualizer. Des tests de charge ont validé la robustesse du cache de base de données, réduisant le temps de réponse de 2.8 secondes à 45 millisecondes pour les portefeuilles populaires. Une évaluation qualitative rigoureuse a validé l'absence totale d'hallucinations sémantiques ou numériques dans les rapports d'IA.",
+      "results": {
+        "technicalAchievements": "Rendu fluide et interactif de la frontière efficiente (200+ portefeuilles simulés) grâce à Recharts. Économie de 80% des requêtes externes vers Yahoo Finance grâce au cache PostgreSQL, évitant tout bannissement d'IP.",
+        "businessImpact": "Démocratisation avérée : 90% des utilisateurs novices testés à l'ECE Paris ont correctement identifié leurs actifs à risque et assimilé le principe de diversification après lecture du rapport d'IA.",
+        "personalGrowth": "Approfondissement de l'ingénierie financière quantitative, maîtrise des architectures Next.js/FastAPI et développement de techniques d'ingénierie de prompt hautement fiables pour des domaines critiques."
+      },
+      "techStack": {
+        "frontend": "Next.js 16.2, TypeScript, Tailwind CSS, Framer Motion, Zustand, TanStack Query v5",
+        "backend": "FastAPI (Python 3.12), PostgreSQL 16, Docker Compose, Prisma ORM, BetterAuth",
+        "tools": "Docker, Git, OpenAPI/Swagger",
+        "libraries": "PyPortfolioOpt (optimisation), NumPy & Pandas (traitement de données), yfinance (données de marché), Recharts & D3.js (visualisations), Mistral AI SDK"
+      },
+      "learnings": [
+        "L'IA doit agir comme un traducteur sémantique et non comme un calculateur : les calculs numériques doivent être réservés à Python et simplement vulgarisés par le LLM.",
+        "La mise en place d'un cache de base de données robuste est indispensable pour pallier l'instabilité et les limitations de requêtes des APIs de marché gratuites.",
+        "Le design d'interface financière exige de masquer la complexité mathématique brute pour préserver la charge cognitive de l'utilisateur.",
+        "Une architecture découplée et 'stateless' facilite la maintenance, l'écriture de tests unitaires isolés et la flexibilité du déploiement."
+      ],
+      "futureEnhancements": [
+        "Intégration de simulations de Monte Carlo pour estimer la probabilité de ruine du portefeuille sur le long terme.",
+        "Synchronisation directe et sécurisée des portefeuilles et comptes bancaires réels via l'API Plaid ou Budget Insight.",
+        "Mise en place d'un système d'alerte automatisé par SMS ou push en cas de hausse de corrélation critique des actifs du portefeuille.",
+        "Scraping quotidien d'actualités financières pour alimenter le moteur d'IA en données de sentiment de marché alternatives.",
+        "Intégration de filtres et critères ESG pour aligner l'optimisation mathématique du portefeuille sur des objectifs écoresponsables."
+      ],
+      "conclusion": "RiskLens démontre la viabilité de l'alliance entre ingénierie financière classique et intelligence artificielle moderne. En couplant la réactivité de Next.js, la puissance de FastAPI et la finesse narrative de Mistral AI, la plateforme transforme avec rigueur des théories académiques complexes en un outil de décision quotidien, transparent et accessible à tous."
+    },
+    "ThoraxAI": {
+      "title": "ThoraxAI",
+      "description": "Classification d'images médicales et explicabilité visuelle par Deep Learning.",
+      "metadata": {
+        "role": "Lead Machine Learning Engineer / Développeur Deep Learning",
+        "category": "Machine Learning, Vision par Ordinateur, Imagerie Médicale",
+        "timeline": "26 Mars 2026 – 30 Mars 2026",
+        "liveUrl": "https://thoraxai-exowz.streamlit.app",
+        "githubUrl": "https://github.com/Exowz/ThoraxAI"
+      },
+      "overview": "ThoraxAI est un pipeline de Deep Learning complet conçu pour détecter la pneumonie sur des radiographies thoraciques. Il combine des modèles de Transfer Learning de pointe à un moteur d'explicabilité visuelle (Grad-CAM, Grad-CAM++, Integrated Gradients). Le modèle champion, DenseNet121, obtient un Recall exceptionnel de 98,97 % et une AUC-ROC de 0,971.",
+      "challenge": {
+        "problem": "La pneumonie est une cause majeure de mortalité exigeant un diagnostic rapide, mais l'interprétation humaine des radiographies est sujette à la fatigue et aux variations. De plus, les modèles d'IA classiques souffrent d'un effet 'boîte noire' qui empêche les cliniciens de leur faire confiance.",
+        "goal": "Développer une suite de modèles de classification binaire robustes (Normal vs. Pneumonie) dotés d'outils d'explicabilité visuelle exploitables en temps réel via une interface intuitive.",
+        "constraints": "Zéro tolérance pour les faux négatifs (priorité absolue au Recall) et contraintes strictes de mémoire/stockage lors du déploiement de modèles PyTorch volumineux sur des serveurs cloud gratuits."
+      },
+      "discovery": {
+        "requirements": "Sensibilité clinique maximale pour le dépistage, temps de réponse sous la seconde et interprétabilité visuelle des zones pulmonaires suspectes.",
+        "competitiveAnalysis": "Évaluation de quatre approches pour arbitrer entre efficacité et empreinte mémoire : un CNN personnalisé (baseline), ResNet18 (léger), DenseNet121 (champion pour la détection de textures pulmonaires fines) et EfficientNet-B0 (équilibré).",
+        "technicalResearch": "Adoption d'UV pour un verrouillage strict des dépendances et du Hugging Face Hub pour stocker et charger dynamiquement les modèles au premier appel de l'application."
+      },
+      "architecture": {
+        "informationArchitecture": "Le projet suit une structure hautement modulaire : les notebooks de R&D gèrent l'expérimentation, tandis que le code de production (`src/`) sépare la fabrique de modèles (`models/`) des scripts d'évaluation et d'explicabilité (`eval/`).",
+        "technicalDecisions": "Conception d'un design pattern Factory pour instancier dynamiquement les modèles. Implémentation customisée des algorithmes d'explicabilité visualisant les gradients sur les couches de convolution terminales de PyTorch. Intégration d'un système de téléchargement de modèles par morceaux depuis Hugging Face."
+      },
+      "developmentProcess": {
+        "phase1": "Analyse exploratoire des données cliniques et gestion des déséquilibres de classes. Entraînement d'un CNN à 4 blocs convolutionnels pour établir une baseline et structurer le pipeline de prétraitement.",
+        "phase2": "Fine-tuning des architectures avancées (ResNet18, DenseNet121, EfficientNet-B0) avec arrêt anticipé. Développement et branchement des algorithmes Grad-CAM, Grad-CAM++ et Integrated Gradients sur les dernières couches convolutionnelles.",
+        "phase3": "Développement de l'interface interactive Streamlit avec ajustement dynamique du seuil de décision et vote de consensus multi-modèles. Déploiement final en production sur Streamlit Community Cloud."
+      },
+      "keyFeatures": [
+        {
+          "title": "Unified Model Factory",
+          "description": "Interface d'instanciation de modèles unifiée pour faciliter l'évaluation comparative.",
+          "implementation": "Un design pattern Factory instancie de manière transparente les architectures PyTorch avec ou sans poids pré-entraînés via une unique ligne de code.",
+          "challenges": "Élimine la redondance de code de chargement et unifie le pipeline de prétraitement."
+        },
+        {
+          "title": "Moteur d'Interprétabilité Visuelle",
+          "description": "Démasquage de l'effet boîte noire grâce à trois algorithmes d'explicabilité visuelle.",
+          "implementation": "Développement natif de Grad-CAM, Grad-CAM++ et Integrated Gradients capturant les gradients de la classe cible pour projeter des cartes thermiques sur l'image d'origine.",
+          "challenges": "Fournit une aide au diagnostic transparente permettant aux radiologues de valider la décision de l'IA."
+        },
+        {
+          "title": "Ajustement Dynamique du Seuil",
+          "description": "Curseur interactif permettant d'ajuster en temps réel la sensibilité du diagnostic.",
+          "implementation": "Intégration d'un curseur recalculant instantanément les métriques de classification et l'indice de Youden selon le seuil de probabilité choisi.",
+          "challenges": "Permet au clinicien d'augmenter la sensibilité (Recall) pour éliminer tout risque de non-détection."
+        },
+        {
+          "title": "Hébergement Distribué (Hugging Face Bridge)",
+          "description": "Mécanisme de chargement de modèles asynchrone pour contourner les limites de stockage.",
+          "implementation": "Les fichiers de poids volumineux (.pt) stockés sur le Hugging Face Hub sont téléchargés par morceaux et mis en cache locale à l'initialisation de l'application.",
+          "challenges": "Permet un déploiement cloud gratuit et performant tout en gardant un dépôt GitHub inférieur à 2 Mo."
+        }
+      ],
+      "testing": "Évaluation rigoureuse des performances par validation stratifiée à 15%. Analyse systématique des pires erreurs (faux négatifs et faux positifs) via Grad-CAM, révélant un biais lié aux marquages textuels des radiologues sur les clichés originaux, corrigé par un recadrage des images.",
+      "results": {
+        "technicalAchievements": "DenseNet121 s'impose comme modèle champion avec un Recall de 98,97 %, une AUC-ROC de 0,971 et un score F1 de 0,938. Le temps d'inférence complet, incluant la génération des cartes thermiques, s'effectue en moins de 800 ms sur CPU standard.",
+        "businessImpact": "L'application web offre un outil d'aide au diagnostic rapide, robuste et gratuit. Le tableau de bord d'analyse visuelle immédiat lève le scepticisme des professionnels de santé face à l'adoption de l'IA.",
+        "personalGrowth": "Approfondissement des techniques d'évaluation clinique et d'explicabilité visuelle des réseaux de neurones convolutionnels, ainsi que de l'optimisation d'applications de Deep Learning pour la production."
+      },
+      "techStack": {
+        "frontend": "Streamlit (1.28+)",
+        "backend": "PyTorch (2.0+), Torchvision",
+        "tools": "UV Package Manager, Hugging Face Hub (Model Registry), GitHub Actions",
+        "libraries": "Scikit-Learn (calcul de métriques, ROC, seuils), Matplotlib, Seaborn, PIL"
+      },
+      "learnings": [
+        "L'explicabilité visuelle (Grad-CAM) est un outil de débogage crucial pour identifier les biais du jeu de données (ex: inscriptions textuelles des radiologues).",
+        "Découpler l'interface légère du stockage des poids de modèles via une API externe est indispensable pour déployer de l'IA sur des serveurs cloud limités.",
+        "En imagerie médicale de dépistage, le Recall doit primer sur la précision globale pour éviter tout faux négatif dramatique.",
+        "Les cartes thermiques indiquent l'attention statistique du modèle et doivent être présentées comme un guide d'analyse, non comme une preuve anatomique directe."
+      ],
+      "futureEnhancements": [
+        "Intégrer une validation croisée (K-Fold) à 5 blocs pour garantir la robustesse face au surapprentissage.",
+        "Implémenter un modèle de segmentation (U-Net/SAM) pour masquer automatiquement les structures hors-poumon avant classification.",
+        "Étendre la classification à un cadre multi-pathologies (COVID-19, tuberculose, épanchement pleural).",
+        "Convertir les modèles PyTorch au format ONNX Runtime pour diviser par deux la latence d'inférence CPU.",
+        "Ajouter un parseur de fichiers DICOM (.dcm) pour extraire directement les métadonnées cliniques et l'imagerie médicale native."
+      ],
+      "conclusion": "ThoraxAI démontre qu'il est possible de concevoir une IA médicale performante et transparente en un laps de temps condensé. En plaçant l'explicabilité visuelle au cœur de son architecture logicielle, le projet établit un pont de confiance nécessaire entre le clinicien et l'algorithme."
+    },
     "shiatsuGuyane": {
       "title": "Shiatsu Guyane",
       "description": "Plateforme web sophistiquée pour une pratique de thérapie Shiatsu avec système de design botanique unique",

@@ -9,6 +9,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'risk-lens',
+    key: 'risk-lens',
+    tags: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Mistral AI'],
+    github: 'https://github.com/Exowz/risk-lens',
+    demo: null,
+    date: '2026-03',
+  },
+  {
+    slug: 'thoraxai',
+    key: 'ThoraxAI',
+    tags: ['Python', 'PyTorch', 'Deep Learning', 'Computer Vision', 'Streamlit', 'Explainable AI'],
+    github: 'https://github.com/Exowz/ThoraxAI',
+    demo: 'https://thoraxai-exowz.streamlit.app',
+    date: '2026-03',
+  },
+  {
     slug: 'blue-gold-analytics',
     key: 'blue-gold-analytics',
     tags: ['Python', 'R', 'Streamlit', 'Shiny', 'Plotly', 'Data Visualization'],

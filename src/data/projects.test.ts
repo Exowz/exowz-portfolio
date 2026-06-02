@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { projects, getProjectBySlug } from './projects';
+import enMessages from '../messages/en-GB.json';
+import frMessages from '../messages/fr.json';
 
 describe('projects data', () => {
-  it('contains exactly 14 projects', () => {
-    expect(projects).toHaveLength(14);
+  it('contains exactly 16 projects', () => {
+    expect(projects).toHaveLength(16);
   });
 
   it('has unique slugs', () => {
@@ -27,5 +29,14 @@ describe('projects data', () => {
 
   it('getProjectBySlug returns undefined for an unknown slug', () => {
     expect(getProjectBySlug('does-not-exist')).toBeUndefined();
+  });
+
+  it('every project key has matching i18n copy in both locales', () => {
+    const en = (enMessages as { projects: Record<string, unknown> }).projects;
+    const fr = (frMessages as { projects: Record<string, unknown> }).projects;
+    for (const p of projects) {
+      expect(en[p.key], `missing en-GB copy for ${p.slug} (key: ${p.key})`).toBeDefined();
+      expect(fr[p.key], `missing fr copy for ${p.slug} (key: ${p.key})`).toBeDefined();
+    }
   });
 });
