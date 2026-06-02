@@ -5,7 +5,7 @@ export interface ContactInput {
 }
 
 export interface ValidationError {
-  field: 'name' | 'email' | 'message';
+  field: 'name' | 'email' | 'message' | '_body';
   message: string;
 }
 
@@ -20,7 +20,7 @@ export function validateContact(input: unknown): ValidationResult {
   const errors: ValidationError[] = [];
 
   if (typeof input !== 'object' || input === null) {
-    return { ok: false, errors: [{ field: 'name', message: 'Invalid request body' }] };
+    return { ok: false, errors: [{ field: '_body', message: 'Invalid request body' }] };
   }
 
   const body = input as Record<string, unknown>;

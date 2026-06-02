@@ -40,8 +40,14 @@ describe('validateContact', () => {
   });
 
   it('rejects email over 254 chars', () => {
-    const long = 'a'.repeat(250) + '@x.com';
-    const r = validateContact({ ...valid, email: long });
+    const local = 'a'.repeat(255 - '@x.com'.length); // total length 255
+    const r = validateContact({ ...valid, email: local + '@x.com' });
     expect(r.ok).toBe(false);
+  });
+
+  it('accepts email at exactly 254 chars', () => {
+    const local = 'a'.repeat(254 - '@x.com'.length); // total length 254
+    const r = validateContact({ ...valid, email: local + '@x.com' });
+    expect(r.ok).toBe(true);
   });
 });
