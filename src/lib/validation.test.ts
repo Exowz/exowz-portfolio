@@ -50,4 +50,13 @@ describe('validateContact', () => {
     const r = validateContact({ ...valid, email: local + '@x.com' });
     expect(r.ok).toBe(true);
   });
+
+  it('strips control characters from name', () => {
+    const r = validateContact({ name: 'Ada\r\nBcc: evil@example.com', email: 'ada@example.com', message: 'Hi' });
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.data.name.includes('\r')).toBe(false);
+      expect(r.data.name.includes('\n')).toBe(false);
+    }
+  });
 });
