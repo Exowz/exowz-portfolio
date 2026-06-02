@@ -1,9 +1,11 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import LiquidEther from './LiquidEther';
+import { shouldRunLiquidSim } from '@/lib/deviceCapability';
 
 export function Desktop() {
   const { theme } = useTheme();
@@ -19,18 +21,30 @@ export function Desktop() {
     ? ['#1a1a1a', '#2a2a2a', '#64b5f6'] // Dark mode - darker colors
     : ['#f5f5f5', '#ffffff', '#64b5f6']; // Light mode - lighter colors
 
+  const [runSim, setRunSim] = useState(false);
+  useEffect(() => {
+    setRunSim(shouldRunLiquidSim());
+  }, []);
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
-      {/* LiquidEther Background with theme-aware color palette */}
+      {/* Background: live fluid sim on capable clients, static gradient otherwise */}
       <div className="absolute inset-0 z-0">
-        <LiquidEther
-          className="absolute inset-0 z-0 pointer-events-auto"
-          colors={colors}
-          autoDemo={true}
-          mouseForce={20}
-          resolution={0.5}
-          cursorSize={100}
-        />
+        {runSim ? (
+          <LiquidEther
+            className="absolute inset-0 z-0 pointer-events-auto"
+            colors={colors}
+            autoDemo={true}
+            mouseForce={20}
+            resolution={0.5}
+            cursorSize={100}
+          />
+        ) : (
+          <div
+            className="absolute inset-0 z-0"
+            style={{ background: `linear-gradient(135deg, ${colors[0]} 0%, ${colors[1]} 50%, ${colors[2]} 100%)` }}
+          />
+        )}
       </div>
 
       {/* Centered content - only show when no window is open */}
