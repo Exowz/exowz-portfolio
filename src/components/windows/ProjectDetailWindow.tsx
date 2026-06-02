@@ -4,108 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { IconArrowLeft, IconBrandGithub, IconExternalLink, IconBriefcase, IconFolder, IconClock } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
-
-// Project metadata (tags, github, demo, date)
-const projectsMetadata: Record<string, {key: string, tags: string[], github: string | null, demo: string | null, date: string}> = {
-  'blue-gold-analytics': {
-    key: 'blue-gold-analytics',
-    tags: ['Python', 'R', 'Streamlit', 'Shiny', 'Plotly', 'Data Visualization'],
-    github: 'https://github.com/Exowz/blue-gold-analytics',
-    demo: null,
-    date: '2026-01'
-  },
-  'purecontrol-ml-technical-test': {
-    key: 'purecontrol-ml-technical-test',
-    tags: ['Python', 'XGBoost', 'Pandas', 'Machine Learning', 'Control Systems'],
-    github: 'https://github.com/Exowz/purecontrol-ml-technical-test',
-    demo: null,
-    date: '2026-01'
-  },
-  'cancer-research-analytics': {
-    key: 'Cancer',
-    tags: ['Python', 'Pandas', 'Streamlit', 'Plotly', 'PostgreSQL', 'Selenium'],
-    github: 'https://github.com/Le-skal/Cancer',
-    demo: null,
-    date: '2026-01'
-  },
-  'reviewai-platform': {
-    key: 'reviewai-platform',
-    tags: ['Vue.js 3', 'Laravel 12', 'TypeScript', 'Mistral AI', 'Tailwind CSS'],
-    github: 'https://github.com/Exowz/reviewai-platform',
-    demo: null,
-    date: '2026-01'
-  },
-  'ascord-appwrite': {
-    key: 'ascord-appwrite',
-    tags: ['Next.js 14', 'TypeScript', 'Appwrite', 'Tailwind CSS', 'Real-time'],
-    github: 'https://github.com/Exowz/ascord-appwrite',
-    demo: null,
-    date: '2024-12'
-  },
-  'shiatsu-guyane': {
-    key: 'shiatsuGuyane',
-    tags: ['Next.js 15', 'TypeScript', 'React', 'Tailwind CSS', 'Vercel'],
-    github: 'https://github.com/Exowz/shiatsu-guyane',
-    demo: 'https://www.shiatsu-guyane.com/fr',
-    date: '2025-07'
-  },
-  'portfolio-projects-ai': {
-    key: 'portfolio-projects-ai',
-    tags: ['Python', 'RAG', 'LangChain', 'ChromaDB', 'Gemini API', 'AI/ML'],
-    github: 'https://github.com/Exowz/portfolio-projects-ai',
-    demo: null,
-    date: '2025-01'
-  },
-  'wine-cultivar-classification': {
-    key: 'wine-cultivar-classification',
-    tags: ['Python', 'Machine Learning', 'Scikit-learn', 'Data Analysis', 'Classification'],
-    github: 'https://github.com/Exowz/wine-cultivar-classification',
-    demo: null,
-    date: '2024-11'
-  },
-  'b2javaece': {
-    key: 'B2javaECE',
-    tags: ['Java', 'OOP', 'JDBC', 'JUnit', 'Maven'],
-    github: 'https://github.com/Exowz/B2javaECE',
-    demo: null,
-    date: '2025-02'
-  },
-  'rib': {
-    key: 'RIB',
-    tags: ['Python', 'Tkinter', 'API Integration', 'Financial Algorithms'],
-    github: 'https://github.com/Exowz/RIB',
-    demo: null,
-    date: '2025-09'
-  },
-  'dna': {
-    key: 'DNA',
-    tags: ['Python', 'Bioinformatics', 'Matplotlib', 'Tkinter', 'Data Analysis'],
-    github: 'https://github.com/Exowz/DNA',
-    demo: null,
-    date: '2024-01'
-  },
-  'mots-fleches': {
-    key: 'mots-fleches',
-    tags: ['C', 'Algorithms', 'Console Application', 'Academic Project'],
-    github: 'https://github.com/Exowz/mots-fleches',
-    demo: null,
-    date: '2024-05'
-  },
-  'scraping': {
-    key: 'Scraping',
-    tags: ['Python', 'Web Scraping', 'BeautifulSoup', 'Automation'],
-    github: 'https://github.com/Exowz/Scraping',
-    demo: null,
-    date: '2024-03'
-  },
-  'trip-hackathon': {
-    key: 'TripHackathon',
-    tags: ['Hackathon', 'Team Project', 'Innovation', 'Travel Tech'],
-    github: null,
-    demo: null,
-    date: '2024-06'
-  },
-};
+import { getProjectBySlug } from '@/data/projects';
 
 interface ProjectDetailWindowProps {
   slug: string;
@@ -115,7 +14,7 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
   const t = useTranslations('projects');
   const tSections = useTranslations('projects.sections');
   const tLabels = useTranslations('projects.labels');
-  const projectMeta = projectsMetadata[slug];
+  const projectMeta = getProjectBySlug(slug);
 
   if (!projectMeta) {
     return (
