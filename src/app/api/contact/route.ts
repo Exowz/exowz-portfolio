@@ -1,139 +1,72 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { render } from '@react-email/render';
+import { validateContact } from '@/lib/validation';
+import ContactNotification from '@/emails/ContactNotification';
+import ContactConfirmation from '@/emails/ContactConfirmation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Minimum plausible time (ms) between form render and submit. Faster = bot.
+const MIN_SUBMIT_MS = 2000;
+
 export async function POST(request: NextRequest) {
   try {
-    // Debug: Check if API key is loaded
-    console.log('API Key loaded:', process.env.RESEND_API_KEY ? `Yes (starts with ${process.env.RESEND_API_KEY.substring(0, 8)})` : 'NO - MISSING!');
+    const body = await request.json().catch(() => null);
 
-    const body = await request.json();
-    const { name, email, message } = body;
-
-    // Validate input
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+    // Honeypot + timing: silently accept (no send) so bots get no signal.
+    if (body && typeof body === 'object') {
+      const honey = (body as Record<string, unknown>).company;
+      const renderedAt = Number((body as Record<string, unknown>).renderedAt);
+      const tooFast = Number.isFinite(renderedAt) && Date.now() - renderedAt < MIN_SUBMIT_MS;
+      if ((typeof honey === 'string' && honey.trim() !== '') || tooFast) {
+        return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+      }
     }
 
-    // Send notification email to you
-    console.log('Attempting to send notification email to:', 'ewan@mke-kapoor.com');
-    const notificationEmail = await resend.emails.send({
-      from: 'Portfolio Contact <no-reply@mke-kapoor.com>',
-      to: ['ewan@mke-kapoor.com'],
-      replyTo: email, // Sender's email so you can reply directly
+    const result = validateContact(body);
+    if (!result.ok) {
+      return NextResponse.json({ error: 'Invalid input', errors: result.errors }, { status: 400 });
+    }
+    const { name, email, message } = result.data;
+
+    const from = process.env.CONTACT_FROM;
+    const to = process.env.CONTACT_TO;
+    const confirmFrom = process.env.CONTACT_CONFIRM_FROM;
+    if (!from || !to || !confirmFrom) {
+      console.error('Contact email misconfigured: missing CONTACT_* env vars');
+      return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+
+    const notificationHtml = await render(ContactNotification({ name, email, message }));
+    const notification = await resend.emails.send({
+      from,
+      to: [to],
+      replyTo: email,
       subject: `Portfolio Contact from ${name}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
-          <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h2 style="color: #64b5f6; margin-bottom: 20px;">New Contact Form Submission</h2>
-
-            <div style="margin-bottom: 15px;">
-              <strong style="color: #333;">Name:</strong>
-              <p style="margin: 5px 0; color: #666;">${name}</p>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-              <strong style="color: #333;">Email:</strong>
-              <p style="margin: 5px 0; color: #666;">${email}</p>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-              <strong style="color: #333;">Message:</strong>
-              <div style="margin: 10px 0; padding: 15px; background-color: #f9f9f9; border-left: 4px solid #64b5f6; border-radius: 5px;">
-                <p style="color: #666; line-height: 1.6; margin: 0;">${message.replace(/\n/g, '<br>')}</p>
-              </div>
-            </div>
-
-            <hr style="margin: 25px 0; border: none; border-top: 1px solid #e0e0e0;">
-
-            <p style="color: #999; font-size: 12px; margin: 0;">
-              You can reply directly to this email to respond to ${name}.
-            </p>
-          </div>
-        </div>
-      `,
+      html: notificationHtml,
     });
 
-    console.log('Notification email response:', notificationEmail);
-
-    if (notificationEmail.error) {
-      console.error('Failed to send notification email:', notificationEmail.error);
-      return NextResponse.json(
-        { error: 'Failed to send email', details: notificationEmail.error },
-        { status: 500 }
-      );
+    if (notification.error) {
+      console.error('Contact notification email failed');
+      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
     }
 
-    // Send confirmation email to the user
-    const confirmationEmail = await resend.emails.send({
-      from: 'Ewan Kapoor <no-reply@mke-kapoor.com>',
+    const confirmationHtml = await render(ContactConfirmation({ name, message }));
+    const confirmation = await resend.emails.send({
+      from: confirmFrom,
       to: [email],
       subject: `Thanks for reaching out, ${name}!`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
-          <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h2 style="color: #64b5f6; margin-bottom: 20px;">Thank you for contacting me!</h2>
-
-            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
-              Hi ${name},
-            </p>
-
-            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
-              Thank you for reaching out through my portfolio! I've received your message and will get back to you as soon as possible.
-            </p>
-
-            <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
-              <p style="color: #333; font-size: 14px; margin: 0 0 10px 0;"><strong>Your message:</strong></p>
-              <p style="color: #666; line-height: 1.6; margin: 0;">${message.replace(/\n/g, '<br>')}</p>
-            </div>
-
-            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
-              I typically respond within 24-48 hours. If your inquiry is urgent, feel free to reach out to me directly at
-              <a href="mailto:ewan@mke-kapoor.com" style="color: #64b5f6; text-decoration: none;">ewan@mke-kapoor.com</a>.
-            </p>
-
-            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
-              Best regards,<br>
-              <strong style="color: #333;">Ewan Kapoor</strong><br>
-              <span style="color: #999; font-size: 14px;">Data & AI Development Student</span>
-            </p>
-
-            <hr style="margin: 25px 0; border: none; border-top: 1px solid #e0e0e0;">
-
-            <p style="color: #999; font-size: 12px; text-align: center; margin: 0;">
-              This is an automated confirmation email. Please do not reply to this message.
-            </p>
-          </div>
-        </div>
-      `,
+      html: confirmationHtml,
     });
-
-    console.log('Confirmation email response:', confirmationEmail);
-
-    if (confirmationEmail.error) {
-      console.error('Failed to send confirmation email:', confirmationEmail.error);
-      // Don't fail the request if confirmation email fails, notification was sent
+    if (confirmation.error) {
+      // Non-fatal: the owner was already notified.
+      console.error('Contact confirmation email failed');
     }
 
-    return NextResponse.json(
-      {
-        message: 'Email sent successfully',
-        data: {
-          notificationId: notificationEmail.data?.id,
-          confirmationId: confirmationEmail.data?.id
-        }
-      },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error('Contact form error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+  } catch {
+    console.error('Contact form error');
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
