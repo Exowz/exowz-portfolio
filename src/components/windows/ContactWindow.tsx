@@ -16,6 +16,8 @@ export function ContactWindow() {
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [renderedAt] = useState(() => Date.now());
+  const [company, setCompany] = useState(''); // honeypot — real users leave empty
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ export function ContactWindow() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, company, renderedAt }),
       });
 
       const data = await response.json();
@@ -124,6 +126,19 @@ export function ContactWindow() {
             <div>
               <h2 className="text-2xl font-semibold mb-6 text-foreground">{t('sendMessage')}</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot: hidden from humans, bots tend to fill it */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', height: 0, overflow: 'hidden' }}>
+                  <label htmlFor="company">Company</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                  />
+                </div>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
                     {t('labels.name')}
