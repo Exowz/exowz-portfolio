@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { SITE_NAME, SITE_URL, OG_LOCALE, buildAlternates, buildOgImageUrl } from '@/lib/seo';
 import { ThemeProvider } from '@/components/theme-provider';
 import { PageTransition } from '@/components/transitions/PageTransition';
 import { Dock } from '@/components/dock/Dock';
@@ -30,10 +31,36 @@ const stanley = localFont({
   variable: "--font-stanley",
 });
 
-export const metadata: Metadata = {
-  title: "Exowz - Portfolio",
-  description: "Portfolio of Exowz - Developer passionate about Data, AI, and web experiences",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+  const title = t('siteTitle');
+  const description = t('siteDescription');
+
+  return {
+    title: { default: title, template: `%s · ${SITE_NAME}` },
+    description,
+    alternates: buildAlternates(locale, ''),
+    openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
+      locale: OG_LOCALE[locale],
+      url: `${SITE_URL}/${locale}`,
+      title,
+      description,
+      images: [buildOgImageUrl({ title: SITE_NAME, subtitle: description })],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

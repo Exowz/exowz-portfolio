@@ -1,4 +1,12 @@
 {
+    "seo": {
+      "siteTitle": "Exowz — Développeur Data, IA & Web",
+      "siteDescription": "Portfolio d'Exowz (Mathew Kapoor), étudiant en développement Data & IA, créant des expériences data, machine learning et web.",
+      "home": {
+        "title": "Exowz — Développeur Data, IA & Web",
+        "description": "Entrez dans le portfolio-bureau d'Exowz — découvrez des projets en data, IA et développement web."
+      }
+    },
   "HoldingPage": {
     "name": "Exowz",
     "intro1": "Mathew Kristoffer Ewan KAPOOR est un développeur passionné par la Data, l'IA et la création d'expériences web interactives.",
