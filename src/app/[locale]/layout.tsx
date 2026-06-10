@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { SITE_NAME, SITE_URL, OG_LOCALE, buildAlternates, buildOgImageUrl } from '@/lib/seo';
@@ -79,6 +79,9 @@ export default async function LocaleLayout({
   if (!routing.locales.includes(locale as 'en-GB' | 'fr')) {
     notFound();
   }
+
+  // Enable static rendering (must be called before getMessages/getTranslations).
+  setRequestLocale(locale);
 
   // Providing all messages to the client
   // side is the easiest way to get started

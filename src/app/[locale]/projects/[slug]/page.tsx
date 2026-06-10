@@ -1,8 +1,17 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
-import { getProjectBySlug } from '@/data/projects';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getProjectBySlug, projects } from '@/data/projects';
 import { buildRouteMetadata } from '@/lib/seo';
+
+// Valid slugs are a finite, build-time-known set. Enumerating them and
+// disallowing dynamic params makes Next reject unknown slugs at the router
+// level (a real 404), instead of a soft-404 from notFound() mid-stream.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -10,6 +19,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
@@ -26,9 +36,10 @@ export async function generateMetadata({
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   if (!getProjectBySlug(slug)) notFound();
   return null;
 }
