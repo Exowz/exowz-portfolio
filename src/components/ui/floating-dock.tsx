@@ -26,15 +26,17 @@ export const FloatingDock = ({
   items,
   desktopClassName,
   mobileClassName,
+  mobileToggleLabel = "Menu",
 }: {
   items: DockItem[];
   desktopClassName?: string;
   mobileClassName?: string;
+  mobileToggleLabel?: string;
 }) => {
   return (
     <>
       <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
+      <FloatingDockMobile items={items} className={mobileClassName} toggleLabel={mobileToggleLabel} />
     </>
   );
 };
@@ -42,9 +44,11 @@ export const FloatingDock = ({
 const FloatingDockMobile = ({
   items,
   className,
+  toggleLabel,
 }: {
   items: DockItem[];
   className?: string;
+  toggleLabel: string;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -111,6 +115,8 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
+        aria-label={toggleLabel}
+        aria-expanded={open}
         className="flex h-10 w-10 items-center justify-center rounded-2xl transition-all duration-300"
         style={{
           background: 'var(--dock-item-bg)',
