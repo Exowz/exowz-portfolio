@@ -35,6 +35,7 @@
     "react-icons": "^5.5.0",
     "resend": "^6.2.0",
     "tailwind-merge": "^3.3.1",
+    "tegaki": "^0.18.0",
     "three": "^0.180.0",
     "vara": "^1.4.1"
   },
