@@ -1,4 +1,4 @@
-import { type Project, projects } from '@/data/projects';
+import { type Project } from '@/data/projects';
 
 export type ProjectCategory = 'AI' | 'Data' | 'Web' | 'Open Source';
 
@@ -43,7 +43,13 @@ export function projectMatchesCategory(project: Project, category: ProjectCatego
   return getProjectCategories(project).includes(category);
 }
 
-/** The first `count` projects, curated by the source array order. */
-export function getFeaturedProjects(count = 5): Project[] {
-  return projects.slice(0, count);
+/** Split a list into fixed-size pages. */
+export function chunk<T>(items: T[], size: number): T[][] {
+  const pages: T[][] = [];
+
+  for (let index = 0; index < items.length; index += size) {
+    pages.push(items.slice(index, index + size));
+  }
+
+  return pages;
 }

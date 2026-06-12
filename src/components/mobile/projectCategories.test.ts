@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { getProjectBySlug } from '@/data/projects';
 import {
+  chunk,
   getProjectCategories,
-  getFeaturedProjects,
   projectMatchesCategory,
   PROJECT_CATEGORIES,
 } from './projectCategories';
@@ -44,9 +44,16 @@ describe('projectMatchesCategory', () => {
   });
 });
 
-describe('getFeaturedProjects', () => {
-  it('returns the first N projects', () => {
-    expect(getFeaturedProjects(3)).toHaveLength(3);
-    expect(getFeaturedProjects(3)[0].slug).toBe('risk-lens');
+describe('chunk', () => {
+  it('splits a list into pages of the given size', () => {
+    expect(chunk([1, 2, 3, 4, 5], 2)).toEqual([[1, 2], [3, 4], [5]]);
+  });
+
+  it('returns one page when the size covers everything', () => {
+    expect(chunk([1, 2], 5)).toEqual([[1, 2]]);
+  });
+
+  it('returns an empty array for an empty list', () => {
+    expect(chunk([], 3)).toEqual([]);
   });
 });
