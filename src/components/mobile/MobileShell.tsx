@@ -9,8 +9,9 @@ import { SpringBoard } from './SpringBoard';
 import { MobileDock } from './MobileDock';
 import { MinimalSettings } from './MinimalSettings';
 import { ComingSoon } from './ComingSoon';
+import { ProjectsFolder } from './ProjectsFolder';
 
-type Overlay = 'settings' | 'soon' | null;
+type Overlay = 'settings' | 'soon' | 'projects' | null;
 
 /**
  * The iOS shell layer. Mobile-only (`md:hidden`), home-route-only. Covers the
@@ -30,7 +31,10 @@ export function MobileShell() {
       setOverlay('settings');
       return;
     }
-    // The only non-settings overlay apps today are principles/colophon (placeholders).
+    if (id === 'projects') {
+      setOverlay('projects');
+      return;
+    }
     // principles / colophon → placeholder until their content/routes land (P3).
     setSoonTitle(id === 'principles' ? 'Principles' : 'Colophon');
     setOverlay('soon');
@@ -43,7 +47,8 @@ export function MobileShell() {
     <div className="mobile-wallpaper fixed inset-0 z-[60] flex flex-col md:hidden">
       <StatusBar />
       <SpringBoard locale={locale} onOpenOverlay={handleOpenOverlay} />
-      <MobileDock locale={locale} />
+      <MobileDock locale={locale} onOpenOverlay={handleOpenOverlay} />
+      <ProjectsFolder open={overlay === 'projects'} onClose={() => setOverlay(null)} />
       <MinimalSettings open={overlay === 'settings'} onClose={() => setOverlay(null)} />
       <ComingSoon
         open={overlay === 'soon'}

@@ -38,11 +38,13 @@ describe('mobile app inventory', () => {
     }
   });
 
-  it('resolveHref substitutes the locale and passes externals through', () => {
-    const projects = DOCK_APPS.find((a) => a.id === 'projects') as MobileApp;
-    expect(resolveHref(projects, 'fr')).toBe('/fr/projects');
+  it('resolveHref substitutes the locale for routes, passes externals through, and is null for overlays', () => {
+    const about = DOCK_APPS.find((a) => a.id === 'about') as MobileApp;
+    expect(resolveHref(about, 'fr')).toBe('/fr/about');
     const github = GRID_APPS.find((a) => a.id === 'github') as MobileApp;
     expect(resolveHref(github, 'fr')).toBe('https://github.com/exowz');
+    const projects = DOCK_APPS.find((a) => a.id === 'projects') as MobileApp;
+    expect(resolveHref(projects, 'fr')).toBeNull();
     const settings = GRID_APPS.find((a) => a.id === 'settings') as MobileApp;
     expect(resolveHref(settings, 'fr')).toBeNull();
   });

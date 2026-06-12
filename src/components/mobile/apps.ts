@@ -23,7 +23,7 @@ export type MobileApp =
 
 /** The four pinned dock apps (left → right). */
 export const DOCK_APPS: MobileApp[] = [
-  { id: 'projects', labelKey: 'projects', label: null, kind: 'route', href: '/{locale}/projects' },
+  { id: 'projects', labelKey: 'projects', label: null, kind: 'overlay', href: null },
   { id: 'about', labelKey: 'about', label: null, kind: 'route', href: '/{locale}/about' },
   { id: 'contact', labelKey: 'contact', label: null, kind: 'route', href: '/{locale}/contact' },
   { id: 'resume', labelKey: 'resume', label: null, kind: 'external', href: '/resume-{locale}.pdf' },

@@ -4,7 +4,13 @@ import { DOCK_APPS } from './apps';
 import { AppIcon } from './AppIcon';
 
 /** Fixed iOS dock: the four pinned apps, no labels (iOS dock convention). */
-export function MobileDock({ locale }: { locale: string }) {
+export function MobileDock({
+  locale,
+  onOpenOverlay,
+}: {
+  locale: string;
+  onOpenOverlay: (id: string) => void;
+}) {
   return (
     <div
       className="mx-4 flex items-center justify-around rounded-3xl px-3 py-3"
@@ -18,7 +24,7 @@ export function MobileDock({ locale }: { locale: string }) {
       }}
     >
       {DOCK_APPS.map((app) => (
-        <AppIcon key={app.id} app={app} locale={locale} hideLabel />
+        <AppIcon key={app.id} app={app} locale={locale} onOpenOverlay={onOpenOverlay} hideLabel />
       ))}
     </div>
   );
