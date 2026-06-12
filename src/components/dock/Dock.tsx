@@ -71,7 +71,7 @@ export function Dock() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex items-center justify-center pb-4 z-50">
+    <div className="fixed bottom-0 left-0 right-0 hidden md:flex items-center justify-center pb-4 z-50">
       <FloatingDock items={links} mobileToggleLabel={t("menu")} />
     </div>
   );

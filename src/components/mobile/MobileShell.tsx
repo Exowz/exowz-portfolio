@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import { parseActiveRoute } from '@/components/windows/activeRoute';
 import { StatusBar } from './StatusBar';
 import { SpringBoard } from './SpringBoard';
 import { MobileDock } from './MobileDock';
@@ -21,9 +22,8 @@ export function MobileShell() {
   const [overlay, setOverlay] = useState<Overlay>(null);
   const [soonTitle, setSoonTitle] = useState<string | null>(null);
 
-  // Home route = path is just the locale segment (mirrors LayoutContent).
-  const route = pathname.split('/').filter(Boolean).slice(1).join('/');
-  if (route !== '') return null;
+  // Render the springboard only on the locale-home route.
+  if (!parseActiveRoute(pathname).isHome) return null;
 
   const handleOpenOverlay = (id: string) => {
     if (id === 'settings') {

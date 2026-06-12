@@ -46,7 +46,7 @@ export function Header() {
   }
 
   return (
-    <>
+    <div className="hidden md:block">
       {/* Language Switcher - Fixed Position */}
       <Language />
 
@@ -84,6 +84,6 @@ export function Header() {
         </div>
       </div>
     </header>
-    </>
+    </div>
   );
 }

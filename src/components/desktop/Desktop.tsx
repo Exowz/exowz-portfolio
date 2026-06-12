@@ -49,7 +49,7 @@ export function Desktop() {
 
       {/* Centered content - only show when no window is open */}
       {!isWindowOpen && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 z-10 hidden md:flex flex-col items-center justify-center pointer-events-none">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

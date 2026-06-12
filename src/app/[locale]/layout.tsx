@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { PageTransition } from '@/components/transitions/PageTransition';
 import { Dock } from '@/components/dock/Dock';
 import { MobileShell } from '@/components/mobile/MobileShell';
+import { MobileAppSheet } from '@/components/mobile/MobileAppSheet';
 import { Header } from '@/components/header/Header';
 import { WindowManagerProvider } from '@/components/desktop/WindowManager';
 import { LayoutContent } from '@/components/layout/LayoutContent';
@@ -107,6 +108,7 @@ export default async function LocaleLayout({
                 </PageTransition>
                 <Dock />
                 <MobileShell />
+                <MobileAppSheet />
               </WindowManagerProvider>
             </BootWrapper>
           </NextIntlClientProvider>

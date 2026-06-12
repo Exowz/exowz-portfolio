@@ -11,6 +11,7 @@ import { ProjectsWindow } from '../windows/ProjectsWindow';
 import { AboutWindow } from '../windows/AboutWindow';
 import { ContactWindow } from '../windows/ContactWindow';
 import dynamic from 'next/dynamic';
+import { useIsMobile } from '@/components/hooks/useIsMobile';
 
 // Dynamically import the project detail component
 const ProjectDetailWindow = dynamic(
@@ -31,6 +32,7 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
+  const isMobile = useIsMobile();
   const [openWindow, setOpenWindow] = useState<WindowType>(null);
 
   // Check if we're on a detail page
@@ -73,8 +75,14 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
       {/* Render children normally */}
       {children}
 
-      {/* Windows with content - no backdrop */}
-      <WindowContent openWindow={openWindow} isProjectDetailPage={isProjectDetailPage} projectSlug={projectSlug} />
+      {/* Windows with content - desktop only. Mobile routes render through MobileAppSheet. */}
+      {isMobile === false && (
+        <WindowContent
+          openWindow={openWindow}
+          isProjectDetailPage={isProjectDetailPage}
+          projectSlug={projectSlug}
+        />
+      )}
     </WindowManagerContext.Provider>
   );
 }
