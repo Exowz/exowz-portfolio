@@ -90,7 +90,7 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
                       style={{
                         color: 'var(--foreground)',
                         border: active ? '1px solid var(--accent)' : '1px solid var(--window-border)',
-                        background: active ? 'rgba(100,181,246,0.12)' : 'transparent',
+                        background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                       }}
                     >
                       <span className="text-lg">{l.flag}</span>

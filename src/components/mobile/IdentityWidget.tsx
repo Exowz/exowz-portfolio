@@ -21,7 +21,7 @@ export function IdentityWidget() {
       <h1 className="font-stanley text-4xl font-bold" style={{ color: 'var(--foreground)' }}>
         Exowz
       </h1>
-      <p className="mt-1 text-sm italic" style={{ color: '#b0bec5' }}>
+      <p className="mt-1 text-sm italic" style={{ color: 'var(--text-secondary)' }}>
         Code, Design, Create.
       </p>
     </motion.div>

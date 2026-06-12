@@ -28,7 +28,7 @@ export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
             animate={{ y: 0 }}
             exit={{ y: 40 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="m-4 w-full max-w-sm rounded-3xl p-5 text-center"
+            className="m-4 w-full max-w-sm rounded-3xl p-5"
             style={{
               background: 'var(--window-bg)',
               border: '1px solid var(--window-border)',
@@ -50,8 +50,8 @@ export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
                 <IconX className="h-4 w-4" style={{ color: 'var(--window-btn-icon)' }} />
               </button>
             </div>
-            <p className="text-lg font-medium" style={{ color: 'var(--foreground)' }}>{title}</p>
-            <p className="mt-1 text-sm" style={{ color: '#b0bec5' }}>Coming soon.</p>
+            <p className="text-center text-lg font-medium" style={{ color: 'var(--foreground)' }}>{title}</p>
+            <p className="mt-1 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>Coming soon.</p>
           </motion.div>
         </motion.div>
       )}
