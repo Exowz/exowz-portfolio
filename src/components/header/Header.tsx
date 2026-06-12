@@ -5,46 +5,18 @@ import { useLocale } from 'next-intl';
 import { ThemeToggle } from '@/components/theme-toggle';
 import Language from './Language';
 import { useTheme } from 'next-themes';
+import { useClock } from '@/components/hooks/useClock';
 
 export function Header() {
   const locale = useLocale();
-  const [time, setTime] = useState<string>('');
+  const time = useClock(locale);
   const [mounted, setMounted] = useState(false);
   const [isClockHovered, setIsClockHovered] = useState(false);
   const { theme } = useTheme();
-  
-  // Update time every second
+
   useEffect(() => {
     setMounted(true);
-    const updateTime = () => {
-      const now = new Date();
-
-      // Different format based on locale
-      if (locale === 'en-GB') {
-        // English: 12-hour AM/PM format
-        setTime(
-          now.toLocaleTimeString('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true, // Shows AM/PM
-          })
-        );
-      } else {
-        // French: 24-hour format
-        setTime(
-          now.toLocaleTimeString('fr-FR', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false, // 24-hour format
-          })
-        );
-      }
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, [locale]); // Re-run when locale changes
+  }, []);
 
   const getGlassStyle = (isHovered = false) => {
     if (theme === 'dark') {
