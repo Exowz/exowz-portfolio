@@ -3,6 +3,7 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { markCameFromFolder } from './folderNavigation';
 import { getFeaturedProjects } from './projectCategories';
 
 /** Swipeable featured-projects carousel. Each slide links to the detail route. */
@@ -18,6 +19,7 @@ export function FeaturedCarousel() {
           <Link
             key={project.slug}
             href={`/projects/${project.slug}`}
+            onClick={() => markCameFromFolder(project.slug)}
             className="flex shrink-0 basis-[82%] flex-col overflow-hidden rounded-2xl border"
             style={{ borderColor: 'var(--window-border)', background: 'var(--dock-item-bg)' }}
           >

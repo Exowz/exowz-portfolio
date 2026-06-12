@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { shouldDismissDownward, shouldUnlockUpward } from './gestures';
+import { shouldDismissDownward, shouldGoBackRightward, shouldUnlockUpward } from './gestures';
 
 describe('shouldDismissDownward', () => {
   it('dismisses on a long downward drag', () => {
@@ -34,5 +34,23 @@ describe('shouldUnlockUpward', () => {
 
   it('does not unlock on a downward gesture', () => {
     expect(shouldUnlockUpward(200, 900)).toBe(false);
+  });
+});
+
+describe('shouldGoBackRightward', () => {
+  it('goes back on a long rightward drag', () => {
+    expect(shouldGoBackRightward(130, 0)).toBe(true);
+  });
+
+  it('goes back on a fast rightward flick', () => {
+    expect(shouldGoBackRightward(40, 700)).toBe(true);
+  });
+
+  it('does not go back on a small slow drag', () => {
+    expect(shouldGoBackRightward(50, 100)).toBe(false);
+  });
+
+  it('does not go back on a leftward gesture', () => {
+    expect(shouldGoBackRightward(-200, -900)).toBe(false);
   });
 });

@@ -26,9 +26,16 @@ export function useHistoryOverlay(open: boolean, onClose: () => void): void {
   useEffect(() => {
     if (!open || tokenRef.current) return;
 
+    closingFromPopRef.current = false;
+
+    const existing = window.history.state?.overlay;
+    if (typeof existing === 'string') {
+      tokenRef.current = existing;
+      return;
+    }
+
     const token = createOverlayToken();
     tokenRef.current = token;
-    closingFromPopRef.current = false;
     window.history.pushState({ ...window.history.state, overlay: token }, '');
   }, [open]);
 

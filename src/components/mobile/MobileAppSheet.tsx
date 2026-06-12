@@ -9,7 +9,8 @@ import { useRouter } from '@/i18n/routing';
 import { useIsMobile } from '@/components/hooks/useIsMobile';
 import { parseActiveRoute } from '@/components/windows/activeRoute';
 import { getProjectBySlug } from '@/data/projects';
-import { shouldDismissDownward } from './gestures';
+import { shouldDismissDownward, shouldGoBackRightward } from './gestures';
+import { consumeCameFromFolder } from './folderNavigation';
 import { StatusBar } from './StatusBar';
 import { MobileNavBar } from './MobileNavBar';
 import { ProjectsWindow } from '@/components/windows/ProjectsWindow';
@@ -53,7 +54,10 @@ export function MobileAppSheet() {
     const project = getProjectBySlug(slug);
     title = project ? tProjects(`${project.key}.title`) : tProjectsPage('title');
     content = <ProjectDetailWindow slug={slug} />;
-    onBack = () => router.push('/projects');
+    onBack = () => {
+      if (consumeCameFromFolder(slug)) router.back();
+      else router.push('/projects');
+    };
   } else {
     title = tProjectsPage('title');
     content = <ProjectsWindow />;
@@ -71,6 +75,16 @@ export function MobileAppSheet() {
       }}
       className="fixed inset-0 z-[60] flex flex-col bg-background md:hidden"
     >
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={{ left: 0, right: 0.6 }}
+        onDragEnd={(_, info) => {
+          if (shouldGoBackRightward(info.offset.x, info.velocity.x)) onBack();
+        }}
+        className="absolute inset-y-0 left-0 z-10 w-5 touch-none"
+        aria-hidden="true"
+      />
       <StatusBar />
       <div
         className="flex shrink-0 touch-none cursor-grab justify-center pt-1.5 pb-0.5"

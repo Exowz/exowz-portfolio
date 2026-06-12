@@ -8,6 +8,7 @@ import { Link } from '@/i18n/routing';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 import { projects } from '@/data/projects';
 import { FeaturedCarousel } from './FeaturedCarousel';
+import { markCameFromFolder } from './folderNavigation';
 import { PROJECT_CATEGORIES, projectMatchesCategory, type ProjectCategory } from './projectCategories';
 
 interface ProjectsFolderProps {
@@ -110,6 +111,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
                   <Link
                     key={project.slug}
                     href={`/projects/${project.slug}`}
+                    onClick={() => markCameFromFolder(project.slug)}
                     className="flex flex-col overflow-hidden rounded-2xl border"
                     style={{ borderColor: 'var(--window-border)', background: 'var(--dock-item-bg)' }}
                   >

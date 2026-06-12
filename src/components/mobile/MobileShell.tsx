@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { parseActiveRoute } from '@/components/windows/activeRoute';
@@ -9,7 +10,11 @@ import { SpringBoard } from './SpringBoard';
 import { MobileDock } from './MobileDock';
 import { MinimalSettings } from './MinimalSettings';
 import { ComingSoon } from './ComingSoon';
-import { ProjectsFolder } from './ProjectsFolder';
+
+const ProjectsFolder = dynamic(
+  () => import('./ProjectsFolder').then((module) => module.ProjectsFolder),
+  { ssr: false },
+);
 
 type Overlay = 'settings' | 'soon' | 'projects' | null;
 
