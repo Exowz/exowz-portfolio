@@ -53,7 +53,7 @@ export function MobileAppSheet() {
   } else if (isDetail && slug) {
     const project = getProjectBySlug(slug);
     title = project ? tProjects(`${project.key}.title`) : tProjectsPage('title');
-    content = <ProjectDetailWindow slug={slug} />;
+    content = <ProjectDetailWindow slug={slug} hideBackLink />;
     onBack = () => {
       if (consumeCameFromFolder(slug)) router.back();
       else router.push('/projects');

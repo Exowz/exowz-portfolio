@@ -8,9 +8,11 @@ import { getProjectBySlug } from '@/data/projects';
 
 interface ProjectDetailWindowProps {
   slug: string;
+  /** Hide the in-content "back to projects" link (the mobile sheet provides its own back). */
+  hideBackLink?: boolean;
 }
 
-export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) {
+export default function ProjectDetailWindow({ slug, hideBackLink = false }: ProjectDetailWindowProps) {
   const t = useTranslations('projects');
   const tSections = useTranslations('projects.sections');
   const tLabels = useTranslations('projects.labels');
@@ -21,9 +23,11 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
       <div className="flex items-center justify-center p-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">{t('notFound')}</h1>
-          <Link href="/projects" className="text-primary hover:underline">
-            ← {t('backToProjects')}
-          </Link>
+          {!hideBackLink && (
+            <Link href="/projects" className="text-primary hover:underline">
+              ← {t('backToProjects')}
+            </Link>
+          )}
         </div>
       </div>
     );
@@ -86,14 +90,16 @@ export default function ProjectDetailWindow({ slug }: ProjectDetailWindowProps) 
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto"
       >
-          {/* Back Button */}
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <IconArrowLeft className="w-4 h-4" />
-            {t('backToProjects')}
-          </Link>
+          {/* Back Button (hidden inside the mobile sheet, which has its own nav-bar back) */}
+          {!hideBackLink && (
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+            >
+              <IconArrowLeft className="w-4 h-4" />
+              {t('backToProjects')}
+            </Link>
+          )}
 
           <div className="space-y-10">
             {/* Project Header */}
