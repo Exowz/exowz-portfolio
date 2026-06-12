@@ -252,3 +252,12 @@
     animation: gradient ease infinite;
   }
 }
+
+/* iOS mobile shell wallpaper — theme-aware via the html `.dark` class set by
+   next-themes pre-paint, so it renders the right colors with no hydration flash. */
+.mobile-wallpaper {
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 50%, #64b5f6 100%);
+}
+.dark .mobile-wallpaper {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #64b5f6 100%);
+}
