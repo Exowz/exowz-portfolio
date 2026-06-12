@@ -18,7 +18,7 @@ interface AppIconProps {
 /** A single iOS-style app tile: rounded-square icon + label. Routes, external links, or overlays. */
 export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIconProps) {
   const tNav = useTranslations('nav');
-  const label = app.labelKey ? tNav(app.labelKey) : (app.label ?? '');
+  const label = app.labelKey ? tNav(app.labelKey) : (app.label ?? app.id);
   const href = resolveHref(app, locale);
 
   const tile = (
@@ -68,7 +68,7 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
 
   // Overlay apps (Settings, and P0a's Coming-soon placeholders) → callback.
   return (
-    <button type="button" aria-label={label} onClick={() => onOpenOverlay?.(app.id)} className={wrapperClass}>
+    <button type="button" aria-label={label} aria-haspopup="dialog" onClick={() => onOpenOverlay?.(app.id)} className={wrapperClass}>
       {tile}
       {labelEl}
     </button>

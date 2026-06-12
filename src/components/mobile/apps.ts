@@ -1,5 +1,16 @@
 export type MobileAppKind = 'route' | 'external' | 'overlay';
 
+export type AppId =
+  | 'projects'
+  | 'about'
+  | 'contact'
+  | 'resume'
+  | 'github'
+  | 'linkedin'
+  | 'principles'
+  | 'settings'
+  | 'colophon';
+
 /**
  * A mobile app entry. Exactly one of `labelKey` (i18n key under the `nav`
  * namespace) or `label` (literal, for brand names / not-yet-localized apps)
@@ -7,8 +18,8 @@ export type MobileAppKind = 'route' | 'external' | 'overlay';
  * template (`{locale}` substituted at render) for route/external apps, null for overlays.
  */
 export type MobileApp =
-  | { id: string; labelKey: string; label: null; kind: MobileAppKind; href: string | null }
-  | { id: string; labelKey: null; label: string; kind: MobileAppKind; href: string | null };
+  | { id: AppId; labelKey: string; label: null; kind: MobileAppKind; href: string | null }
+  | { id: AppId; labelKey: null; label: string; kind: MobileAppKind; href: string | null };
 
 /** The four pinned dock apps (left → right). */
 export const DOCK_APPS: MobileApp[] = [
