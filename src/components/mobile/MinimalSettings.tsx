@@ -1,9 +1,11 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IconX, IconCheck } from '@tabler/icons-react';
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
+import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 const LOCALES = [
@@ -21,6 +23,13 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useHistoryOverlay(open, onClose);
+
+  useEffect(() => {
+    if (open) panelRef.current?.focus();
+  }, [open]);
 
   const switchLocale = (code: string) => {
     router.replace(pathname, { locale: code });
@@ -38,6 +47,11 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
           onClick={onClose}
         >
           <motion.div
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Settings"
+            tabIndex={-1}
             initial={{ y: 40 }}
             animate={{ y: 0 }}
             exit={{ y: 40 }}

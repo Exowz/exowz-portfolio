@@ -1,9 +1,13 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
+import { IconChevronUp } from '@tabler/icons-react';
+import { useLocale, useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
+import { usePrefersReducedMotion } from '@/components/hooks/usePrefersReducedMotion';
+import { shouldUnlockUpward } from '@/components/mobile/gestures';
 
 // Lazy-load the finale (Tegaki + LiquidEther) so it only loads at the greeting.
 const TegakiText = dynamic(() => import('@/components/boot/TegakiText'), { ssr: false });
@@ -23,18 +27,6 @@ const INIT_LINES = [
 
 type Step = 'begin' | 'init' | 'greeting' | 'done';
 
-function usePrefersReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReduced(mql.matches);
-    update();
-    mql.addEventListener('change', update);
-    return () => mql.removeEventListener('change', update);
-  }, []);
-  return reduced;
-}
-
 interface MobileStartSequenceProps {
   onComplete: () => void;
 }
@@ -44,6 +36,7 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
   const [visibleLines, setVisibleLines] = useState(0);
   const reducedMotion = usePrefersReducedMotion();
   const locale = useLocale();
+  const t = useTranslations('boot');
   const greeting = locale.startsWith('fr') ? 'salut' : 'hello';
 
   const finish = useCallback(() => {
@@ -51,15 +44,14 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
     onComplete();
   }, [onComplete]);
 
-  // Reveal init lines one by one; branch to greeting (or finish, if reduced motion).
+  // Reveal init lines one by one; both motion paths now stop at the unlock greeting.
   useEffect(() => {
     if (step !== 'init') return;
 
     if (reducedMotion) {
-      // Static splash: show every line at once (includes EXOWZ watermark + "ready"),
-      // hold briefly, then straight to the interface.
+      // Static splash: show every line at once, hold briefly, then the unlock greeting.
       setVisibleLines(INIT_LINES.length);
-      const t = setTimeout(finish, 1000);
+      const t = setTimeout(() => setStep('greeting'), 1000);
       return () => clearTimeout(t);
     }
 
@@ -84,9 +76,9 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
         type="button"
         onClick={() => setStep('init')}
         className="fixed inset-0 z-[100] flex items-center justify-center bg-black font-mono text-sm text-stone-300"
-        aria-label="Tap to begin"
+        aria-label={t('tapToBegin')}
       >
-        <span className="blink">tap to begin</span>
+        <span className="blink">{t('tapToBegin')}</span>
       </button>
     );
   }
@@ -108,8 +100,37 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
         </div>
       )}
 
-      {step === 'greeting' && !reducedMotion && (
-        <TegakiText mode="once" word={greeting} onComplete={finish} />
+      {step === 'greeting' && (
+        <motion.div
+          drag={reducedMotion ? false : 'y'}
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={{ top: 0.6, bottom: 0 }}
+          onDragEnd={(_, info) => {
+            if (shouldUnlockUpward(info.offset.y, info.velocity.y)) finish();
+          }}
+          className="absolute inset-0 flex flex-col items-center justify-center"
+        >
+          {reducedMotion ? (
+            <span className={`${takenByVultures.className} text-5xl text-stone-200`}>{greeting}</span>
+          ) : (
+            <TegakiText mode="once" word={greeting} onComplete={() => {}} />
+          )}
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              finish();
+            }}
+            aria-label={t('enterSite')}
+            className="absolute bottom-14 flex flex-col items-center gap-2 text-stone-400"
+          >
+            {!reducedMotion && <IconChevronUp className="h-6 w-6 animate-bounce" />}
+            <span className="rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide">
+              {reducedMotion ? t('tapToEnter') : t('swipeUpToEnter')}
+            </span>
+          </button>
+        </motion.div>
       )}
     </div>
   );

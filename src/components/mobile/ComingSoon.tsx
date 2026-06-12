@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IconX } from '@tabler/icons-react';
+import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 
 interface ComingSoonProps {
   open: boolean;
@@ -12,6 +14,14 @@ interface ComingSoonProps {
 
 /** Tiny placeholder sheet for grid apps whose content arrives in a later phase. */
 export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useHistoryOverlay(open, onClose);
+
+  useEffect(() => {
+    if (open) panelRef.current?.focus();
+  }, [open]);
+
   return (
     <AnimatePresence>
       {open && title && (
@@ -24,6 +34,11 @@ export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
           onClick={onClose}
         >
           <motion.div
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={title ?? 'Coming soon'}
+            tabIndex={-1}
             initial={{ y: 40 }}
             animate={{ y: 0 }}
             exit={{ y: 40 }}

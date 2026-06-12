@@ -22,6 +22,12 @@
     "resume": "CV",
     "menu": "Menu"
   },
+  "boot": {
+    "tapToBegin": "appuyez pour commencer",
+    "swipeUpToEnter": "Glissez vers le haut pour entrer",
+    "tapToEnter": "Appuyez pour entrer",
+    "enterSite": "Entrer sur le site"
+  },
   "pages": {
     "about": {
       "title": "À Propos",
