@@ -15,8 +15,8 @@ export default function LanguageMenu() {
   return (
     <DesktopMorphingMenu
       align="left"
-      panelWidth={380}
-      panelHeight={430}
+      panelWidth={420}
+      panelHeight={480}
       renderButton={({ isOpen, toggle }) => (
         <LanguageButton
           isActive={isOpen}

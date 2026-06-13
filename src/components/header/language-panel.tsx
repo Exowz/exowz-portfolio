@@ -27,7 +27,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
   };
 
   return (
-    <div className="relative flex h-full w-full flex-col px-6 pb-5 pt-16">
+    <div className="relative flex h-full w-full flex-col px-5 pb-5 pt-16">
       {/* Background elements - theme aware */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -66,12 +66,12 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
       </div>
 
       {/* Main Language List */}
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto pr-1">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto px-1 py-1 [scrollbar-width:thin]">
         {Object.entries(languages).map(([locale, language], i) => {
           const isActive = locale === currentLang;
 
           return (
-            <div key={`lang_${i}`} className="group relative overflow-hidden" style={{ perspective: '1200px' }}>
+            <div key={`lang_${i}`} className="group relative overflow-visible" style={{ perspective: '1200px' }}>
               {/* Accent line - theme aware */}
               <div
                 className="absolute -left-6 top-1/2 w-0.5 h-0 rounded-full opacity-0 group-hover:opacity-50 group-hover:h-10 transition-all duration-500 transform -translate-y-1/2"
@@ -93,9 +93,9 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                 <button
                   onClick={() => switchLocale(language.locale)}
                   className={`
-                    grid grid-cols-[36px_1fr_24px] items-center gap-3
-                    min-h-14 w-full rounded-xl border px-4 py-3 backdrop-blur-md
-                    font-medium transition-all duration-500 hover:scale-[1.015]
+                    grid grid-cols-[36px_minmax(0,1fr)_24px] items-center gap-3
+                    min-h-16 w-full rounded-xl border px-4 py-3 text-left backdrop-blur-md
+                    font-medium transition-all duration-500 hover:scale-[1.01]
                     ${isActive
                       ? theme === 'dark'
                         ? 'text-[#64b5f6] bg-[rgba(100,181,246,0.15)] border-[rgba(100,181,246,0.3)]'
@@ -110,16 +110,16 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                   }}
                 >
                   {/* Flag Column - Fixed Width */}
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center justify-center">
                     <span className="text-xl">{language.flag}</span>
                   </div>
 
                   {/* Text Column - Flexible */}
-                  <div className="flex min-w-0 flex-col justify-center">
-                    <div className="text-sm font-semibold leading-tight">
+                  <div className="flex min-w-0 flex-col justify-center overflow-visible">
+                    <div className="break-words text-[15px] font-semibold leading-[1.35]" dir="auto">
                       {language.name}
                     </div>
-                    <div className="text-xs leading-tight opacity-70">
+                    <div className="break-words text-xs leading-[1.35] opacity-70" dir="auto">
                       {language.region}
                     </div>
                   </div>
