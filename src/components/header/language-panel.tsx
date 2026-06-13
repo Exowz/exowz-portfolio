@@ -65,8 +65,8 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
         </h3>
       </div>
 
-      {/* Main Language Grid */}
-      <div className="relative z-10 grid min-h-0 flex-1 grid-cols-2 gap-2 overflow-y-auto pr-1">
+      {/* Main Language List */}
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto pr-1">
         {Object.entries(languages).map(([locale, language], i) => {
           const isActive = locale === currentLang;
 
@@ -94,7 +94,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                   onClick={() => switchLocale(language.locale)}
                   className={`
                     grid grid-cols-[36px_1fr_24px] items-center gap-3
-                    h-14 w-full rounded-xl border px-3 py-3 backdrop-blur-md
+                    min-h-14 w-full rounded-xl border px-4 py-3 backdrop-blur-md
                     font-medium transition-all duration-500 hover:scale-[1.015]
                     ${isActive
                       ? theme === 'dark'
@@ -115,11 +115,11 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                   </div>
 
                   {/* Text Column - Flexible */}
-                  <div className="flex flex-col justify-center min-w-0">
-                    <div className="font-semibold text-sm leading-tight truncate">
+                  <div className="flex min-w-0 flex-col justify-center">
+                    <div className="text-sm font-semibold leading-tight">
                       {language.name}
                     </div>
-                    <div className="text-xs opacity-70 leading-tight truncate">
+                    <div className="text-xs leading-tight opacity-70">
                       {language.region}
                     </div>
                   </div>

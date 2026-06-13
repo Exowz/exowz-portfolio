@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useMemo, useState, type MouseEvent } from 'react';
-import { motion } from 'framer-motion';
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
   IconCopy,
@@ -33,6 +33,8 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
   const label = app.labelKey ? tNav(app.labelKey) : (app.label ?? app.id);
   const href = resolveHref(app, locale);
   const [menu, setMenu] = useState<{ open: boolean; x: number; y: number }>({ open: false, x: 0, y: 0 });
+  const [showDockLabel, setShowDockLabel] = useState(false);
+  const dockLabelTimerRef = useRef<number | null>(null);
 
   const openApp = useCallback(() => {
     if (app.kind === 'route' && href) {
@@ -56,6 +58,34 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
       openMenu(event.clientX, event.clientY);
     },
   });
+
+  const clearDockLabelTimer = useCallback(() => {
+    if (dockLabelTimerRef.current !== null) {
+      window.clearTimeout(dockLabelTimerRef.current);
+      dockLabelTimerRef.current = null;
+    }
+  }, []);
+
+  const showDockTooltip = useCallback(() => {
+    if (!hideLabel) return;
+    clearDockLabelTimer();
+    setShowDockLabel(true);
+  }, [clearDockLabelTimer, hideLabel]);
+
+  const hideDockTooltip = useCallback((delay = 0) => {
+    if (!hideLabel) return;
+    clearDockLabelTimer();
+    if (delay === 0) {
+      setShowDockLabel(false);
+      return;
+    }
+    dockLabelTimerRef.current = window.setTimeout(() => {
+      setShowDockLabel(false);
+      dockLabelTimerRef.current = null;
+    }, delay);
+  }, [clearDockLabelTimer, hideLabel]);
+
+  useEffect(() => clearDockLabelTimer, [clearDockLabelTimer]);
 
   const actions = useMemo<QuickAction[]>(() => {
     const items: QuickAction[] = [
@@ -109,7 +139,7 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
   );
 
   const labelEl = hideLabel ? null : (
-    <span className="mt-1 max-w-[64px] truncate text-center text-xs" style={{ color: 'var(--dock-text)' }}>
+    <span className="mt-1 max-w-[72px] truncate text-center text-xs leading-tight" style={{ color: 'var(--dock-text)' }}>
       {label}
     </span>
   );
@@ -120,7 +150,7 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
         type="button"
         aria-label={label}
         aria-haspopup="menu"
-        className="flex flex-col items-center"
+        className="relative flex flex-col items-center"
         onClick={(event) => {
           if (suppressClickRef.current) {
             event.preventDefault();
@@ -134,8 +164,48 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
           event.preventDefault();
           openMenu(event.clientX, event.clientY);
         }}
-        {...handlers}
+        onPointerEnter={showDockTooltip}
+        onPointerDown={(event: ReactPointerEvent<HTMLButtonElement>) => {
+          showDockTooltip();
+          handlers.onPointerDown(event);
+        }}
+        onPointerMove={handlers.onPointerMove}
+        onPointerUp={(event: ReactPointerEvent<HTMLButtonElement>) => {
+          handlers.onPointerUp();
+          hideDockTooltip(event.pointerType === 'touch' ? 550 : 0);
+        }}
+        onPointerLeave={() => {
+          handlers.onPointerLeave();
+          hideDockTooltip();
+        }}
+        onPointerCancel={() => {
+          handlers.onPointerCancel();
+          hideDockTooltip();
+        }}
       >
+        {hideLabel && (
+          <AnimatePresence>
+            {showDockLabel && (
+              <motion.span
+                initial={{ opacity: 0, y: 4, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 4, scale: 0.96 }}
+                transition={{ duration: 0.16, ease: 'easeOut' }}
+                className="pointer-events-none absolute -top-9 left-1/2 z-20 max-w-28 -translate-x-1/2 truncate rounded-full px-3 py-1.5 text-xs font-medium"
+                style={{
+                  color: 'var(--foreground)',
+                  background: 'var(--window-bg)',
+                  border: '1px solid var(--window-border)',
+                  boxShadow: 'var(--window-shadow)',
+                  backdropFilter: 'blur(18px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(18px) saturate(180%)',
+                }}
+              >
+                {label}
+              </motion.span>
+            )}
+          </AnimatePresence>
+        )}
         {tile}
         {labelEl}
       </button>
