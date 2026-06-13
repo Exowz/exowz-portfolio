@@ -51,6 +51,21 @@
   "comingSoon": {
     "soon": "Bientôt disponible."
   },
+  "actions": {
+    "openApp": "Ouvrir {app}",
+    "openFolder": "Ouvrir le dossier",
+    "openResume": "Ouvrir le CV",
+    "openLink": "Ouvrir le lien",
+    "copyUsername": "Copier l'identifiant"
+  },
+  "controlCenter": {
+    "title": "Centre de contrôle",
+    "open": "Ouvrir le centre de contrôle",
+    "theme": "Thème",
+    "language": "Langue",
+    "replayIntro": "Revoir l'intro",
+    "links": "Liens"
+  },
   "pages": {
     "about": {
       "title": "À Propos",

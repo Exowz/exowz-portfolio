@@ -51,6 +51,21 @@
   "comingSoon": {
     "soon": "Coming soon."
   },
+  "actions": {
+    "openApp": "Open {app}",
+    "openFolder": "Open folder",
+    "openResume": "Open resume",
+    "openLink": "Open link",
+    "copyUsername": "Copy username"
+  },
+  "controlCenter": {
+    "title": "Control Center",
+    "open": "Open Control Center",
+    "theme": "Theme",
+    "language": "Language",
+    "replayIntro": "Replay intro",
+    "links": "Links"
+  },
   "pages": {
     "about": {
       "title": "About Me",

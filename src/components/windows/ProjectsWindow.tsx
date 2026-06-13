@@ -11,22 +11,22 @@ export function ProjectsWindow() {
   const tProjects = useTranslations('projects');
 
   return (
-    <div className="p-6 md:p-12">
+    <div className="p-5 md:p-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="max-w-7xl mx-auto"
       >
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           <div>
-            <p className="text-lg md:text-xl text-foreground/80">
+            <p className="text-base md:text-xl text-foreground/80">
               {t('description')}
             </p>
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 md:mt-12">
             {projects.map((project, index) => (
               <motion.div
                 key={project.slug}
@@ -46,14 +46,14 @@ export function ProjectsWindow() {
                   </Link>
 
                   {/* Project Info */}
-                  <div className="p-6 space-y-4">
+                  <div className="space-y-3 p-4 md:space-y-4 md:p-6">
                     <div>
                       <Link href={`/projects/${project.slug}`}>
-                        <h2 className="text-2xl font-semibold mb-2 text-foreground group-hover:text-foreground/80 transition-colors">
+                        <h2 className="mb-2 text-xl font-semibold text-foreground transition-colors group-hover:text-foreground/80 md:text-2xl">
                           {tProjects(`${project.key}.title`)}
                         </h2>
                       </Link>
-                      <p className="text-muted-foreground line-clamp-2">
+                      <p className="line-clamp-2 text-sm text-muted-foreground md:text-base">
                         {tProjects(`${project.key}.description`)}
                       </p>
                     </div>

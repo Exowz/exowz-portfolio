@@ -13,19 +13,19 @@ export function ColophonWindow() {
   const sections = t.raw('sections') as ColophonSection[];
 
   return (
-    <div className="p-6 md:p-12">
+    <div className="p-5 md:p-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mx-auto max-w-3xl space-y-8"
+        className="mx-auto max-w-3xl space-y-6 md:space-y-8"
       >
-        <p className="text-lg md:text-xl text-foreground/80">{t('intro')}</p>
-        <div className="space-y-6">
+        <p className="text-base md:text-xl text-foreground/80">{t('intro')}</p>
+        <div className="space-y-5 md:space-y-6">
           {sections.map((section) => (
             <div key={section.heading}>
               <h2 className="mb-1.5 text-base md:text-lg font-semibold text-accent">{section.heading}</h2>
-              <p className="leading-relaxed text-foreground/80">{section.body}</p>
+              <p className="text-sm leading-relaxed text-foreground/80 md:text-base">{section.body}</p>
             </div>
           ))}
         </div>

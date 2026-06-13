@@ -5,16 +5,15 @@ import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import LiquidEther from './LiquidEther';
+import { DesktopWidgets } from './DesktopWidgets';
 import { shouldRunLiquidSim } from '@/lib/deviceCapability';
+import { parseActiveRoute } from '@/components/windows/activeRoute';
 
 export function Desktop() {
   const { theme } = useTheme();
   const pathname = usePathname();
 
-  // Check if a window is open
-  const isWindowOpen = pathname.includes('/projects') ||
-                       pathname.includes('/about') ||
-                       pathname.includes('/contact');
+  const isWindowOpen = parseActiveRoute(pathname).id !== null;
 
   // Theme-aware colors for LiquidEther
   const colors = theme === 'dark'
@@ -82,6 +81,7 @@ export function Desktop() {
           </motion.div>
         </div>
       )}
+      {!isWindowOpen && <DesktopWidgets />}
     </div>
   );
 }
