@@ -1,0 +1,14 @@
+{
+  "title": "En ce moment",
+  "updatedLabel": "Mis à jour",
+  "updated": "Juin 2026",
+  "intro": "Un aperçu de ce sur quoi je travaille en ce moment.",
+  "items": [
+    "Je termine mon Bachelor Data & IA à l'ECE Paris.",
+    "Je suis en stage d'ingénieur Data Science / IA chez Purecontrol à Rennes, où je construis des pipelines ML sur des séries temporelles IoT.",
+    "Je rejoins en septembre le MSc Data & AI for Finance (Albert School × Mines de Paris - PSL), en alternance.",
+    "Je développe ce portfolio, et Career Agent, un outil qui rédige des CV et lettres de motivation sur mesure.",
+    "Je monte en compétences sur le data engineering, le MLOps et le cloud (AWS Practitioner en cours).",
+    "Je recherche une alternance en data engineering / IA à partir de septembre 2026, et je reste toujours ouvert aux belles collaborations."
+  ]
+}

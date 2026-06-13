@@ -1,0 +1,15 @@
+{
+  "title": "Réglages",
+  "intro": "Configure ce petit système d'exploitation.",
+  "description": "Les réglages desktop regroupent les contrôles du portfolio qui relèvent du système plutôt que du contenu.",
+  "appearance": "Apparence",
+  "theme": "Thème",
+  "language": "Langue",
+  "replayIntro": "Revoir l'intro",
+  "openSettings": "Ouvrir les réglages...",
+  "commandPalette": "Palette de commandes",
+  "system": "Système",
+  "systemDescription": "Ce portfolio est volontairement construit comme une interface desktop et mobile : localisée, sobre en données, et pensée autour d'interactions natives.",
+  "colophon": "Colophon",
+  "principles": "Principes"
+}

@@ -1,0 +1,57 @@
+{
+  "about": {
+    "title": "À Propos",
+    "description": "Découvrez mon parcours et ce que je fais",
+    "name": "Mathew Kristoffer Ewan KAPOOR",
+    "jobTitle": "Étudiant Data & IA · MSc Albert School × Mines de Paris",
+    "pitch": "Je construis des outils data et IA dont on peut vraiment se servir pour décider, en réduisant la distance entre « ça marche techniquement » et « c'est réellement utile ». Une ambition traverse tout ce que je fais : contribuer à la souveraineté numérique européenne.",
+    "techSkillsTitle": "Compétences Techniques",
+    "techSkills": {
+      "dataAI": "Python, SQL (MySQL, PostgreSQL), Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java"
+    },
+    "storyTitle": "Mon Histoire",
+    "story": {
+      "intro1": "Salut ! Je m'appelle Mathew Kristoffer Ewan KAPOOR, mais j'utilise en général Ewan comme prénom. J'ai 24 ans, je viens de l'île Maurice et j'habite à Paris. Je termine actuellement mon Bachelor Data & IA à l'ECE Paris, et je rejoins en septembre 2026 le MSc Data & AI for Finance, un diplôme conjoint entre Albert School et les Mines de Paris - PSL, en alternance.",
+      "intro2": "Je vais vous raconter mon histoire. Car au-delà du développeur que je suis, au-delà de ce portfolio, se cache une vraie personne, remplie de rêves et d'ambition.",
+      "origins1": "Mon histoire commence en mars 2002, sur un petit paradis de l'océan Indien : l'Île Maurice. J'y ai grandi entouré de parents aimants qui m'accompagnent encore aujourd'hui. Ma vie était rythmée par la plage, la famille, les délicieux plats de ma mère et le sport. Une vie simple, mais heureuse.",
+      "family": "Mes parents m'ont tout appris. Ma mère, femme au foyer, m'a transmis l'art de l'organisation et a éveillé ma passion pour la cuisine (qui est aujourd'hui un de mes passe-temps favoris !). Mon père, ingénieur mécanicien dans une centrale thermique, a été ma première inspiration. Il m'a donné le goût des sciences, des calculs, et a toujours admiré la France. C'est lui qui m'a inscrit dans une école française, me transmettant son amour pour ce pays, sa culture et son histoire.",
+      "computer": "En parallèle, une autre passion grandissait. Je me souviens du premier ordinateur que mon père m'a offert à 7 ans : un vieux laptop HP sous Windows XP, son ancien PC de travail. J'ai été subjugué. Je l'ai démonté, j'ai bidouillé, expérimenté... jusqu'à ce que je le casse. Mais ma curiosité était piquée. Rapidement, je suis devenu \"l'informaticien\" de la famille : je montais des PC, je gérais le routeur, je conseillais mes parents pour leurs achats. À l'époque, ce n'était qu'un hobby ; mon rêve était ailleurs.",
+      "dream": "Je voulais être comme mon père. Ingénieur, mais dans le nucléaire, une énergie en laquelle je crois. J'ai donc tracé ma route : Bac Scientifique, puis départ pour la France avec un plan bien établi, direction la classe préparatoire aux grandes écoles.",
+      "challenge": "Mais la vie m'a réservé d'autres surprises.",
+      "struggle": "Cette période a été marquée par le décès de mon oncle, dont j'étais très proche, et d'autres soucis personnels. Ce cocktail m'a fait trébucher. Je n'ai pas réussi ma première année. Ce fut mon premier véritable échec, et le choc fut brutal. Le lycéen brillant que j'étais s'est senti soudainement inutile. J'ai décidé de rentrer à Maurice pour me ressourcer, mais aussi pour aider mon père, dont la santé déclinait, à gérer notre entreprise familiale, une société de vente de compléments alimentaires que j'allais finir par diriger moi-même.",
+      "introspection": "Je suis resté deux ans à Maurice. Deux ans pour faire une pause introspective, me \"soigner\" mentalement et me retrouver. J'ai fini par diriger l'entreprise : e-commerce, vente directe, gestion des stocks, relation client. C'est là que j'ai appris à me demander ce qu'un chiffre veut vraiment dire pour la personne qui doit décider avec, pas seulement ce qu'il vaut techniquement. J'ai aussi appris la guitare en autodidacte, pour développer cette facette artistique qui manquait à mon profil purement scientifique.",
+      "return": "À la suite de ces deux années, sans avoir oublié mon rêve initial mais ne pouvant pas repartir en classe préparatoire, j'ai découvert le programme de l'ECE, qui permettait d'intégrer la première année de leur cycle préparatoire en semestre accéléré dès le mois de mars ; je m'y suis donc inscrit. Mais la difficulté de reprendre des études aussi intenses m'a surpris, et je suis tombé malade à la même période : cette année-là a été compliquée. La directrice de formation a néanmoins repéré mon potentiel en informatique, j'avais tout de même obtenu d'excellentes notes, et m'a proposé de rejoindre plutôt leur Bachelor. J'ai longuement hésité, car cela s'éloignait de mon rêve initial, mais j'ai fini par accepter. Et là, ce fut la révélation.",
+      "revelation": "J'ai compris que ce n'était pas l'informatique que je n'aimais pas, mais la manière dont on me l'avait enseignée en prépa. En Bachelor, tout était basé sur des cas pratiques, des projets innovants. Ma passion endormie s'est réveillée d'un coup.",
+      "webdev": "Au début, c'est le développement web qui m'a fasciné. Il me permettait d'exprimer ma créativité et de mener un projet de A à Z. Je suis un grand admirateur d'Apple, de leur capacité à créer des produits à la fois innovants, puissants, utiles et beaux, et c'est une philosophie que j'applique à tout ce que je construis.",
+      "dataAI": "Puis une nouvelle matière a tout changé : la Data et l'IA. Et j'ai réalisé que mon détour était en fait un atout : savoir livrer une application complète, ça veut dire que je ne me contente pas d'entraîner un modèle, je sais l'exposer via une API, le brancher à un back-end et le mettre entre les mains d'un vrai utilisateur. Le dev et la data ont cessé d'être deux chemins pour n'en former qu'un.",
+      "building": "Depuis, je mets tout ça en pratique. Chez Purecontrol, je travaille sur du vrai machine learning en production : pipelines ETL, détection d'anomalies de fuites d'eau, prévision sur séries temporelles IoT. De mon côté, j'ai livré RiskLens, une plateforme d'analyse de risques où un système de cache a fait passer les temps de réponse de 2,8 s à 45 ms ; ThoraxAI, un classifieur de radiographies thoraciques atteignant 0,971 d'AUC avec des prédictions explicables ; un outil RAG qui rédige ses propres études de cas ; et ce portfolio lui-même. J'ai même construit Career Agent, un outil qui rédige mes CV et lettres de motivation sur mesure.",
+      "philosophy": "S'il y a un fil rouge dans tout ça, c'est celui-ci : la distance entre « ça marche techniquement » et « quelqu'un peut s'en servir pour décider ». Un modèle qui tourne une fois dans un notebook est un prototype ; un modèle qui tourne proprement à chaque mise à jour de données, sans intervention, est un produit. Un dashboard que personne n'ouvre est un projet raté. Cette distance, c'est elle que je veux réduire, à chaque fois.",
+      "sovereignty1": "J'ai aussi compris l'importance de nos données, l'or de ce siècle, et, avec effroi, à quel point l'Europe a pris du retard et est devenue dépendante. Quand une poignée d'hyperscalers américains gèrent l'essentiel du cloud, et qu'une simple mise à jour Windows peut paralyser des aéroports, cela fait peur pour notre indépendance.",
+      "sovereignty2": "L'indépendance compte énormément pour moi, et j'essaie de la vivre plutôt que de la prêcher : j'héberge chez des fournisseurs européens comme Scaleway et Infomaniak, et je m'appuie sur des outils respectueux de la vie privée. C'est pour ça que je me spécialise en Data & IA pour la finance, l'infrastructure de données du secteur financier européen est exactement le genre de chose qu'on ne peut pas se permettre de déléguer. Un continent si riche par son histoire et sa culture ne peut pas rester autant à la traîne.",
+      "comeback": "Et la boucle s'est bouclée d'une façon que je n'aurais jamais imaginée. Après avoir échoué à ces mêmes classes préparatoires pour lesquelles j'avais traversé un océan, j'ai été admis dans trois masters, et j'ai choisi celui qui comptait le plus : un diplôme conjoint avec les Mines de Paris - PSL, l'une des plus prestigieuses écoles d'ingénieurs de France. La grande école qui m'avait échappé est précisément celle que je rejoins aujourd'hui.",
+      "closing": "Voilà mon histoire, vous savez désormais un peu mieux qui se cache derrière cet ordinateur, et qui sera peut-être votre prochain collaborateur. Je recherche actuellement une alternance en data engineering et IA à partir de septembre 2026, alors n'hésitez pas à me contacter, quel que soit le projet. Je vous souhaite une excellente journée !",
+      "signature": "EXOWZ"
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "description": "Connectons-nous et construisons quelque chose ensemble",
+    "contactInfo": "Informations de Contact",
+    "sendMessage": "Envoyer un Message",
+    "labels": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "location": "Localisation"
+    },
+    "location": "Paris, France",
+    "submit": "Envoyer le Message"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "description": "Explorez mon travail en data, IA et développement web",
+    "empty": "Aucun projet"
+  }
+}

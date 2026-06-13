@@ -1,0 +1,26 @@
+{
+  "title": "Colophon",
+  "intro": "This site is a small playground. I wanted my portfolio to feel like a place you explore, not a page you scroll.",
+  "sections": [
+    {
+      "heading": "Concept",
+      "body": "On desktop it behaves like an operating system, a menu bar, a dock, and draggable windows you can open and arrange. On phones it becomes a hand-built iOS-style shell: a springboard, app sheets, gestures, even a Projects folder. Same content, two worlds that each feel native."
+    },
+    {
+      "heading": "Stack",
+      "body": "Built with Next.js 16 (App Router, Turbopack, React 19), TypeScript and Tailwind CSS. It's fully bilingual through next-intl, with identical content in English and French."
+    },
+    {
+      "heading": "Design & type",
+      "body": "Motion is handled with Framer Motion, and the fluid background is a three.js WebGL effect (LiquidEther) that gracefully steps down on weaker devices or when reduced-motion is on. The boot greeting is handwritten with Tegaki, and the projects run through an Embla carousel. Type pairs two custom display faces, Stanley and TakenByVultures, with Geist for UI and mono."
+    },
+    {
+      "heading": "Hosting & privacy",
+      "body": "Hosted on Vercel with light, privacy-minded analytics, no heavy third-party tracking. The contact form is server-validated with React Email templates and sent through Resend, protected by a honeypot and timing checks. A small thing, but data minimalism is a principle here, not an afterthought."
+    },
+    {
+      "heading": "Source",
+      "body": "No templates and no page builders, every window, gesture and animation is hand-coded. The SEO is done properly too: localized metadata, Open Graph images, a sitemap and robots. Happy to talk through any of it."
+    }
+  ]
+}

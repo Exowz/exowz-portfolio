@@ -1,0 +1,26 @@
+{
+  "title": "Principles",
+  "intro": "A few convictions that shape how I build, and why.",
+  "items": [
+    {
+      "title": "Useful and beautiful",
+      "body": "I'm a long-time admirer of Apple: technology should be powerful and a pleasure to use, never one at the expense of the other. I sweat the small details of every project (the motion, the wording, the empty states), because that craft is what turns a tool into a product."
+    },
+    {
+      "title": "European digital sovereignty",
+      "body": "When most of the cloud sits with a handful of US providers and a single Windows update can ground airports, that's a real problem for our independence. I want to help Europe build its own data and AI infrastructure, it's the thread running through everything I study."
+    },
+    {
+      "title": "Own your data",
+      "body": "Data is the gold of this century, and it shouldn't be quietly harvested by default. I build with privacy in mind: minimal tracking, a clear purpose, EU-friendly hosting. Your data should work for you, not against you."
+    },
+    {
+      "title": "Build it end to end",
+      "body": "I like to own a project from the first sketch to production, data, backend, frontend, deployment. Understanding the whole chain is how I learn fastest and how I ship things that actually hold together."
+    },
+    {
+      "title": "Always learning",
+      "body": "I came to computer science the long way round, and it taught me that curiosity beats credentials. I'm self-taught in plenty of things, guitar included, and I treat every project as an excuse to learn one new thing properly."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Colophon",
+  "intro": "Ce site est un petit terrain de jeu. Je voulais que mon portfolio donne envie d'explorer, pas qu'on se contente de le faire défiler.",
+  "sections": [
+    {
+      "heading": "Concept",
+      "body": "Sur ordinateur, il se comporte comme un système d'exploitation, une barre de menu, un dock, des fenêtres déplaçables que l'on ouvre et range à sa guise. Sur mobile, il devient une interface façon iOS faite main : un springboard, des feuilles d'application, des gestes, et même un dossier Projets. Le même contenu, deux univers qui semblent chacun natifs."
+    },
+    {
+      "heading": "Stack",
+      "body": "Construit avec Next.js 16 (App Router, Turbopack, React 19), TypeScript et Tailwind CSS. Le site est entièrement bilingue grâce à next-intl, avec un contenu identique en anglais et en français."
+    },
+    {
+      "heading": "Design & typographie",
+      "body": "Les animations reposent sur Framer Motion, et le fond fluide est un effet WebGL en three.js (LiquidEther) qui s'allège automatiquement sur les appareils modestes ou quand le mode mouvement réduit est activé. Le message d'accueil au démarrage est écrit à la main avec Tegaki, et les projets défilent dans un carrousel Embla. La typographie associe deux polices d'affichage sur mesure, Stanley et TakenByVultures, à Geist pour l'interface et le mono."
+    },
+    {
+      "heading": "Hébergement & vie privée",
+      "body": "Hébergé sur Vercel avec une analytique légère et respectueuse, pas de tracking tiers lourd. Le formulaire de contact est validé côté serveur, avec des templates React Email envoyés via Resend, et protégé par un honeypot et des vérifications de timing. Un détail, mais ici la sobriété des données est un principe, pas une option."
+    },
+    {
+      "heading": "Sources",
+      "body": "Aucun template ni page builder, chaque fenêtre, chaque geste et chaque animation est codé à la main. Le SEO est soigné aussi : métadonnées localisées, images Open Graph, sitemap et robots. Avec plaisir si vous voulez en discuter."
+    }
+  ]
+}
