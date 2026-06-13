@@ -4,6 +4,7 @@ import { IconCheck, IconRefresh, IconSettings, IconTerminal2 } from '@tabler/ico
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { useCommandPalette } from '@/components/command/CommandPaletteProvider';
 
 const LOCALES = [
   { code: 'en-GB', label: 'English', flag: '🇬🇧' },
@@ -20,6 +21,7 @@ export function SettingsWindow() {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations('settings');
+  const commandPalette = useCommandPalette();
 
   return (
     <div className="p-5 md:p-12">
@@ -92,8 +94,8 @@ export function SettingsWindow() {
           </button>
           <button
             type="button"
-            disabled
-            className="flex items-center justify-center gap-2 rounded-2xl border px-4 py-3 text-sm opacity-60"
+            onClick={commandPalette.open}
+            className="flex items-center justify-center gap-2 rounded-2xl border px-4 py-3 text-sm"
             style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)', background: 'var(--window-content-bg)' }}
           >
             <IconTerminal2 className="h-4 w-4" />

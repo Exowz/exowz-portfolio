@@ -1,0 +1,10 @@
+{
+  "title": "Command Palette",
+  "placeholder": "Search commands, projects, and pages...",
+  "empty": "No results found.",
+  "navigation": "Navigation",
+  "projects": "Projects",
+  "actions": "Actions",
+  "language": "Language",
+  "toggleTheme": "Toggle theme"
+}

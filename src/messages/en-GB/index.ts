@@ -13,8 +13,9 @@ import k11 from "./projects.json";
 import k12 from "./principles.json";
 import k13 from "./colophon.json";
 import k14 from "./now.json";
+import k15 from "./commandPalette.json";
 
-export default {
+const messages = {
   "seo": k0,
   "HoldingPage": k1,
   "nav": k2,
@@ -29,5 +30,8 @@ export default {
   "projects": k11,
   "principles": k12,
   "colophon": k13,
-  "now": k14
+  "now": k14,
+  "commandPalette": k15
 };
+
+export default messages;

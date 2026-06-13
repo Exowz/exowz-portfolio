@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { LanguageButtonProps } from './language-types';
 
-export default function LanguageButtonMobile({ isActive, toggleMenu, currentLocale }: LanguageButtonProps) {
+export default function LanguageButtonMobile({ isActive, toggleMenu }: LanguageButtonProps) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 

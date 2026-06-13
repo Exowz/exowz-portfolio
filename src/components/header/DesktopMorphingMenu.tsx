@@ -63,59 +63,56 @@ export function DesktopMorphingMenu({
   const isDark = theme === 'dark';
   const surfaceStyle = isDark
     ? {
-        background: isOpen ? 'rgba(26, 26, 26, 0.95)' : 'rgba(26, 26, 26, 0.6)',
+        background: 'rgba(26, 26, 26, 0.95)',
         border: '1px solid rgba(255, 255, 255, 0.12)',
-        boxShadow: isOpen ? '0 8px 32px rgba(0, 0, 0, 0.5)' : '0 4px 16px rgba(0, 0, 0, 0.4)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
       }
     : {
-        background: isOpen ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.2)',
+        background: 'rgba(255, 255, 255, 0.95)',
         border: '1px solid rgba(0, 0, 0, 0.08)',
-        boxShadow: isOpen ? '0 8px 32px rgba(0, 0, 0, 0.15)' : '0 4px 16px rgba(0, 0, 0, 0.08)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
       };
 
   const close = () => setIsOpen(false);
 
   return (
     <div ref={rootRef} className="relative" style={{ width: buttonWidth, height: buttonHeight }}>
-      <motion.div
-        aria-hidden={!isOpen}
-        className="absolute top-0 overflow-hidden will-change-transform"
-        initial={false}
-        animate={{
-          scaleX: isOpen ? 1 : closedScaleX,
-          scaleY: isOpen ? 1 : closedScaleY,
-          borderRadius: isOpen ? 24 : 16,
-        }}
-        transition={{
-          duration: isOpen ? 0.42 : 0.34,
-          ease: [0.76, 0, 0.24, 1],
-        }}
-        style={{
-          width: panelWidth,
-          height: panelHeight,
-          left: align === 'left' ? 0 : undefined,
-          right: align === 'right' ? 0 : undefined,
-          transformOrigin: align === 'left' ? 'top left' : 'top right',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          ...surfaceStyle,
-        }}
-      >
-        <AnimatePresence>
-          {isOpen && (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="menu-surface"
+            className="absolute top-0 overflow-hidden will-change-transform"
+            initial={{ scaleX: closedScaleX, scaleY: closedScaleY, borderRadius: 16, opacity: 0.96 }}
+            animate={{ scaleX: 1, scaleY: 1, borderRadius: 24, opacity: 1 }}
+            exit={{ scaleX: closedScaleX, scaleY: closedScaleY, borderRadius: 16, opacity: 0 }}
+            transition={{
+              duration: 0.38,
+              ease: [0.76, 0, 0.24, 1],
+            }}
+            style={{
+              width: panelWidth,
+              height: panelHeight,
+              left: align === 'left' ? 0 : undefined,
+              right: align === 'right' ? 0 : undefined,
+              transformOrigin: align === 'left' ? 'top left' : 'top right',
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              ...surfaceStyle,
+            }}
+          >
             <motion.div
               key="menu-content"
               initial={{ opacity: 0, y: 8, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 4, scale: 0.98 }}
-              transition={{ duration: 0.18, delay: 0.12, ease: 'easeOut' }}
+              transition={{ duration: 0.18, delay: 0.1, ease: 'easeOut' }}
               className="h-full w-full"
             >
               {children({ close })}
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="absolute top-0 z-50" style={{ left: align === 'left' ? 0 : undefined, right: align === 'right' ? 0 : undefined }}>
         {renderButton({ isOpen, toggle: () => setIsOpen((current) => !current), close })}

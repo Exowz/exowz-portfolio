@@ -13,6 +13,7 @@ import { MobileShell } from '@/components/mobile/MobileShell';
 import { MobileAppSheet } from '@/components/mobile/MobileAppSheet';
 import { Header } from '@/components/header/Header';
 import { WindowManagerProvider } from '@/components/desktop/WindowManager';
+import { CommandPaletteProvider } from '@/components/command/CommandPaletteProvider';
 import { LayoutContent } from '@/components/layout/LayoutContent';
 import BootWrapper from '@/components/boot/BootWrapper';
 import { Analytics } from '@vercel/analytics/react';
@@ -102,13 +103,15 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <BootWrapper>
               <WindowManagerProvider>
-                <Header />
-                <PageTransition>
-                  <LayoutContent>{children}</LayoutContent>
-                </PageTransition>
-                <Dock />
-                <MobileShell />
-                <MobileAppSheet />
+                <CommandPaletteProvider>
+                  <Header />
+                  <PageTransition>
+                    <LayoutContent>{children}</LayoutContent>
+                  </PageTransition>
+                  <Dock />
+                  <MobileShell />
+                  <MobileAppSheet />
+                </CommandPaletteProvider>
               </WindowManagerProvider>
             </BootWrapper>
           </NextIntlClientProvider>
