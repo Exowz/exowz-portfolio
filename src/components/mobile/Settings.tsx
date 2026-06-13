@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { IconX, IconCheck } from '@tabler/icons-react';
-import { useLocale } from 'next-intl';
+import { IconX, IconCheck, IconRefresh } from '@tabler/icons-react';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -13,16 +13,18 @@ const LOCALES = [
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
 ];
 
-interface MinimalSettingsProps {
+interface SettingsProps {
   open: boolean;
   onClose: () => void;
 }
 
-/** Minimal temporary Settings for P0a: theme (existing toggle) + an inline locale switcher. */
-export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
+/** Mobile Settings sheet: theme, language, and replay intro. */
+export function Settings({ open, onClose }: SettingsProps) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('settings');
+  const tCommon = useTranslations('common');
   const panelRef = useRef<HTMLDivElement>(null);
 
   useHistoryOverlay(open, onClose);
@@ -33,6 +35,12 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
 
   const switchLocale = (code: string) => {
     router.replace(pathname, { locale: code });
+  };
+
+  const replayIntro = () => {
+    onClose();
+    localStorage.removeItem('hasSeenBoot');
+    window.location.reload();
   };
 
   return (
@@ -50,7 +58,7 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
             ref={panelRef}
             role="dialog"
             aria-modal="true"
-            aria-label="Settings"
+            aria-label={t('title')}
             tabIndex={-1}
             initial={{ y: 40 }}
             animate={{ y: 0 }}
@@ -69,12 +77,12 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
           >
             <div className="mb-4 flex items-center justify-between">
               <span className="text-base font-medium" style={{ color: 'var(--foreground)' }}>
-                Settings
+                {t('title')}
               </span>
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={tCommon('close')}
                 className="flex h-7 w-7 items-center justify-center rounded-full"
                 style={{ background: 'var(--window-close-btn)' }}
               >
@@ -82,23 +90,26 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
               </button>
             </div>
 
-            {/* Theme */}
             <div className="flex items-center justify-between py-2">
-              <span className="text-sm" style={{ color: 'var(--foreground)' }}>Theme</span>
+              <span className="text-sm" style={{ color: 'var(--foreground)' }}>
+                {t('theme')}
+              </span>
               <ThemeToggle />
             </div>
 
-            {/* Language */}
             <div className="py-2">
-              <span className="text-sm" style={{ color: 'var(--foreground)' }}>Language</span>
+              <span className="text-sm" style={{ color: 'var(--foreground)' }}>
+                {t('language')}
+              </span>
               <div className="mt-2 flex gap-2">
-                {LOCALES.map((l) => {
-                  const active = locale === l.code;
+                {LOCALES.map((language) => {
+                  const active = locale === language.code;
+
                   return (
                     <button
-                      key={l.code}
+                      key={language.code}
                       type="button"
-                      onClick={() => switchLocale(l.code)}
+                      onClick={() => switchLocale(language.code)}
                       aria-pressed={active}
                       className="flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm"
                       style={{
@@ -107,13 +118,25 @@ export function MinimalSettings({ open, onClose }: MinimalSettingsProps) {
                         background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                       }}
                     >
-                      <span className="text-lg">{l.flag}</span>
-                      <span>{l.label}</span>
+                      <span className="text-lg">{language.flag}</span>
+                      <span>{language.label}</span>
                       {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent)' }} />}
                     </button>
                   );
                 })}
               </div>
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={replayIntro}
+                className="flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm"
+                style={{ color: 'var(--foreground)', border: '1px solid var(--window-border)' }}
+              >
+                <IconRefresh className="h-4 w-4" />
+                <span>{t('replayIntro')}</span>
+              </button>
             </div>
           </motion.div>
         </motion.div>

@@ -20,13 +20,34 @@
     "about": "À propos",
     "contact": "Contact",
     "resume": "CV",
-    "menu": "Menu"
+    "menu": "Menu",
+    "settings": "Réglages"
   },
   "boot": {
     "tapToBegin": "appuyez pour commencer",
     "swipeUpToEnter": "Glissez vers le haut pour entrer",
     "tapToEnter": "Appuyez pour entrer",
     "enterSite": "Entrer sur le site"
+  },
+  "common": {
+    "close": "Fermer",
+    "back": "Retour"
+  },
+  "settings": {
+    "title": "Réglages",
+    "theme": "Thème",
+    "language": "Langue",
+    "replayIntro": "Revoir l'intro"
+  },
+  "categories": {
+    "all": "Tous",
+    "ai": "IA",
+    "data": "Données",
+    "web": "Web",
+    "openSource": "Open Source"
+  },
+  "comingSoon": {
+    "soon": "Bientôt disponible."
   },
   "pages": {
     "about": {
@@ -78,7 +99,8 @@
     },
     "projects": {
       "title": "Mes Projets",
-      "description": "Explorez mon travail en data, IA et développement web"
+      "description": "Explorez mon travail en data, IA et développement web",
+      "empty": "Aucun projet"
     }
   },
   "projects": {

@@ -29,12 +29,12 @@ export const DOCK_APPS: MobileApp[] = [
   { id: 'resume', labelKey: 'resume', label: null, kind: 'external', href: '/resume-{locale}.pdf' },
 ];
 
-/** Springboard grid apps. TODO(P3): give principles/colophon real routes; settings opens the minimal overlay. */
+/** Springboard grid apps. TODO(P3): give principles/colophon real routes. */
 export const GRID_APPS: MobileApp[] = [
   { id: 'github', labelKey: null, label: 'GitHub', kind: 'external', href: 'https://github.com/exowz' },
   { id: 'linkedin', labelKey: null, label: 'LinkedIn', kind: 'external', href: 'https://linkedin.com/in/mke-kapoor' },
   { id: 'principles', labelKey: null, label: 'Principles', kind: 'overlay', href: null },
-  { id: 'settings', labelKey: null, label: 'Settings', kind: 'overlay', href: null },
+  { id: 'settings', labelKey: 'settings', label: null, kind: 'overlay', href: null },
   { id: 'colophon', labelKey: null, label: 'Colophon', kind: 'overlay', href: null },
 ];
 

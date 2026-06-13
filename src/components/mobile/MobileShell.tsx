@@ -8,7 +8,7 @@ import { parseActiveRoute } from '@/components/windows/activeRoute';
 import { StatusBar } from './StatusBar';
 import { SpringBoard } from './SpringBoard';
 import { MobileDock } from './MobileDock';
-import { MinimalSettings } from './MinimalSettings';
+import { Settings } from './Settings';
 import { ComingSoon } from './ComingSoon';
 
 const ProjectsFolder = dynamic(
@@ -54,7 +54,7 @@ export function MobileShell() {
       <SpringBoard locale={locale} onOpenOverlay={handleOpenOverlay} />
       <MobileDock locale={locale} onOpenOverlay={handleOpenOverlay} />
       <ProjectsFolder open={overlay === 'projects'} onClose={() => setOverlay(null)} />
-      <MinimalSettings open={overlay === 'settings'} onClose={() => setOverlay(null)} />
+      <Settings open={overlay === 'settings'} onClose={() => setOverlay(null)} />
       <ComingSoon
         open={overlay === 'soon'}
         title={soonTitle}

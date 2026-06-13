@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IconX } from '@tabler/icons-react';
+import { useTranslations } from 'next-intl';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 
 interface ComingSoonProps {
@@ -14,6 +15,8 @@ interface ComingSoonProps {
 
 /** Tiny placeholder sheet for grid apps whose content arrives in a later phase. */
 export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
+  const t = useTranslations('comingSoon');
+  const tCommon = useTranslations('common');
   const panelRef = useRef<HTMLDivElement>(null);
 
   useHistoryOverlay(open, onClose);
@@ -58,7 +61,7 @@ export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={tCommon('close')}
                 className="flex h-7 w-7 items-center justify-center rounded-full"
                 style={{ background: 'var(--window-close-btn)' }}
               >
@@ -66,7 +69,7 @@ export function ComingSoon({ open, title, onClose }: ComingSoonProps) {
               </button>
             </div>
             <p className="text-center text-lg font-medium" style={{ color: 'var(--foreground)' }}>{title}</p>
-            <p className="mt-1 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>Coming soon.</p>
+            <p className="mt-1 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>{t('soon')}</p>
           </motion.div>
         </motion.div>
       )}

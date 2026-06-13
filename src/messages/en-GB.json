@@ -20,13 +20,34 @@
     "about": "About",
     "contact": "Contact",
     "resume": "Resume",
-    "menu": "Menu"
+    "menu": "Menu",
+    "settings": "Settings"
   },
   "boot": {
     "tapToBegin": "tap to begin",
     "swipeUpToEnter": "Swipe up to enter",
     "tapToEnter": "Tap to enter",
     "enterSite": "Enter site"
+  },
+  "common": {
+    "close": "Close",
+    "back": "Back"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "replayIntro": "Replay intro"
+  },
+  "categories": {
+    "all": "All",
+    "ai": "AI",
+    "data": "Data",
+    "web": "Web",
+    "openSource": "Open Source"
+  },
+  "comingSoon": {
+    "soon": "Coming soon."
   },
   "pages": {
     "about": {
@@ -78,7 +99,8 @@
     },
     "projects": {
       "title": "My Projects",
-      "description": "Explore my work in data, AI, and web development"
+      "description": "Explore my work in data, AI, and web development",
+      "empty": "No projects"
     }
   },
   "projects": {

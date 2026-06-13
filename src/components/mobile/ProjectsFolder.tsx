@@ -24,6 +24,8 @@ const ICONS_PER_PAGE = 9;
 export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
   const t = useTranslations('projects');
   const tPage = useTranslations('pages.projects');
+  const tCommon = useTranslations('common');
+  const tCategories = useTranslations('categories');
   const [filter, setFilter] = useState<Filter>('All');
   const [selectedPage, setSelectedPage] = useState(0);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -36,6 +38,13 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
   }, [open]);
 
   const filters: Filter[] = ['All', ...PROJECT_CATEGORIES];
+  const filterLabelKey: Record<Filter, string> = {
+    All: 'all',
+    AI: 'ai',
+    Data: 'data',
+    Web: 'web',
+    'Open Source': 'openSource',
+  };
   const pages = useMemo(
     () => chunk(projects.filter((project) => projectMatchesCategory(project, filter)), ICONS_PER_PAGE),
     [filter],
@@ -99,7 +108,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={tCommon('close')}
                 className="flex h-7 w-7 items-center justify-center rounded-full"
                 style={{ background: 'var(--window-close-btn)' }}
               >
@@ -124,7 +133,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
                       background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                     }}
                   >
-                    {currentFilter}
+                    {tCategories(filterLabelKey[currentFilter])}
                   </button>
                 );
               })}
@@ -132,7 +141,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
 
             {pages.length === 0 ? (
               <div className="flex min-h-[18rem] items-center justify-center text-sm text-muted-foreground">
-                No projects
+                {tPage('empty')}
               </div>
             ) : (
               <div className="overflow-hidden" ref={emblaRef}>
