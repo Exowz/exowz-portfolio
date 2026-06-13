@@ -39,7 +39,7 @@ export function NowWidgetBody() {
 
       <div
         ref={scrollRef}
-        className="mt-1.5 min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="mt-1.5 min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent)',

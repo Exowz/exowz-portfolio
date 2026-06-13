@@ -18,12 +18,14 @@ export function IdentityWidget() {
         boxShadow: 'var(--dock-item-shadow)',
       }}
     >
-      <h1 className="font-stanley text-3xl font-bold leading-none tracking-tight" style={{ color: 'var(--foreground)' }}>
-        Exowz
-      </h1>
-      <p className="mt-2 text-xs italic" style={{ color: 'var(--text-secondary)' }}>
-        Code, Design, Create.
-      </p>
+      <div className="flex w-full -translate-x-[0.08em] flex-col items-center">
+        <h1 className="font-stanley text-3xl font-bold leading-none tracking-tight" style={{ color: 'var(--foreground)' }}>
+          Exowz
+        </h1>
+        <p className="mt-2 text-xs italic" style={{ color: 'var(--text-secondary)' }}>
+          Code, Design, Create.
+        </p>
+      </div>
     </motion.div>
   );
 }

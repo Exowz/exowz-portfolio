@@ -45,7 +45,7 @@ export function ControlCenter({ open, onClose }: ControlCenterProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 z-[80] flex items-start justify-center px-4 pt-16"
+          className="absolute inset-0 z-[80] flex items-start justify-center px-4 pt-16 backdrop-blur-xl"
           style={{ background: 'rgba(0,0,0,0.25)' }}
           onClick={onClose}
         >
@@ -69,10 +69,7 @@ export function ControlCenter({ open, onClose }: ControlCenterProps) {
             }}
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>
-                {t('title')}
-              </span>
+            <div className="relative mb-4 flex items-center">
               <button
                 type="button"
                 onClick={onClose}
@@ -82,6 +79,9 @@ export function ControlCenter({ open, onClose }: ControlCenterProps) {
               >
                 <IconX className="h-4 w-4" style={{ color: 'var(--window-btn-icon)' }} />
               </button>
+              <span className="absolute left-1/2 -translate-x-1/2 text-base font-semibold" style={{ color: 'var(--foreground)' }}>
+                {t('title')}
+              </span>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
