@@ -10,10 +10,12 @@ describe('sitemap', () => {
     expect(paths).toContain('about');
     expect(paths).toContain('projects');
     expect(paths).toContain('contact');
+    expect(paths).toContain('principles');
+    expect(paths).toContain('colophon');
     for (const p of projects) {
       expect(paths).toContain(`projects/${p.slug}`);
     }
-    expect(paths).toHaveLength(4 + projects.length);
+    expect(paths).toHaveLength(6 + projects.length);
   });
 
   it('emits one URL per path per locale', () => {

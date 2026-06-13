@@ -5,7 +5,7 @@ import { buildAlternates } from '@/lib/seo';
 
 // All locale-relative paths the site exposes (without the locale segment).
 export function getSitePaths(): string[] {
-  const staticPaths = ['', 'about', 'projects', 'contact'];
+  const staticPaths = ['', 'about', 'projects', 'contact', 'principles', 'colophon'];
   const projectPaths = projects.map((p) => `projects/${p.slug}`);
   return [...staticPaths, ...projectPaths];
 }

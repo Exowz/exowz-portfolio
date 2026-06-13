@@ -142,6 +142,8 @@ export function AboutWindow() {
               <p>{t('story.revelation')}</p>
               <p>{t('story.webdev')}</p>
               <p className="text-lg font-semibold text-accent">{t('story.dataAI')}</p>
+              <p>{t('story.building')}</p>
+              <p>{t('story.philosophy')}</p>
             </div>
 
             {/* Sovereignty - IMAGE on left, TEXT on right */}
@@ -159,6 +161,7 @@ export function AboutWindow() {
               <div className="flex-1 space-y-4">
                 <p>{t('story.sovereignty1')}</p>
                 <p>{t('story.sovereignty2')}</p>
+                <p>{t('story.comeback')}</p>
               </div>
             </div>
 

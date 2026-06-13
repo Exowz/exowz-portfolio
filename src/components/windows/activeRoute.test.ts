@@ -16,6 +16,15 @@ describe('parseActiveRoute', () => {
     expect(parseActiveRoute('/en-GB/projects')).toEqual({ id: 'projects', isHome: false, isDetail: false, slug: null });
   });
 
+  it('detects principles and colophon', () => {
+    expect(parseActiveRoute('/en-GB/principles')).toEqual({
+      id: 'principles', isHome: false, isDetail: false, slug: null,
+    });
+    expect(parseActiveRoute('/fr/colophon')).toEqual({
+      id: 'colophon', isHome: false, isDetail: false, slug: null,
+    });
+  });
+
   it('detects a project detail with its slug', () => {
     expect(parseActiveRoute('/en-GB/projects/risk-lens')).toEqual({
       id: 'projects', isHome: false, isDetail: true, slug: 'risk-lens',

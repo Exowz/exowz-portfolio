@@ -33,9 +33,9 @@ export const DOCK_APPS: MobileApp[] = [
 export const GRID_APPS: MobileApp[] = [
   { id: 'github', labelKey: null, label: 'GitHub', kind: 'external', href: 'https://github.com/exowz' },
   { id: 'linkedin', labelKey: null, label: 'LinkedIn', kind: 'external', href: 'https://linkedin.com/in/mke-kapoor' },
-  { id: 'principles', labelKey: null, label: 'Principles', kind: 'overlay', href: null },
+  { id: 'principles', labelKey: null, label: 'Principles', kind: 'route', href: '/{locale}/principles' },
   { id: 'settings', labelKey: 'settings', label: null, kind: 'overlay', href: null },
-  { id: 'colophon', labelKey: null, label: 'Colophon', kind: 'overlay', href: null },
+  { id: 'colophon', labelKey: null, label: 'Colophon', kind: 'route', href: '/{locale}/colophon' },
 ];
 
 /** Resolve an app's destination for a locale. Returns null for overlay apps (no URL). */

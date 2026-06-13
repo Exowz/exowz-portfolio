@@ -5,13 +5,16 @@ import { AnimatePresence } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-import { IconFolder, IconUser, IconMail } from '@tabler/icons-react';
+import { IconFolder, IconUser, IconMail, IconScale, IconBook2 } from '@tabler/icons-react';
 import { Window } from './Window';
 import { ProjectsWindow } from '../windows/ProjectsWindow';
 import { AboutWindow } from '../windows/AboutWindow';
 import { ContactWindow } from '../windows/ContactWindow';
+import { PrinciplesWindow } from '../windows/PrinciplesWindow';
+import { ColophonWindow } from '../windows/ColophonWindow';
 import dynamic from 'next/dynamic';
 import { useIsMobile } from '@/components/hooks/useIsMobile';
+import { parseActiveRoute } from '@/components/windows/activeRoute';
 
 // Dynamically import the project detail component
 const ProjectDetailWindow = dynamic(
@@ -19,7 +22,7 @@ const ProjectDetailWindow = dynamic(
   { ssr: false }
 );
 
-type WindowType = 'projects' | 'about' | 'contact' | null;
+type WindowType = 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | null;
 
 interface WindowManagerContextType {
   openWindow: WindowType;
@@ -46,16 +49,8 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
   // CRITICAL: Only sync URL -> window state (one direction)
   // Don't call setState inside useEffect without proper guards
   useEffect(() => {
-    let newWindow: WindowType = null;
-
-    // Match /projects or /projects/[slug] - both show projects window
-    if (pathname.includes('/projects')) {
-      newWindow = 'projects';
-    } else if (pathname.includes('/about')) {
-      newWindow = 'about';
-    } else if (pathname.includes('/contact')) {
-      newWindow = 'contact';
-    }
+    const { id } = parseActiveRoute(pathname);
+    const newWindow: WindowType = id;
 
     // Only update if different (prevents infinite loop)
     setOpenWindow(prevWindow => {
@@ -99,6 +94,8 @@ function WindowContent({
   const tProjects = useTranslations('pages.projects');
   const tAbout = useTranslations('pages.about');
   const tContact = useTranslations('pages.contact');
+  const tPrinciples = useTranslations('principles');
+  const tColophon = useTranslations('colophon');
 
   return (
     <AnimatePresence mode="wait">
@@ -137,6 +134,28 @@ function WindowContent({
           icon={<IconMail className="w-full h-full" />}
         >
           <ContactWindow />
+        </Window>
+      )}
+
+      {openWindow === 'principles' && (
+        <Window
+          key="principles"
+          id="principles"
+          title={tPrinciples('title')}
+          icon={<IconScale className="w-full h-full" />}
+        >
+          <PrinciplesWindow />
+        </Window>
+      )}
+
+      {openWindow === 'colophon' && (
+        <Window
+          key="colophon"
+          id="colophon"
+          title={tColophon('title')}
+          icon={<IconBook2 className="w-full h-full" />}
+        >
+          <ColophonWindow />
         </Window>
       )}
     </AnimatePresence>

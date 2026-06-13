@@ -1,12 +1,12 @@
 {
-    "seo": {
-      "siteTitle": "Exowz — Data, AI & Web Developer",
-      "siteDescription": "Portfolio of Exowz (Mathew Kapoor), a Data & AI development student crafting data, machine-learning, and web experiences.",
-      "home": {
-        "title": "Exowz — Data, AI & Web Developer",
-        "description": "Step into the desktop portfolio of Exowz — explore projects across data, AI, and web development."
-      }
-    },
+  "seo": {
+    "siteTitle": "Exowz — Data, AI & Web Developer",
+    "siteDescription": "Portfolio of Exowz (Mathew Kapoor), a Data & AI development student crafting data, machine-learning, and web experiences.",
+    "home": {
+      "title": "Exowz — Data, AI & Web Developer",
+      "description": "Step into the desktop portfolio of Exowz — explore projects across data, AI, and web development."
+    }
+  },
   "HoldingPage": {
     "name": "Exowz",
     "intro1": "Mathew Kristoffer Ewan KAPOOR is a developer passionate about Data, AI, and building interactive web experiences.",
@@ -21,7 +21,9 @@
     "contact": "Contact",
     "resume": "Resume",
     "menu": "Menu",
-    "settings": "Settings"
+    "settings": "Settings",
+    "principles": "Principles",
+    "colophon": "Colophon"
   },
   "boot": {
     "tapToBegin": "tap to begin",
@@ -54,32 +56,35 @@
       "title": "About Me",
       "description": "Learn more about my journey and what I do",
       "name": "Mathew Kristoffer Ewan KAPOOR",
-      "jobTitle": "Data & AI Development Student",
-      "pitch": "Passionate about data analysis, machine learning, and web development, with a strong ambition: to contribute to European digital sovereignty.",
+      "jobTitle": "Data & AI Student · MSc Albert School × Mines de Paris",
+      "pitch": "I build data and AI tools people can actually decide with — closing the gap between 'it works technically' and 'it's genuinely useful.' One ambition runs through everything I do: contributing to European digital sovereignty.",
       "techSkillsTitle": "Technical Skills",
       "techSkills": {
-        "dataAI": "Python, SQL (MySQL, PostgreSQL), Scikit-learn, Pandas, LangChain, RAG, YOLOv8, N8N",
-        "web": "Next.js, React.js, Node.js, TypeScript, Laravel",
-        "cloud": "AWS (Cloud Foundation), C++, Java"
+        "dataAI": "Python, SQL (MySQL, PostgreSQL), Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+        "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+        "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java"
       },
       "storyTitle": "My Story",
       "story": {
-        "intro1": "Hi! My name is Mathew Kristoffer Ewan KAPOOR, but I usually go by Ewan. I'm 23 years old and from Mauritius. I'm currently a student at ECE Paris, studying Data & AI Development, so I live in Paris.",
+        "intro1": "Hi! My name is Mathew Kristoffer Ewan KAPOOR, but I usually go by Ewan. I'm 24, from Mauritius, and I live in Paris. I'm finishing my Bachelor in Data & AI at ECE Paris, and this September I'm starting the MSc Data & AI for Finance — a joint degree between Albert School and Mines de Paris - PSL — as a work-study apprentice.",
         "intro2": "I'm going to tell you my story. Because beyond the developer I am, beyond this portfolio, there's a real person, full of dreams and ambition.",
         "origins1": "My story begins in March 2002, on a small paradise in the Indian Ocean: Mauritius. I grew up surrounded by loving parents who still support me today. My life was punctuated by the beach, family, my mother's delicious meals, and sports. A simple life, but a happy one.",
         "family": "My parents taught me everything. My mother, a homemaker, passed on the art of organization and awakened my passion for cooking (which is now one of my favorite hobbies!). My father, a mechanical engineer at a thermal power plant, was my first inspiration. He gave me a taste for science, calculations, and always admired France. He's the one who enrolled me in a French school, passing on his love for this country, its culture, and its history.",
         "computer": "In parallel, another passion was growing. I remember the first computer my father gave me at 7 years old: an old HP laptop running Windows XP, his old work PC. I was mesmerized. I took it apart, tinkered, experimented... until I broke it. But my curiosity was piqued. Quickly, I became the family's 'IT guy': I built PCs, managed the router, advised my parents on their purchases. At the time, it was just a hobby; my dream was elsewhere.",
         "dream": "I wanted to be like my father. An engineer, but in nuclear energy, which I believe in. So I charted my course: Scientific Baccalaureate, then departure for France with a well-established plan, heading to preparatory classes for engineering schools.",
         "challenge": "But life had other surprises in store for me.",
-        "struggle": "This period was marked by the death of my uncle, to whom I was very close, and other personal issues. This cocktail made me stumble. I didn't succeed in my first year. It was my first real failure, and the shock was brutal. The brilliant high school student I was suddenly felt useless. I decided to return to Mauritius to recharge, but also to help my father, whose health was declining, manage the family business: selling dietary supplements.",
-        "introspection": "I stayed in Mauritius for two years. Two years to take an introspective pause, to 'heal' myself mentally and find myself. I managed the company and learned guitar self-taught, to develop that artistic side I felt was a weak point in my purely scientific profile.",
-        "return": "After these two years, having not forgotten my initial dream but unable to return to preparatory classes, I discovered ECE's program which allowed me to join in an accelerated semester in March, the first year of their preparatory cycle, so I enrolled. However, the difficulty of resuming such intensive studies surprised me, and I also fell ill around the same time - that year was complicated. However, the director of studies noticed my potential in computer science, having still gotten excellent grades, and suggested I do their bachelor's instead. I took a long time to make a decision because it didn't align with my initial dream, but I finally accepted. And that's when the revelation happened.",
+        "struggle": "This period was marked by the death of my uncle, to whom I was very close, and other personal issues. This cocktail made me stumble. I didn't succeed in my first year. It was my first real failure, and the shock was brutal. The brilliant high school student I was suddenly felt useless. I decided to return to Mauritius to recharge, but also to help my father, whose health was declining, manage our family business — a dietary-supplements company I'd end up running myself.",
+        "introspection": "I stayed in Mauritius for two years. Two years to pause, to 'heal' mentally and find myself again. I ended up running the company: e-commerce, direct sales, inventory, customers. That's where I learned to ask what a number actually means for the person who has to make a decision with it — not just what it's worth technically. I also taught myself guitar, to grow the artistic side I felt was missing from a purely scientific profile.",
+        "return": "After these two years, having not forgotten my initial dream but unable to return to preparatory classes, I discovered ECE's program, which let me join the first year of their preparatory cycle through an accelerated semester in March, so I enrolled. The difficulty of resuming such intensive studies caught me off guard, and I fell ill around the same time — that year was a hard one. Even so, the director of studies noticed my potential in computer science, as I'd still earned excellent grades, and suggested I do their Bachelor's instead. I took a long time to decide, because it didn't match my initial dream, but I finally accepted. And that's when the revelation happened.",
         "revelation": "I understood that it wasn't computer science I didn't like, but the way it was taught to me in prep school. In the Bachelor's program, everything was based on practical cases, innovative projects. My dormant passion woke up all at once.",
-        "webdev": "At first, web development fascinated me. It allowed me to express my creativity, to manage a project from A to Z. I'm a great admirer of Apple, for their ability to create products that are innovative, powerful, useful, and beautiful all at once. It's a philosophy I apply to all my projects.",
-        "dataAI": "Then, a new subject changed everything: Data and AI.",
-        "sovereignty1": "I understood the importance of our data, this 'gold of the 21st century.' I also understood, with dread, how much Europe is lagging behind and dependent. When you realize that 70% of the cloud is owned by AWS or that a Windows update can paralyze airports, it's scary for our independence.",
-        "sovereignty2": "And the notion of independence is very important to me. So I'm heading towards this specialization because I want to participate in our independence, European independence! A continent so rich and fabulous, through its history, culture, and civilization cannot be so far behind... That's why I'm now in the world of Data and AI.",
-        "closing": "That's all for my presentation, so you know a little better who's behind this computer and who will potentially be your new collaborator. Have a wonderful day and don't hesitate to contact me for various projects!",
+        "webdev": "Web development fascinated me first. It let me express my creativity and own a project from A to Z. I'm a great admirer of Apple — of their ability to create products that are innovative, powerful, useful and beautiful all at once — and it's a philosophy I bring to everything I build.",
+        "dataAI": "Then a new subject changed everything: Data and AI. And I realised my detour was actually an edge: knowing how to ship a full application means I don't just train a model — I know how to expose it through an API, wire it to a back-end, and put it in front of a real user. Dev and data stopped being two paths and became one.",
+        "building": "Since then, I've put it into practice. At Purecontrol I work on real production machine learning — ETL pipelines, anomaly detection for water leaks, forecasting on IoT time-series. On my own I've shipped RiskLens, a quantitative risk platform where a caching layer cut response times from 2.8s to 45ms; ThoraxAI, a chest X-ray classifier reaching 0.971 AUC with explainable predictions; a RAG tool that writes its own case studies; and this very portfolio. I even built Career Agent, a tool that drafts my tailored CVs and cover letters.",
+        "philosophy": "If there's one thread through all of it, it's this: the distance between 'it works technically' and 'someone can use it to decide.' A model that runs once in a notebook is a prototype; a model that runs cleanly on every data update, untouched, is a product. A dashboard nobody opens is a failed project. That distance is what I want to close, every single time.",
+        "sovereignty1": "I also grasped the importance of our data — the gold of this century — and, with some dread, how far behind and dependent Europe has become. When a handful of US hyperscalers run most of the cloud, and a single Windows update can ground airports, it's frightening for our independence.",
+        "sovereignty2": "Independence matters deeply to me, and I try to live it rather than preach it: I host on European providers like Scaleway and Infomaniak, and I lean on privacy-respecting tools. That's why I'm specialising in Data & AI for finance — Europe's financial data infrastructure is exactly the kind of thing we can't afford to outsource. A continent this rich in history and culture cannot stay this far behind.",
+        "comeback": "And the loop has closed in a way I never expected. After failing the very preparatory classes I'd crossed an ocean for, I was admitted to three master's programmes — and I chose the one that meant the most: a joint degree with Mines de Paris - PSL, one of France's most prestigious engineering schools. The grande école I'd once fallen short of is exactly where I'm now headed.",
+        "closing": "That's my story — now you know a little better who's behind this computer, and who could be your next collaborator. I'm currently looking for a work-study apprenticeship in data engineering and AI from September 2026, so don't hesitate to reach out, whatever the project. Have a wonderful day!",
         "signature": "EXOWZ"
       }
     },
@@ -785,7 +790,7 @@
       ],
       "conclusion": "Ascord exemplifies the power of modern web technologies in creating intuitive, highly collaborative applications. By blending Discord's engaging UI with Asana/Trello's robust task management, it delivers a comprehensive, real-time platform designed to elevate team productivity. This project showcased technical proficiency and a commitment to solving real-world collaboration challenges with innovative, user-centric solutions, representing a vision for future team collaboration."
     },
-     "B2javaECE": {
+    "B2javaECE": {
       "title": "B2javaECE Project",
       "description": "ECE Paris B2 Java portfolio: concepts, algorithms, and software practices.",
       "metadata": {
@@ -1547,5 +1552,71 @@
       "tools": "Tools & Infrastructure",
       "libraries": "Libraries & Frameworks"
     }
+  },
+  "principles": {
+    "title": "Principles",
+    "intro": "A few convictions that shape how I build — and why.",
+    "items": [
+      {
+        "title": "Useful and beautiful",
+        "body": "I'm a long-time admirer of Apple: technology should be powerful and a pleasure to use, never one at the expense of the other. I sweat the small details of every project — the motion, the wording, the empty states — because that craft is what turns a tool into a product."
+      },
+      {
+        "title": "European digital sovereignty",
+        "body": "When most of the cloud sits with a handful of US providers and a single Windows update can ground airports, that's a real problem for our independence. I want to help Europe build its own data and AI infrastructure — it's the thread running through everything I study."
+      },
+      {
+        "title": "Own your data",
+        "body": "Data is the gold of this century, and it shouldn't be quietly harvested by default. I build with privacy in mind: minimal tracking, a clear purpose, EU-friendly hosting. Your data should work for you, not against you."
+      },
+      {
+        "title": "Build it end to end",
+        "body": "I like to own a project from the first sketch to production — data, backend, frontend, deployment. Understanding the whole chain is how I learn fastest and how I ship things that actually hold together."
+      },
+      {
+        "title": "Always learning",
+        "body": "I came to computer science the long way round, and it taught me that curiosity beats credentials. I'm self-taught in plenty of things, guitar included, and I treat every project as an excuse to learn one new thing properly."
+      }
+    ]
+  },
+  "colophon": {
+    "title": "Colophon",
+    "intro": "This site is a small playground. I wanted my portfolio to feel like a place you explore, not a page you scroll.",
+    "sections": [
+      {
+        "heading": "Concept",
+        "body": "On desktop it behaves like an operating system — a menu bar, a dock, and draggable windows you can open and arrange. On phones it becomes a hand-built iOS-style shell: a springboard, app sheets, gestures, even a Projects folder. Same content, two worlds that each feel native."
+      },
+      {
+        "heading": "Stack",
+        "body": "Built with Next.js 16 (App Router, Turbopack, React 19), TypeScript and Tailwind CSS. It's fully bilingual through next-intl, with identical content in English and French."
+      },
+      {
+        "heading": "Design & type",
+        "body": "Motion is handled with Framer Motion, and the fluid background is a three.js WebGL effect — LiquidEther — that gracefully steps down on weaker devices or when reduced-motion is on. The boot greeting is handwritten with Tegaki, and the projects run through an Embla carousel. Type pairs two custom display faces, Stanley and TakenByVultures, with Geist for UI and mono."
+      },
+      {
+        "heading": "Hosting & privacy",
+        "body": "Hosted on Vercel with light, privacy-minded analytics — no heavy third-party tracking. The contact form is server-validated with React Email templates and sent through Resend, protected by a honeypot and timing checks. A small thing, but data minimalism is a principle here, not an afterthought."
+      },
+      {
+        "heading": "Source",
+        "body": "No templates and no page builders — every window, gesture and animation is hand-coded. The SEO is done properly too: localized metadata, Open Graph images, a sitemap and robots. Happy to talk through any of it."
+      }
+    ]
+  },
+  "now": {
+    "title": "Now",
+    "updatedLabel": "Updated",
+    "updated": "June 2026",
+    "intro": "A snapshot of what I'm up to right now.",
+    "items": [
+      "Finishing my Bachelor in Data & AI at ECE Paris.",
+      "Interning as a Data Science / AI engineer at Purecontrol in Rennes, building ML pipelines on IoT time-series.",
+      "Starting an MSc Data & AI for Finance (Albert School × Mines de Paris - PSL) this September, as a work-study apprentice.",
+      "Building this portfolio, and Career Agent — a tool that drafts tailored CVs and cover letters.",
+      "Levelling up on data engineering, MLOps and the cloud (AWS Practitioner in progress).",
+      "Looking for a data engineering / AI work-study apprenticeship from September 2026 — and always open to interesting collaborations."
+    ]
   }
 }

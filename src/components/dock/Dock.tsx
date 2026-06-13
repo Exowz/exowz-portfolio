@@ -4,7 +4,17 @@ import React from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FloatingDock, DockItem } from "@/components/ui/floating-dock";
-import { IconHome, IconFolder, IconUser, IconMail, IconFileText, IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  IconHome,
+  IconFolder,
+  IconUser,
+  IconMail,
+  IconFileText,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconScale,
+  IconBook2,
+} from "@tabler/icons-react";
 
 export function Dock() {
   const params = useParams();
@@ -39,6 +49,20 @@ export function Dock() {
         <IconMail className="h-full w-full" />
       ),
       href: `/${locale}/contact`,
+    },
+    {
+      title: t("principles"),
+      icon: (
+        <IconScale className="h-full w-full" />
+      ),
+      href: `/${locale}/principles`,
+    },
+    {
+      title: t("colophon"),
+      icon: (
+        <IconBook2 className="h-full w-full" />
+      ),
+      href: `/${locale}/colophon`,
     },
     // Divider
     {

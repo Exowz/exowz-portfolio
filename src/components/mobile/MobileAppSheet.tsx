@@ -16,6 +16,8 @@ import { MobileNavBar } from './MobileNavBar';
 import { ProjectsWindow } from '@/components/windows/ProjectsWindow';
 import { AboutWindow } from '@/components/windows/AboutWindow';
 import { ContactWindow } from '@/components/windows/ContactWindow';
+import { PrinciplesWindow } from '@/components/windows/PrinciplesWindow';
+import { ColophonWindow } from '@/components/windows/ColophonWindow';
 
 const ProjectDetailWindow = dynamic(() => import('@/components/windows/ProjectDetailWindow'), {
   ssr: false,
@@ -33,6 +35,8 @@ export function MobileAppSheet() {
   const tProjectsPage = useTranslations('pages.projects');
   const tAboutPage = useTranslations('pages.about');
   const tContactPage = useTranslations('pages.contact');
+  const tPrinciples = useTranslations('principles');
+  const tColophon = useTranslations('colophon');
   const tProjects = useTranslations('projects');
 
   if (isMobile !== true) return null;
@@ -50,6 +54,12 @@ export function MobileAppSheet() {
   } else if (id === 'contact') {
     title = tContactPage('title');
     content = <ContactWindow />;
+  } else if (id === 'principles') {
+    title = tPrinciples('title');
+    content = <PrinciplesWindow />;
+  } else if (id === 'colophon') {
+    title = tColophon('title');
+    content = <ColophonWindow />;
   } else if (isDetail && slug) {
     const project = getProjectBySlug(slug);
     title = project ? tProjects(`${project.key}.title`) : tProjectsPage('title');

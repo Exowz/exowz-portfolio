@@ -9,14 +9,13 @@ import { StatusBar } from './StatusBar';
 import { SpringBoard } from './SpringBoard';
 import { MobileDock } from './MobileDock';
 import { Settings } from './Settings';
-import { ComingSoon } from './ComingSoon';
 
 const ProjectsFolder = dynamic(
   () => import('./ProjectsFolder').then((module) => module.ProjectsFolder),
   { ssr: false },
 );
 
-type Overlay = 'settings' | 'soon' | 'projects' | null;
+type Overlay = 'settings' | 'projects' | null;
 
 /**
  * The iOS shell layer. Mobile-only (`md:hidden`), home-route-only. Covers the
@@ -26,7 +25,6 @@ export function MobileShell() {
   const pathname = usePathname();
   const locale = useLocale();
   const [overlay, setOverlay] = useState<Overlay>(null);
-  const [soonTitle, setSoonTitle] = useState<string | null>(null);
 
   // Render the springboard only on the locale-home route.
   if (!parseActiveRoute(pathname).isHome) return null;
@@ -38,11 +36,7 @@ export function MobileShell() {
     }
     if (id === 'projects') {
       setOverlay('projects');
-      return;
     }
-    // principles / colophon → placeholder until their content/routes land (P3).
-    setSoonTitle(id === 'principles' ? 'Principles' : 'Colophon');
-    setOverlay('soon');
   };
 
   // NOTE(P0b/a11y): on mobile home this fixed layer visually COVERS the macOS
@@ -55,14 +49,6 @@ export function MobileShell() {
       <MobileDock locale={locale} onOpenOverlay={handleOpenOverlay} />
       <ProjectsFolder open={overlay === 'projects'} onClose={() => setOverlay(null)} />
       <Settings open={overlay === 'settings'} onClose={() => setOverlay(null)} />
-      <ComingSoon
-        open={overlay === 'soon'}
-        title={soonTitle}
-        onClose={() => {
-          setOverlay(null);
-          setSoonTitle(null);
-        }}
-      />
     </div>
   );
 }

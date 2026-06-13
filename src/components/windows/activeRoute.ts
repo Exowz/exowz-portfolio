@@ -1,4 +1,4 @@
-export type ActiveWindowId = 'projects' | 'about' | 'contact' | null;
+export type ActiveWindowId = 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | null;
 
 export interface ActiveRoute {
   /** Which app the current route maps to, or null for home/unknown. */
@@ -21,6 +21,8 @@ export function parseActiveRoute(pathname: string): ActiveRoute {
 
   if (rest[0] === 'about') return { id: 'about', isHome: false, isDetail: false, slug: null };
   if (rest[0] === 'contact') return { id: 'contact', isHome: false, isDetail: false, slug: null };
+  if (rest[0] === 'principles') return { id: 'principles', isHome: false, isDetail: false, slug: null };
+  if (rest[0] === 'colophon') return { id: 'colophon', isHome: false, isDetail: false, slug: null };
   if (rest[0] === 'projects') {
     const isDetail = rest.length > 1;
     return { id: 'projects', isHome: false, isDetail, slug: isDetail ? rest[1] : null };
