@@ -8,6 +8,8 @@ import LiquidEther from './LiquidEther';
 import { DesktopWidgets } from './DesktopWidgets';
 import { shouldRunLiquidSim } from '@/lib/deviceCapability';
 import { parseActiveRoute } from '@/components/windows/activeRoute';
+import { AssistantChat } from '@/components/assistant/AssistantChat';
+import { AssistantPill } from '@/components/assistant/AssistantPill';
 
 export function Desktop() {
   const { theme } = useTheme();
@@ -21,9 +23,14 @@ export function Desktop() {
     : ['#f5f5f5', '#ffffff', '#64b5f6']; // Light mode - lighter colors
 
   const [runSim, setRunSim] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(false);
   useEffect(() => {
     setRunSim(shouldRunLiquidSim());
   }, []);
+
+  useEffect(() => {
+    if (isWindowOpen) setAssistantOpen(false);
+  }, [isWindowOpen]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-background">
@@ -82,6 +89,12 @@ export function Desktop() {
         </div>
       )}
       {!isWindowOpen && <DesktopWidgets />}
+      {!isWindowOpen && (
+        <div className="pointer-events-none fixed bottom-24 left-1/2 z-[55] hidden -translate-x-1/2 md:block">
+          <AssistantPill onOpen={() => setAssistantOpen(true)} />
+        </div>
+      )}
+      <AssistantChat open={!isWindowOpen && assistantOpen} onClose={() => setAssistantOpen(false)} variant="desktop" />
     </div>
   );
 }

@@ -1,0 +1,23 @@
+{
+  "pillPrompts": [
+    "Frag mich alles...",
+    "Frag Ewan...",
+    "Frag nach meiner Arbeit...",
+    "Frag nach RiskLens...",
+    "Frag nach meinen Prinzipien..."
+  ],
+  "greeting": "Hallo. Ich bin Ewans Assistent. Frag mich nach seiner Arbeit, seinen Projekten oder seinen Prinzipien.",
+  "title": "Frag Ewan",
+  "examples": [
+    "Was ist RiskLens?",
+    "Wonach sucht Ewan?",
+    "Woran glaubt Ewan?"
+  ],
+  "inputPlaceholder": "Nachricht schreiben...",
+  "send": "Senden",
+  "close": "Schließen",
+  "clear": "Leeren",
+  "errorGeneric": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  "errorRateLimited": "Du hast viele Nachrichten gesendet. Bitte versuche es in ein paar Minuten erneut.",
+  "unavailable": "Der Assistent ist vorübergehend nicht verfügbar."
+}

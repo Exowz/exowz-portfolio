@@ -1,0 +1,23 @@
+{
+  "pillPrompts": [
+    "Ask me anything...",
+    "Ask Ewan...",
+    "Ask about my work...",
+    "Ask about RiskLens...",
+    "Ask about my principles..."
+  ],
+  "greeting": "Hi. I'm Ewan's assistant. Ask me about his work, projects, or principles.",
+  "title": "Ask Ewan",
+  "examples": [
+    "What's RiskLens?",
+    "What is Ewan looking for?",
+    "What does Ewan believe in?"
+  ],
+  "inputPlaceholder": "Type a message...",
+  "send": "Send",
+  "close": "Close",
+  "clear": "Clear",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "errorRateLimited": "You've sent a lot of messages. Please try again in a few minutes.",
+  "unavailable": "The assistant is temporarily unavailable."
+}
