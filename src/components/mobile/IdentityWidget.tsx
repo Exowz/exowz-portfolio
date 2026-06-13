@@ -9,7 +9,7 @@ export function IdentityWidget() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="rounded-3xl px-5 py-6"
+      className="rounded-3xl px-5 py-6 text-center"
       style={{
         background: 'var(--dock-item-bg)',
         backdropFilter: 'blur(20px) saturate(180%)',

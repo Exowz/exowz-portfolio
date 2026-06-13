@@ -101,10 +101,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>
-                {tPage('title')}
-              </span>
+            <div className="relative mb-3 flex items-center">
               <button
                 type="button"
                 onClick={onClose}
@@ -114,6 +111,9 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
               >
                 <IconX className="h-4 w-4" style={{ color: 'var(--window-btn-icon)' }} />
               </button>
+              <span className="absolute left-1/2 -translate-x-1/2 text-base font-semibold" style={{ color: 'var(--foreground)' }}>
+                {tPage('title')}
+              </span>
             </div>
 
             <div className="mb-4 flex flex-wrap gap-2">
