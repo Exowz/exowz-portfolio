@@ -102,8 +102,8 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <BootWrapper>
-              <WindowManagerProvider>
-                <CommandPaletteProvider>
+              <CommandPaletteProvider>
+                <WindowManagerProvider>
                   <Header />
                   <PageTransition>
                     <LayoutContent>{children}</LayoutContent>
@@ -111,8 +111,8 @@ export default async function LocaleLayout({
                   <Dock />
                   <MobileShell />
                   <MobileAppSheet />
-                </CommandPaletteProvider>
-              </WindowManagerProvider>
+                </WindowManagerProvider>
+              </CommandPaletteProvider>
             </BootWrapper>
           </NextIntlClientProvider>
         </ThemeProvider>
