@@ -12,8 +12,6 @@ import {
   IconFileText,
   IconBrandGithub,
   IconBrandLinkedin,
-  IconScale,
-  IconBook2,
 } from "@tabler/icons-react";
 
 export function Dock() {
@@ -49,20 +47,6 @@ export function Dock() {
         <IconMail className="h-full w-full" />
       ),
       href: `/${locale}/contact`,
-    },
-    {
-      title: t("principles"),
-      icon: (
-        <IconScale className="h-full w-full" />
-      ),
-      href: `/${locale}/principles`,
-    },
-    {
-      title: t("colophon"),
-      icon: (
-        <IconBook2 className="h-full w-full" />
-      ),
-      href: `/${locale}/colophon`,
     },
     // Divider
     {

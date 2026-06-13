@@ -10,13 +10,14 @@ import { SpringBoard } from './SpringBoard';
 import { MobileDock } from './MobileDock';
 import { Settings } from './Settings';
 import { ControlCenter } from './ControlCenter';
+import { NowOverlay } from './NowOverlay';
 
 const ProjectsFolder = dynamic(
   () => import('./ProjectsFolder').then((module) => module.ProjectsFolder),
   { ssr: false },
 );
 
-type Overlay = 'settings' | 'projects' | 'control' | null;
+type Overlay = 'settings' | 'projects' | 'control' | 'now' | null;
 
 /**
  * The iOS shell layer. Mobile-only (`md:hidden`), home-route-only. Covers the
@@ -46,9 +47,10 @@ export function MobileShell() {
   return (
     <div className="mobile-wallpaper fixed inset-0 z-[60] flex flex-col md:hidden">
       <StatusBar onOpenControlCenter={() => setOverlay('control')} />
-      <SpringBoard locale={locale} onOpenOverlay={handleOpenOverlay} />
+      <SpringBoard locale={locale} onOpenOverlay={handleOpenOverlay} onOpenNow={() => setOverlay('now')} />
       <MobileDock locale={locale} onOpenOverlay={handleOpenOverlay} />
       <ProjectsFolder open={overlay === 'projects'} onClose={() => setOverlay(null)} />
+      <NowOverlay open={overlay === 'now'} onClose={() => setOverlay(null)} />
       <Settings open={overlay === 'settings'} onClose={() => setOverlay(null)} />
       <ControlCenter open={overlay === 'control'} onClose={() => setOverlay(null)} />
     </div>

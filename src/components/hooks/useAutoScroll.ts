@@ -13,7 +13,7 @@ interface AutoScrollOptions {
  * scrolling available. Consumers should render the content twice for looping.
  */
 export function useAutoScroll(ref: RefObject<HTMLElement | null>, options: AutoScrollOptions) {
-  const { enabled, speed = 0.35, resumeDelay = 2500 } = options;
+  const { enabled, speed = 0.5, resumeDelay = 1100 } = options;
 
   useEffect(() => {
     const el = ref.current;
