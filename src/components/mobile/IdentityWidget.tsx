@@ -18,7 +18,7 @@ export function IdentityWidget() {
         boxShadow: 'var(--dock-item-shadow)',
       }}
     >
-      <h1 className="font-stanley text-4xl font-bold" style={{ color: 'var(--foreground)' }}>
+      <h1 className="font-stanley text-3xl font-bold tracking-tight" style={{ color: 'var(--foreground)' }}>
         Exowz
       </h1>
       <p className="mt-1 text-sm italic" style={{ color: 'var(--text-secondary)' }}>
