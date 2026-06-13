@@ -37,9 +37,18 @@
   },
   "settings": {
     "title": "Settings",
+    "intro": "Configure this little operating system.",
+    "description": "Desktop settings gather the portfolio controls that should feel system-level rather than content-level.",
+    "appearance": "Appearance",
     "theme": "Theme",
     "language": "Language",
-    "replayIntro": "Replay intro"
+    "replayIntro": "Replay intro",
+    "openSettings": "Open Settings...",
+    "commandPalette": "Command Palette",
+    "system": "System",
+    "systemDescription": "This portfolio is intentionally built as a desktop and mobile shell: localized, privacy-minded, and designed around native-feeling interactions.",
+    "colophon": "Colophon",
+    "principles": "Principles"
   },
   "categories": {
     "all": "All",

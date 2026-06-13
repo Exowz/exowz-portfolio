@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
-import { ThemeToggle } from '@/components/theme-toggle';
 import Language from './Language';
 import { useTheme } from 'next-themes';
 import { useClock } from '@/components/hooks/useClock';
+import { SettingsMenu } from './SettingsMenu';
 
 export function Header() {
   const locale = useLocale();
@@ -78,9 +78,9 @@ export function Header() {
           </div>
         </div>
 
-        {/* Theme Toggle - Far Right */}
+        {/* Settings Menu - Far Right */}
         <div className="flex-shrink-0 pointer-events-auto">
-          <ThemeToggle />
+          <SettingsMenu />
         </div>
       </div>
     </header>

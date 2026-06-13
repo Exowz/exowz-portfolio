@@ -5,13 +5,14 @@ import { AnimatePresence } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-import { IconFolder, IconUser, IconMail, IconScale, IconBook2 } from '@tabler/icons-react';
+import { IconFolder, IconUser, IconMail, IconScale, IconBook2, IconSettings } from '@tabler/icons-react';
 import { Window } from './Window';
 import { ProjectsWindow } from '../windows/ProjectsWindow';
 import { AboutWindow } from '../windows/AboutWindow';
 import { ContactWindow } from '../windows/ContactWindow';
 import { PrinciplesWindow } from '../windows/PrinciplesWindow';
 import { ColophonWindow } from '../windows/ColophonWindow';
+import { SettingsWindow } from '../windows/SettingsWindow';
 import dynamic from 'next/dynamic';
 import { useIsMobile } from '@/components/hooks/useIsMobile';
 import { parseActiveRoute } from '@/components/windows/activeRoute';
@@ -22,7 +23,7 @@ const ProjectDetailWindow = dynamic(
   { ssr: false }
 );
 
-type WindowType = 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | null;
+type WindowType = 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | 'settings' | null;
 
 interface WindowManagerContextType {
   openWindow: WindowType;
@@ -96,6 +97,7 @@ function WindowContent({
   const tContact = useTranslations('pages.contact');
   const tPrinciples = useTranslations('principles');
   const tColophon = useTranslations('colophon');
+  const tSettings = useTranslations('settings');
 
   return (
     <AnimatePresence mode="wait">
@@ -156,6 +158,17 @@ function WindowContent({
           icon={<IconBook2 className="w-full h-full" />}
         >
           <ColophonWindow />
+        </Window>
+      )}
+
+      {openWindow === 'settings' && (
+        <Window
+          key="settings"
+          id="settings"
+          title={tSettings('title')}
+          icon={<IconSettings className="w-full h-full" />}
+        >
+          <SettingsWindow />
         </Window>
       )}
     </AnimatePresence>

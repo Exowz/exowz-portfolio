@@ -16,7 +16,8 @@ export function LayoutContent({ children }: { children: ReactNode }) {
                             route === 'about' ||
                             route === 'contact' ||
                             route === 'principles' ||
-                            route === 'colophon';
+                            route === 'colophon' ||
+                            route === 'settings';
 
   // Check if we're on a detail page
   const isDetailPage = route.startsWith('projects/');

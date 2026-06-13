@@ -9,7 +9,7 @@ export function IdentityWidget() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="flex flex-col items-center justify-center rounded-3xl px-6 py-5 text-center"
+      className="flex min-h-[7.25rem] flex-col items-center justify-center rounded-3xl px-6 pt-7 pb-6 text-center"
       style={{
         background: 'var(--dock-item-bg)',
         backdropFilter: 'blur(20px) saturate(180%)',
@@ -18,7 +18,7 @@ export function IdentityWidget() {
         boxShadow: 'var(--dock-item-shadow)',
       }}
     >
-      <div className="flex w-full -translate-x-[0.08em] flex-col items-center">
+      <div className="flex w-full translate-y-1 flex-col items-center">
         <h1 className="font-stanley text-3xl font-bold leading-none tracking-tight" style={{ color: 'var(--foreground)' }}>
           Exowz
         </h1>

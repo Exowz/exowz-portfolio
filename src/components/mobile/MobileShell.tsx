@@ -11,6 +11,7 @@ import { MobileDock } from './MobileDock';
 import { Settings } from './Settings';
 import { ControlCenter } from './ControlCenter';
 import { NowOverlay } from './NowOverlay';
+import { MobileAmbientBackground } from './MobileAmbientBackground';
 
 const ProjectsFolder = dynamic(
   () => import('./ProjectsFolder').then((module) => module.ProjectsFolder),
@@ -46,6 +47,7 @@ export function MobileShell() {
   // macOS mobile chrome on the home route (see design doc "Known limitations").
   return (
     <div className="mobile-wallpaper fixed inset-0 z-[60] flex flex-col md:hidden">
+      <MobileAmbientBackground />
       <StatusBar onOpenControlCenter={() => setOverlay('control')} />
       <SpringBoard locale={locale} onOpenOverlay={handleOpenOverlay} onOpenNow={() => setOverlay('now')} />
       <MobileDock locale={locale} onOpenOverlay={handleOpenOverlay} />

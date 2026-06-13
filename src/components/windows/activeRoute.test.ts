@@ -25,6 +25,12 @@ describe('parseActiveRoute', () => {
     });
   });
 
+  it('detects settings', () => {
+    expect(parseActiveRoute('/en-GB/settings')).toEqual({
+      id: 'settings', isHome: false, isDetail: false, slug: null,
+    });
+  });
+
   it('detects a project detail with its slug', () => {
     expect(parseActiveRoute('/en-GB/projects/risk-lens')).toEqual({
       id: 'projects', isHome: false, isDetail: true, slug: 'risk-lens',
