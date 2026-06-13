@@ -1,0 +1,26 @@
+{
+  "title": "Colofón",
+  "intro": "Este sitio es un pequeño patio de recreo. Quería que mi portafolio se sintiera como un lugar que exploras, no una página que recorres.",
+  "sections": [
+    {
+      "heading": "Concepto",
+      "body": "En el escritorio se comporta como un sistema operativo: una barra de menú, un dock y ventanas arrastrables que puedes abrir y organizar. En los teléfonos se convierte en una carcasa estilo iOS construida a mano: un springboard, hojas de aplicaciones, gestos e incluso una carpeta de Proyectos. El mismo contenido, dos mundos que se sienten nativos en cada uno."
+    },
+    {
+      "heading": "Stack",
+      "body": "Construido con Next.js 16 (App Router, Turbopack, React 19), TypeScript y Tailwind CSS. Es totalmente bilingüe a través de next-intl, con contenido idéntico en inglés y francés."
+    },
+    {
+      "heading": "Diseño y tipografía",
+      "body": "El movimiento se gestiona con Framer Motion, y el fondo fluido es un efecto WebGL de three.js (LiquidEther) que se reduce con elegancia en dispositivos más débiles o cuando el movimiento reducido está activado. El saludo de arranque está escrito a mano con Tegaki, y los proyectos se presentan a través de un carrusel Embla. La tipografía combina dos fuentes de visualización personalizadas, Stanley y TakenByVultures, con Geist para la interfaz de usuario y mono."
+    },
+    {
+      "heading": "Alojamiento y privacidad",
+      "body": "Alojado en Vercel con análisis ligeros y respetuosos con la privacidad, sin seguimiento pesado de terceros. El formulario de contacto se valida en el servidor con plantillas de React Email y se envía a través de Resend, protegido por un honeypot y verificaciones de tiempo. Un pequeño detalle, pero el minimalismo de datos es un principio aquí, no una ocurrencia de último momento."
+    },
+    {
+      "heading": "Fuente",
+      "body": "Sin plantillas ni constructores de páginas, cada ventana, gesto y animación está codificado a mano. El SEO también se ha hecho correctamente: metadatos localizados, imágenes Open Graph, un sitemap y robots. Estaré encantado de hablar sobre cualquiera de estos puntos."
+    }
+  ]
+}

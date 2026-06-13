@@ -3,16 +3,8 @@
 import { useLocale } from 'next-intl';
 import LanguageButton from './language-button';
 import LanguagePanel from './language-panel';
-import { LanguageOption } from './language-types';
+import { Locale, languages } from './language-types';
 import { DesktopMorphingMenu } from './DesktopMorphingMenu';
-
-// Define Locale type for supported languages
-type Locale = 'en-GB' | 'fr';
-
-const languages: Record<Locale, LanguageOption> = {
-  'en-GB': { name: 'English', flag: '🇬🇧', code: 'GB', region: 'United Kingdom', locale: 'en-GB' },
-  'fr': { name: 'Français', flag: '🇫🇷', code: 'FR', region: 'France', locale: 'fr' }
-};
 
 export default function LanguageMenu() {
   const locale = useLocale();
@@ -23,6 +15,8 @@ export default function LanguageMenu() {
   return (
     <DesktopMorphingMenu
       align="left"
+      panelWidth={420}
+      panelHeight={430}
       renderButton={({ isOpen, toggle }) => (
         <LanguageButton
           isActive={isOpen}

@@ -7,11 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 import { ThemeToggle } from '@/components/theme-toggle';
-
-const LOCALES = [
-  { code: 'en-GB', label: 'English', flag: '🇬🇧' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-];
+import { languageOptions, type Locale } from '@/components/header/language-types';
 
 interface SettingsProps {
   open: boolean;
@@ -33,7 +29,7 @@ export function Settings({ open, onClose }: SettingsProps) {
     if (open) panelRef.current?.focus();
   }, [open]);
 
-  const switchLocale = (code: string) => {
+  const switchLocale = (code: Locale) => {
     router.replace(pathname, { locale: code });
   };
 
@@ -101,17 +97,17 @@ export function Settings({ open, onClose }: SettingsProps) {
               <span className="text-sm" style={{ color: 'var(--foreground)' }}>
                 {t('language')}
               </span>
-              <div className="mt-2 flex gap-2">
-                {LOCALES.map((language) => {
-                  const active = locale === language.code;
+              <div className="mt-2 grid max-h-52 grid-cols-2 gap-2 overflow-y-auto pr-1">
+                {languageOptions.map((language) => {
+                  const active = locale === language.locale;
 
                   return (
                     <button
-                      key={language.code}
+                      key={language.locale}
                       type="button"
-                      onClick={() => switchLocale(language.code)}
+                      onClick={() => switchLocale(language.locale)}
                       aria-pressed={active}
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm"
+                      className="grid min-w-0 grid-cols-[22px_1fr_16px] items-center gap-2 rounded-xl px-3 py-2 text-sm"
                       style={{
                         color: 'var(--foreground)',
                         border: active ? '1px solid var(--accent)' : '1px solid var(--window-border)',
@@ -119,7 +115,7 @@ export function Settings({ open, onClose }: SettingsProps) {
                       }}
                     >
                       <span className="text-lg">{language.flag}</span>
-                      <span>{language.label}</span>
+                      <span className="truncate text-left">{language.name}</span>
                       {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent)' }} />}
                     </button>
                   );

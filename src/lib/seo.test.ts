@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildAlternates, buildOgImageUrl, SITE_URL } from './seo';
+import { routing } from '@/i18n/routing';
 
 describe('buildAlternates', () => {
   it('builds canonical + hreflang for the home path', () => {
@@ -25,7 +26,7 @@ describe('buildAlternates', () => {
 
   it('includes an entry for every locale plus x-default', () => {
     const a = buildAlternates('en-GB', 'contact');
-    expect(Object.keys(a.languages).sort()).toEqual(['en-GB', 'fr', 'x-default']);
+    expect(Object.keys(a.languages).sort()).toEqual([...routing.locales, 'x-default'].sort());
   });
 });
 

@@ -1,0 +1,10 @@
+{
+  "title": "コマンドパレット",
+  "placeholder": "コマンド、プロジェクト、ページを検索...",
+  "empty": "结果が见つかりません。",
+  "navigation": "ナビゲーション",
+  "projects": "プロジェクト",
+  "actions": "アクション",
+  "language": "言语",
+  "toggleTheme": "テーマの切り替え"
+}

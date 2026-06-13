@@ -7,22 +7,7 @@ import { useRouter, usePathname } from '@/i18n/routing';
 import { useTheme } from 'next-themes';
 import LanguageButtonMobile from './language-button-mobile';
 import { IconCheck } from '@tabler/icons-react';
-
-// Define Locale type for supported languages
-type Locale = 'en-GB' | 'fr';
-
-interface LanguageOption {
-  name: string;
-  flag: string;
-  code: string;
-  region: string;
-  locale: string;
-}
-
-const languages: Record<Locale, LanguageOption> = {
-  'en-GB': { name: 'English', flag: '🇬🇧', code: 'GB', region: 'United Kingdom', locale: 'en-GB' },
-  'fr': { name: 'Français', flag: '🇫🇷', code: 'FR', region: 'France', locale: 'fr' }
-};
+import { Locale, languages } from './language-types';
 
 export default function LanguageMenuMobile() {
   const locale = useLocale();
@@ -128,7 +113,7 @@ export default function LanguageMenuMobile() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute top-14 left-0 w-48 rounded-2xl overflow-hidden"
+            className="absolute left-0 top-14 max-h-[min(70vh,32rem)] w-64 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl"
             style={dropdownStyle()}
           >
             {Object.entries(languages).map(([key, language]) => {
@@ -137,7 +122,7 @@ export default function LanguageMenuMobile() {
                 <button
                   key={key}
                   onClick={() => switchLocale(language.locale)}
-                  className={`w-full px-4 py-3 flex items-center gap-3 transition-colors ${
+                  className={`flex w-full items-center gap-3 px-3 py-2.5 transition-colors ${
                     isActive
                       ? theme === 'dark'
                         ? 'bg-[rgba(100,181,246,0.15)] text-[#64b5f6]'
@@ -147,7 +132,7 @@ export default function LanguageMenuMobile() {
                         : 'text-[#333333] hover:bg-black/5'
                   }`}
                 >
-                  <span className="text-xl">{language.flag}</span>
+                  <span className="text-lg">{language.flag}</span>
                   <div className="flex-1 text-left">
                     <div className="text-sm font-semibold">{language.name}</div>
                     <div className="text-xs opacity-70">{language.region}</div>

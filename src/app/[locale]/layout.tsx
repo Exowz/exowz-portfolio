@@ -51,7 +51,7 @@ export async function generateMetadata({
     openGraph: {
       type: 'website',
       siteName: SITE_NAME,
-      locale: OG_LOCALE[locale],
+      locale: OG_LOCALE[locale] ?? OG_LOCALE[routing.defaultLocale],
       url: `${SITE_URL}/${locale}`,
       title,
       description,
@@ -79,7 +79,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as 'en-GB' | 'fr')) {
+  if (!(routing.locales as readonly string[]).includes(locale)) {
     notFound();
   }
 

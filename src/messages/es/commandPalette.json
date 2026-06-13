@@ -1,0 +1,10 @@
+{
+  "title": "Paleta de comandos",
+  "placeholder": "Buscar comandos, proyectos y páginas...",
+  "empty": "No se encontraron resultados.",
+  "navigation": "Navegación",
+  "projects": "Proyectos",
+  "actions": "Acciones",
+  "language": "Idioma",
+  "toggleTheme": "Cambiar tema"
+}

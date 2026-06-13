@@ -7,11 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
-
-const LOCALES = [
-  { code: 'en-GB', label: 'English', flag: '🇬🇧' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-];
+import { languageOptions } from '@/components/header/language-types';
 
 interface ControlCenterProps {
   open: boolean;
@@ -91,36 +87,40 @@ export function ControlCenter({ open, onClose }: ControlCenterProps) {
               </div>
 
               <div className="rounded-2xl border p-3" style={{ borderColor: 'var(--window-border)' }}>
+                <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>{t('replayIntro')}</p>
+                <button
+                  type="button"
+                  onClick={replayIntro}
+                  className="flex h-10 w-full items-center justify-center gap-2 rounded-xl border px-2 text-xs"
+                  style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)' }}
+                >
+                  <IconRefresh className="h-4 w-4" />
+                  <span className="truncate">{t('replayIntro')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-3 rounded-2xl border p-3" style={{ borderColor: 'var(--window-border)' }}>
                 <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>{t('language')}</p>
-                <div className="flex gap-2">
-                  {LOCALES.map((item) => (
+                <div className="grid max-h-36 grid-cols-4 gap-2 overflow-y-auto pr-1">
+                  {languageOptions.map((item) => (
                     <button
-                      key={item.code}
+                      key={item.locale}
                       type="button"
-                      onClick={() => router.replace(pathname, { locale: item.code })}
-                      aria-pressed={locale === item.code}
-                      className="flex h-10 flex-1 items-center justify-center rounded-xl text-lg"
+                      onClick={() => router.replace(pathname, { locale: item.locale })}
+                      aria-label={item.name}
+                      aria-pressed={locale === item.locale}
+                      className="flex h-10 items-center justify-center rounded-xl text-lg"
                       style={{
-                        border: locale === item.code ? '1px solid var(--accent)' : '1px solid var(--window-border)',
-                        background: locale === item.code ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
+                        border: locale === item.locale ? '1px solid var(--accent)' : '1px solid var(--window-border)',
+                        background: locale === item.locale ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                       }}
                     >
                       {item.flag}
                     </button>
                   ))}
                 </div>
-              </div>
             </div>
-
-            <button
-              type="button"
-              onClick={replayIntro}
-              className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border px-3 py-2.5 text-sm"
-              style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)' }}
-            >
-              <IconRefresh className="h-4 w-4" />
-              <span>{t('replayIntro')}</span>
-            </button>
 
             <div className="mt-3 grid grid-cols-2 gap-3">
               <a

@@ -8,7 +8,7 @@ Personal portfolio website for Mathew Kapoor (Exowz), featuring a sophisticated 
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4 (using `@theme inline` in `globals.css`)
 - **Animation:** Framer Motion, Motion, Three.js (`@react-three/fiber`)
-- **Internationalization:** `next-intl` (Locales: `en-GB`, `fr`)
+- **Internationalization:** `next-intl` (12 fully translated modular locales: `en-GB`, `fr`, `es`, `pt`, `de`, `it`, `zh`, `ja`, `ru`, `ko`, `hi`, `ar`)
 - **Theme:** `next-themes` (Dark/Light mode with system detection)
 - **UI Components:** shadcn/ui (Radix UI), Aceternity UI, custom "Stanley" font
 - **Testing:** Vitest

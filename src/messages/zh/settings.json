@@ -1,0 +1,15 @@
+{
+  "title": "设置",
+  "intro": "配置这个小型操作系统。",
+  "description": "桌面设置汇集了应该具有系统级而非内容级感觉的作品集控件。",
+  "appearance": "外观",
+  "theme": "主题",
+  "language": "语言",
+  "replayIntro": "重播开场",
+  "openSettings": "打开设置...",
+  "commandPalette": "命令面板",
+  "system": "系统",
+  "systemDescription": "此作品集特意构建为桌面和移动外壳：本地化、注重隐私，并围绕原生感的交互进行设计。",
+  "colophon": "关于本站",
+  "principles": "原则"
+}

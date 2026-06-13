@@ -1,0 +1,15 @@
+{
+  "title": "Configurações",
+  "intro": "Configure este pequeno sistema operacional.",
+  "description": "As configurações de desktop reúnem os controles do portfólio que devem parecer de nível de sistema em vez de nível de conteúdo.",
+  "appearance": "Aparência",
+  "theme": "Tema",
+  "language": "Idioma",
+  "replayIntro": "Repetir intro",
+  "openSettings": "Abrir configurações...",
+  "commandPalette": "Paleta de comandos",
+  "system": "Sistema",
+  "systemDescription": "Este portfólio foi construído intencionalmente como um shell desktop e mobile: localizado, focado em privacidade e projetado em torno de interações que parecem nativas.",
+  "colophon": "Colofão",
+  "principles": "Princípios"
+}

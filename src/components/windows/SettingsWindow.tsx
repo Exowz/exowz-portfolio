@@ -5,11 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useCommandPalette } from '@/components/command/CommandPaletteProvider';
-
-const LOCALES = [
-  { code: 'en-GB', label: 'English', flag: '🇬🇧' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-];
+import { languageOptions } from '@/components/header/language-types';
 
 function replayIntro() {
   localStorage.removeItem('hasSeenBoot');
@@ -54,27 +50,25 @@ export function SettingsWindow() {
           <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
             {t('language')}
           </h2>
-          <div className="grid gap-3 md:grid-cols-2">
-            {LOCALES.map((item) => {
-              const active = locale === item.code;
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {languageOptions.map((item) => {
+              const active = locale === item.locale;
 
               return (
                 <button
-                  key={item.code}
+                  key={item.locale}
                   type="button"
-                  onClick={() => router.replace(pathname, { locale: item.code })}
+                  onClick={() => router.replace(pathname, { locale: item.locale })}
                   aria-pressed={active}
-                  className="flex items-center justify-between rounded-2xl border px-4 py-3 text-sm"
+                  className="grid min-w-0 grid-cols-[24px_1fr_18px] items-center gap-2 rounded-2xl border px-4 py-3 text-sm"
                   style={{
                     color: 'var(--foreground)',
                     borderColor: active ? 'var(--accent)' : 'var(--window-border)',
                     background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                   }}
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-lg">{item.flag}</span>
-                    <span>{item.label}</span>
-                  </span>
+                  <span className="text-lg">{item.flag}</span>
+                  <span className="truncate text-left">{item.name}</span>
                   {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent)' }} />}
                 </button>
               );

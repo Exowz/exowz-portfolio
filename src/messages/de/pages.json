@@ -1,0 +1,57 @@
+{
+  "about": {
+    "title": "Über mich",
+    "description": "Erfahren Sie mehr über meinen Weg und das, was ich tue",
+    "name": "Mathew Kristoffer Ewan KAPOOR",
+    "jobTitle": "Student für Daten & KI · MSc Albert School × Mines de Paris",
+    "pitch": "Ich baue Daten- und KI-Tools, mit denen Menschen tatsächlich Entscheidungen treffen können, und schließe die Lücke zwischen 'es funktioniert technisch' und 'es ist wirklich nützlich'. Ein Ziel zieht sich durch alles, was ich tue: ein Beitrag zur europäischen digitalen Souveränität.",
+    "techSkillsTitle": "Technische Fähigkeiten",
+    "techSkills": {
+      "dataAI": "Python, SQL (MySQL, PostgreSQL), Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java"
+    },
+    "storyTitle": "Meine Geschichte",
+    "story": {
+      "intro1": "Hallo! Mein Name ist Mathew Kristoffer Ewan KAPOOR, aber ich werde meistens Ewan genannt. Ich bin 24, komme aus Mauritius und lebe in Paris. Ich schließe gerade meinen Bachelor in Daten & KI an der ECE Paris ab und beginne diesen September den MSc Data & AI for Finance, einen gemeinsamen Studiengang der Albert School und Mines de Paris - PSL, im Rahmen eines dualen Studiums.",
+      "intro2": "Ich werde Ihnen meine Geschichte erzählen. Denn hinter dem Entwickler, der ich bin, hinter diesem Portfolio, steckt ein echter Mensch, voller Träume und Ambitionen.",
+      "origins1": "Meine Geschichte beginnt im März 2002 auf einem kleinen Paradies im Indischen Ozean: Mauritius. Ich bin behütet bei liebevollen Eltern aufgewachsen, die mich bis heute unterstützen. Mein Leben war geprägt vom Strand, der Familie, dem köstlichen Essen meiner Mutter und Sport. Ein einfaches, aber glückliches Leben.",
+      "family": "Meine Eltern haben mir alles beigebracht. Meine Mutter, eine Hausfrau, hat mir die Kunst der Organisation vermittelt und meine Leidenschaft für das Kochen geweckt (was heute eines meiner Lieblingshobbys ist!). Mein Vater, Maschinenbauingenieur in einem Wärmekraftwerk, war meine erste Inspiration. Er gab mir die Vorliebe für Naturwissenschaften und Berechnungen mit und bewunderte Frankreich schon immer. Er war es auch, der mich an einer französischen Schule anmeldete und mir seine Liebe zu diesem Land, seiner Kultur und seiner Geschichte weitergab.",
+      "computer": "Parallel dazu wuchs eine weitere Leidenschaft. Ich erinnere mich an den ersten Computer, den mir mein Vater mit 7 Jahren schenkte: ein alter HP-Laptop mit Windows XP, sein alter Arbeits-PC. Ich war fasziniert. Ich nahm ihn auseinander, bastelte, experimentierte ... bis ich ihn kaputt machte. Aber meine Neugier war geweckt. Schnell wurde ich zum 'IT-Experten' der Familie: Ich baute PCs zusammen, verwaltete den Router und beriet meine Eltern bei ihren Einkäufen. Damals war es nur ein Hobby; mein Traum lag woanders.",
+      "dream": "Ich wollte so sein wie mein Vater. Ein Ingenieur, aber im Bereich Kernenergie, an die ich glaube. Also schlug ich meinen Weg ein: Wissenschaftliches Abitur, dann Aufbruch nach Frankreich mit einem festen Plan, Richtung Vorbereitungsklassen für Ingenieurschulen.",
+      "challenge": "Aber das Leben hielt andere Überraschungen für mich bereit.",
+      "struggle": "Diese Zeit war geprägt vom Tod meines Onkels, dem ich sehr nahe stand, und anderen persönlichen Problemen. Diese Mischung brachte mich ins Stolpern. Ich schaffte mein erstes Jahr nicht. Es war mein erster richtiger Misserfolg, und der Schock war brutal. Der brillante Schüler, der ich war, fühlte sich plötzlich nutzlos. Ich beschloss, nach Mauritius zurückzukehren, um neue Kraft zu tanken, aber auch, um meinem Vater, dessen Gesundheit nachließ, bei der Leitung unseres Familienunternehmens zu helfen – einer Firma für Nahrungsergänzungsmittel, die ich schließlich selbst leitete.",
+      "introspection": "Ich blieb zwei Jahre auf Mauritius. Zwei Jahre, um innezuhalten, mich mental zu 'heilen' und mich selbst wiederzufinden. Schließlich leitete ich das Unternehmen: E-Commerce, Direktvertrieb, Inventar, Kunden. Dort lernte ich zu fragen, was eine Zahl eigentlich für die Person bedeutet, die damit eine Entscheidung treffen muss, und nicht nur, was sie technisch wert ist. Außerdem brachte ich mir selbst das Gitarrespielen bei, um die künstlerische Seite zu fördern, die mir in einem rein wissenschaftlichen Profil zu fehlen schien.",
+      "return": "Nach diesen zwei Jahren hatte ich meinen ursprünglichen Traum nicht vergessen, konnte aber nicht in die Vorbereitungsklassen zurückkehren. Ich entdeckte das Programm der ECE, das es mir ermöglichte, im März über ein beschleunigtes Semester in das erste Jahr ihres Vorbereitungszyklus einzusteigen, also schrieb ich mich ein. Die Schwierigkeit, ein so intensives Studium wieder aufzunehmen, überrumpelte mich, und ich wurde etwa zur gleichen Zeit krank; dieses Jahr war hart. Dennoch bemerkte der Studiendirektor mein Potenzial in Informatik, da ich immer noch exzellente Noten erzielt hatte, und schlug mir vor, stattdessen ihren Bachelor zu machen. Ich brauchte lange für die Entscheidung, da es nicht meinem ursprünglichen Traum entsprach, aber schließlich willigte ich ein. Und genau dann kam die Offenbarung.",
+      "revelation": "Ich begriff, dass es nicht die Informatik war, die ich nicht mochte, sondern die Art und Weise, wie sie mir in der Vorbereitungsschule beigebracht wurde. Im Bachelor-Studiengang basierte alles auf praktischen Fällen und innovativen Projekten. Meine schlummernde Leidenschaft erwachte schlagartig.",
+      "webdev": "Zuerst faszinierte mich die Webentwicklung. Sie ermöglichte es mir, meine Kreativität auszudrücken und ein Projekt von A bis Z zu verantworten. Ich bin ein großer Bewunderer von Apple und ihrer Fähigkeit, Produkte zu schaffen, die innovativ, leistungsstark, nützlich und gleichzeitig schön sind – eine Philosophie, die ich in alles einfließen lasse, was ich baue.",
+      "dataAI": "Dann änderte ein neues Fach alles: Daten und KI. Und mir wurde klar, dass mein Umweg eigentlich ein Vorteil war: Zu wissen, wie man eine vollständige Anwendung veröffentlicht, bedeutet, dass ich nicht nur ein Modell trainiere, sondern weiß, wie ich es über eine API bereitstelle, mit einem Backend verbinde und einem echten Benutzer präsentiere. Entwicklung und Daten waren nicht mehr zwei Pfade, sondern wurden zu einem.",
+      "building": "Seitdem habe ich das in die Praxis umgesetzt. Bei Purecontrol arbeite ich an echtem Machine Learning in der Produktion, ETL-Pipelines, Anomalieerkennung für Wasserlecks und Vorhersagen auf IoT-Zeitreihen. Auf eigene Faust habe ich RiskLens veröffentlicht, eine quantitative Risikoplattform, bei der eine Caching-Ebene die Antwortzeiten von 2,8 s auf 45 ms senkte; ThoraxAI, ein Klassifikator für Thorax-Röntgenbilder, der 0,971 AUC mit erklärbaren Vorhersagen erreicht; ein RAG-Tool, das seine eigenen Fallstudien schreibt; und dieses Portfolio hier. Ich habe sogar Career Agent gebaut, ein Tool, das meine maßgeschneiderten Lebensläufe und Anschreiben erstellt.",
+      "philosophy": "Wenn es einen roten Faden durch all das gibt, dann diesen: die Distanz zwischen 'es funktioniert technisch' und 'jemand kann es zur Entscheidungsfindung nutzen'. Ein Modell, das einmal in einem Notebook läuft, ist ein Prototyp; ein Modell, das bei jeder Datenaktualisierung sauber und unangetastet läuft, ist ein Produkt. Ein Dashboard, das niemand öffnet, ist ein gescheitertes Projekt. Diese Distanz möchte ich schließen, jedes einzelne Mal.",
+      "sovereignty1": "Ich habe auch begriffen, wie wichtig unsere Daten sind – das Gold dieses Jahrhunderts – und mit einigem Erschrecken festgestellt, wie weit Europa zurückgefallen und wie abhängig es geworden ist. Wenn eine Handvoll US-Hyperscaler den Großteil der Cloud betreiben und ein einziges Windows-Update Flughäfen lahmlegen kann, ist das beängstigend für unsere Unabhängigkeit.",
+      "sovereignty2": "Unabhängigkeit ist mir sehr wichtig, und ich versuche sie zu leben, anstatt sie nur zu predigen: Ich hoste bei europäischen Anbietern wie Scaleway und Infomaniak und setze auf datenschutzfreundliche Tools. Deshalb spezialisiere ich mich auf Daten & KI für das Finanzwesen – die europäische Finanzdateninfrastruktur ist genau die Art von Dingen, die wir uns nicht leisten können auszulagern. Ein Kontinent mit einer so reichen Geschichte und Kultur darf nicht so weit zurückbleiben.",
+      "comeback": "Und der Kreis hat sich auf eine Weise geschlossen, die ich nie erwartet hätte. Nachdem ich genau an den Vorbereitungsklassen gescheitert war, für die ich einen Ozean überquert hatte, wurde ich für drei Masterstudiengänge zugelassen. Ich entschied mich für den, der mir am meisten bedeutete: ein gemeinsamer Abschluss mit Mines de Paris - PSL, einer der renommiertesten Ingenieurschulen Frankreichs. Die Grande École, an der ich einst gescheitert war, ist genau das Ziel, auf das ich jetzt zusteuere.",
+      "closing": "Das ist meine Geschichte. Nun wissen Sie ein wenig besser, wer hinter diesem Computer steckt und wer Ihr nächster Partner sein könnte. Ich suche derzeit nach einem dualen Studium im Bereich Data Engineering und KI ab September 2026, also zögern Sie nicht, mich zu kontaktieren – egal, um welches Projekt es geht. Ich wünsche Ihnen einen wundervollen Tag!",
+      "signature": "EXOWZ"
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Lassen Sie uns vernetzen und gemeinsam etwas aufbauen",
+    "contactInfo": "Kontaktinformationen",
+    "sendMessage": "Nachricht senden",
+    "labels": {
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "location": "Standort"
+    },
+    "location": "Paris, Frankreich",
+    "submit": "Nachricht senden"
+  },
+  "projects": {
+    "title": "Meine Projekte",
+    "description": "Entdecken Sie meine Arbeit in den Bereichen Daten, KI und Webentwicklung",
+    "empty": "Keine Projekte"
+  }
+}

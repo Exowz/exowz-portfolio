@@ -8,6 +8,16 @@ export const SITE_NAME = 'Exowz';
 export const OG_LOCALE: Record<string, string> = {
   'en-GB': 'en_GB',
   fr: 'fr_FR',
+  es: 'es_ES',
+  pt: 'pt_PT',
+  de: 'de_DE',
+  it: 'it_IT',
+  zh: 'zh_CN',
+  ja: 'ja_JP',
+  ru: 'ru_RU',
+  ko: 'ko_KR',
+  hi: 'hi_IN',
+  ar: 'ar_SA',
 };
 
 // Normalize a locale-relative path: strip leading/trailing slashes.
@@ -76,7 +86,7 @@ export function buildRouteMetadata(params: {
     openGraph: {
       type: 'website',
       siteName: SITE_NAME,
-      locale: OG_LOCALE[locale],
+      locale: OG_LOCALE[locale] ?? OG_LOCALE[routing.defaultLocale],
       url: alternates.canonical,
       title,
       description,

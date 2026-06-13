@@ -20,6 +20,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { projects } from '@/data/projects';
+import { languageOptions } from '@/components/header/language-types';
 
 interface CommandPaletteContextValue {
   open: () => void;
@@ -161,12 +162,19 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
           </Command.Group>
 
           <Command.Group heading={tCommand('language')} className="px-1 py-1 text-xs [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground">
-            <PaletteItem value="English en-GB" onSelect={() => run(() => router.replace(pathname, { locale: 'en-GB' }))}>
-              🇬🇧 English
-            </PaletteItem>
-            <PaletteItem value="Français French fr" onSelect={() => run(() => router.replace(pathname, { locale: 'fr' }))}>
-              🇫🇷 Français
-            </PaletteItem>
+            {languageOptions.map((language) => (
+              <PaletteItem
+                key={language.locale}
+                value={`${language.name} ${language.region} ${language.locale} ${language.code}`}
+                onSelect={() => run(() => router.replace(pathname, { locale: language.locale }))}
+              >
+                <span className="text-base">{language.flag}</span>
+                <span>{language.name}</span>
+                <span className="ml-auto text-[11px]" style={{ color: 'var(--text-secondary)' }}>
+                  {language.code}
+                </span>
+              </PaletteItem>
+            ))}
           </Command.Group>
         </Command.List>
       </Command.Dialog>

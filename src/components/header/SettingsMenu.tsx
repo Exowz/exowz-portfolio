@@ -13,10 +13,11 @@ import {
 } from '@tabler/icons-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
-import { useRouter } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
 import { DesktopMorphingMenu } from './DesktopMorphingMenu';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useCommandPalette } from '@/components/command/CommandPaletteProvider';
+import { languageOptions } from './language-types';
 
 function replayIntro() {
   localStorage.removeItem('hasSeenBoot');
@@ -112,6 +113,7 @@ function SettingsButton({
 
 export function SettingsMenu() {
   const router = useRouter();
+  const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations('settings');
   const tCommon = useTranslations('common');
@@ -126,13 +128,13 @@ export function SettingsMenu() {
     <DesktopMorphingMenu
       align="right"
       panelWidth={360}
-      panelHeight={336}
+      panelHeight={430}
       renderButton={({ isOpen, toggle }) => (
         <SettingsButton isOpen={isOpen} toggle={toggle} label={t('title')} closeLabel={tCommon('close')} />
       )}
     >
       {({ close }) => (
-        <div className="relative flex h-full flex-col px-5 pt-16 pb-5">
+        <div className="relative flex h-full flex-col overflow-y-auto px-5 pb-5 pt-16">
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             <div className="absolute right-6 top-8 h-28 w-28 rounded-full bg-[#64b5f6]/10 blur-2xl" />
             <div className="absolute bottom-6 left-8 h-24 w-24 rounded-full bg-[#90a4ae]/8 blur-xl" />
@@ -150,6 +152,30 @@ export function SettingsMenu() {
               </div>
               <div className="scale-90">
                 <ThemeToggle />
+              </div>
+            </div>
+
+            <div className="rounded-2xl border px-4 py-3" style={{ borderColor: 'var(--window-border)' }}>
+              <p className="mb-2 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                {t('language')}
+              </p>
+              <div className="grid grid-cols-6 gap-1.5">
+                {languageOptions.map((language) => (
+                  <button
+                    key={language.locale}
+                    type="button"
+                    onClick={() => router.replace(pathname, { locale: language.locale })}
+                    aria-label={language.name}
+                    aria-pressed={locale === language.locale}
+                    className="flex h-9 items-center justify-center rounded-xl text-base"
+                    style={{
+                      border: locale === language.locale ? '1px solid var(--accent)' : '1px solid var(--window-border)',
+                      background: locale === language.locale ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
+                    }}
+                  >
+                    {language.flag}
+                  </button>
+                ))}
               </div>
             </div>
 
