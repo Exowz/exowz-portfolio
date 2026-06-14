@@ -34,7 +34,7 @@ export function ProjectsWindow() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="group rounded-lg border border-accent/20 bg-card/80 backdrop-blur-sm overflow-hidden hover:shadow-xl hover:shadow-accent/20 hover:border-accent/40 transition-all">
+                <div className="group glass-card glass-card-hover rounded-lg bg-card/80 backdrop-blur-sm overflow-hidden">
                   {/* Project Image - Clickable to detail page */}
                   <Link
                     href={`/projects/${project.slug}`}

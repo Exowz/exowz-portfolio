@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_MESSAGE_CHARS, MAX_MESSAGES, validateAssistantRequest } from './validate';
+import {
+  MAX_ASSISTANT_HISTORY_CHARS,
+  MAX_MESSAGE_CHARS,
+  MAX_MESSAGES,
+  validateAssistantRequest,
+} from './validate';
 
 const user = (content: string) => ({ role: 'user' as const, content });
 const assistant = (content: string) => ({ role: 'assistant' as const, content });
@@ -27,8 +32,24 @@ describe('validateAssistantRequest', () => {
     expect(validateAssistantRequest({ messages: 'nope' }).ok).toBe(false);
   });
 
-  it('rejects an over-long message', () => {
+  it('rejects an over-long user message', () => {
     expect(validateAssistantRequest({ messages: [user('x'.repeat(MAX_MESSAGE_CHARS + 1))] }).ok).toBe(false);
+  });
+
+  it('accepts and trims long assistant history before a short follow-up', () => {
+    const result = validateAssistantRequest({
+      messages: [
+        user('What is RiskLens?'),
+        assistant(`RiskLens details. ${'x'.repeat(MAX_ASSISTANT_HISTORY_CHARS + 100)}`),
+        user('yes'),
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.messages[1].content).toHaveLength(MAX_ASSISTANT_HISTORY_CHARS + 3);
+      expect(result.messages.at(-1)).toEqual(user('yes'));
+    }
   });
 
   it('strips client-supplied system and unknown roles', () => {
