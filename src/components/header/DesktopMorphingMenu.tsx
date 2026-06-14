@@ -63,14 +63,14 @@ export function DesktopMorphingMenu({
   const isDark = theme === 'dark';
   const surfaceStyle = isDark
     ? {
-        background: 'rgba(26, 26, 26, 0.95)',
+        background: 'rgba(26, 26, 26, 0.74)',
         border: '1px solid rgba(255, 255, 255, 0.12)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+        boxShadow: '0 18px 48px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
       }
     : {
-        background: 'rgba(255, 255, 255, 0.95)',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
+        background: 'rgba(255, 255, 255, 0.56)',
+        border: '1px solid rgba(255, 255, 255, 0.42)',
+        boxShadow: '0 18px 48px rgba(31, 38, 46, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.72)',
       };
 
   const close = () => setIsOpen(false);
@@ -95,8 +95,8 @@ export function DesktopMorphingMenu({
               left: align === 'left' ? 0 : undefined,
               right: align === 'right' ? 0 : undefined,
               transformOrigin: align === 'left' ? 'top left' : 'top right',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              backdropFilter: 'blur(28px) saturate(190%)',
+              WebkitBackdropFilter: 'blur(28px) saturate(190%)',
               ...surfaceStyle,
             }}
           >

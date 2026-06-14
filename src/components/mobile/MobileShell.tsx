@@ -50,7 +50,7 @@ export function MobileShell() {
   return (
     <div className="mobile-wallpaper fixed inset-0 z-[60] flex flex-col md:hidden">
       <MobileAmbientBackground />
-      <StatusBar onOpenControlCenter={() => setOverlay('control')} />
+      <StatusBar onOpenControlCenter={() => setOverlay('control')} controlCenterOpen={overlay === 'control'} />
       <SpringBoard locale={locale} onOpenOverlay={handleOpenOverlay} onOpenNow={() => setOverlay('now')} />
       {overlay === null && (
         <div className="pointer-events-none absolute left-1/2 z-[65] w-[min(18rem,calc(100vw-2rem))] -translate-x-1/2" style={{ bottom: 'calc(env(safe-area-inset-bottom) + 7.6rem)' }}>
