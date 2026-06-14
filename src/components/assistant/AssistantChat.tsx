@@ -1,8 +1,8 @@
 'use client';
 
-import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { IconRefresh, IconSend, IconX } from '@tabler/icons-react';
+import { IconSparkles, IconX } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 import { useAssistant, type ChatStatus } from './useAssistant';
@@ -20,17 +20,30 @@ function statusMessage(status: ChatStatus, t: ReturnType<typeof useTranslations<
   return null;
 }
 
+// Soft fade so messages dissolve into the blur instead of hitting a hard clip edge.
+const EDGE_FADE = 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)';
+
 export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
   const t = useTranslations('assistant');
   const prefersReducedMotion = useReducedMotion();
   const { messages, status, send, abort, reset } = useAssistant();
   const [draft, setDraft] = useState('');
-  const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const examples = t.raw('examples') as string[];
-  const title = t('title');
   const error = statusMessage(status, t);
+
+  // Rotating placeholder (reuse the pill's phrases).
+  const prompts = useMemo(() => {
+    const raw = t.raw('pillPrompts');
+    return Array.isArray(raw) && raw.every((p) => typeof p === 'string') ? (raw as string[]) : [t('inputPlaceholder')];
+  }, [t]);
+  const [promptIndex, setPromptIndex] = useState(0);
+  useEffect(() => {
+    if (!open || prefersReducedMotion || prompts.length <= 1) return;
+    const id = window.setInterval(() => setPromptIndex((i) => (i + 1) % prompts.length), 2800);
+    return () => window.clearInterval(id);
+  }, [open, prefersReducedMotion, prompts.length]);
 
   const close = useCallback(() => {
     abort();
@@ -41,7 +54,7 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
 
   useEffect(() => {
     if (!open) return;
-    panelRef.current?.focus();
+    setPromptIndex(0);
     window.setTimeout(() => inputRef.current?.focus(), 120);
   }, [open]);
 
@@ -58,17 +71,7 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
     void send(content);
   };
 
-  const panelMotion = variant === 'desktop'
-    ? {
-        initial: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 22, scale: 0.96 },
-        animate: { opacity: 1, y: 0, scale: 1 },
-        exit: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 18, scale: 0.96 },
-      }
-    : {
-        initial: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 44 },
-        animate: { opacity: 1, y: 0 },
-        exit: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 44 },
-      };
+  const hasMessages = messages.length > 0;
 
   return (
     <AnimatePresence>
@@ -77,133 +80,121 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className={`fixed inset-0 z-[90] flex backdrop-blur-xl ${
-            variant === 'desktop' ? 'items-end justify-center px-6 pb-24' : 'items-end justify-center px-3'
-          }`}
-          style={{ background: 'rgba(0,0,0,0.24)' }}
+          transition={{ duration: prefersReducedMotion ? 0.15 : 0.3, ease: 'easeOut' }}
+          className="fixed inset-0 z-[90] flex flex-col items-center justify-center px-6"
+          style={{
+            background: 'color-mix(in srgb, var(--background) 38%, transparent)',
+            backdropFilter: 'blur(30px) saturate(150%)',
+            WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+          }}
           onClick={close}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('title')}
         >
-          <motion.div
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label={title}
-            tabIndex={-1}
-            {...panelMotion}
-            transition={{ type: 'spring', stiffness: 320, damping: 30 }}
-            className={`flex min-h-0 flex-col overflow-hidden rounded-3xl border ${
-              variant === 'desktop'
-                ? 'h-[min(36rem,calc(100vh-8rem))] w-[min(30rem,calc(100vw-2rem))]'
-                : 'h-[min(40rem,calc(100dvh-4rem))] w-full max-w-md rounded-b-none'
-            }`}
-            style={{
-              background: 'var(--window-bg)',
-              borderColor: 'var(--window-border)',
-              boxShadow: 'var(--window-shadow)',
-              backdropFilter: 'blur(24px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-              paddingBottom: variant === 'mobile' ? 'env(safe-area-inset-bottom)' : undefined,
-            }}
-            onClick={(event) => event.stopPropagation()}
+          {/* faint a11y close — Escape/Back/click-veil also close */}
+          <button
+            type="button"
+            onClick={close}
+            aria-label={t('close')}
+            className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full opacity-40 transition-opacity hover:opacity-90"
+            style={{ color: 'var(--foreground)' }}
+            onClickCapture={(e) => e.stopPropagation()}
           >
-            <div className="relative flex h-14 shrink-0 items-center border-b px-4" style={{ borderColor: 'var(--window-border)' }}>
-              <button
-                type="button"
-                onClick={close}
-                aria-label={t('close')}
-                className="flex h-7 w-7 items-center justify-center rounded-full"
-                style={{ background: 'var(--window-close-btn)' }}
-              >
-                <IconX className="h-4 w-4" style={{ color: 'var(--window-btn-icon)' }} />
-              </button>
-              <span className="absolute left-1/2 -translate-x-1/2 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
-                {title}
-              </span>
-              {messages.length > 0 && (
-                <button
-                  type="button"
-                  onClick={reset}
-                  aria-label={t('clear')}
-                  className="ml-auto flex h-7 w-7 items-center justify-center rounded-full border"
-                  style={{ color: 'var(--text-secondary)', borderColor: 'var(--window-border)' }}
-                >
-                  <IconRefresh className="h-3.5 w-3.5" />
-                </button>
-              )}
-            </div>
+            <IconX className="h-5 w-5" />
+          </button>
 
-            <div ref={listRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
-              {messages.length === 0 ? (
-                <div className="flex min-h-full flex-col justify-center">
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
-                    {t('greeting')}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {examples.map((example) => (
-                      <button
-                        key={example}
-                        type="button"
-                        onClick={() => void send(example)}
-                        className="rounded-full border px-3 py-1.5 text-xs"
-                        style={{
-                          color: 'var(--foreground)',
-                          borderColor: 'var(--window-border)',
-                          background: 'color-mix(in srgb, var(--accent) 7%, transparent)',
-                        }}
+          <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="flex w-full max-w-[36rem] flex-col"
+            style={{ paddingBottom: variant === 'mobile' ? 'env(safe-area-inset-bottom)' : undefined }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* transcript / empty greeting — floats on the blur, fades at edges */}
+            <div
+              ref={listRef}
+              className="max-h-[46vh] overflow-y-auto"
+              style={{ maskImage: EDGE_FADE, WebkitMaskImage: EDGE_FADE }}
+            >
+              {hasMessages ? (
+                <div className="space-y-5 py-2">
+                  {messages.map((message, index) => {
+                    const isUser = message.role === 'user';
+                    const streamingHere = status === 'streaming' && index === messages.length - 1 && !isUser;
+                    return (
+                      <p
+                        key={`${message.role}-${index}`}
+                        className={`whitespace-pre-wrap text-[15px] leading-relaxed ${isUser ? 'text-right font-medium' : 'text-left'}`}
+                        style={{ color: isUser ? 'var(--accent)' : 'var(--foreground)' }}
                       >
-                        {example}
-                      </button>
-                    ))}
-                  </div>
+                        {message.content}
+                        {streamingHere && (
+                          <motion.span
+                            aria-hidden
+                            animate={prefersReducedMotion ? undefined : { opacity: [1, 0.2, 1] }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                            className="ml-0.5 inline-block"
+                          >
+                            ▍
+                          </motion.span>
+                        )}
+                      </p>
+                    );
+                  })}
                 </div>
               ) : (
-                <div className="space-y-3">
-                  {messages.map((message, index) => (
-                    <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div
-                        className="max-w-[82%] whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm leading-relaxed"
-                        style={{
-                          color: message.role === 'user' ? 'white' : 'var(--foreground)',
-                          background: message.role === 'user'
-                            ? 'var(--accent)'
-                            : 'color-mix(in srgb, var(--foreground) 7%, transparent)',
-                          border: message.role === 'user' ? '1px solid transparent' : '1px solid var(--window-border)',
-                        }}
-                      >
-                        {message.content || (status === 'streaming' && index === messages.length - 1 ? '...' : '')}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {error && (
-                <div className="mt-3 rounded-2xl border px-3 py-2 text-sm" style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)' }}>
-                  {error}
-                </div>
+                <p className="py-6 text-center text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  {t('greeting')}
+                </p>
               )}
             </div>
 
-            <form onSubmit={submit} className="flex shrink-0 items-center gap-2 border-t p-3" style={{ borderColor: 'var(--window-border)' }}>
+            {/* borderless input — the centerpiece */}
+            <form onSubmit={submit} className="mt-5 flex items-center gap-3">
+              <IconSparkles className="h-5 w-5 shrink-0" style={{ color: 'var(--accent)' }} />
               <input
                 ref={inputRef}
                 value={draft}
-                onChange={(event) => setDraft(event.target.value)}
-                placeholder={t('inputPlaceholder')}
+                onChange={(e) => setDraft(e.target.value)}
+                placeholder={prefersReducedMotion ? prompts[0] : prompts[promptIndex]}
                 disabled={status === 'streaming'}
-                className="h-10 min-w-0 flex-1 rounded-full border bg-transparent px-4 text-sm outline-none disabled:opacity-60"
-                style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)' }}
+                className="h-9 min-w-0 flex-1 border-0 bg-transparent text-lg outline-none placeholder:opacity-50 disabled:opacity-60"
+                style={{ color: 'var(--foreground)' }}
               />
-              <button
-                type="submit"
-                disabled={!draft.trim() || status === 'streaming'}
-                aria-label={t('send')}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full disabled:opacity-50"
-                style={{ color: 'white', background: 'var(--accent)' }}
-              >
-                <IconSend className="h-4 w-4" />
-              </button>
             </form>
+
+            {/* examples (empty state) + reset + error — all frameless */}
+            {!hasMessages && (
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                {examples.map((example, i) => (
+                  <span key={example} className="flex items-center gap-3">
+                    {i > 0 && <span aria-hidden className="opacity-40">·</span>}
+                    <button type="button" onClick={() => void send(example)} className="opacity-70 transition-opacity hover:opacity-100">
+                      {example}
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {error && (
+              <p className="mt-4 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>
+                {error}
+              </p>
+            )}
+
+            {hasMessages && (
+              <button
+                type="button"
+                onClick={reset}
+                className="mt-4 self-center text-xs opacity-50 transition-opacity hover:opacity-90"
+                style={{ color: 'var(--foreground)' }}
+              >
+                {t('clear')}
+              </button>
+            )}
           </motion.div>
         </motion.div>
       )}
