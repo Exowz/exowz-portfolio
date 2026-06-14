@@ -140,7 +140,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
           <div
             className="w-4 h-4"
-            style={{ color: 'var(--accent)' }}
+            style={{ color: 'var(--accent-text)' }}
           >
             {icon}
           </div>

@@ -46,7 +46,7 @@ export function AssistantPill({ onOpen, className = '' }: AssistantPillProps) {
       }}
       aria-label={prompts[index]}
     >
-      <IconSparkles className="h-4 w-4 shrink-0" style={{ color: 'var(--accent)' }} />
+      <IconSparkles className="h-4 w-4 shrink-0" style={{ color: 'var(--accent-text)' }} />
       <span className="relative block h-5 min-w-0 flex-1 overflow-hidden text-center">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span

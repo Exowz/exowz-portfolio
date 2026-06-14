@@ -21,7 +21,7 @@ export function NowWidgetBody() {
         className="mb-2 flex gap-1.5 text-[11px] leading-snug"
         style={{ color: 'var(--foreground)' }}
       >
-        <span style={{ color: 'var(--accent)' }}>•</span>
+        <span style={{ color: 'var(--accent-text)' }}>•</span>
         <span>{item}</span>
       </li>
     ));

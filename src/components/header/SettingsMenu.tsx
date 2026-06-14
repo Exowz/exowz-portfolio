@@ -186,7 +186,7 @@ export function SettingsMenu() {
               style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)' }}
             >
               <span className="flex items-center gap-3">
-                <IconSettings className="h-4 w-4" style={{ color: 'var(--accent)' }} />
+                <IconSettings className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />
                 <span>{t('openSettings')}</span>
               </span>
               <IconExternalLink className="h-3.5 w-3.5 opacity-60" />

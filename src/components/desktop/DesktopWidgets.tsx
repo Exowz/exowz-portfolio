@@ -73,7 +73,7 @@ export function DesktopWidgets() {
       <div className="pointer-events-auto absolute right-8 top-28 z-10 hidden w-72 flex-col gap-4 md:flex">
         <Link href="/principles" className="rounded-3xl px-5 py-4 transition-transform hover:scale-[1.02]" style={cardStyle}>
           <div className="mb-3 flex items-center gap-2">
-            <IconScale className="h-4 w-4" style={{ color: 'var(--accent)' }} />
+            <IconScale className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />
             <span className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
               {tPrinciples('title')}
             </span>
@@ -90,7 +90,7 @@ export function DesktopWidgets() {
 
         <Link href="/colophon" className="rounded-3xl px-5 py-4 transition-transform hover:scale-[1.02]" style={cardStyle}>
           <div className="mb-3 flex items-center gap-2">
-            <IconBook2 className="h-4 w-4" style={{ color: 'var(--accent)' }} />
+            <IconBook2 className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />
             <span className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
               {tColophon('title')}
             </span>

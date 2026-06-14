@@ -127,7 +127,7 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
                       <p
                         key={`${message.role}-${index}`}
                         className={`whitespace-pre-wrap text-[15px] leading-relaxed ${isUser ? 'text-right font-medium' : 'text-left'}`}
-                        style={{ color: isUser ? 'var(--accent)' : 'var(--foreground)' }}
+                        style={{ color: isUser ? 'var(--accent-text)' : 'var(--foreground)' }}
                       >
                         {message.content}
                         {streamingHere && (
@@ -153,7 +153,7 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
 
             {/* borderless input — the centerpiece */}
             <form onSubmit={submit} className="mt-5 flex items-center gap-3">
-              <IconSparkles className="h-5 w-5 shrink-0" style={{ color: 'var(--accent)' }} />
+              <IconSparkles className="h-5 w-5 shrink-0" style={{ color: 'var(--accent-text)' }} />
               <input
                 ref={inputRef}
                 value={draft}

@@ -22,7 +22,7 @@ export function MobileNavBar({ title, onBack }: MobileNavBarProps) {
         onClick={onBack}
         aria-label={t('back')}
         className="flex h-9 w-9 items-center justify-center rounded-full active:scale-95"
-        style={{ color: 'var(--accent)' }}
+        style={{ color: 'var(--accent-text)' }}
       >
         <IconChevronLeft className="h-6 w-6" />
       </button>

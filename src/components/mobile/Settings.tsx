@@ -116,7 +116,7 @@ export function Settings({ open, onClose }: SettingsProps) {
                     >
                       <span className="text-lg">{language.flag}</span>
                       <span className="truncate text-left">{language.name}</span>
-                      {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent)' }} />}
+                      {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />}
                     </button>
                   );
                 })}

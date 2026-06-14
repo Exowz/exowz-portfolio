@@ -33,7 +33,7 @@ export function SettingsWindow() {
 
         <section className="rounded-2xl border p-4 md:p-6" style={{ borderColor: 'var(--window-border)', background: 'var(--window-content-bg)' }}>
           <div className="mb-4 flex items-center gap-2">
-            <IconSettings className="h-4 w-4" style={{ color: 'var(--accent)' }} />
+            <IconSettings className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />
             <h2 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
               {t('appearance')}
             </h2>
@@ -69,7 +69,7 @@ export function SettingsWindow() {
                 >
                   <span className="text-lg">{item.flag}</span>
                   <span className="truncate text-left">{item.name}</span>
-                  {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent)' }} />}
+                  {active && <IconCheck className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />}
                 </button>
               );
             })}

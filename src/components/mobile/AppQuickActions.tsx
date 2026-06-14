@@ -78,7 +78,7 @@ export function AppQuickActions({ open, x, y, actions, onClose }: AppQuickAction
                 className="flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-sm"
                 style={{ color: 'var(--foreground)' }}
               >
-                <span className="h-4 w-4" style={{ color: 'var(--accent)' }}>
+                <span className="h-4 w-4" style={{ color: 'var(--accent-text)' }}>
                   {action.icon}
                 </span>
                 <span className="truncate">{action.label}</span>
