@@ -71,6 +71,13 @@
   --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.09), 0 1px 2px rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 10px 30px rgba(100, 181, 246, 0.22), 0 0 0 1px rgba(100, 181, 246, 0.25);
 
+  /* Mobile overlay scrim — theme-aware frosted veil (mirrors the assistant),
+     shared by every sheet so they dim/frost the springboard consistently.
+     Uses var(--background) so the one definition adapts to dark automatically. */
+  --sheet-scrim: color-mix(in srgb, var(--background) 40%, transparent);
+  /* Springboard app-label legibility over a busy wallpaper. */
+  --label-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
+
   /* Dock specific - light mode */
   --dock-bg: rgba(255, 255, 255, 0.15);
   --dock-item-bg: rgba(255, 255, 255, 0.25);
@@ -148,6 +155,9 @@
   --card-border: rgba(255, 255, 255, 0.12);
   --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.2);
   --card-shadow-hover: 0 10px 30px rgba(100, 181, 246, 0.25), 0 0 0 1px rgba(100, 181, 246, 0.35);
+
+  /* dark: white labels need a dark shadow instead */
+  --label-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 
   /* Dock specific - dark mode (override everything else) */
   --dock-bg: rgba(26, 26, 26, 0.6);

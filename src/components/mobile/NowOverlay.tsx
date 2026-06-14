@@ -31,7 +31,7 @@ export function NowOverlay({ open, onClose }: NowOverlayProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="absolute inset-0 z-[70] flex items-center justify-center p-6 backdrop-blur-xl"
-          style={{ background: 'rgba(0,0,0,0.3)' }}
+          style={{ background: 'var(--sheet-scrim)' }}
           onClick={onClose}
         >
           <motion.div

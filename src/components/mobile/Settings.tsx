@@ -46,8 +46,8 @@ export function Settings({ open, onClose }: SettingsProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 z-[70] flex items-end justify-center"
-          style={{ background: 'rgba(0,0,0,0.4)' }}
+          className="absolute inset-0 z-[70] flex items-end justify-center backdrop-blur-xl"
+          style={{ background: 'var(--sheet-scrim)' }}
           onClick={onClose}
         >
           <motion.div

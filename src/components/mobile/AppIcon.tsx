@@ -139,7 +139,7 @@ export function AppIcon({ app, locale, onOpenOverlay, hideLabel = false }: AppIc
   );
 
   const labelEl = hideLabel ? null : (
-    <span className="mt-1 max-w-[72px] truncate text-center text-xs leading-tight" style={{ color: 'var(--dock-text)' }}>
+    <span className="mt-1 max-w-[72px] truncate text-center text-xs leading-tight" style={{ color: 'var(--dock-text)', textShadow: 'var(--label-shadow)' }}>
       {label}
     </span>
   );

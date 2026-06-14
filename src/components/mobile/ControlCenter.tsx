@@ -42,7 +42,7 @@ export function ControlCenter({ open, onClose }: ControlCenterProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="absolute inset-0 z-[80] flex items-start justify-center px-4 pt-16 backdrop-blur-xl"
-          style={{ background: 'rgba(0,0,0,0.25)' }}
+          style={{ background: 'var(--sheet-scrim)' }}
           onClick={onClose}
         >
           <motion.div

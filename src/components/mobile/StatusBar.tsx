@@ -43,7 +43,7 @@ export function StatusBar({
               ? 'color-mix(in srgb, var(--accent) 18%, var(--window-bg))'
               : 'var(--window-bg)',
             border: controlCenterOpen ? '1px solid var(--accent)' : '1px solid var(--window-border)',
-            boxShadow: '0 8px 22px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.16)',
+            boxShadow: 'var(--dock-shadow)',
             backdropFilter: 'blur(20px) saturate(180%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           }}
