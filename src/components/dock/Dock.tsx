@@ -4,6 +4,7 @@ import React from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FloatingDock, DockItem } from "@/components/ui/floating-dock";
+import { resumeHref } from "@/lib/resume";
 import {
   IconHome,
   IconFolder,
@@ -60,7 +61,7 @@ export function Dock() {
       icon: (
         <IconFileText className="h-full w-full" />
       ),
-      href: `/resume-${locale}.pdf`,
+      href: resumeHref(locale),
     },
     {
       title: "GitHub",

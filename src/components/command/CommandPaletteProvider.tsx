@@ -21,6 +21,7 @@ import { useTheme } from 'next-themes';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { projects } from '@/data/projects';
 import { languageOptions } from '@/components/header/language-types';
+import { resumeHref } from '@/lib/resume';
 
 interface CommandPaletteContextValue {
   open: () => void;
@@ -156,7 +157,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
             <PaletteItem icon={<IconBrandLinkedin />} value="LinkedIn" onSelect={() => run(() => window.open('https://linkedin.com/in/mke-kapoor', '_blank', 'noopener,noreferrer'))}>
               LinkedIn
             </PaletteItem>
-            <PaletteItem icon={<IconBriefcase />} value={tNav('resume')} onSelect={() => run(() => window.open(`/resume-${locale}.pdf`, '_blank', 'noopener,noreferrer'))}>
+            <PaletteItem icon={<IconBriefcase />} value={tNav('resume')} onSelect={() => run(() => window.open(resumeHref(locale), '_blank', 'noopener,noreferrer'))}>
               {tNav('resume')}
             </PaletteItem>
           </Command.Group>
