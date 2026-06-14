@@ -10,6 +10,7 @@ import tillana from 'tegaki/fonts/tillana';
 import LiquidEther from '@/components/desktop/LiquidEther';
 import bumbbled from './tegaki-fonts/bumbbled';
 import koreanHandwriting from './tegaki-fonts/korean';
+import maShanZheng from './tegaki-fonts/ma-shan-zheng';
 
 // Lazy-load the renderer (and, with it, Tegaki's runtime) — boot-only, never SSR.
 const TegakiRenderer = dynamic(
@@ -31,7 +32,7 @@ const LOOP_WORDS = [
   // show as a static styled fade instead of stroke animation.
   { text: 'Привет мир', fontFamily: 'TegakiRussian, system-ui, sans-serif', scale: 0.92 },
   { text: 'नमस्ते दुनिया', font: tillana, scale: 0.88 },
-  { text: '你好世界', fontFamily: 'TegakiChinese, PingFang SC, Hiragino Sans GB, system-ui, sans-serif', scale: 1.02 },
+  { text: '你好世界', font: maShanZheng, scale: 1.02 },
   { text: 'こんにちはせかい', font: kleeOne, scale: 0.88 },
   { text: '헬로 월드', font: koreanHandwriting, scale: 0.9 },
   { text: 'مرحبا بالعالم', font: amiri, scale: 0.84, direction: 'rtl' },
