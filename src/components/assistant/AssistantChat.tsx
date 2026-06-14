@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { IconSparkles, IconX } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
@@ -22,6 +22,40 @@ function statusMessage(status: ChatStatus, t: ReturnType<typeof useTranslations<
 
 // Soft fade so messages dissolve into the blur instead of hitting a hard clip edge.
 const EDGE_FADE = 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)';
+const INLINE_FORMAT_PATTERN = /(\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|\[([^\]\n]+)]\((https?:\/\/[^)\s]+)\))/g;
+
+function renderAssistantText(text: string) {
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(INLINE_FORMAT_PATTERN)) {
+    if (match.index === undefined) continue;
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+
+    if (match[2]) {
+      nodes.push(<strong key={match.index} className="font-semibold">{match[2]}</strong>);
+    } else if (match[3]) {
+      nodes.push(<em key={match.index} className="italic">{match[3]}</em>);
+    } else if (match[4] && match[5]) {
+      nodes.push(
+        <a
+          key={match.index}
+          href={match[5]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-current/30 underline-offset-4 transition-opacity hover:opacity-80"
+        >
+          {match[4]}
+        </a>,
+      );
+    }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+  return nodes.length ? nodes : text;
+}
 
 export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
   const t = useTranslations('assistant');
@@ -129,7 +163,7 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
                         className={`whitespace-pre-wrap text-[15px] leading-relaxed ${isUser ? 'text-right font-medium' : 'text-left'}`}
                         style={{ color: isUser ? 'var(--accent-text)' : 'var(--foreground)' }}
                       >
-                        {message.content}
+                        {isUser ? message.content : renderAssistantText(message.content)}
                         {streamingHere && (
                           <motion.span
                             aria-hidden
