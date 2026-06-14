@@ -40,9 +40,12 @@ interface TegakiTextProps {
   onWordComplete?: () => void;
   /** `loop`: fired by the arrow button. `once`: fired after the single word finishes. */
   onComplete: () => void;
+  /** `loop` only: render the built-in arrow button. Set false when the parent
+   *  supplies its own enter control (e.g. mobile swipe-up-to-unlock). */
+  showArrow?: boolean;
 }
 
-export default function TegakiText({ mode, word, onWordComplete, onComplete }: TegakiTextProps) {
+export default function TegakiText({ mode, word, onWordComplete, onComplete, showArrow = true }: TegakiTextProps) {
   const [index, setIndex] = useState(0);
   const [fontSize, setFontSize] = useState(96);
 
@@ -133,7 +136,7 @@ export default function TegakiText({ mode, word, onWordComplete, onComplete }: T
           </motion.span>
         )}
 
-        {mode === 'loop' && (
+        {mode === 'loop' && showArrow && (
           <button
             type="button"
             onClick={onComplete}

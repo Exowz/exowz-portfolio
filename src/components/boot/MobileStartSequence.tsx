@@ -34,7 +34,6 @@ interface MobileStartSequenceProps {
 export default function MobileStartSequence({ onComplete }: MobileStartSequenceProps) {
   const [step, setStep] = useState<Step>('begin');
   const [visibleLines, setVisibleLines] = useState(0);
-  const [showUnlock, setShowUnlock] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
   const t = useTranslations('boot');
   const greeting = 'Hello, World!';
@@ -44,17 +43,14 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
     onComplete();
   }, [onComplete]);
 
-  // Reveal init lines one by one; both motion paths now stop at the unlock greeting.
+  // Reveal init lines one by one; both motion paths stop at the greeting finale.
   useEffect(() => {
     if (step !== 'init') return;
 
     if (reducedMotion) {
-      // Static splash: show every line at once, hold briefly, then the unlock greeting.
+      // Static splash: show every line at once, hold briefly, then the greeting.
       setVisibleLines(INIT_LINES.length);
-      const t = setTimeout(() => {
-        setShowUnlock(true);
-        setStep('greeting');
-      }, 1000);
+      const t = setTimeout(() => setStep('greeting'), 1000);
       return () => clearTimeout(t);
     }
 
@@ -63,10 +59,7 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
       return () => clearTimeout(t);
     }
 
-    const t = setTimeout(() => {
-      setShowUnlock(true);
-      setStep('greeting');
-    }, 600);
+    const t = setTimeout(() => setStep('greeting'), 600);
     return () => clearTimeout(t);
   }, [step, visibleLines, reducedMotion, finish]);
 
@@ -80,10 +73,7 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
     return (
       <button
         type="button"
-        onClick={() => {
-          setShowUnlock(false);
-          setStep('init');
-        }}
+        onClick={() => setStep('init')}
         className="fixed inset-0 z-[100] flex items-center justify-center bg-black font-mono text-sm text-stone-300"
         aria-label={t('tapToBegin')}
       >
@@ -122,28 +112,30 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
           {reducedMotion ? (
             <span className={`${takenByVultures.className} text-5xl text-stone-200`}>{greeting}</span>
           ) : (
-            <TegakiText mode="once" word={greeting} onComplete={() => {}} />
+            // Same multilingual loop as desktop; our swipe-up replaces the arrow.
+            <TegakiText mode="loop" showArrow={false} onComplete={finish} />
           )}
 
-          {showUnlock && (
-            <motion.button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                finish();
-              }}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              aria-label={t('enterSite')}
-              className="absolute bottom-14 flex flex-col items-center gap-2 text-stone-400"
-            >
-              {!reducedMotion && <IconChevronUp className="h-6 w-6 animate-bounce" />}
-              <span className="rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide">
-                {reducedMotion ? t('tapToEnter') : t('swipeUpToEnter')}
-              </span>
-            </motion.button>
-          )}
+          {/* Unlock control — persistent part of the greeting layer (like the
+              desktop arrow). Eases in just after the animation is on screen and
+              stays put; z-20 keeps it above the Tegaki canvas. */}
+          <motion.button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              finish();
+            }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: reducedMotion ? 0 : 0.8, ease: 'easeOut' }}
+            aria-label={t('enterSite')}
+            className="absolute bottom-14 z-20 flex flex-col items-center gap-2 text-stone-400"
+          >
+            {!reducedMotion && <IconChevronUp className="h-6 w-6 animate-bounce" />}
+            <span className="rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide">
+              {reducedMotion ? t('tapToEnter') : t('swipeUpToEnter')}
+            </span>
+          </motion.button>
         </motion.div>
       )}
     </div>
