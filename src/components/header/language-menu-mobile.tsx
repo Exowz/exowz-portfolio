@@ -125,11 +125,11 @@ export default function LanguageMenuMobile() {
                   className={`flex w-full items-center gap-3 px-3 py-2.5 transition-colors ${
                     isActive
                       ? theme === 'dark'
-                        ? 'bg-[rgba(100,181,246,0.15)] text-[#64b5f6]'
-                        : 'bg-[rgba(100,181,246,0.1)] text-[#64b5f6]'
+                        ? 'bg-[rgba(100,181,246,0.15)] text-accent-text'
+                        : 'bg-[rgba(100,181,246,0.1)] text-accent-text'
                       : theme === 'dark'
                         ? 'text-white hover:bg-white/10'
-                        : 'text-[#333333] hover:bg-black/5'
+                        : 'text-foreground hover:bg-black/5'
                   }`}
                 >
                   <span className="text-lg">{language.flag}</span>
@@ -138,7 +138,7 @@ export default function LanguageMenuMobile() {
                     <div className="text-xs opacity-70">{language.region}</div>
                   </div>
                   {isActive && (
-                    <IconCheck className="h-4 w-4 text-[#64b5f6]" />
+                    <IconCheck className="h-4 w-4 text-accent-text" />
                   )}
                 </button>
               );

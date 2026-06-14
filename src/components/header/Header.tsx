@@ -70,7 +70,7 @@ export function Header() {
           >
             <time
               className={`text-base font-mono font-medium tracking-wider ${
-                theme === 'dark' ? 'text-white' : 'text-[#333333]'
+                'text-foreground'
               }`}
             >
               {time}

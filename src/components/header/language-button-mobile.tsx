@@ -60,7 +60,7 @@ export default function LanguageButtonMobile({ isActive, toggleMenu }: LanguageB
       {/* Globe icon only */}
       <IconWorld
         size={20}
-        className={theme === 'dark' ? 'text-white' : 'text-[#333333]'}
+        className={'text-foreground'}
       />
     </button>
   );

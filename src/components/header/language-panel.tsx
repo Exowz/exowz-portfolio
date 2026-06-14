@@ -60,7 +60,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
 
       {/* Language Selection Header */}
       <div className="relative z-10 mb-4 text-center">
-        <h3 className={`text-sm font-semibold opacity-80 ${theme === 'dark' ? 'text-white' : 'text-[#333333]'}`}>
+        <h3 className={`text-sm font-semibold opacity-80 ${'text-foreground'}`}>
           Choose Language
         </h3>
       </div>
@@ -98,11 +98,11 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                     font-medium transition-all duration-500 hover:scale-[1.01]
                     ${isActive
                       ? theme === 'dark'
-                        ? 'text-[#64b5f6] bg-[rgba(100,181,246,0.15)] border-[rgba(100,181,246,0.3)]'
-                        : 'text-[#64b5f6] bg-[rgba(100,181,246,0.1)] border-[rgba(100,181,246,0.25)]'
+                        ? 'text-accent-text bg-[rgba(100,181,246,0.15)] border-[rgba(100,181,246,0.3)]'
+                        : 'text-accent-text bg-[rgba(100,181,246,0.1)] border-[rgba(100,181,246,0.25)]'
                       : theme === 'dark'
-                        ? 'text-white hover:text-[#64b5f6] border-transparent hover:border-[rgba(100,181,246,0.2)] hover:bg-[rgba(100,181,246,0.1)]'
-                        : 'text-[#333333] hover:text-[#64b5f6] border-transparent hover:border-[rgba(100,181,246,0.15)] hover:bg-[rgba(100,181,246,0.08)]'
+                        ? 'text-white hover:text-accent-text border-transparent hover:border-[rgba(100,181,246,0.2)] hover:bg-[rgba(100,181,246,0.1)]'
+                        : 'text-foreground hover:text-accent-text border-transparent hover:border-[rgba(100,181,246,0.15)] hover:bg-[rgba(100,181,246,0.08)]'
                     }
                   `}
                   style={{
@@ -132,7 +132,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.2, delay: 0.1 }}
                       >
-                        <FiCheck className="h-4 w-4 text-[#64b5f6]" />
+                        <FiCheck className="h-4 w-4 text-accent-text" />
                       </motion.div>
                     )}
                   </div>

@@ -137,17 +137,17 @@
   --accent-glow: rgba(100, 181, 246, 0.2);
 
   /* Dock specific - dark mode (override everything else) */
-  --dock-bg: rgba(26, 26, 26, 0.6) !important;
-  --dock-item-bg: rgba(26, 26, 26, 0.6) !important;
-  --dock-item-hover-bg: rgba(51, 51, 51, 0.7) !important;
-  --dock-border: rgba(255, 255, 255, 0.15) !important;
-  --dock-item-border: rgba(255, 255, 255, 0.15) !important;
-  --dock-item-hover-border: rgba(100, 181, 246, 0.5) !important;
-  --dock-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  --dock-item-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  --dock-item-hover-shadow: 0 4px 16px rgba(100, 181, 246, 0.3), 0 0 20px rgba(100, 181, 246, 0.2) !important;
-  --dock-text: #ffffff !important;
-  --dock-divider: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, transparent) !important;
+  --dock-bg: rgba(26, 26, 26, 0.6);
+  --dock-item-bg: rgba(26, 26, 26, 0.6);
+  --dock-item-hover-bg: rgba(51, 51, 51, 0.7);
+  --dock-border: rgba(255, 255, 255, 0.15);
+  --dock-item-border: rgba(255, 255, 255, 0.15);
+  --dock-item-hover-border: rgba(100, 181, 246, 0.5);
+  --dock-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --dock-item-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --dock-item-hover-shadow: 0 4px 16px rgba(100, 181, 246, 0.3), 0 0 20px rgba(100, 181, 246, 0.2);
+  --dock-text: #ffffff;
+  --dock-divider: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, transparent);
 
   /* Window specific - dark mode */
   --window-bg: rgba(26, 26, 26, 0.6);
