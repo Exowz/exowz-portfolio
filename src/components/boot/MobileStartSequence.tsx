@@ -2,12 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { IconChevronUp } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
 import { usePrefersReducedMotion } from '@/components/hooks/usePrefersReducedMotion';
-import { shouldUnlockUpward } from '@/components/mobile/gestures';
 
 // Lazy-load the finale (Tegaki + LiquidEther) so it only loads at the greeting.
 const TegakiText = dynamic(() => import('@/components/boot/TegakiText'), { ssr: false });
@@ -100,43 +98,27 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
       )}
 
       {step === 'greeting' && (
-        <motion.div
-          drag={reducedMotion ? false : 'y'}
-          dragConstraints={{ top: 0, bottom: 0 }}
-          dragElastic={{ top: 0.6, bottom: 0 }}
-          onDragEnd={(_, info) => {
-            if (shouldUnlockUpward(info.offset.y, info.velocity.y)) finish();
-          }}
-          className="absolute inset-0 flex flex-col items-center justify-center"
-        >
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
           {reducedMotion ? (
             <span className={`${takenByVultures.className} text-5xl text-stone-200`}>{greeting}</span>
           ) : (
-            // Same multilingual loop as desktop; our swipe-up replaces the arrow.
+            // Same multilingual loop as desktop; tapping anywhere continues.
             <TegakiText mode="loop" showArrow={false} onComplete={finish} />
           )}
 
-          {/* Unlock control — persistent part of the greeting layer (like the
+          {/* Tap-to-continue — persistent part of the greeting layer (like the
               desktop arrow). Eases in just after the animation is on screen and
-              stays put; z-20 keeps it above the Tegaki canvas. */}
-          <motion.button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              finish();
-            }}
+              stays put; z-20 keeps it above the Tegaki canvas. Tapping anywhere
+              also continues via the parent's handleSkip. */}
+          <motion.span
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: reducedMotion ? 0 : 0.8, ease: 'easeOut' }}
-            aria-label={t('enterSite')}
-            className="absolute bottom-14 z-20 flex flex-col items-center gap-2 text-stone-400"
+            className="pointer-events-none absolute bottom-14 z-20 rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide text-stone-400"
           >
-            {!reducedMotion && <IconChevronUp className="h-6 w-6 animate-bounce" />}
-            <span className="rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide">
-              {reducedMotion ? t('tapToEnter') : t('swipeUpToEnter')}
-            </span>
-          </motion.button>
-        </motion.div>
+            {t('tapToEnter')}
+          </motion.span>
+        </div>
       )}
     </div>
   );
