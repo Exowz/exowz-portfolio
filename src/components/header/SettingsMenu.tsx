@@ -128,13 +128,13 @@ export function SettingsMenu() {
     <DesktopMorphingMenu
       align="right"
       panelWidth={360}
-      panelHeight={430}
+      panelHeight={520}
       renderButton={({ isOpen, toggle }) => (
         <SettingsButton isOpen={isOpen} toggle={toggle} label={t('title')} closeLabel={tCommon('close')} />
       )}
     >
       {({ close }) => (
-        <div className="relative flex h-full flex-col overflow-y-auto px-5 pb-5 pt-16">
+        <div className="relative flex h-full flex-col overflow-hidden px-5 pb-5 pt-16">
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             <div className="absolute right-6 top-8 h-28 w-28 rounded-full bg-[#64b5f6]/10 blur-2xl" />
             <div className="absolute bottom-6 left-8 h-24 w-24 rounded-full bg-[#90a4ae]/8 blur-xl" />
