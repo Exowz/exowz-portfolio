@@ -42,7 +42,7 @@ export function AboutWindow() {
                 <h1 className="text-2xl md:text-4xl font-bold mb-1 tracking-tight text-foreground">
                   {t('name')}
                 </h1>
-                <p className="text-lg md:text-xl font-light text-accent">
+                <p className="text-lg md:text-xl font-light text-accent-text">
                   {t('jobTitle')}
                 </p>
               </div>
@@ -53,7 +53,7 @@ export function AboutWindow() {
 
               {/* Tech Skills */}
               <div className="space-y-2 bg-accent/5 p-4 rounded-xl border border-accent/10">
-                <h3 className="text-sm md:text-base font-semibold text-accent">
+                <h3 className="text-sm md:text-base font-semibold text-accent-text">
                   {t('techSkillsTitle')}
                 </h3>
                 <ul className="space-y-1.5 text-xs md:text-sm text-foreground/80">
@@ -74,7 +74,7 @@ export function AboutWindow() {
 
         {/* Story Section */}
         <div className="bg-card/40 backdrop-blur-xl glass-card rounded-2xl p-6 md:p-10">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-accent">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-accent-text">
             {t('storyTitle')}
           </h2>
 
@@ -105,7 +105,7 @@ export function AboutWindow() {
             <div className="space-y-4">
               <p>{t('story.computer')}</p>
               <p>{t('story.dream')}</p>
-              <p className="text-lg font-semibold text-accent">{t('story.challenge')}</p>
+              <p className="text-lg font-semibold text-accent-text">{t('story.challenge')}</p>
               <p>{t('story.struggle')}</p>
             </div>
 
@@ -141,7 +141,7 @@ export function AboutWindow() {
               <p>{t('story.return')}</p>
               <p>{t('story.revelation')}</p>
               <p>{t('story.webdev')}</p>
-              <p className="text-lg font-semibold text-accent">{t('story.dataAI')}</p>
+              <p className="text-lg font-semibold text-accent-text">{t('story.dataAI')}</p>
               <p>{t('story.building')}</p>
               <p>{t('story.philosophy')}</p>
             </div>
@@ -168,7 +168,7 @@ export function AboutWindow() {
             {/* Closing */}
             <div className="space-y-4 pt-6 border-t border-accent/20">
               <p>{t('story.closing')}</p>
-              <p className={`text-right text-3xl md:text-4xl text-accent ${takenByVultures.className}`}>
+              <p className={`text-right text-3xl md:text-4xl text-accent-text ${takenByVultures.className}`}>
                 {t('story.signature')}
               </p>
             </div>

@@ -59,7 +59,9 @@
      #b0bec5 shared with dark mode, which failed ~1.8:1 on white). */
   --text-secondary: #546e7a; /* ~5.5:1 on #fff */
   --text-tertiary: #78909c;  /* hints / large text only */
-  --border: #e0e0e0;
+  /* Soft glass hairline (matches --window-border). Was a solid #e0e0e0 that
+     rendered as a hard gray outline on every bare `border` utility. */
+  --border: rgba(0, 0, 0, 0.08);
   --accent: #64b5f6;          /* brand: fills, glows, rings */
   --accent-text: #1976d2;     /* accent used as TEXT/icons on light bg (~5:1) */
   --accent-glow: rgba(100, 181, 246, 0.2);
@@ -145,7 +147,7 @@
   --text-primary: #ffffff;
   --text-secondary: #b0bec5; /* ~9:1 on #1a1a1a — already fine in dark */
   --text-tertiary: #8a99a3;
-  --border: #4a4a4a;
+  --border: rgba(255, 255, 255, 0.12); /* soft glass hairline (was solid #4a4a4a) */
   --accent: #64b5f6;
   --accent-text: #64b5f6;    /* reads ~8:1 on dark; same as accent */
   --accent-glow: rgba(100, 181, 246, 0.2);

@@ -23,8 +23,8 @@ export function PrinciplesWindow() {
         <p className="text-base md:text-xl text-foreground/80">{t('intro')}</p>
         <div className="space-y-4 md:space-y-5">
           {items.map((item) => (
-            <div key={item.title} className="rounded-2xl border border-accent/20 bg-card/60 p-4 md:p-6">
-              <h2 className="mb-2 text-lg md:text-2xl font-semibold text-accent">{item.title}</h2>
+            <div key={item.title} className="glass-card rounded-2xl bg-card/60 p-4 md:p-6">
+              <h2 className="mb-2 text-lg md:text-2xl font-semibold text-accent-text">{item.title}</h2>
               <p className="text-sm leading-relaxed text-foreground/80 md:text-base">{item.body}</p>
             </div>
           ))}

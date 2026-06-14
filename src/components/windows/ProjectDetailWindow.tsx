@@ -156,21 +156,21 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 <h2 className="text-2xl font-semibold mb-4">{tSections('metadata')}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
-                    <IconBriefcase className="w-5 h-5 text-accent mt-0.5" />
+                    <IconBriefcase className="w-5 h-5 text-accent-text mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground">{tLabels('role')}</p>
                       <p className="font-medium">{t(`${projectMeta.key}.metadata.role`)}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <IconFolder className="w-5 h-5 text-accent mt-0.5" />
+                    <IconFolder className="w-5 h-5 text-accent-text mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground">{tLabels('category')}</p>
                       <p className="font-medium">{t(`${projectMeta.key}.metadata.category`)}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <IconClock className="w-5 h-5 text-accent mt-0.5" />
+                    <IconClock className="w-5 h-5 text-accent-text mt-0.5" />
                     <div>
                       <p className="text-sm text-muted-foreground">{tLabels('timeline')}</p>
                       <p className="font-medium">{t(`${projectMeta.key}.metadata.timeline`)}</p>
@@ -201,19 +201,19 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 <h2 className="text-3xl font-semibold mb-6">{tSections('challenge')}</h2>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-accent mb-2">{tLabels('problem')}</h3>
+                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('problem')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.challenge.problem`)}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-accent mb-2">{tLabels('goal')}</h3>
+                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('goal')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.challenge.goal`)}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-accent mb-2">{tLabels('constraints')}</h3>
+                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('constraints')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.challenge.constraints`)}
                     </p>
@@ -308,11 +308,11 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                       <p className="text-muted-foreground mb-4">{feature.description}</p>
                       <div className="space-y-3 pl-4 border-l-2 border-accent/30">
                         <div>
-                          <p className="text-sm font-semibold text-accent mb-1">{tLabels('implementation')}</p>
+                          <p className="text-sm font-semibold text-accent-text mb-1">{tLabels('implementation')}</p>
                           <p className="text-sm text-muted-foreground">{feature.implementation}</p>
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-accent mb-1">{tLabels('challenges')}</p>
+                          <p className="text-sm font-semibold text-accent-text mb-1">{tLabels('challenges')}</p>
                           <p className="text-sm text-muted-foreground">{feature.challenges}</p>
                         </div>
                       </div>
@@ -340,19 +340,19 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 <h2 className="text-3xl font-semibold mb-6">{tSections('results')}</h2>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-accent mb-2">{tLabels('technicalAchievements')}</h3>
+                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('technicalAchievements')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.results.technicalAchievements`)}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-accent mb-2">{tLabels('businessImpact')}</h3>
+                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('businessImpact')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.results.businessImpact`)}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-accent mb-2">{tLabels('personalGrowth')}</h3>
+                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('personalGrowth')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.results.personalGrowth`)}
                     </p>
@@ -406,7 +406,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                       key={index}
                       className="flex items-start gap-3 p-4 glass-card rounded-lg bg-card"
                     >
-                      <span className="text-accent mt-1 text-lg">•</span>
+                      <span className="text-accent-text mt-1 text-lg">•</span>
                       <span className="text-muted-foreground leading-relaxed">{learning}</span>
                     </li>
                   ))}

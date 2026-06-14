@@ -24,7 +24,7 @@ export function ColophonWindow() {
         <div className="space-y-5 md:space-y-6">
           {sections.map((section) => (
             <div key={section.heading}>
-              <h2 className="mb-1.5 text-base md:text-lg font-semibold text-accent">{section.heading}</h2>
+              <h2 className="mb-1.5 text-base md:text-lg font-semibold text-accent-text">{section.heading}</h2>
               <p className="text-sm leading-relaxed text-foreground/80 md:text-base">{section.body}</p>
             </div>
           ))}
