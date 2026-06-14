@@ -152,7 +152,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
 
             {/* Project Metadata (if available) */}
             {hasMetadata && (
-              <div className="rounded-lg border bg-card p-6">
+              <div className="glass-card rounded-lg bg-card p-6">
                 <h2 className="text-2xl font-semibold mb-4">{tSections('metadata')}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
@@ -197,7 +197,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
 
             {/* The Challenge (if available) */}
             {hasMetadata && (
-              <section className="rounded-lg border bg-card/50 p-6">
+              <section className="glass-card rounded-lg bg-card/50 p-6">
                 <h2 className="text-3xl font-semibold mb-6">{tSections('challenge')}</h2>
                 <div className="space-y-4">
                   <div>
@@ -227,19 +227,19 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
               <section>
                 <h2 className="text-3xl font-semibold mb-6">{tSections('discovery')}</h2>
                 <div className="space-y-4">
-                  <div className="rounded-lg border bg-card p-4">
+                  <div className="glass-card rounded-lg bg-card p-4">
                     <h3 className="text-lg font-semibold mb-2">{tLabels('requirements')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.discovery.requirements`)}
                     </p>
                   </div>
-                  <div className="rounded-lg border bg-card p-4">
+                  <div className="glass-card rounded-lg bg-card p-4">
                     <h3 className="text-lg font-semibold mb-2">{tLabels('competitiveAnalysis')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.discovery.competitiveAnalysis`)}
                     </p>
                   </div>
-                  <div className="rounded-lg border bg-card p-4">
+                  <div className="glass-card rounded-lg bg-card p-4">
                     <h3 className="text-lg font-semibold mb-2">{tLabels('technicalResearch')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.discovery.technicalResearch`)}
@@ -254,13 +254,13 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
               <section>
                 <h2 className="text-3xl font-semibold mb-6">{tSections('architecture')}</h2>
                 <div className="space-y-4">
-                  <div className="rounded-lg border bg-card p-4">
+                  <div className="glass-card rounded-lg bg-card p-4">
                     <h3 className="text-lg font-semibold mb-2">{tLabels('informationArchitecture')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.architecture.informationArchitecture`)}
                     </p>
                   </div>
-                  <div className="rounded-lg border bg-card p-4">
+                  <div className="glass-card rounded-lg bg-card p-4">
                     <h3 className="text-lg font-semibold mb-2">{tLabels('technicalDecisions')}</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.architecture.technicalDecisions`)}
@@ -275,19 +275,19 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
               <section>
                 <h2 className="text-3xl font-semibold mb-6">{tSections('developmentProcess')}</h2>
                 <div className="space-y-4">
-                  <div className="rounded-lg border bg-card p-4 border-l-4 border-l-accent">
+                  <div className="glass-card rounded-lg bg-card p-4 border-l-4 border-l-accent">
                     <h3 className="text-lg font-semibold mb-2">Phase 1</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.developmentProcess.phase1`)}
                     </p>
                   </div>
-                  <div className="rounded-lg border bg-card p-4 border-l-4 border-l-accent">
+                  <div className="glass-card rounded-lg bg-card p-4 border-l-4 border-l-accent">
                     <h3 className="text-lg font-semibold mb-2">Phase 2</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.developmentProcess.phase2`)}
                     </p>
                   </div>
-                  <div className="rounded-lg border bg-card p-4 border-l-4 border-l-accent">
+                  <div className="glass-card rounded-lg bg-card p-4 border-l-4 border-l-accent">
                     <h3 className="text-lg font-semibold mb-2">Phase 3</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {t(`${projectMeta.key}.developmentProcess.phase3`)}
@@ -303,7 +303,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 <h2 className="text-3xl font-semibold mb-6">{tSections('keyFeatures')}</h2>
                 <div className="space-y-6">
                   {keyFeatures.map((feature, index: number) => (
-                    <div key={index} className="rounded-lg border bg-card p-6">
+                    <div key={index} className="glass-card rounded-lg bg-card p-6">
                       <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
                       <p className="text-muted-foreground mb-4">{feature.description}</p>
                       <div className="space-y-3 pl-4 border-l-2 border-accent/30">
@@ -326,7 +326,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
             {hasMetadata && (
               <section>
                 <h2 className="text-3xl font-semibold mb-4">{tSections('testing')}</h2>
-                <div className="rounded-lg border bg-card p-6">
+                <div className="glass-card rounded-lg bg-card p-6">
                   <p className="text-muted-foreground leading-relaxed">
                     {t(`${projectMeta.key}.testing`)}
                   </p>
@@ -336,7 +336,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
 
             {/* Results & Impact (if available) */}
             {hasMetadata && (
-              <section className="rounded-lg border bg-gradient-to-br from-accent/10 to-primary/10 p-6">
+              <section className="glass-card rounded-lg bg-gradient-to-br from-accent/10 to-primary/10 p-6">
                 <h2 className="text-3xl font-semibold mb-6">{tSections('results')}</h2>
                 <div className="space-y-4">
                   <div>
@@ -386,7 +386,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                   <h2 className="text-3xl font-semibold mb-6">{tSections('techStack')}</h2>
                   <div className="grid md:grid-cols-2 gap-4">
                     {availableFields.map(field => (
-                      <div key={field} className="rounded-lg border bg-card p-4">
+                      <div key={field} className="glass-card rounded-lg bg-card p-4">
                         <h3 className="text-lg font-semibold mb-3">{tLabels(field)}</h3>
                         <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.${field}`)}</p>
                       </div>
@@ -404,7 +404,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                   {learnings.map((learning: string, index: number) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 p-4 rounded-lg border bg-card"
+                      className="flex items-start gap-3 p-4 glass-card rounded-lg bg-card"
                     >
                       <span className="text-accent mt-1 text-lg">•</span>
                       <span className="text-muted-foreground leading-relaxed">{learning}</span>
@@ -422,7 +422,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                   {futureEnhancements.map((enhancement: string, index: number) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 p-4 rounded-lg border bg-card hover:bg-accent/10 transition-colors"
+                      className="flex items-start gap-3 p-4 glass-card rounded-lg bg-card hover:bg-accent/10 transition-colors"
                     >
                       <span className="text-primary mt-1">→</span>
                       <span className="text-muted-foreground leading-relaxed">{enhancement}</span>
@@ -434,7 +434,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
 
             {/* Conclusion (if available) */}
             {hasMetadata && (
-              <section className="rounded-lg border bg-card p-6">
+              <section className="glass-card rounded-lg bg-card p-6">
                 <h2 className="text-3xl font-semibold mb-4">{tSections('conclusion')}</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {t(`${projectMeta.key}.conclusion`)}

@@ -21,7 +21,7 @@ export function AboutWindow() {
         className="max-w-5xl mx-auto w-full space-y-8"
       >
         {/* Summary Box - Above the Fold */}
-        <div className="bg-card/40 backdrop-blur-xl border border-border rounded-2xl shadow-lg p-6 md:p-10">
+        <div className="bg-card/40 backdrop-blur-xl glass-card rounded-2xl p-6 md:p-10">
           <div className="flex flex-col md:flex-row gap-6 md:gap-8">
             {/* Profile Photo */}
             <div className="flex-shrink-0 mx-auto md:mx-0">
@@ -73,7 +73,7 @@ export function AboutWindow() {
         </div>
 
         {/* Story Section */}
-        <div className="bg-card/40 backdrop-blur-xl border border-border rounded-2xl shadow-lg p-6 md:p-10">
+        <div className="bg-card/40 backdrop-blur-xl glass-card rounded-2xl p-6 md:p-10">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-accent">
             {t('storyTitle')}
           </h2>
