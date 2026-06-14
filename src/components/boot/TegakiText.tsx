@@ -3,8 +3,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { IconArrowRight } from '@tabler/icons-react';
+import amiri from 'tegaki/fonts/amiri';
 import LiquidEther from '@/components/desktop/LiquidEther';
-import parisienne from 'tegaki/fonts/parisienne';
+import bumbbled from './tegaki-fonts/bumbbled';
+import chineseHandwriting from './tegaki-fonts/chinese';
+import hindiHandwriting from './tegaki-fonts/hindi';
+import japaneseHandwriting from './tegaki-fonts/japanese';
+import koreanHandwriting from './tegaki-fonts/korean';
+import russianHandwriting from './tegaki-fonts/russian';
 
 // Lazy-load the renderer (and, with it, Tegaki's runtime) — boot-only, never SSR.
 const TegakiRenderer = dynamic(
@@ -12,34 +18,53 @@ const TegakiRenderer = dynamic(
   { ssr: false },
 );
 
-const LOOP_WORDS = ['hello', 'salut', 'hola', 'ciao'];
+const LOOP_WORDS = [
+  { text: 'Hello, World!', font: bumbbled, scale: 1 },
+  { text: 'Salut, le monde !', font: bumbbled, scale: 0.92 },
+  { text: '¡Hola, mundo!', font: bumbbled, scale: 1 },
+  { text: 'Olá, mundo!', font: bumbbled, scale: 1 },
+  { text: 'Hallo, Welt!', font: bumbbled, scale: 1 },
+  { text: 'Ciao, mondo!', font: bumbbled, scale: 1 },
+  { text: 'Привет, мир!', font: russianHandwriting, scale: 0.96 },
+  { text: 'नमस्ते, दुनिया!', font: hindiHandwriting, scale: 0.88 },
+  { text: '你好，世界！', font: chineseHandwriting, scale: 1.08 },
+  { text: 'こんにちは、世界！', font: japaneseHandwriting, scale: 0.88 },
+  { text: '안녕하세요, 세계!', font: koreanHandwriting, scale: 0.9 },
+  { text: 'مرحبًا، أيها العالم!', font: amiri, scale: 0.84, direction: 'rtl' },
+] as const;
 
 interface TegakiTextProps {
   mode: 'loop' | 'once';
   /** Required for `once`; ignored for `loop`. */
   word?: string;
+  /** Fired when the handwriting animation for the current word finishes. */
+  onWordComplete?: () => void;
   /** `loop`: fired by the arrow button. `once`: fired after the single word finishes. */
   onComplete: () => void;
 }
 
-export default function TegakiText({ mode, word, onComplete }: TegakiTextProps) {
+export default function TegakiText({ mode, word, onWordComplete, onComplete }: TegakiTextProps) {
   const [index, setIndex] = useState(0);
-  const [fontSize, setFontSize] = useState(72);
+  const [fontSize, setFontSize] = useState(96);
 
   useEffect(() => {
     const w = window.innerWidth;
-    setFontSize(w < 700 ? 32 : w < 1200 ? 56 : 72);
+    setFontSize(w < 700 ? 58 : w < 1200 ? 82 : 104);
   }, []);
 
-  const currentWord = mode === 'once' ? (word ?? 'hello') : LOOP_WORDS[index];
+  const currentEntry = mode === 'once'
+    ? { text: word ?? 'Hello, World!', font: bumbbled, scale: 1, direction: 'ltr' }
+    : LOOP_WORDS[index];
+  const currentDirection = 'direction' in currentEntry && currentEntry.direction === 'rtl' ? 'rtl' : 'ltr';
 
   const handleWordComplete = useCallback(() => {
+    onWordComplete?.();
     if (mode === 'once') {
-      onComplete();
+      return;
     } else {
       setIndex((i) => (i + 1) % LOOP_WORDS.length);
     }
-  }, [mode, onComplete]);
+  }, [mode, onWordComplete]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -62,14 +87,21 @@ export default function TegakiText({ mode, word, onComplete }: TegakiTextProps) 
       <div className="relative flex flex-col items-center justify-center h-full z-10">
         <TegakiRenderer
           // Remount per word so each word re-animates from scratch.
-          key={`${mode}-${currentWord}-${index}`}
-          font={parisienne}
+          key={`${mode}-${currentEntry.text}-${index}`}
+          font={currentEntry.font}
           time={{ mode: 'uncontrolled', loop: false }}
           onComplete={handleWordComplete}
           // Tegaki reads stroke color + size from the container's CSS, not props.
-          style={{ color: '#FFFFFF', fontSize }}
+          style={{
+            color: '#FFFFFF',
+            fontSize: Math.round(fontSize * currentEntry.scale),
+            lineHeight: 1.15,
+            textAlign: 'center',
+            direction: currentDirection,
+            unicodeBidi: currentDirection === 'rtl' ? 'plaintext' : 'normal',
+          }}
         >
-          {currentWord}
+          {currentEntry.text}
         </TegakiRenderer>
 
         {mode === 'loop' && (

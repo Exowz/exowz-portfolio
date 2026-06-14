@@ -34,6 +34,7 @@ interface MobileStartSequenceProps {
 export default function MobileStartSequence({ onComplete }: MobileStartSequenceProps) {
   const [step, setStep] = useState<Step>('begin');
   const [visibleLines, setVisibleLines] = useState(0);
+  const [showUnlock, setShowUnlock] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
   const locale = useLocale();
   const t = useTranslations('boot');
@@ -51,7 +52,10 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
     if (reducedMotion) {
       // Static splash: show every line at once, hold briefly, then the unlock greeting.
       setVisibleLines(INIT_LINES.length);
-      const t = setTimeout(() => setStep('greeting'), 1000);
+      const t = setTimeout(() => {
+        setShowUnlock(true);
+        setStep('greeting');
+      }, 1000);
       return () => clearTimeout(t);
     }
 
@@ -60,7 +64,10 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
       return () => clearTimeout(t);
     }
 
-    const t = setTimeout(() => setStep('greeting'), 600);
+    const t = setTimeout(() => {
+      setShowUnlock(false);
+      setStep('greeting');
+    }, 600);
     return () => clearTimeout(t);
   }, [step, visibleLines, reducedMotion, finish]);
 
@@ -74,7 +81,10 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
     return (
       <button
         type="button"
-        onClick={() => setStep('init')}
+        onClick={() => {
+          setShowUnlock(false);
+          setStep('init');
+        }}
         className="fixed inset-0 z-[100] flex items-center justify-center bg-black font-mono text-sm text-stone-300"
         aria-label={t('tapToBegin')}
       >
@@ -113,23 +123,28 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
           {reducedMotion ? (
             <span className={`${takenByVultures.className} text-5xl text-stone-200`}>{greeting}</span>
           ) : (
-            <TegakiText mode="once" word={greeting} onComplete={() => {}} />
+            <TegakiText mode="once" word={greeting} onWordComplete={() => setShowUnlock(true)} onComplete={() => {}} />
           )}
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              finish();
-            }}
-            aria-label={t('enterSite')}
-            className="absolute bottom-14 flex flex-col items-center gap-2 text-stone-400"
-          >
-            {!reducedMotion && <IconChevronUp className="h-6 w-6 animate-bounce" />}
-            <span className="rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide">
-              {reducedMotion ? t('tapToEnter') : t('swipeUpToEnter')}
-            </span>
-          </button>
+          {showUnlock && (
+            <motion.button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                finish();
+              }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              aria-label={t('enterSite')}
+              className="absolute bottom-14 flex flex-col items-center gap-2 text-stone-400"
+            >
+              {!reducedMotion && <IconChevronUp className="h-6 w-6 animate-bounce" />}
+              <span className="rounded-full border border-stone-700 px-4 py-1.5 text-xs tracking-wide">
+                {reducedMotion ? t('tapToEnter') : t('swipeUpToEnter')}
+              </span>
+            </motion.button>
+          )}
         </motion.div>
       )}
     </div>
