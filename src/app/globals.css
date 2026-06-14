@@ -10,6 +10,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'TegakiRussian';
+  src: url('/fonts/tegaki/russian/tegaki-russian.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TegakiChinese';
+  src: url('/fonts/tegaki/chinese/tegaki-chinese.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme inline {
   /* Fonts */
   --font-sans: var(--font-geist-sans);

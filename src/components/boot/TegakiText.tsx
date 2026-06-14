@@ -3,14 +3,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { IconArrowRight } from '@tabler/icons-react';
+import { motion } from 'framer-motion';
 import amiri from 'tegaki/fonts/amiri';
+import kleeOne from 'tegaki/fonts/klee-one';
+import tillana from 'tegaki/fonts/tillana';
 import LiquidEther from '@/components/desktop/LiquidEther';
 import bumbbled from './tegaki-fonts/bumbbled';
-import chineseHandwriting from './tegaki-fonts/chinese';
-import hindiHandwriting from './tegaki-fonts/hindi';
-import japaneseHandwriting from './tegaki-fonts/japanese';
 import koreanHandwriting from './tegaki-fonts/korean';
-import russianHandwriting from './tegaki-fonts/russian';
 
 // Lazy-load the renderer (and, with it, Tegaki's runtime) — boot-only, never SSR.
 const TegakiRenderer = dynamic(
@@ -25,12 +24,12 @@ const LOOP_WORDS = [
   { text: 'Olá, mundo!', font: bumbbled, scale: 1 },
   { text: 'Hallo, Welt!', font: bumbbled, scale: 1 },
   { text: 'Ciao, mondo!', font: bumbbled, scale: 1 },
-  { text: 'Привет, мир!', font: russianHandwriting, scale: 0.96 },
-  { text: 'नमस्ते, दुनिया!', font: hindiHandwriting, scale: 0.88 },
-  { text: '你好，世界！', font: chineseHandwriting, scale: 1.08 },
-  { text: 'こんにちは、世界！', font: japaneseHandwriting, scale: 0.88 },
-  { text: '안녕하세요, 세계!', font: koreanHandwriting, scale: 0.9 },
-  { text: 'مرحبًا، أيها العالم!', font: amiri, scale: 0.84, direction: 'rtl' },
+  { text: 'Привет мир', fontFamily: 'TegakiRussian, system-ui, sans-serif', scale: 0.92 },
+  { text: 'नमस्ते दुनिया', font: tillana, scale: 0.88 },
+  { text: '你好世界', fontFamily: 'TegakiChinese, PingFang SC, Hiragino Sans GB, system-ui, sans-serif', scale: 1.02 },
+  { text: 'こんにちはせかい', font: kleeOne, scale: 0.88 },
+  { text: '헬로 월드', font: koreanHandwriting, scale: 0.9 },
+  { text: 'مرحبا بالعالم', font: amiri, scale: 0.84, direction: 'rtl' },
 ] as const;
 
 interface TegakiTextProps {
@@ -56,6 +55,7 @@ export default function TegakiText({ mode, word, onWordComplete, onComplete }: T
     ? { text: word ?? 'Hello, World!', font: bumbbled, scale: 1, direction: 'ltr' }
     : LOOP_WORDS[index];
   const currentDirection = 'direction' in currentEntry && currentEntry.direction === 'rtl' ? 'rtl' : 'ltr';
+  const isTegakiEntry = 'font' in currentEntry;
 
   const handleWordComplete = useCallback(() => {
     onWordComplete?.();
@@ -65,6 +65,15 @@ export default function TegakiText({ mode, word, onWordComplete, onComplete }: T
       setIndex((i) => (i + 1) % LOOP_WORDS.length);
     }
   }, [mode, onWordComplete]);
+
+  useEffect(() => {
+    if (mode !== 'loop' || isTegakiEntry) return;
+
+    const t = setTimeout(() => {
+      setIndex((i) => (i + 1) % LOOP_WORDS.length);
+    }, 620);
+    return () => clearTimeout(t);
+  }, [index, isTegakiEntry, mode]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -85,24 +94,44 @@ export default function TegakiText({ mode, word, onWordComplete, onComplete }: T
 
       {/* Handwriting + (loop only) arrow */}
       <div className="relative flex flex-col items-center justify-center h-full z-10">
-        <TegakiRenderer
-          // Remount per word so each word re-animates from scratch.
-          key={`${mode}-${currentEntry.text}-${index}`}
-          font={currentEntry.font}
-          time={{ mode: 'uncontrolled', loop: false }}
-          onComplete={handleWordComplete}
-          // Tegaki reads stroke color + size from the container's CSS, not props.
-          style={{
-            color: '#FFFFFF',
-            fontSize: Math.round(fontSize * currentEntry.scale),
-            lineHeight: 1.15,
-            textAlign: 'center',
-            direction: currentDirection,
-            unicodeBidi: currentDirection === 'rtl' ? 'plaintext' : 'normal',
-          }}
-        >
-          {currentEntry.text}
-        </TegakiRenderer>
+        {isTegakiEntry ? (
+          <TegakiRenderer
+            // Remount per word so each word re-animates from scratch.
+            key={`${mode}-${currentEntry.text}-${index}`}
+            font={currentEntry.font}
+            time={{ mode: 'uncontrolled', loop: false, speed: 4 }}
+            onComplete={handleWordComplete}
+            // Tegaki reads stroke color + size from the container's CSS, not props.
+            style={{
+              color: '#FFFFFF',
+              fontSize: Math.round(fontSize * currentEntry.scale),
+              lineHeight: 1.15,
+              textAlign: 'center',
+              direction: currentDirection,
+              unicodeBidi: currentDirection === 'rtl' ? 'plaintext' : 'normal',
+            }}
+          >
+            {currentEntry.text}
+          </TegakiRenderer>
+        ) : (
+          <motion.span
+            key={`${mode}-${currentEntry.text}-${index}`}
+            initial={{ opacity: 0, y: 8, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            style={{
+              color: '#FFFFFF',
+              fontFamily: currentEntry.fontFamily,
+              fontSize: Math.round(fontSize * currentEntry.scale),
+              lineHeight: 1.15,
+              textAlign: 'center',
+              direction: currentDirection,
+              unicodeBidi: currentDirection === 'rtl' ? 'plaintext' : 'normal',
+            }}
+          >
+            {currentEntry.text}
+          </motion.span>
+        )}
 
         {mode === 'loop' && (
           <button

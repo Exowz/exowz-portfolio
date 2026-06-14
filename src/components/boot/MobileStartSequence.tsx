@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { IconChevronUp } from '@tabler/icons-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
 import { usePrefersReducedMotion } from '@/components/hooks/usePrefersReducedMotion';
@@ -36,9 +36,8 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
   const [visibleLines, setVisibleLines] = useState(0);
   const [showUnlock, setShowUnlock] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
-  const locale = useLocale();
   const t = useTranslations('boot');
-  const greeting = locale.startsWith('fr') ? 'salut' : 'hello';
+  const greeting = 'Hello, World!';
 
   const finish = useCallback(() => {
     setStep('done');
@@ -65,7 +64,7 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
     }
 
     const t = setTimeout(() => {
-      setShowUnlock(false);
+      setShowUnlock(true);
       setStep('greeting');
     }, 600);
     return () => clearTimeout(t);
@@ -123,7 +122,7 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
           {reducedMotion ? (
             <span className={`${takenByVultures.className} text-5xl text-stone-200`}>{greeting}</span>
           ) : (
-            <TegakiText mode="once" word={greeting} onWordComplete={() => setShowUnlock(true)} onComplete={() => {}} />
+            <TegakiText mode="once" word={greeting} onComplete={() => {}} />
           )}
 
           {showUnlock && (
