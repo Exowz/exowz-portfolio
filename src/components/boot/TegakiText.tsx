@@ -45,9 +45,12 @@ interface TegakiTextProps {
   /** `loop` only: render the built-in arrow button. Set false when the parent
    *  supplies its own enter control (e.g. mobile tap-to-continue). */
   showArrow?: boolean;
+  /** Animated LiquidEther background follows the pointer. Set false on mobile
+   *  for a lighter, interaction-free version of the same desktop background. */
+  interactiveBackground?: boolean;
 }
 
-export default function TegakiText({ mode, word, onWordComplete, onComplete, showArrow = true }: TegakiTextProps) {
+export default function TegakiText({ mode, word, onWordComplete, onComplete, showArrow = true, interactiveBackground = true }: TegakiTextProps) {
   const [index, setIndex] = useState(0);
   const [fontSize, setFontSize] = useState(96);
   const holdRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -82,6 +85,7 @@ export default function TegakiText({ mode, word, onWordComplete, onComplete, sho
           className="absolute inset-0 z-0 pointer-events-none"
           colors={['#1a1a1a', '#2a2a2a', '#64b5f6']}
           autoDemo
+          interactive={interactiveBackground}
           mouseForce={20}
           resolution={0.5}
           cursorSize={100}

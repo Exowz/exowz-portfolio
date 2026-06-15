@@ -102,8 +102,9 @@ export default function MobileStartSequence({ onComplete }: MobileStartSequenceP
           {reducedMotion ? (
             <span className={`${takenByVultures.className} text-5xl text-stone-200`}>{greeting}</span>
           ) : (
-            // Same multilingual loop as desktop; tapping anywhere continues.
-            <TegakiText mode="loop" showArrow={false} onComplete={finish} />
+            // Same multilingual loop + LiquidEther background as desktop, but
+            // interaction-free (lighter for mobile); tapping anywhere continues.
+            <TegakiText mode="loop" showArrow={false} interactiveBackground={false} onComplete={finish} />
           )}
 
           {/* Tap-to-continue — persistent part of the greeting layer (like the
