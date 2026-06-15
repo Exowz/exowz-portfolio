@@ -33,6 +33,46 @@
       "comeback": "और लूप इस तरह से बंद हो गया है जिसकी मैंने कभी उम्मीद नहीं की थी। प्रारंभिक कक्षाओं में असफल होने के बाद, जिसके लिए मैंने एक महासागर पार किया था, मुझे तीन मास्टर कार्यक्रमों में प्रवेश दिया गया, और मैंने वह चुना जिसका सबसे अधिक अर्थ था: माइंस डी पेरिस - PSL के साथ एक संयुक्त डिग्री, जो फ्रांस के सबसे प्रतिष्ठित इंजीनियरिंग स्कूलों में से एक है। वह ग्रांडे इकोल (grande école) जिससे मैं कभी पीछे रह गया था, बिल्कुल वहीं है जहाँ मैं अब जा रहा हूँ।",
       "closing": "यह मेरी कहानी है, अब आप थोड़ा बेहतर जानते हैं कि इस कंप्यूटर के पीछे कौन है, और आपका अगला सहयोगी कौन हो सकता है। मैं वर्तमान में सितंबर 2026 से डेटा इंजीनियरिंग और AI में कार्य-अध्ययन प्रशिक्षुता की तलाश कर रहा हूँ, इसलिए किसी भी प्रोजेक्ट के लिए संपर्क करने में संकोच न करें। आपका दिन मंगलमय हो!",
       "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & AI · Albert × Mines",
+      "seeking": "अप्रेंटिसशिप की तलाश · सित. 2026"
+    },
+    "toolkit": {
+      "dataAILabel": "डेटा & AI",
+      "webLabel": "प्रोडक्ट & Web",
+      "cloudLabel": "क्लाउड & इंफ्रा",
+      "domainLabel": "डोमेन",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "शुरुआत — मॉरीशस",
+      "dream": "पहला कंप्यूटर & सपना",
+      "fall": "गिरावट",
+      "return": "वापस रास्ता खोजना",
+      "dataAI": "डेटा & AI — एहसास",
+      "sovereignty": "संप्रभुता & अगला अध्याय"
+    },
+    "captions": {
+      "mauritius": "मॉरीशस",
+      "cooking": "खाना बनाना — घर से जुड़ा शौक"
+    },
+    "principlesTitle": "मैं कैसे सोचता हूँ",
+    "principles": [
+      "प्रभावशाली से पहले उपयोगी",
+      "यूरोपीय संप्रभुता",
+      "खुले सिस्टम",
+      "डेटा प्रोडक्ट्स, notebooks नहीं",
+      "स्वाद मायने रखता है"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master, फ्रांस के उच्च शिक्षा मंत्रालय द्वारा मान्यता प्राप्त"
     }
   },
   "contact": {

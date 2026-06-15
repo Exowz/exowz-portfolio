@@ -33,6 +33,46 @@
       "comeback": "そして、思いもよらない形で円が閉じました。かつて海を渡って挑戦し、一度は失敗した準備級（プレパ）を経て、今は3つの修士課程に合格しました。そして、私が最も大切だと感じた道を選びました。それは、フランスで最も権威あるエンジニア養成学校の一つであるMines de Paris - PSLとの共同学位です。かつて手が届かなかった名門校（グランゼコール）へ、今、私は向かっています。",
       "closing": "これが私のストーリーです。コンピュータの向こう側にいるのが誰なのか、少しでも知っていただけたなら幸いです。私は現在、2026年9月からのデータエンジニアリングおよびAIの分野での実務研修先を探しています。どんなプロジェクトでも、お気軽にご連絡ください。素晴らしい一日を！",
       "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & AI · Albert × Mines",
+      "seeking": "見習い先を探しています · 2026年9月"
+    },
+    "toolkit": {
+      "dataAILabel": "データ & AI",
+      "webLabel": "プロダクト & Web",
+      "cloudLabel": "クラウド & インフラ",
+      "domainLabel": "領域",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "原点 — モーリシャス",
+      "dream": "最初のコンピューター & 夢",
+      "fall": "挫折",
+      "return": "道を取り戻す",
+      "dataAI": "データ & AI — 啓示",
+      "sovereignty": "主権 & 次の章"
+    },
+    "captions": {
+      "mauritius": "モーリシャス",
+      "cooking": "料理 — 家から続く趣味"
+    },
+    "principlesTitle": "私の考え方",
+    "principles": [
+      "印象より有用性",
+      "欧州の主権",
+      "オープンなシステム",
+      "notebook ではなくデータプロダクト",
+      "美意識を大切にする"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master、フランス高等教育省認定"
     }
   },
   "contact": {

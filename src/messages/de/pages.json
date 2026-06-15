@@ -33,6 +33,46 @@
       "comeback": "Und der Kreis hat sich auf eine Weise geschlossen, die ich nie erwartet hätte. Nachdem ich genau an den Vorbereitungsklassen gescheitert war, für die ich einen Ozean überquert hatte, wurde ich für drei Masterstudiengänge zugelassen. Ich entschied mich für den, der mir am meisten bedeutete: ein gemeinsamer Abschluss mit Mines de Paris - PSL, einer der renommiertesten Ingenieurschulen Frankreichs. Die Grande École, an der ich einst gescheitert war, ist genau das Ziel, auf das ich jetzt zusteuere.",
       "closing": "Das ist meine Geschichte. Nun wissen Sie ein wenig besser, wer hinter diesem Computer steckt und wer Ihr nächster Partner sein könnte. Ich suche derzeit nach einem dualen Studium im Bereich Data Engineering und KI ab September 2026, also zögern Sie nicht, mich zu kontaktieren – egal, um welches Projekt es geht. Ich wünsche Ihnen einen wundervollen Tag!",
       "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & AI · Albert × Mines",
+      "seeking": "Suche duale Ausbildung · Sept. 2026"
+    },
+    "toolkit": {
+      "dataAILabel": "Daten & KI",
+      "webLabel": "Produkt & Web",
+      "cloudLabel": "Cloud & Infra",
+      "domainLabel": "Domäne",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "Ursprünge — Mauritius",
+      "dream": "Der erste Computer & der Traum",
+      "fall": "Der Fall",
+      "return": "Den Weg zurückfinden",
+      "dataAI": "Daten & KI — die Offenbarung",
+      "sovereignty": "Souveränität & das nächste Kapitel"
+    },
+    "captions": {
+      "mauritius": "Mauritius",
+      "cooking": "Kochen — ein Hobby von zuhause"
+    },
+    "principlesTitle": "Wie ich denke",
+    "principles": [
+      "Nützlich vor beeindruckend",
+      "Europäische Souveränität",
+      "Offene Systeme",
+      "Datenprodukte, keine Notebooks",
+      "Geschmack zählt"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master, anerkannt vom französischen Ministerium für Hochschulbildung"
     }
   },
   "contact": {

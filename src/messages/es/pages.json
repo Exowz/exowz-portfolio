@@ -33,6 +33,46 @@
       "comeback": "Y el círculo se ha cerrado de una manera que nunca esperé. Después de fracasar en las mismas clases preparatorias por las que había cruzado un océano, fui admitido en tres programas de máster y elegí el que más significaba: una doble titulación con Mines de Paris - PSL, una de las escuelas de ingeniería más prestigiosas de Francia. La 'grande école' que una vez me fue inalcanzable es exactamente hacia donde me dirijo ahora.",
       "closing": "Esa es mi historia, ahora conoces un poco mejor quién está detrás de esta computadora y quién podría ser tu próximo colaborador. Actualmente estoy buscando una formación dual en ingeniería de datos e IA a partir de septiembre de 2026, así que no dudes en contactarme, sea cual sea el proyecto. ¡Que tengas un día maravilloso!",
       "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & IA · Albert × Mines",
+      "seeking": "Buscando aprendizaje · Sept. 2026"
+    },
+    "toolkit": {
+      "dataAILabel": "Datos & IA",
+      "webLabel": "Producto & Web",
+      "cloudLabel": "Cloud & Infra",
+      "domainLabel": "Dominio",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "Orígenes — Mauricio",
+      "dream": "El primer ordenador & el sueño",
+      "fall": "La caída",
+      "return": "Encontrar el camino de vuelta",
+      "dataAI": "Datos & IA — la revelación",
+      "sovereignty": "Soberanía & el próximo capítulo"
+    },
+    "captions": {
+      "mauritius": "Mauricio",
+      "cooking": "Cocina — una afición de casa"
+    },
+    "principlesTitle": "Cómo pienso",
+    "principles": [
+      "Útil antes que impresionante",
+      "Soberanía europea",
+      "Sistemas abiertos",
+      "Productos de datos, no notebooks",
+      "El gusto importa"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master, reconocido por el Ministerio francés de Educación Superior"
     }
   },
   "contact": {

@@ -33,6 +33,46 @@
       "comeback": "而这个圈子以一种我从未预料到的方式闭合了。在预科班失败后（我曾为此远渡重洋），我被三个硕士项目录取，我选择了对我意义最大的一个：Mines de Paris - PSL 的联合学位，这是法国最负盛名的工程师学校之一。那个我曾经错失的精英学校，正是现在的目的地。",
       "closing": "这就是我的故事，现在你更了解谁在电脑后面，以及谁可能成为你的下一个合作伙伴。我目前正在寻找从 2026 年 9 月开始的数据工程和人工智能方面的工学结合学徒岗位。无论是任何项目，请随时联系。祝你有美好的一天！",
       "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & AI · Albert × Mines",
+      "seeking": "寻找学徒岗位 · 2026年9月"
+    },
+    "toolkit": {
+      "dataAILabel": "数据与 AI",
+      "webLabel": "产品与 Web",
+      "cloudLabel": "云与基础设施",
+      "domainLabel": "领域",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "起点 — 毛里求斯",
+      "dream": "第一台电脑与梦想",
+      "fall": "跌倒",
+      "return": "重新找到方向",
+      "dataAI": "数据与 AI — 启示",
+      "sovereignty": "主权与下一章"
+    },
+    "captions": {
+      "mauritius": "毛里求斯",
+      "cooking": "烹饪 — 来自家的爱好"
+    },
+    "principlesTitle": "我的思考方式",
+    "principles": [
+      "有用胜过炫技",
+      "欧洲主权",
+      "开放系统",
+      "数据产品，而不是 notebooks",
+      "品味很重要"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master，获法国高等教育部认可"
     }
   },
   "contact": {

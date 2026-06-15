@@ -33,6 +33,46 @@
       "comeback": "واكتملت الدائرة بطريقة لم أتوقعها أبداً. بعد الفشل في الفصول التحضيرية التي عبرت المحيط من أجلها، تم قبولي في ثلاثة برامج ماجستير، واخترت البرنامج الأكثر أهمية بالنسبة لي: درجة مشتركة مع مدرسة المناجم في باريس - PSL، واحدة من أرقى مدارس الهندسة في فرنسا. المدرسة الكبرى التي لم أوفق في دخولها يوماً هي بالضبط المكان الذي أتوجه إليه الآن.",
       "closing": "هذه هي قصتي، الآن تعرفون بشكل أفضل قليلاً من وراء هذا الكمبيوتر، ومن يمكن أن يكون شريككم القادم. أبحث حالياً عن تدريب بنظام العمل والدراسة في هندسة البيانات والذكاء الاصطناعي اعتباراً من سبتمبر 2026، فلا تترددوا في التواصل معي، مهما كان المشروع. أتمنى لكم يوماً رائعاً!",
       "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & AI · Albert × Mines",
+      "seeking": "أبحث عن تدريب مهني · سبتمبر 2026"
+    },
+    "toolkit": {
+      "dataAILabel": "البيانات و AI",
+      "webLabel": "المنتج و Web",
+      "cloudLabel": "السحابة والبنية التحتية",
+      "domainLabel": "المجال",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "البدايات — موريشيوس",
+      "dream": "أول حاسوب والحلم",
+      "fall": "السقوط",
+      "return": "العثور على الطريق مجدداً",
+      "dataAI": "البيانات و AI — الاكتشاف",
+      "sovereignty": "السيادة والفصل القادم"
+    },
+    "captions": {
+      "mauritius": "موريشيوس",
+      "cooking": "الطبخ — هواية من البيت"
+    },
+    "principlesTitle": "طريقة تفكيري",
+    "principles": [
+      "المفيد قبل المبهر",
+      "السيادة الأوروبية",
+      "أنظمة مفتوحة",
+      "منتجات بيانات، لا notebooks",
+      "الذوق مهم"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master، معترف به من وزارة التعليم العالي الفرنسية"
     }
   },
   "contact": {
