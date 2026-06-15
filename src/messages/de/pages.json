@@ -5,13 +5,6 @@
     "name": "Mathew Kristoffer Ewan KAPOOR",
     "jobTitle": "Student für Daten & KI · MSc Albert School × Mines de Paris",
     "pitch": "Ich baue Daten- und KI-Tools, mit denen Menschen tatsächlich Entscheidungen treffen können, und schließe die Lücke zwischen 'es funktioniert technisch' und 'es ist wirklich nützlich'. Ein Ziel zieht sich durch alles, was ich tue: ein Beitrag zur europäischen digitalen Souveränität.",
-    "techSkillsTitle": "Technische Fähigkeiten",
-    "techSkills": {
-      "dataAI": "Python, SQL (MySQL, PostgreSQL), Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
-      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
-      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java"
-    },
-    "storyTitle": "Meine Geschichte",
     "story": {
       "intro1": "Hallo! Mein Name ist Mathew Kristoffer Ewan KAPOOR, aber ich werde meistens Ewan genannt. Ich bin 24, komme aus Mauritius und lebe in Paris. Ich schließe gerade meinen Bachelor in Daten & KI an der ECE Paris ab und beginne diesen September den MSc Data & AI for Finance, einen gemeinsamen Studiengang der Albert School und Mines de Paris - PSL, im Rahmen eines dualen Studiums.",
       "intro2": "Ich werde Ihnen meine Geschichte erzählen. Denn hinter dem Entwickler, der ich bin, hinter diesem Portfolio, steckt ein echter Mensch, voller Träume und Ambitionen.",
