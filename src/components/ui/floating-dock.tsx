@@ -63,7 +63,7 @@ const FloatingDockMobile = ({
             {items.map((item, idx) => {
               if (item.isDivider) return null;
 
-              const isExternal = item.href.startsWith('http') || item.href.startsWith('/resume');
+              const isExternal = item.href.startsWith('http');
               const linkContent = (
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-2xl transition-all duration-300"
@@ -194,7 +194,7 @@ function IconContainer({
   const pathname = usePathname();
   const [hovered, setHovered] = useState(false);
 
-  const isExternal = href.startsWith('http') || href.startsWith('/resume');
+  const isExternal = href.startsWith('http');
   const isActive = !isExternal && pathname === href;
 
   // ✅ FIX: Changed 'let' to 'const'

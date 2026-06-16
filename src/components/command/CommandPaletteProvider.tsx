@@ -16,12 +16,11 @@ import {
   IconSun,
   IconUser,
 } from '@tabler/icons-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { projects } from '@/data/projects';
 import { languageOptions } from '@/components/header/language-types';
-import { resumeHref } from '@/lib/resume';
 
 interface CommandPaletteContextValue {
   open: () => void;
@@ -46,7 +45,6 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
   const { theme, setTheme } = useTheme();
   const tNav = useTranslations('nav');
   const tProjects = useTranslations('projects');
@@ -157,7 +155,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
             <PaletteItem icon={<IconBrandLinkedin />} value="LinkedIn" onSelect={() => run(() => window.open('https://linkedin.com/in/mke-kapoor', '_blank', 'noopener,noreferrer'))}>
               LinkedIn
             </PaletteItem>
-            <PaletteItem icon={<IconBriefcase />} value={tNav('resume')} onSelect={() => run(() => window.open(resumeHref(locale), '_blank', 'noopener,noreferrer'))}>
+            <PaletteItem icon={<IconBriefcase />} value={tNav('resume')} onSelect={() => run(() => router.push('/cv'))}>
               {tNav('resume')}
             </PaletteItem>
           </Command.Group>

@@ -1,5 +1,3 @@
-import { resumeHref } from '@/lib/resume';
-
 export type MobileAppKind = 'route' | 'external' | 'overlay';
 
 export type AppId =
@@ -28,7 +26,7 @@ export const DOCK_APPS: MobileApp[] = [
   { id: 'projects', labelKey: 'projects', label: null, kind: 'overlay', href: null },
   { id: 'about', labelKey: 'about', label: null, kind: 'route', href: '/{locale}/about' },
   { id: 'contact', labelKey: 'contact', label: null, kind: 'route', href: '/{locale}/contact' },
-  { id: 'resume', labelKey: 'resume', label: null, kind: 'external', href: '/resume-{locale}.pdf' },
+  { id: 'resume', labelKey: 'resume', label: null, kind: 'route', href: '/{locale}/cv' },
 ];
 
 /** Springboard grid apps. TODO(P3): give principles/colophon real routes. */
@@ -43,7 +41,5 @@ export const GRID_APPS: MobileApp[] = [
 /** Resolve an app's destination for a locale. Returns null for overlay apps (no URL). */
 export function resolveHref(app: MobileApp, locale: string): string | null {
   if (app.href === null) return null;
-  // CV exists only in fr/en-GB; non-French locales fall back to English.
-  if (app.id === 'resume') return resumeHref(locale);
   return app.href.replace('{locale}', locale);
 }

@@ -14,11 +14,11 @@ import {
 import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { usePathname, useRouter } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 import { DesktopMorphingMenu } from './DesktopMorphingMenu';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useCommandPalette } from '@/components/command/CommandPaletteProvider';
 import { languageOptions } from './language-types';
-import { resumeHref } from '@/lib/resume';
 
 function replayIntro() {
   localStorage.removeItem('hasSeenBoot');
@@ -218,16 +218,15 @@ export function SettingsMenu() {
             </div>
 
             <div className="grid grid-cols-3 gap-2">
-              <a
-                href={resumeHref(locale)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/cv"
+                onClick={() => close()}
                 className="flex items-center justify-center rounded-xl border px-2 py-2 text-[11px]"
                 style={{ color: 'var(--foreground)', borderColor: 'var(--window-border)' }}
               >
                 <IconExternalLink className="mr-1 h-3.5 w-3.5" />
                 CV
-              </a>
+              </Link>
               <a
                 href="https://github.com/exowz"
                 target="_blank"

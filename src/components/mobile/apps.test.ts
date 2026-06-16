@@ -33,7 +33,7 @@ describe('mobile app inventory', () => {
     for (const app of ALL) {
       if (app.kind === 'route') expect(app.href!.startsWith('/{locale}/')).toBe(true);
       if (app.kind === 'external') {
-        expect(/^https?:\/\//.test(app.href!) || app.href!.startsWith('/resume-{locale}')).toBe(true);
+        expect(/^https?:\/\//.test(app.href!)).toBe(true);
       }
     }
   });
@@ -47,5 +47,7 @@ describe('mobile app inventory', () => {
     expect(resolveHref(projects, 'fr')).toBeNull();
     const settings = GRID_APPS.find((a) => a.id === 'settings') as MobileApp;
     expect(resolveHref(settings, 'fr')).toBeNull();
+    const resume = ALL.find((a) => a.id === 'resume') as MobileApp;
+    expect(resolveHref(resume, 'fr')).toBe('/fr/cv');
   });
 });
