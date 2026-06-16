@@ -20,6 +20,21 @@ describe('projects data', () => {
     }
   });
 
+  it('every project has a non-empty facets array of valid values', () => {
+    const valid = new Set(['data-eng', 'ml', 'ai-rag', 'finance', 'web', 'sovereignty']);
+    for (const p of projects) {
+      expect(p.facets.length, `${p.slug} has no facets`).toBeGreaterThan(0);
+      for (const f of p.facets) expect(valid.has(f), `${p.slug}: invalid facet ${f}`).toBe(true);
+    }
+  });
+
+  it('every facet is used by at least one project (no dead filter)', () => {
+    const used = new Set(projects.flatMap((p) => p.facets));
+    for (const f of ['data-eng', 'ml', 'ai-rag', 'finance', 'web', 'sovereignty']) {
+      expect(used.has(f as (typeof projects)[number]['facets'][number]), `facet ${f} unused`).toBe(true);
+    }
+  });
+
   it('getProjectBySlug returns the matching project', () => {
     const p = getProjectBySlug('shiatsu-guyane');
     expect(p).toBeDefined();
