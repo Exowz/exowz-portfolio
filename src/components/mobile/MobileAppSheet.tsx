@@ -19,6 +19,7 @@ import { ContactWindow } from '@/components/windows/ContactWindow';
 import { PrinciplesWindow } from '@/components/windows/PrinciplesWindow';
 import { ColophonWindow } from '@/components/windows/ColophonWindow';
 import { SettingsWindow } from '@/components/windows/SettingsWindow';
+import { CvWindow } from '@/components/windows/cv/CvWindow';
 
 const ProjectDetailWindow = dynamic(() => import('@/components/windows/ProjectDetailWindow'), {
   ssr: false,
@@ -39,6 +40,7 @@ export function MobileAppSheet() {
   const tPrinciples = useTranslations('principles');
   const tColophon = useTranslations('colophon');
   const tSettings = useTranslations('settings');
+  const tCv = useTranslations('cv');
   const tProjects = useTranslations('projects');
 
   if (isMobile !== true) return null;
@@ -65,6 +67,9 @@ export function MobileAppSheet() {
   } else if (id === 'settings') {
     title = tSettings('title');
     content = <SettingsWindow />;
+  } else if (id === 'cv') {
+    title = tCv('title');
+    content = <CvWindow />;
   } else if (isDetail && slug) {
     const project = getProjectBySlug(slug);
     title = project ? tProjects(`${project.key}.title`) : tProjectsPage('title');

@@ -6,7 +6,7 @@ import { IconX, IconMinus, IconMaximize } from '@tabler/icons-react';
 import { useWindowManager } from './WindowManager';
 
 type WindowProps = {
-  id: 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | 'settings';
+  id: 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | 'settings' | 'cv';
   title: string;
   icon: ReactNode;
   children: ReactNode;

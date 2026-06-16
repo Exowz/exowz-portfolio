@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-import { IconFolder, IconUser, IconMail, IconScale, IconBook2, IconSettings } from '@tabler/icons-react';
+import { IconBook2, IconFileText, IconFolder, IconMail, IconScale, IconSettings, IconUser } from '@tabler/icons-react';
 import { Window } from './Window';
 import { ProjectsWindow } from '../windows/ProjectsWindow';
 import { AboutWindow } from '../windows/AboutWindow';
@@ -13,6 +13,7 @@ import { ContactWindow } from '../windows/ContactWindow';
 import { PrinciplesWindow } from '../windows/PrinciplesWindow';
 import { ColophonWindow } from '../windows/ColophonWindow';
 import { SettingsWindow } from '../windows/SettingsWindow';
+import { CvWindow } from '../windows/cv/CvWindow';
 import dynamic from 'next/dynamic';
 import { useIsMobile } from '@/components/hooks/useIsMobile';
 import { parseActiveRoute } from '@/components/windows/activeRoute';
@@ -23,7 +24,7 @@ const ProjectDetailWindow = dynamic(
   { ssr: false }
 );
 
-type WindowType = 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | 'settings' | null;
+type WindowType = 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | 'settings' | 'cv' | null;
 
 interface WindowManagerContextType {
   openWindow: WindowType;
@@ -98,6 +99,7 @@ function WindowContent({
   const tPrinciples = useTranslations('principles');
   const tColophon = useTranslations('colophon');
   const tSettings = useTranslations('settings');
+  const tCv = useTranslations('cv');
 
   return (
     <AnimatePresence mode="wait">
@@ -169,6 +171,17 @@ function WindowContent({
           icon={<IconSettings className="w-full h-full" />}
         >
           <SettingsWindow />
+        </Window>
+      )}
+
+      {openWindow === 'cv' && (
+        <Window
+          key="cv"
+          id="cv"
+          title={tCv('title')}
+          icon={<IconFileText className="w-full h-full" />}
+        >
+          <CvWindow />
         </Window>
       )}
     </AnimatePresence>
