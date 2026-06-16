@@ -1,0 +1,31 @@
+{
+  "title": "CV interactivo",
+  "description": "El CV interactivo de Ewan Kapoor — experiencia, habilidades, educación y proyectos.",
+  "sections": {
+    "summary": "Resumen",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "projects": "Proyectos"
+  },
+  "actions": {
+    "downloadPdf": "Descargar PDF",
+    "contact": "Contactarme",
+    "visit": "Visitar",
+    "email": "Email"
+  },
+  "facets": {
+    "all": "Todos",
+    "data-eng": "Ingeniería de datos",
+    "ml": "Machine Learning",
+    "ai-rag": "IA / RAG",
+    "finance": "Finanzas",
+    "web": "Web y producto",
+    "sovereignty": "Soberanía"
+  },
+  "labels": {
+    "languages": "Idiomas",
+    "availability": "Disponibilidad",
+    "filterHint": "Filtrar proyectos por enfoque"
+  }
+}

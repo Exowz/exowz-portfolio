@@ -1,0 +1,31 @@
+{
+  "title": "インタラクティブCV",
+  "description": "Ewan Kapoor のインタラクティブCV — 経験、スキル、学歴、プロジェクト。",
+  "sections": {
+    "summary": "概要",
+    "skills": "スキル",
+    "experience": "経験",
+    "education": "学歴",
+    "projects": "プロジェクト"
+  },
+  "actions": {
+    "downloadPdf": "PDFをダウンロード",
+    "contact": "問い合わせる",
+    "visit": "訪問",
+    "email": "メール"
+  },
+  "facets": {
+    "all": "すべて",
+    "data-eng": "データエンジニアリング",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "金融",
+    "web": "Web & プロダクト",
+    "sovereignty": "主権"
+  },
+  "labels": {
+    "languages": "言語",
+    "availability": "対応可能",
+    "filterHint": "フォーカスでプロジェクトを絞り込む"
+  }
+}

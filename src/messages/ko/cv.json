@@ -1,0 +1,31 @@
+{
+  "title": "인터랙티브 이력서",
+  "description": "Ewan Kapoor의 인터랙티브 이력서 — 경험, 기술, 교육 및 프로젝트.",
+  "sections": {
+    "summary": "요약",
+    "skills": "기술",
+    "experience": "경험",
+    "education": "교육",
+    "projects": "프로젝트"
+  },
+  "actions": {
+    "downloadPdf": "PDF 다운로드",
+    "contact": "연락하기",
+    "visit": "방문",
+    "email": "이메일"
+  },
+  "facets": {
+    "all": "전체",
+    "data-eng": "데이터 엔지니어링",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "금융",
+    "web": "Web & 제품",
+    "sovereignty": "주권"
+  },
+  "labels": {
+    "languages": "언어",
+    "availability": "가능 여부",
+    "filterHint": "초점별 프로젝트 필터"
+  }
+}

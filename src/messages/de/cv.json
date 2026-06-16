@@ -1,0 +1,31 @@
+{
+  "title": "Interaktiver Lebenslauf",
+  "description": "Ewan Kapoors interaktiver Lebenslauf — Erfahrung, Fähigkeiten, Ausbildung und Projekte.",
+  "sections": {
+    "summary": "Zusammenfassung",
+    "skills": "Fähigkeiten",
+    "experience": "Erfahrung",
+    "education": "Ausbildung",
+    "projects": "Projekte"
+  },
+  "actions": {
+    "downloadPdf": "PDF herunterladen",
+    "contact": "Kontakt aufnehmen",
+    "visit": "Besuchen",
+    "email": "E-Mail"
+  },
+  "facets": {
+    "all": "Alle",
+    "data-eng": "Data Engineering",
+    "ml": "Machine Learning",
+    "ai-rag": "KI / RAG",
+    "finance": "Finanzen",
+    "web": "Web & Produkt",
+    "sovereignty": "Souveränität"
+  },
+  "labels": {
+    "languages": "Sprachen",
+    "availability": "Verfügbarkeit",
+    "filterHint": "Projekte nach Fokus filtern"
+  }
+}

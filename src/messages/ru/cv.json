@@ -1,0 +1,31 @@
+{
+  "title": "Интерактивное резюме",
+  "description": "Интерактивное резюме Ewan Kapoor — опыт, навыки, образование и проекты.",
+  "sections": {
+    "summary": "Кратко",
+    "skills": "Навыки",
+    "experience": "Опыт",
+    "education": "Образование",
+    "projects": "Проекты"
+  },
+  "actions": {
+    "downloadPdf": "Скачать PDF",
+    "contact": "Связаться",
+    "visit": "Посетить",
+    "email": "Email"
+  },
+  "facets": {
+    "all": "Все",
+    "data-eng": "Data Engineering",
+    "ml": "Machine Learning",
+    "ai-rag": "ИИ / RAG",
+    "finance": "Финансы",
+    "web": "Web и продукт",
+    "sovereignty": "Суверенитет"
+  },
+  "labels": {
+    "languages": "Языки",
+    "availability": "Доступность",
+    "filterHint": "Фильтровать проекты по фокусу"
+  }
+}

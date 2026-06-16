@@ -1,0 +1,31 @@
+{
+  "title": "इंटरैक्टिव CV",
+  "description": "Ewan Kapoor का इंटरैक्टिव CV — अनुभव, कौशल, शिक्षा और प्रोजेक्ट्स।",
+  "sections": {
+    "summary": "सारांश",
+    "skills": "कौशल",
+    "experience": "अनुभव",
+    "education": "शिक्षा",
+    "projects": "प्रोजेक्ट्स"
+  },
+  "actions": {
+    "downloadPdf": "PDF डाउनलोड करें",
+    "contact": "मुझसे संपर्क करें",
+    "visit": "देखें",
+    "email": "ईमेल"
+  },
+  "facets": {
+    "all": "सभी",
+    "data-eng": "डेटा इंजीनियरिंग",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "वित्त",
+    "web": "Web और प्रोडक्ट",
+    "sovereignty": "संप्रभुता"
+  },
+  "labels": {
+    "languages": "भाषाएँ",
+    "availability": "उपलब्धता",
+    "filterHint": "फोकस के अनुसार प्रोजेक्ट फ़िल्टर करें"
+  }
+}

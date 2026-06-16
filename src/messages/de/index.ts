@@ -15,6 +15,7 @@ import k13 from "./colophon.json";
 import k14 from "./now.json";
 import k15 from "./commandPalette.json";
 import k16 from "./assistant.json";
+import k17 from "./cv.json";
 
 const messages = {
   "seo": k0,
@@ -33,7 +34,8 @@ const messages = {
   "colophon": k13,
   "now": k14,
   "commandPalette": k15,
-  "assistant": k16
+  "assistant": k16,
+  "cv": k17
 };
 
 export default messages;

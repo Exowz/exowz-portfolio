@@ -1,0 +1,31 @@
+{
+  "title": "CV interativo",
+  "description": "O CV interativo de Ewan Kapoor — experiência, competências, formação e projetos.",
+  "sections": {
+    "summary": "Resumo",
+    "skills": "Competências",
+    "experience": "Experiência",
+    "education": "Formação",
+    "projects": "Projetos"
+  },
+  "actions": {
+    "downloadPdf": "Transferir PDF",
+    "contact": "Contactar-me",
+    "visit": "Visitar",
+    "email": "Email"
+  },
+  "facets": {
+    "all": "Todos",
+    "data-eng": "Engenharia de dados",
+    "ml": "Machine Learning",
+    "ai-rag": "IA / RAG",
+    "finance": "Finanças",
+    "web": "Web e produto",
+    "sovereignty": "Soberania"
+  },
+  "labels": {
+    "languages": "Idiomas",
+    "availability": "Disponibilidade",
+    "filterHint": "Filtrar projetos por foco"
+  }
+}

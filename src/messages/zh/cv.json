@@ -1,0 +1,31 @@
+{
+  "title": "互动简历",
+  "description": "Ewan Kapoor 的互动简历 — 经历、技能、教育和项目。",
+  "sections": {
+    "summary": "概览",
+    "skills": "技能",
+    "experience": "经历",
+    "education": "教育",
+    "projects": "项目"
+  },
+  "actions": {
+    "downloadPdf": "下载 PDF",
+    "contact": "联系我",
+    "visit": "访问",
+    "email": "邮箱"
+  },
+  "facets": {
+    "all": "全部",
+    "data-eng": "数据工程",
+    "ml": "机器学习",
+    "ai-rag": "AI / RAG",
+    "finance": "金融",
+    "web": "Web 与产品",
+    "sovereignty": "主权"
+  },
+  "labels": {
+    "languages": "语言",
+    "availability": "可用性",
+    "filterHint": "按重点筛选项目"
+  }
+}

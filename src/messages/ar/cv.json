@@ -1,0 +1,31 @@
+{
+  "title": "سيرة ذاتية تفاعلية",
+  "description": "السيرة الذاتية التفاعلية لـ Ewan Kapoor — الخبرة، المهارات، التعليم والمشاريع.",
+  "sections": {
+    "summary": "الملخص",
+    "skills": "المهارات",
+    "experience": "الخبرة",
+    "education": "التعليم",
+    "projects": "المشاريع"
+  },
+  "actions": {
+    "downloadPdf": "تحميل PDF",
+    "contact": "تواصل معي",
+    "visit": "زيارة",
+    "email": "البريد الإلكتروني"
+  },
+  "facets": {
+    "all": "الكل",
+    "data-eng": "هندسة البيانات",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "التمويل",
+    "web": "Web والمنتج",
+    "sovereignty": "السيادة"
+  },
+  "labels": {
+    "languages": "اللغات",
+    "availability": "التوفر",
+    "filterHint": "تصفية المشاريع حسب التركيز"
+  }
+}

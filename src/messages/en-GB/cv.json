@@ -1,0 +1,31 @@
+{
+  "title": "Interactive CV",
+  "description": "Ewan Kapoor's interactive CV — experience, skills, education and projects.",
+  "sections": {
+    "summary": "Summary",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects"
+  },
+  "actions": {
+    "downloadPdf": "Download PDF",
+    "contact": "Contact me",
+    "visit": "Visit",
+    "email": "Email"
+  },
+  "facets": {
+    "all": "All",
+    "data-eng": "Data Engineering",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "Finance",
+    "web": "Web & Product",
+    "sovereignty": "Sovereignty"
+  },
+  "labels": {
+    "languages": "Languages",
+    "availability": "Availability",
+    "filterHint": "Filter projects by focus"
+  }
+}
