@@ -17,6 +17,7 @@ describe('cv data', () => {
       expect(c.education.length).toBeGreaterThan(0);
       expect(c.skills.length).toBeGreaterThan(0);
       expect(c.languages.length).toBeGreaterThan(0);
+      for (const e of c.experience) expect(e.id, `${lang} experience id`).toBeTruthy();
       for (const e of c.experience) expect(e.company && e.role && e.period && e.highlights.length).toBeTruthy();
       for (const e of c.education) expect(e.institution && e.degree && e.period).toBeTruthy();
       for (const s of c.skills) expect(s.category && s.techs.length).toBeTruthy();

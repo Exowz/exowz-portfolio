@@ -8,6 +8,7 @@ export interface CvContact {
 }
 
 export interface CvExperience {
+  id: string;
   company: string;
   role: string;
   period: string;
@@ -61,6 +62,7 @@ const en: CvContent = {
   contact: { ...contact, availability: 'Remote or on-site' },
   experience: [
     {
+      id: 'purecontrol',
       company: 'Purecontrol',
       role: 'AI Engineer — Data Science (Intern)',
       period: 'Apr. 2026 — Sep. 2026',
@@ -72,6 +74,7 @@ const en: CvContent = {
       ],
     },
     {
+      id: 'freelance',
       company: 'Freelance',
       role: 'Full-Stack Web Developer',
       period: 'Since Jul. 2025',
@@ -82,6 +85,7 @@ const en: CvContent = {
       ],
     },
     {
+      id: 'body-iron',
       company: 'Body Iron Guyane',
       role: 'Sales Advisor — Sports Nutrition',
       period: 'Jul. — Sep. 2025',
@@ -89,6 +93,7 @@ const en: CvContent = {
       highlights: ['Sales-data analysis for KPI tracking and inventory optimization.'],
     },
     {
+      id: 'rem',
       company: 'REM Cutting Edge Nutrition Ltd',
       role: 'Manager — E-commerce & Operations',
       period: '2021 — 2022',
@@ -131,6 +136,7 @@ const fr: CvContent = {
   contact: { ...contact, availability: 'Télétravail ou présentiel' },
   experience: [
     {
+      id: 'purecontrol',
       company: 'Purecontrol',
       role: 'Ingénieur IA — Data Science (Stagiaire)',
       period: 'Avr. 2026 — Sept. 2026',
@@ -142,6 +148,7 @@ const fr: CvContent = {
       ],
     },
     {
+      id: 'freelance',
       company: 'Indépendant',
       role: 'Développeur Web Full-Stack',
       period: 'Depuis juil. 2025',
@@ -152,6 +159,7 @@ const fr: CvContent = {
       ],
     },
     {
+      id: 'body-iron',
       company: 'Body Iron Guyane',
       role: 'Conseiller de Vente — Nutrition Sportive',
       period: 'Juil. — Sept. 2025',
@@ -159,6 +167,7 @@ const fr: CvContent = {
       highlights: ['Analyse des données de vente pour suivi des KPI et optimisation des stocks.'],
     },
     {
+      id: 'rem',
       company: 'REM Cutting Edge Nutrition Ltd',
       role: 'Gérant — E-commerce & Opérations',
       period: '2021 — 2022',
