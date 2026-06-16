@@ -7,8 +7,13 @@ import { CvProjects } from './CvProjects';
 import { CvSidebar } from './CvSidebar';
 import { CvSkills } from './CvSkills';
 import { CvSummary } from './CvSummary';
+import { TailorBar } from './TailorBar';
+import { useTailor } from './useTailor';
 
 export function CvWindow() {
+  const tailor = useTailor();
+  const tailored = tailor.result;
+
   return (
     <div className="min-h-screen p-4 md:p-8">
       <motion.div
@@ -19,11 +24,12 @@ export function CvWindow() {
       >
         <CvSidebar />
         <div className="flex-1 space-y-10">
-          <CvSummary />
-          <CvSkills />
-          <CvExperience />
+          <TailorBar tailor={tailor} />
+          <CvSummary tailored={tailored} />
+          <CvSkills tailored={tailored} />
+          <CvExperience tailored={tailored} />
           <CvEducation />
-          <CvProjects />
+          <CvProjects tailored={tailored} />
         </div>
       </motion.div>
     </div>
