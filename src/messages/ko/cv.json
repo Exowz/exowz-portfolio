@@ -27,5 +27,19 @@
     "languages": "언어",
     "availability": "가능 여부",
     "filterHint": "초점별 프로젝트 필터"
+  },
+  "tailor": {
+    "title": "이 CV를 직무에 맞게 조정",
+    "placeholder": "직무명 또는 채용 공고를 붙여넣기...",
+    "button": "조정",
+    "reset": "초기화",
+    "tailoredFor": "맞춤 대상",
+    "whyFits": "적합한 이유",
+    "disclaimer": "AI 맞춤 - 부정확할 수 있음",
+    "loading": "조정 중...",
+    "unavailable": "AI 맞춤 기능을 지금 사용할 수 없습니다",
+    "error": "문제가 발생했습니다. 다시 시도하세요.",
+    "rateLimited": "요청이 너무 많습니다 - 몇 분 후 다시 시도하세요.",
+    "noMatches": "강한 일치 항목 없음 - 전체 CV를 표시합니다."
   }
 }

@@ -27,5 +27,19 @@
     "languages": "Sprachen",
     "availability": "Verfügbarkeit",
     "filterHint": "Projekte nach Fokus filtern"
+  },
+  "tailor": {
+    "title": "Diesen Lebenslauf auf eine Rolle zuschneiden",
+    "placeholder": "Rolle oder Stellenbeschreibung einfügen...",
+    "button": "Zuschneiden",
+    "reset": "Zurücksetzen",
+    "tailoredFor": "Zugeschnitten auf",
+    "whyFits": "Warum es passt",
+    "disclaimer": "KI-zugeschnitten - kann ungenau sein",
+    "loading": "Wird zugeschnitten...",
+    "unavailable": "KI-Zuschnitt ist derzeit nicht verfügbar",
+    "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "rateLimited": "Zu viele Anfragen - bitte in einigen Minuten erneut versuchen.",
+    "noMatches": "Keine starken Treffer - vollständiger Lebenslauf wird angezeigt."
   }
 }

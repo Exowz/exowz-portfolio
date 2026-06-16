@@ -27,5 +27,19 @@
     "languages": "言語",
     "availability": "対応可能",
     "filterHint": "フォーカスでプロジェクトを絞り込む"
+  },
+  "tailor": {
+    "title": "このCVを職種に合わせる",
+    "placeholder": "職種または求人内容を貼り付け...",
+    "button": "調整",
+    "reset": "リセット",
+    "tailoredFor": "調整対象",
+    "whyFits": "適合する理由",
+    "disclaimer": "AIによる調整 - 不完全な場合があります",
+    "loading": "調整中...",
+    "unavailable": "AI調整は現在利用できません",
+    "error": "問題が発生しました。もう一度お試しください。",
+    "rateLimited": "リクエストが多すぎます - 数分後に再試行してください。",
+    "noMatches": "強い一致はありません - 完全なCVを表示します。"
   }
 }

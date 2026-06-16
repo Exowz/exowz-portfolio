@@ -27,5 +27,19 @@
     "languages": "语言",
     "availability": "可用性",
     "filterHint": "按重点筛选项目"
+  },
+  "tailor": {
+    "title": "根据职位定制这份简历",
+    "placeholder": "粘贴职位或职位描述...",
+    "button": "定制",
+    "reset": "重置",
+    "tailoredFor": "定制目标",
+    "whyFits": "匹配原因",
+    "disclaimer": "AI 定制 - 可能不完全准确",
+    "loading": "正在定制...",
+    "unavailable": "AI 定制暂时不可用",
+    "error": "出现问题。请重试。",
+    "rateLimited": "请求过多 - 请几分钟后再试。",
+    "noMatches": "没有强匹配 - 显示完整简历。"
   }
 }

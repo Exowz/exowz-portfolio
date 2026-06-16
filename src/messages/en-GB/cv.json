@@ -27,5 +27,19 @@
     "languages": "Languages",
     "availability": "Availability",
     "filterHint": "Filter projects by focus"
+  },
+  "tailor": {
+    "title": "Tailor this CV to a role",
+    "placeholder": "Paste a role or job description...",
+    "button": "Tailor",
+    "reset": "Reset",
+    "tailoredFor": "Tailored for",
+    "whyFits": "Why this fits",
+    "disclaimer": "AI-tailored - may be imperfect",
+    "loading": "Tailoring...",
+    "unavailable": "AI tailoring unavailable right now",
+    "error": "Something went wrong. Please try again.",
+    "rateLimited": "Too many requests - please try again in a few minutes.",
+    "noMatches": "No strong matches - showing the full CV."
   }
 }

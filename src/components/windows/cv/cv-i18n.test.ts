@@ -22,6 +22,9 @@ describe('cv i18n chrome', () => {
       for (const f of ['all', 'data-eng', 'ml', 'ai-rag', 'finance', 'web', 'sovereignty']) {
         expect(c.facets?.[f], `${loc} facets.${f}`).toBeTruthy();
       }
+      for (const k of ['title', 'placeholder', 'button', 'reset', 'tailoredFor', 'whyFits', 'disclaimer', 'unavailable']) {
+        expect(c.tailor?.[k], `${loc} tailor.${k}`).toBeTruthy();
+      }
     }
   });
 });

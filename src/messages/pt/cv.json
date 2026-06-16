@@ -27,5 +27,19 @@
     "languages": "Idiomas",
     "availability": "Disponibilidade",
     "filterHint": "Filtrar projetos por foco"
+  },
+  "tailor": {
+    "title": "Adaptar este CV a uma função",
+    "placeholder": "Cole uma função ou descrição da vaga...",
+    "button": "Adaptar",
+    "reset": "Repor",
+    "tailoredFor": "Adaptado para",
+    "whyFits": "Porque se encaixa",
+    "disclaimer": "Adaptado por IA - pode conter imprecisões",
+    "loading": "A adaptar...",
+    "unavailable": "A adaptação por IA está indisponível agora",
+    "error": "Algo correu mal. Tente novamente.",
+    "rateLimited": "Demasiados pedidos - tente novamente em alguns minutos.",
+    "noMatches": "Sem correspondências fortes - a mostrar o CV completo."
   }
 }
