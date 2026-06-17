@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="{{ language|default('fr') }}">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+
+    /* ── Banking / IB one-pager ──────────────────────────────────────────
+       Conservative single-column CV for banking & finance applications.
+       No colour, no photo, no icons — black on white, print-safe.
+       Faithful to the European investment-banking CV standard.
+    ────────────────────────────────────────────────────────────────────── */
+
+    @page {
+      size: A4;
+      margin: 1.05cm 1.35cm;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 8.6pt;
+      color: #000000;
+      line-height: 1.22;
+    }
+
+    /* ── Header ──────────────────────────────────────────────────────── */
+    .name {
+      text-align: center;
+      font-size: 15pt;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .contact-line {
+      text-align: center;
+      font-size: 8pt;
+      color: #1A1A1A;
+      margin-top: 2pt;
+    }
+    .contact-line .sep { color: #888888; padding: 0 4px; }
+
+    .objective {
+      text-align: center;
+      font-size: 8.6pt;
+      font-style: italic;
+      font-weight: 600;
+      color: #111111;
+      margin-top: 3pt;
+    }
+
+    /* ── Sections ────────────────────────────────────────────────────── */
+    .section { margin-top: 7pt; }
+
+    .section-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      border-bottom: 1pt solid #000000;
+      padding-bottom: 1.5pt;
+      margin-bottom: 3.5pt;
+    }
+
+    /* ── Entries (education / experience) ────────────────────────────── */
+    .entry { margin-bottom: 3.5pt; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .entry-org { font-weight: 700; }
+    .entry-org .loc { font-weight: 400; }
+    .entry-date { font-weight: 700; white-space: nowrap; padding-left: 10px; }
+
+    .entry-role {
+      font-style: italic;
+      margin: 0.5pt 0 1.5pt;
+    }
+
+    .entry ul { margin: 0; padding-left: 12pt; }
+    .entry li { margin-bottom: 0.5pt; line-height: 1.22; }
+    .entry .note { font-style: italic; color: #2A2A2A; margin-top: 0.5pt; }
+
+    /* ── Projects ────────────────────────────────────────────────────── */
+    .proj { margin-bottom: 3.5pt; }
+    .proj:last-child { margin-bottom: 0; }
+    .proj-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .proj-name { font-weight: 700; }
+    .proj-techs { font-style: italic; font-size: 8pt; color: #333333; padding-left: 10px; white-space: nowrap; }
+    .proj-desc { margin-top: 0.5pt; line-height: 1.22; }
+
+    /* ── Skills & interests grid ─────────────────────────────────────── */
+    .grid-row { display: flex; margin-bottom: 2pt; }
+    .grid-row:last-child { margin-bottom: 0; }
+    .grid-label { font-weight: 700; width: 3.6cm; flex-shrink: 0; }
+    .grid-val { flex: 1; }
+
+  </style>
+</head>
+<body>
+
+  {% set fr = (language|default('fr')) != 'en' %}
+
+  {% if event %}
+  <style>.name, .contact-line, .objective { padding-left: 84px; padding-right: 84px; }</style>
+  <div style="position:absolute; top:0; right:0; z-index:50; width:74px; text-align:center;">
+    <img src="{{ qr_path }}" alt="{{ qr_caption }}" style="width:64px; height:64px; display:block; margin:0 auto;"/>
+    <div style="margin-top:2px; font-size:5px; line-height:1.2; color:#555;">{{ qr_caption }}</div>
+    <div style="margin-top:2px; display:inline-block; border:0.7px solid #000; color:#000; font-size:5.5px; font-weight:700; letter-spacing:.08em; padding:1px 5px; text-transform:uppercase;">&#9733; {{ event }}</div>
+  </div>
+  {% endif %}
+
+  {% set L = {
+    'formation':   'Formation'                  if fr else 'Education',
+    'experience':  'Expérience Professionnelle'  if fr else 'Professional Experience',
+    'projets':     'Projets Sélectionnés'        if fr else 'Selected Projects',
+    'competences': "Compétences & Centres d'Intérêt" if fr else 'Skills & Interests',
+    'langues':     'Langues'                     if fr else 'Languages',
+    'qualites':    'Qualités'                    if fr else 'Soft skills',
+    'interets':    "Centres d'intérêt"           if fr else 'Interests'
+  } %}
+
+  <!-- ── Header ─────────────────────────────────────────────────────── -->
+  <div class="name">{{ name }}</div>
+  <div class="contact-line">
+    {%- for b in contact_bits %}{{ b }}{% if not loop.last %}<span class="sep">|</span>{% endif %}{% endfor -%}
+  </div>
+  {% if objective or target %}
+  <div class="objective">{{ objective | default('À la recherche d\'une alternance en Data & IA à partir de septembre 2026.' if fr else 'Seeking a Data & AI work-study placement starting September 2026.', true) }}</div>
+  {% endif %}
+
+  <!-- ── Formation ──────────────────────────────────────────────────── -->
+  {% if education %}
+  <div class="section">
+    <div class="section-title">{{ L.formation }}</div>
+    {% for edu in education %}
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">{{ edu.institution }}{% if edu.location %} <span class="loc">— {{ edu.location }}</span>{% endif %}</span>
+        <span class="entry-date">{{ edu.period }}</span>
+      </div>
+      <div class="entry-role">{{ edu.degree }}{% if edu.note %} <span class="note">— {{ edu.note }}</span>{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ── Expérience Professionnelle ─────────────────────────────────── -->
+  {% if experience %}
+  <div class="section">
+    <div class="section-title">{{ L.experience }}</div>
+    {% for job in experience %}
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-org">{{ job.company }}{% if job.location %} <span class="loc">— {{ job.location }}</span>{% endif %}</span>
+        <span class="entry-date">{{ job.period }}</span>
+      </div>
+      <div class="entry-role">{{ job.role }}</div>
+      <ul>
+        {% for point in job.highlights %}<li>{{ point }}</li>{% endfor %}
+        {% for cl in job.clients|default([]) %}<li>{{ cl.name }} — {{ cl.description }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ── Projets Sélectionnés ───────────────────────────────────────── -->
+  {% if projects %}
+  <div class="section">
+    <div class="section-title">{{ L.projets }}</div>
+    {% for proj in projects %}
+    <div class="proj">
+      <div class="proj-head">
+        <span class="proj-name">{{ proj.name }}</span>
+        <span class="proj-techs">{{ proj.techs | join(" · ") }}</span>
+      </div>
+      <div class="proj-desc">{{ proj.description }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ── Compétences & Centres d'Intérêt ────────────────────────────── -->
+  {% if skills or languages or soft_skills or interests %}
+  <div class="section">
+    <div class="section-title">{{ L.competences }}</div>
+    {% for group in skills|default([]) %}
+    <div class="grid-row">
+      <span class="grid-label">{{ group.category }}</span>
+      <span class="grid-val">{{ group.techs | join(" · ") }}</span>
+    </div>
+    {% endfor %}
+    {% if languages %}
+    <div class="grid-row">
+      <span class="grid-label">{{ L.langues }}</span>
+      <span class="grid-val">{% for lang in languages %}{{ lang.language }} ({{ lang.level }}){% if not loop.last %} · {% endif %}{% endfor %}</span>
+    </div>
+    {% endif %}
+    {% if certifications %}
+    <div class="grid-row">
+      <span class="grid-label">{{ 'Certifications' }}</span>
+      <span class="grid-val">{{ certifications | join(" · ") if certifications is iterable and certifications is not string else certifications }}</span>
+    </div>
+    {% endif %}
+    {% if soft_skills %}
+    <div class="grid-row">
+      <span class="grid-label">{{ L.qualites }}</span>
+      <span class="grid-val">{{ soft_skills | join(" · ") }}</span>
+    </div>
+    {% endif %}
+    {% if interests %}
+    <div class="grid-row">
+      <span class="grid-label">{{ L.interets }}</span>
+      <span class="grid-val">{{ interests }}</span>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+</body>
+</html>
