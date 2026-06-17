@@ -12,7 +12,7 @@ export function CvSkills({ tailored }: { tailored?: TailorResult | null }) {
   const highlights = new Set(tailored?.skillHighlights ?? []);
 
   return (
-    <section id="skills" className="space-y-3">
+    <section id="skills" className="glass-card space-y-3 rounded-2xl p-5">
       <h2 className="text-xs uppercase tracking-[0.14em]" style={{ color: 'var(--accent-text)' }}>
         {t('skills')}
       </h2>

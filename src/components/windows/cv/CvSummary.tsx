@@ -10,7 +10,7 @@ export function CvSummary({ tailored }: { tailored?: TailorResult | null }) {
   const c = cvFor(locale);
 
   return (
-    <section id="summary" className="space-y-2">
+    <section id="summary" className="glass-card space-y-2 rounded-2xl p-5">
       <h2 className="text-xs uppercase tracking-[0.14em]" style={{ color: 'var(--accent-text)' }}>
         {t('sections.summary')}
       </h2>
