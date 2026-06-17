@@ -170,7 +170,7 @@ export function SettingsMenu() {
                     aria-pressed={locale === language.locale}
                     className="flex h-9 items-center justify-center rounded-xl text-base"
                     style={{
-                      border: locale === language.locale ? '1px solid var(--accent)' : '1px solid var(--window-border)',
+                      border: locale === language.locale ? '1px solid var(--accent-text)' : '1px solid var(--window-border)',
                       background: locale === language.locale ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                     }}
                   >

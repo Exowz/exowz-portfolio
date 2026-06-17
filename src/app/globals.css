@@ -75,7 +75,7 @@
   --text-tertiary: #78909c;  /* hints / large text only */
   /* Soft glass hairline (matches --window-border). Was a solid #e0e0e0 that
      rendered as a hard gray outline on every bare `border` utility. */
-  --border: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.05);
   --accent: #64b5f6;          /* brand: fills, glows, rings (icy blue) */
   --accent-text: #1976d2;     /* accent used as TEXT/icons on light bg (~5:1) */
   --accent-solid: #1976d2;    /* accent as a FILL behind WHITE text/icons — icy --accent is far too light here (white ~1.9:1); this reads ~4.6:1 */
@@ -117,7 +117,7 @@
   --window-bg: rgba(255, 255, 255, 0.25);
   --window-titlebar-bg: rgba(255, 255, 255, 0.3);
   --window-content-bg: rgba(255, 255, 255, 0.2);
-  --window-border: rgba(0, 0, 0, 0.08);
+  --window-border: rgba(0, 0, 0, 0.05);
   --window-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 60px rgba(100, 181, 246, 0.08);
   --window-close-btn: #ff5f57;
   --window-minimize-btn: #ffbd2e;

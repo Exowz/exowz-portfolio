@@ -128,8 +128,8 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
                     aria-pressed={active}
                     className="rounded-full px-2.5 py-1 text-xs"
                     style={{
-                      color: active ? 'var(--accent)' : 'var(--foreground)',
-                      border: active ? '1px solid var(--accent)' : '1px solid var(--window-border)',
+                      color: active ? 'var(--accent-text)' : 'var(--foreground)',
+                      border: active ? '1px solid var(--accent-text)' : '1px solid var(--window-border)',
                       background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                     }}
                   >
@@ -190,7 +190,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
                     key={pageIndex}
                     className="h-1.5 w-1.5 rounded-full transition-colors"
                     style={{
-                      background: pageIndex === selectedPage ? 'var(--accent)' : 'var(--window-border)',
+                      background: pageIndex === selectedPage ? 'var(--accent-text)' : 'var(--window-border)',
                     }}
                   />
                 ))}

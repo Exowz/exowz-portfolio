@@ -110,7 +110,7 @@ export function Settings({ open, onClose }: SettingsProps) {
                       className="grid min-w-0 grid-cols-[22px_1fr_16px] items-center gap-2 rounded-xl px-3 py-2 text-sm"
                       style={{
                         color: 'var(--foreground)',
-                        border: active ? '1px solid var(--accent)' : '1px solid var(--window-border)',
+                        border: active ? '1px solid var(--accent-text)' : '1px solid var(--window-border)',
                         background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                       }}
                     >

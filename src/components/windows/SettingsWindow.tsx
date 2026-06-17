@@ -63,7 +63,7 @@ export function SettingsWindow() {
                   className="grid min-w-0 grid-cols-[24px_1fr_18px] items-center gap-2 rounded-2xl border px-4 py-3 text-sm"
                   style={{
                     color: 'var(--foreground)',
-                    borderColor: active ? 'var(--accent)' : 'var(--window-border)',
+                    borderColor: active ? 'var(--accent-text)' : 'var(--window-border)',
                     background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
                   }}
                 >
