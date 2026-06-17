@@ -40,6 +40,12 @@
     "unavailable": "La adaptación con IA no está disponible ahora",
     "error": "Algo salió mal. Inténtalo de nuevo.",
     "rateLimited": "Demasiadas solicitudes - inténtalo en unos minutos.",
-    "noMatches": "Sin coincidencias fuertes - mostrando el CV completo."
-  }
+    "noMatches": "Sin coincidencias fuertes - mostrando el CV completo.",
+    "explainerLink": "¿Cómo funciona?",
+    "explainerTitle": "Cómo funciona la adaptación",
+    "explainerBody": "No es IA genérica. Es un agente basado únicamente en el CV real y verificado de Ewan: sus proyectos, experiencia y sus propios textos. Reordena y presenta lo que ya es cierto para ajustarlo al puesto descrito; nunca inventa experiencia ni habilidades."
+  },
+  "projectsSeeAll": "Ver todo",
+  "projectsCollapse": "Mostrar destacados",
+  "modalClose": "Cerrar"
 }

@@ -40,6 +40,12 @@
     "unavailable": "AI tailoring unavailable right now",
     "error": "Something went wrong. Please try again.",
     "rateLimited": "Too many requests - please try again in a few minutes.",
-    "noMatches": "No strong matches - showing the full CV."
-  }
+    "noMatches": "No strong matches - showing the full CV.",
+    "explainerLink": "How does this work?",
+    "explainerTitle": "How the tailoring works",
+    "explainerBody": "This isn't generic AI. It's an agent grounded only in Ewan's real, verified CV - his projects, experience and his own writing. It re-orders and frames what's already true to fit the role you describe; it never invents experience or skills."
+  },
+  "projectsSeeAll": "See all",
+  "projectsCollapse": "Show featured",
+  "modalClose": "Close"
 }

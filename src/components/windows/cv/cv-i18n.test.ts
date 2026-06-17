@@ -22,7 +22,13 @@ describe('cv i18n chrome', () => {
       for (const f of ['all', 'data-eng', 'ml', 'ai-rag', 'finance', 'web', 'sovereignty']) {
         expect(c.facets?.[f], `${loc} facets.${f}`).toBeTruthy();
       }
+      expect(c.projectsSeeAll, `${loc} projectsSeeAll`).toBeTruthy();
+      expect(c.projectsCollapse, `${loc} projectsCollapse`).toBeTruthy();
+      expect(c.modalClose, `${loc} modalClose`).toBeTruthy();
       for (const k of ['title', 'placeholder', 'button', 'reset', 'tailoredFor', 'whyFits', 'disclaimer', 'unavailable']) {
+        expect(c.tailor?.[k], `${loc} tailor.${k}`).toBeTruthy();
+      }
+      for (const k of ['explainerLink', 'explainerTitle', 'explainerBody']) {
         expect(c.tailor?.[k], `${loc} tailor.${k}`).toBeTruthy();
       }
     }
