@@ -80,7 +80,14 @@
       "location": "Location"
     },
     "location": "Paris, France",
-    "submit": "Send Message"
+    "submit": "Send Message",
+    "subtitle": "Open to opportunities and collaboration — I usually reply within a day.",
+    "availability": "Open to work-study · September 2026",
+    "status": {
+      "sending": "Sending…",
+      "success": "Message sent — thanks! I’ll get back to you soon.",
+      "error": "Couldn’t send your message. Please try again."
+    }
   },
   "projects": {
     "title": "My Projects",

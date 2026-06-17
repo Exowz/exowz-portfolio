@@ -80,7 +80,14 @@
       "location": "Localisation"
     },
     "location": "Paris, France",
-    "submit": "Envoyer le Message"
+    "submit": "Envoyer le Message",
+    "subtitle": "Ouvert aux opportunités et aux collaborations — je réponds généralement sous 24 h.",
+    "availability": "Ouvert à l’alternance · Septembre 2026",
+    "status": {
+      "sending": "Envoi…",
+      "success": "Message envoyé — merci ! Je vous réponds très vite.",
+      "error": "Impossible d’envoyer le message. Veuillez réessayer."
+    }
   },
   "projects": {
     "title": "Mes Projets",

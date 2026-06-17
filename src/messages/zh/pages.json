@@ -80,7 +80,14 @@
       "location": "所在地"
     },
     "location": "法国，巴黎",
-    "submit": "发送消息"
+    "submit": "发送消息",
+    "subtitle": "欢迎合作与机会 — 我通常一天内回复。",
+    "availability": "可参加产学交替培养 · 2026年9月",
+    "status": {
+      "sending": "发送中…",
+      "success": "消息已发送 — 谢谢!我会尽快回复。",
+      "error": "无法发送消息,请重试。"
+    }
   },
   "projects": {
     "title": "我的项目",

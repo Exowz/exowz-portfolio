@@ -80,7 +80,14 @@
       "location": "Ubicación"
     },
     "location": "París, Francia",
-    "submit": "Enviar mensaje"
+    "submit": "Enviar mensaje",
+    "subtitle": "Abierto a oportunidades y colaboraciones — suelo responder en un día.",
+    "availability": "Disponible para alternancia · Septiembre de 2026",
+    "status": {
+      "sending": "Enviando…",
+      "success": "Mensaje enviado — ¡gracias! Te responderé pronto.",
+      "error": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+    }
   },
   "projects": {
     "title": "Mis proyectos",

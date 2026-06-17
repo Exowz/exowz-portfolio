@@ -80,7 +80,14 @@
       "location": "Standort"
     },
     "location": "Paris, Frankreich",
-    "submit": "Nachricht senden"
+    "submit": "Nachricht senden",
+    "subtitle": "Offen für Möglichkeiten und Zusammenarbeit — ich antworte meist innerhalb eines Tages.",
+    "availability": "Offen für duales Studium · September 2026",
+    "status": {
+      "sending": "Senden…",
+      "success": "Nachricht gesendet — danke! Ich melde mich bald.",
+      "error": "Nachricht konnte nicht gesendet werden. Bitte erneut versuchen."
+    }
   },
   "projects": {
     "title": "Meine Projekte",

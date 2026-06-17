@@ -80,7 +80,14 @@
       "location": "Località"
     },
     "location": "Parigi, Francia",
-    "submit": "Invia messaggio"
+    "submit": "Invia messaggio",
+    "subtitle": "Aperto a opportunità e collaborazioni — di solito rispondo entro un giorno.",
+    "availability": "Disponibile per apprendistato · Settembre 2026",
+    "status": {
+      "sending": "Invio…",
+      "success": "Messaggio inviato — grazie! Ti risponderò presto.",
+      "error": "Impossibile inviare il messaggio. Riprova."
+    }
   },
   "projects": {
     "title": "I miei progetti",
