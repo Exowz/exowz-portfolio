@@ -1,10 +1,12 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
-import { IconArrowLeft, IconBrandGithub, IconExternalLink, IconBriefcase, IconFolder, IconClock } from '@tabler/icons-react';
+import { IconArrowLeft, IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { getProjectBySlug } from '@/data/projects';
+import { monogram } from '@/lib/projects/gallery';
 
 interface ProjectDetailWindowProps {
   slug: string;
@@ -12,19 +14,112 @@ interface ProjectDetailWindowProps {
   hideBackLink?: boolean;
 }
 
+const ICON_GRADIENT = 'linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, #1e3a5f))';
+
+/** Highlights the section currently scrolled into the top third of the viewport. */
+function useScrollSpy(ids: string[]) {
+  const key = ids.join(',');
+  const [active, setActive] = useState(ids[0] ?? '');
+
+  useEffect(() => {
+    if (!ids.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: '0px 0px -70% 0px', threshold: 0 },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  return active;
+}
+
 export default function ProjectDetailWindow({ slug, hideBackLink = false }: ProjectDetailWindowProps) {
   const t = useTranslations('projects');
   const tSections = useTranslations('projects.sections');
   const tLabels = useTranslations('projects.labels');
+  const tFacets = useTranslations('cv.facets');
   const projectMeta = getProjectBySlug(slug);
+
+  // ---- Resolve optional case-study content ------------------------------------
+  let hasMetadata = false;
+  let keyFeatures: Array<{ title: string; description: string; implementation: string; challenges: string }> = [];
+  let learnings: string[] = [];
+  let futureEnhancements: string[] = [];
+  let techStackFields: Array<'frontend' | 'backend' | 'tools' | 'libraries'> = [];
+
+  if (projectMeta) {
+    try {
+      const raw = t.raw(`${projectMeta.key}.metadata`);
+      hasMetadata = !!raw && typeof raw === 'object' && 'role' in raw;
+    } catch {
+      hasMetadata = false;
+    }
+    if (hasMetadata) {
+      const arr = (sub: string) => {
+        try {
+          const raw = t.raw(`${projectMeta.key}.${sub}`);
+          return Array.isArray(raw) ? raw : null;
+        } catch {
+          return null;
+        }
+      };
+      keyFeatures = (arr('keyFeatures') as typeof keyFeatures) ?? [];
+      learnings = (arr('learnings') as string[]) ?? [];
+      futureEnhancements = (arr('futureEnhancements') as string[]) ?? [];
+      try {
+        const stack = t.raw(`${projectMeta.key}.techStack`) as Record<string, string | null> | undefined;
+        if (stack && typeof stack === 'object') {
+          techStackFields = (['frontend', 'backend', 'tools', 'libraries'] as const).filter((f) => {
+            const v = stack[f];
+            return v !== null && v !== undefined && v !== 'null';
+          });
+        }
+      } catch {
+        techStackFields = [];
+      }
+    }
+  }
+
+  // ---- Section nav model (only sections that actually render) -----------------
+  const navItems = useMemo(() => {
+    if (!hasMetadata) return [] as Array<{ id: string; label: string }>;
+    const items: Array<{ id: string; label: string }> = [
+      { id: 'overview', label: tSections('overview') },
+      { id: 'challenge', label: tSections('challenge') },
+      { id: 'discovery', label: tSections('discovery') },
+      { id: 'architecture', label: tSections('architecture') },
+      { id: 'process', label: tSections('developmentProcess') },
+    ];
+    if (keyFeatures.length > 0) items.push({ id: 'features', label: tSections('keyFeatures') });
+    items.push({ id: 'testing', label: tSections('testing') });
+    items.push({ id: 'results', label: tSections('results') });
+    if (techStackFields.length > 0) items.push({ id: 'stack', label: tSections('techStack') });
+    if (learnings.length > 0) items.push({ id: 'learnings', label: tSections('learnings') });
+    if (futureEnhancements.length > 0) items.push({ id: 'future', label: tSections('futureEnhancements') });
+    items.push({ id: 'conclusion', label: tSections('conclusion') });
+    return items;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasMetadata, keyFeatures.length, techStackFields.length, learnings.length, futureEnhancements.length, slug]);
+
+  const activeId = useScrollSpy(navItems.map((n) => n.id));
 
   if (!projectMeta) {
     return (
       <div className="flex items-center justify-center p-6">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">{t('notFound')}</h1>
+          <h1 className="mb-4 text-4xl font-bold">{t('notFound')}</h1>
           {!hideBackLink && (
-            <Link href="/projects" className="text-primary hover:underline">
+            <Link href="/projects" className="hover:underline" style={{ color: 'var(--accent-text)' }}>
               ← {t('backToProjects')}
             </Link>
           )}
@@ -33,416 +128,369 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
     );
   }
 
-  // Check if this project has full case study data
-  let hasMetadata = false;
-  let keyFeatures: Array<{ title: string; description: string; implementation: string; challenges: string }> = [];
-  let learnings: string[] = [];
-  let futureEnhancements: string[] = [];
+  const title = t(`${projectMeta.key}.title`);
+  const facetLabel = projectMeta.facets.map((f) => tFacets(f)).join(' · ');
 
-  try {
-    const raw = t.raw(`${projectMeta.key}.metadata`);
-    hasMetadata = raw && typeof raw === 'object' && 'role' in raw;
-  } catch {
-    hasMetadata = false;
-  }
+  // ---- Reusable bits ----------------------------------------------------------
+  const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: 'var(--accent-text)' }}>
+      {children}
+    </p>
+  );
+  const cardStyle = {
+    background: 'var(--window-content-bg)',
+  } as const;
+  const body = { color: 'var(--text-secondary)' } as const;
 
-  // Get key features array (if available)
-  if (hasMetadata) {
-    try {
-      const raw = t.raw(`${projectMeta.key}.keyFeatures`);
-      if (Array.isArray(raw)) {
-        keyFeatures = raw;
-      }
-    } catch {
-      keyFeatures = [];
-    }
-  }
+  const goTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  // Get learnings array (if available)
-  if (hasMetadata) {
-    try {
-      const raw = t.raw(`${projectMeta.key}.learnings`);
-      if (Array.isArray(raw)) {
-        learnings = raw;
-      }
-    } catch {
-      learnings = [];
-    }
-  }
+  // ---- Sections ---------------------------------------------------------------
+  const sections = hasMetadata && (
+    <div className="space-y-10">
+      <section id="overview" className="scroll-mt-4">
+        <SectionLabel>{tSections('overview')}</SectionLabel>
+        <p className="text-base leading-relaxed" style={body}>
+          {t(`${projectMeta.key}.overview`)}
+        </p>
+      </section>
 
-  // Get future enhancements array (if available)
-  if (hasMetadata) {
-    try {
-      const raw = t.raw(`${projectMeta.key}.futureEnhancements`);
-      if (Array.isArray(raw)) {
-        futureEnhancements = raw;
-      }
-    } catch {
-      futureEnhancements = [];
-    }
-  }
+      <section id="challenge" className="scroll-mt-4">
+        <SectionLabel>{tSections('challenge')}</SectionLabel>
+        <div className="space-y-3">
+          {(['problem', 'goal', 'constraints'] as const).map((field) => (
+            <div key={field} className="glass-card rounded-xl p-4" style={cardStyle}>
+              <h3 className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                {tLabels(field)}
+              </h3>
+              <p className="text-sm leading-relaxed" style={body}>
+                {t(`${projectMeta.key}.challenge.${field}`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="discovery" className="scroll-mt-4">
+        <SectionLabel>{tSections('discovery')}</SectionLabel>
+        <div className="space-y-3">
+          {(['requirements', 'competitiveAnalysis', 'technicalResearch'] as const).map((field) => (
+            <div key={field} className="glass-card rounded-xl p-4" style={cardStyle}>
+              <h3 className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                {tLabels(field)}
+              </h3>
+              <p className="text-sm leading-relaxed" style={body}>
+                {t(`${projectMeta.key}.discovery.${field}`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="architecture" className="scroll-mt-4">
+        <SectionLabel>{tSections('architecture')}</SectionLabel>
+        <div className="space-y-3">
+          {(['informationArchitecture', 'technicalDecisions'] as const).map((field) => (
+            <div key={field} className="glass-card rounded-xl p-4" style={cardStyle}>
+              <h3 className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                {tLabels(field)}
+              </h3>
+              <p className="text-sm leading-relaxed" style={body}>
+                {t(`${projectMeta.key}.architecture.${field}`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="process" className="scroll-mt-4">
+        <SectionLabel>{tSections('developmentProcess')}</SectionLabel>
+        <div className="space-y-3">
+          {(['phase1', 'phase2', 'phase3'] as const).map((phase, index) => (
+            <div
+              key={phase}
+              className="glass-card rounded-xl border-l-2 p-4"
+              style={{ ...cardStyle, borderLeftColor: 'var(--accent)' }}
+            >
+              <h3 className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                {`Phase ${index + 1}`}
+              </h3>
+              <p className="text-sm leading-relaxed" style={body}>
+                {t(`${projectMeta.key}.developmentProcess.${phase}`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {keyFeatures.length > 0 && (
+        <section id="features" className="scroll-mt-4">
+          <SectionLabel>{tSections('keyFeatures')}</SectionLabel>
+          <div className="space-y-4">
+            {keyFeatures.map((feature, index) => (
+              <div key={index} className="glass-card rounded-xl p-5" style={cardStyle}>
+                <h3 className="mb-2 text-base font-semibold" style={{ color: 'var(--foreground)' }}>
+                  {feature.title}
+                </h3>
+                <p className="mb-3 text-sm leading-relaxed" style={body}>
+                  {feature.description}
+                </p>
+                <div
+                  className="space-y-3 border-l-2 pl-4"
+                  style={{ borderLeftColor: 'color-mix(in srgb, var(--accent) 30%, transparent)' }}
+                >
+                  <div>
+                    <p className="mb-1 text-xs font-semibold" style={{ color: 'var(--accent-text)' }}>
+                      {tLabels('implementation')}
+                    </p>
+                    <p className="text-sm" style={body}>
+                      {feature.implementation}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="mb-1 text-xs font-semibold" style={{ color: 'var(--accent-text)' }}>
+                      {tLabels('challenges')}
+                    </p>
+                    <p className="text-sm" style={body}>
+                      {feature.challenges}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section id="testing" className="scroll-mt-4">
+        <SectionLabel>{tSections('testing')}</SectionLabel>
+        <div className="glass-card rounded-xl p-5" style={cardStyle}>
+          <p className="text-sm leading-relaxed" style={body}>
+            {t(`${projectMeta.key}.testing`)}
+          </p>
+        </div>
+      </section>
+
+      <section id="results" className="scroll-mt-4">
+        <SectionLabel>{tSections('results')}</SectionLabel>
+        <div
+          className="glass-card space-y-4 rounded-xl p-5"
+          style={{ background: 'color-mix(in srgb, var(--accent) 7%, var(--window-content-bg))' }}
+        >
+          {(['technicalAchievements', 'businessImpact', 'personalGrowth'] as const).map((field) => (
+            <div key={field}>
+              <p className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--accent-text)' }}>
+                {tLabels(field)}
+              </p>
+              <p className="text-sm leading-relaxed" style={body}>
+                {t(`${projectMeta.key}.results.${field}`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {techStackFields.length > 0 && (
+        <section id="stack" className="scroll-mt-4">
+          <SectionLabel>{tSections('techStack')}</SectionLabel>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {techStackFields.map((field) => (
+              <div key={field} className="glass-card rounded-xl p-4" style={cardStyle}>
+                <h3 className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                  {tLabels(field)}
+                </h3>
+                <p className="text-sm" style={body}>
+                  {t(`${projectMeta.key}.techStack.${field}`)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {learnings.length > 0 && (
+        <section id="learnings" className="scroll-mt-4">
+          <SectionLabel>{tSections('learnings')}</SectionLabel>
+          <ul className="space-y-2.5">
+            {learnings.map((learning, index) => (
+              <li key={index} className="glass-card flex items-start gap-3 rounded-xl p-4" style={cardStyle}>
+                <span className="mt-0.5 text-lg leading-none" style={{ color: 'var(--accent-text)' }}>
+                  •
+                </span>
+                <span className="text-sm leading-relaxed" style={body}>
+                  {learning}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {futureEnhancements.length > 0 && (
+        <section id="future" className="scroll-mt-4">
+          <SectionLabel>{tSections('futureEnhancements')}</SectionLabel>
+          <ul className="space-y-2.5">
+            {futureEnhancements.map((enhancement, index) => (
+              <li key={index} className="glass-card flex items-start gap-3 rounded-xl p-4" style={cardStyle}>
+                <span className="mt-0.5" style={{ color: 'var(--accent-text)' }}>
+                  →
+                </span>
+                <span className="text-sm leading-relaxed" style={body}>
+                  {enhancement}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section id="conclusion" className="scroll-mt-4">
+        <SectionLabel>{tSections('conclusion')}</SectionLabel>
+        <p className="text-base leading-relaxed" style={body}>
+          {t(`${projectMeta.key}.conclusion`)}
+        </p>
+      </section>
+    </div>
+  );
 
   return (
-    <div className="p-6 md:p-12">
+    <div className="p-5 md:p-10">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-5xl mx-auto"
+        transition={{ duration: 0.4 }}
+        className="mx-auto max-w-5xl"
       >
-          {/* Back Button (hidden inside the mobile sheet, which has its own nav-bar back) */}
-          {!hideBackLink && (
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+        {!hideBackLink && (
+          <Link
+            href="/projects"
+            className="mb-8 inline-flex items-center gap-2 text-sm transition-colors hover:opacity-70"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            <IconArrowLeft className="h-4 w-4" />
+            {t('backToProjects')}
+          </Link>
+        )}
+
+        {/* Hero */}
+        <div className="flex flex-col gap-4">
+          <div className="flex items-start gap-4">
+            <span
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-lg font-extrabold tracking-wide text-white"
+              style={{ background: ICON_GRADIENT, boxShadow: '0 8px 20px color-mix(in srgb, var(--accent) 35%, transparent)' }}
+              aria-hidden
             >
-              <IconArrowLeft className="w-4 h-4" />
-              {t('backToProjects')}
-            </Link>
-          )}
-
-          <div className="space-y-10">
-            {/* Project Header */}
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                {t(`${projectMeta.key}.title`)}
+              {monogram(title)}
+            </span>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: 'var(--accent-text)' }}>
+                {facetLabel}
+              </p>
+              <h1 className="mt-1 text-3xl font-bold md:text-4xl" style={{ color: 'var(--foreground)' }}>
+                {title}
               </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                {t(`${projectMeta.key}.description`)}
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                {projectMeta.github && (
-                  <a
-                    href={projectMeta.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border bg-card hover:bg-accent transition-colors"
-                  >
-                    <IconBrandGithub className="w-4 h-4" />
-                    {t('viewCode')}
-                  </a>
-                )}
-                {projectMeta.demo && (
-                  <a
-                    href={projectMeta.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
-                  >
-                    <IconExternalLink className="w-4 h-4" />
-                    {t('liveDemo')}
-                  </a>
-                )}
-              </div>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {projectMeta.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
+          </div>
 
-            {/* Project Metadata (if available) */}
-            {hasMetadata && (
-              <div className="glass-card rounded-lg bg-card p-6">
-                <h2 className="text-2xl font-semibold mb-4">{tSections('metadata')}</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <IconBriefcase className="w-5 h-5 text-accent-text mt-0.5" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">{tLabels('role')}</p>
-                      <p className="font-medium">{t(`${projectMeta.key}.metadata.role`)}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <IconFolder className="w-5 h-5 text-accent-text mt-0.5" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">{tLabels('category')}</p>
-                      <p className="font-medium">{t(`${projectMeta.key}.metadata.category`)}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <IconClock className="w-5 h-5 text-accent-text mt-0.5" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">{tLabels('timeline')}</p>
-                      <p className="font-medium">{t(`${projectMeta.key}.metadata.timeline`)}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <p className="max-w-3xl text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            {t(`${projectMeta.key}.description`)}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-3">
+            {projectMeta.demo && (
+              <a
+                href={projectMeta.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110"
+                style={{ background: 'var(--accent)', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
+              >
+                <IconExternalLink className="h-4 w-4" />
+                {t('liveDemo')}
+              </a>
             )}
-
-            {/* Project Image Placeholder */}
-            <div className="aspect-video rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <div className="text-6xl font-bold opacity-20">
-                {t(`${projectMeta.key}.title`).charAt(0)}
-              </div>
-            </div>
-
-            {/* Overview */}
-            <section>
-              <h2 className="text-3xl font-semibold mb-4">{tSections('overview')}</h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                {t(`${projectMeta.key}.overview`)}
-              </p>
-            </section>
-
-            {/* The Challenge (if available) */}
-            {hasMetadata && (
-              <section className="glass-card rounded-lg bg-card/50 p-6">
-                <h2 className="text-3xl font-semibold mb-6">{tSections('challenge')}</h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('problem')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.challenge.problem`)}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('goal')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.challenge.goal`)}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('constraints')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.challenge.constraints`)}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Discovery & Research (if available) */}
-            {hasMetadata && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('discovery')}</h2>
-                <div className="space-y-4">
-                  <div className="glass-card rounded-lg bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-2">{tLabels('requirements')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.discovery.requirements`)}
-                    </p>
-                  </div>
-                  <div className="glass-card rounded-lg bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-2">{tLabels('competitiveAnalysis')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.discovery.competitiveAnalysis`)}
-                    </p>
-                  </div>
-                  <div className="glass-card rounded-lg bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-2">{tLabels('technicalResearch')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.discovery.technicalResearch`)}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Architecture & Planning (if available) */}
-            {hasMetadata && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('architecture')}</h2>
-                <div className="space-y-4">
-                  <div className="glass-card rounded-lg bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-2">{tLabels('informationArchitecture')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.architecture.informationArchitecture`)}
-                    </p>
-                  </div>
-                  <div className="glass-card rounded-lg bg-card p-4">
-                    <h3 className="text-lg font-semibold mb-2">{tLabels('technicalDecisions')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.architecture.technicalDecisions`)}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Development Process (if available) */}
-            {hasMetadata && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('developmentProcess')}</h2>
-                <div className="space-y-4">
-                  <div className="glass-card rounded-lg bg-card p-4 border-l-4 border-l-accent">
-                    <h3 className="text-lg font-semibold mb-2">Phase 1</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.developmentProcess.phase1`)}
-                    </p>
-                  </div>
-                  <div className="glass-card rounded-lg bg-card p-4 border-l-4 border-l-accent">
-                    <h3 className="text-lg font-semibold mb-2">Phase 2</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.developmentProcess.phase2`)}
-                    </p>
-                  </div>
-                  <div className="glass-card rounded-lg bg-card p-4 border-l-4 border-l-accent">
-                    <h3 className="text-lg font-semibold mb-2">Phase 3</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.developmentProcess.phase3`)}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Key Features & Implementation */}
-            {keyFeatures.length > 0 && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('keyFeatures')}</h2>
-                <div className="space-y-6">
-                  {keyFeatures.map((feature, index: number) => (
-                    <div key={index} className="glass-card rounded-lg bg-card p-6">
-                      <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                      <p className="text-muted-foreground mb-4">{feature.description}</p>
-                      <div className="space-y-3 pl-4 border-l-2 border-accent/30">
-                        <div>
-                          <p className="text-sm font-semibold text-accent-text mb-1">{tLabels('implementation')}</p>
-                          <p className="text-sm text-muted-foreground">{feature.implementation}</p>
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-accent-text mb-1">{tLabels('challenges')}</p>
-                          <p className="text-sm text-muted-foreground">{feature.challenges}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Testing & Iteration (if available) */}
-            {hasMetadata && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-4">{tSections('testing')}</h2>
-                <div className="glass-card rounded-lg bg-card p-6">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {t(`${projectMeta.key}.testing`)}
-                  </p>
-                </div>
-              </section>
-            )}
-
-            {/* Results & Impact (if available) */}
-            {hasMetadata && (
-              <section className="glass-card rounded-lg bg-gradient-to-br from-accent/10 to-primary/10 p-6">
-                <h2 className="text-3xl font-semibold mb-6">{tSections('results')}</h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('technicalAchievements')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.results.technicalAchievements`)}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('businessImpact')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.results.businessImpact`)}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-accent-text mb-2">{tLabels('personalGrowth')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t(`${projectMeta.key}.results.personalGrowth`)}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Tech Stack (if available) */}
-            {hasMetadata && (() => {
-              // Check if techStack exists and which fields have non-null values
-              let techStackData: Record<string, string | null> | null = null;
-              try {
-                techStackData = t.raw(`${projectMeta.key}.techStack`) as Record<string, string | null>;
-              } catch {
-                return null;
-              }
-
-              if (!techStackData || typeof techStackData !== 'object') return null;
-
-              const techStackFields = ['frontend', 'backend', 'tools', 'libraries'] as const;
-              const availableFields = techStackFields.filter(field => {
-                const value = techStackData[field];
-                return value !== null && value !== undefined && value !== 'null';
-              });
-
-              if (availableFields.length === 0) return null;
-
-              return (
-                <section>
-                  <h2 className="text-3xl font-semibold mb-6">{tSections('techStack')}</h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {availableFields.map(field => (
-                      <div key={field} className="glass-card rounded-lg bg-card p-4">
-                        <h3 className="text-lg font-semibold mb-3">{tLabels(field)}</h3>
-                        <p className="text-muted-foreground">{t(`${projectMeta.key}.techStack.${field}`)}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              );
-            })()}
-
-            {/* Key Learnings (if available) */}
-            {learnings.length > 0 && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('learnings')}</h2>
-                <ul className="space-y-3">
-                  {learnings.map((learning: string, index: number) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-3 p-4 glass-card rounded-lg bg-card"
-                    >
-                      <span className="text-accent-text mt-1 text-lg">•</span>
-                      <span className="text-muted-foreground leading-relaxed">{learning}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {/* Future Enhancements (if available) */}
-            {futureEnhancements.length > 0 && (
-              <section>
-                <h2 className="text-3xl font-semibold mb-6">{tSections('futureEnhancements')}</h2>
-                <ul className="space-y-3">
-                  {futureEnhancements.map((enhancement: string, index: number) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-3 p-4 glass-card rounded-lg bg-card hover:bg-accent/10 transition-colors"
-                    >
-                      <span className="text-primary mt-1">→</span>
-                      <span className="text-muted-foreground leading-relaxed">{enhancement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {/* Conclusion (if available) */}
-            {hasMetadata && (
-              <section className="glass-card rounded-lg bg-card p-6">
-                <h2 className="text-3xl font-semibold mb-4">{tSections('conclusion')}</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t(`${projectMeta.key}.conclusion`)}
-                </p>
-              </section>
+            {projectMeta.github && (
+              <a
+                href={projectMeta.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition hover:opacity-80"
+                style={{ color: 'var(--foreground)', border: '1px solid var(--window-border)' }}
+              >
+                <IconBrandGithub className="h-4 w-4" />
+                {t('viewCode')}
+              </a>
             )}
           </div>
-        </motion.div>
+
+          <div className="flex flex-wrap gap-2">
+            {projectMeta.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full px-3 py-1 text-xs"
+                style={{
+                  background: 'color-mix(in srgb, var(--accent) 9%, transparent)',
+                  border: '1px solid color-mix(in srgb, var(--accent) 20%, transparent)',
+                  color: 'var(--accent-text)',
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="my-8 h-px" style={{ background: 'var(--border)' }} />
+
+        {/* Body */}
+        {hasMetadata ? (
+          <div className="lg:grid lg:grid-cols-[200px_1fr] lg:gap-10">
+            <aside className="hidden lg:block">
+              <div className="sticky top-2 space-y-5 self-start">
+                {(['role', 'category', 'timeline'] as const).map((field) => (
+                  <div key={field}>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ color: 'var(--text-tertiary)' }}>
+                      {tLabels(field)}
+                    </p>
+                    <p className="mt-0.5 text-sm font-medium" style={{ color: 'var(--foreground)' }}>
+                      {t(`${projectMeta.key}.metadata.${field}`)}
+                    </p>
+                  </div>
+                ))}
+                <nav className="space-y-0.5 pt-1">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ color: 'var(--text-tertiary)' }}>
+                    {tSections('metadata')}
+                  </p>
+                  {navItems.map((item) => {
+                    const on = activeId === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => goTo(item.id)}
+                        className="block w-full border-l-2 py-1 pl-3 text-left text-xs transition-colors"
+                        style={{
+                          color: on ? 'var(--accent-text)' : 'var(--text-secondary)',
+                          borderLeftColor: on ? 'var(--accent)' : 'var(--border)',
+                          fontWeight: on ? 600 : 400,
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+            </aside>
+            {sections}
+          </div>
+        ) : (
+          <div className="space-y-6">
+            <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              {t(`${projectMeta.key}.overview`)}
+            </p>
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 }

@@ -85,6 +85,8 @@
   "projects": {
     "title": "我的项目",
     "description": "探索我在数据、AI 和 Web 开发领域的工作",
-    "empty": "暂无项目"
+    "empty": "暂无项目",
+    "featured": "精选",
+    "allProjects": "所有项目"
   }
 }

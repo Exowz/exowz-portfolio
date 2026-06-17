@@ -1,109 +1,78 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
-import { Link } from '@/i18n/routing';
-import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
-import { projects } from '@/data/projects';
+import { IconStarFilled } from '@tabler/icons-react';
+import { projects, type CvFacet } from '@/data/projects';
+import { filterProjects } from '@/lib/projects/gallery';
+import { FacetFilter } from './cv/FacetFilter';
+import { ProjectCard } from './projects/ProjectCard';
 
 export function ProjectsWindow() {
   const t = useTranslations('pages.projects');
-  const tProjects = useTranslations('projects');
+  const [facet, setFacet] = useState<CvFacet | null>(null);
+
+  const filtered = filterProjects(projects, facet);
+  // When unfiltered, surface featured projects in their own strip; once a facet is
+  // chosen the filter is global, so everything collapses into one grid.
+  const featured = facet === null ? filtered.filter((p) => p.featured) : [];
+  const rest = facet === null ? filtered.filter((p) => !p.featured) : filtered;
+
+  const heading = (text: string, icon?: React.ReactNode) => (
+    <div className="mb-4 flex items-center gap-2">
+      {icon}
+      <h2 className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: 'var(--accent-text)' }}>
+        {text}
+      </h2>
+    </div>
+  );
+
+  const grid = (list: typeof projects, featuredCards: boolean) => (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {list.map((project, index) => (
+        <motion.div
+          key={project.slug}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: Math.min(index, 8) * 0.04 }}
+        >
+          <ProjectCard project={project} featured={featuredCards && project.featured} />
+        </motion.div>
+      ))}
+    </div>
+  );
 
   return (
-    <div className="p-5 md:p-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto"
-      >
-        <div className="space-y-6 md:space-y-8">
-          <div>
-            <p className="text-base md:text-xl text-foreground/80">
-              {t('description')}
-            </p>
-          </div>
+    <div className="p-5 md:p-10">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <header className="space-y-5">
+          <p className="text-base md:text-lg" style={{ color: 'var(--text-secondary)' }}>
+            {t('description')}
+          </p>
+          <FacetFilter active={facet} onChange={setFacet} />
+        </header>
 
-          {/* Projects Grid */}
-          <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 md:mt-12">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="group glass-card glass-card-hover rounded-lg bg-card/80 backdrop-blur-sm overflow-hidden">
-                  {/* Project Image - Clickable to detail page */}
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="flex aspect-video bg-gradient-to-br from-accent/10 to-accent/5 items-center justify-center"
-                  >
-                    <div className="text-4xl font-bold text-muted-foreground/30">
-                      {tProjects(`${project.key}.title`).charAt(0)}
-                    </div>
-                  </Link>
+        {featured.length > 0 && (
+          <section>
+            {heading(t('featured'), <IconStarFilled className="h-3.5 w-3.5" style={{ color: 'var(--accent-text)' }} />)}
+            {grid(featured, true)}
+          </section>
+        )}
 
-                  {/* Project Info */}
-                  <div className="space-y-3 p-4 md:space-y-4 md:p-6">
-                    <div>
-                      <Link href={`/projects/${project.slug}`}>
-                        <h2 className="mb-2 text-xl font-semibold text-foreground transition-colors group-hover:text-foreground/80 md:text-2xl">
-                          {tProjects(`${project.key}.title`)}
-                        </h2>
-                      </Link>
-                      <p className="line-clamp-2 text-sm text-muted-foreground md:text-base">
-                        {tProjects(`${project.key}.description`)}
-                      </p>
-                    </div>
+        {rest.length > 0 && (
+          <section>
+            {featured.length > 0 && heading(t('allProjects'))}
+            {grid(rest, false)}
+          </section>
+        )}
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 text-xs rounded-full bg-background text-foreground border border-accent/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Links - Separate anchors, not nested */}
-                    <div className="flex gap-3 pt-2">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-foreground hover:text-foreground/70 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <IconBrandGithub className="w-4 h-4" />
-                          {tProjects('viewCode')}
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-foreground hover:text-foreground/70 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <IconExternalLink className="w-4 h-4" />
-                          {tProjects('liveDemo')}
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+        {filtered.length === 0 && (
+          <p className="py-12 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>
+            {t('empty')}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

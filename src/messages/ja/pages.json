@@ -85,6 +85,8 @@
   "projects": {
     "title": "マイプロジェクト",
     "description": "データ、AI、Web開発における私の活動をご覧ください",
-    "empty": "プロジェクトがありません"
+    "empty": "プロジェクトがありません",
+    "featured": "注目",
+    "allProjects": "すべてのプロジェクト"
   }
 }

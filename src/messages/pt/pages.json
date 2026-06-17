@@ -85,6 +85,8 @@
   "projects": {
     "title": "Meus Projetos",
     "description": "Explore meu trabalho em dados, IA e desenvolvimento web",
-    "empty": "Nenhum projeto"
+    "empty": "Nenhum projeto",
+    "featured": "Destaques",
+    "allProjects": "Todos os projetos"
   }
 }

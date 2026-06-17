@@ -85,6 +85,8 @@
   "projects": {
     "title": "나의 프로젝트",
     "description": "데이터, AI, 웹 개발 분야의 결과물들을 확인해 보세요",
-    "empty": "프로젝트가 없습니다"
+    "empty": "프로젝트가 없습니다",
+    "featured": "주요 프로젝트",
+    "allProjects": "모든 프로젝트"
   }
 }
