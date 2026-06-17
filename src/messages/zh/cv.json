@@ -41,6 +41,9 @@
     "error": "出现问题。请重试。",
     "rateLimited": "请求过多 - 请几分钟后再试。",
     "noMatches": "没有强匹配 - 显示完整简历。",
+    "downloadPdf": "下载定制版简历",
+    "generatingPdf": "正在生成...",
+    "pdfFailed": "无法生成定制版简历 - 已下载标准简历。",
     "explainerLink": "这是如何工作的？",
     "explainerTitle": "定制如何工作",
     "explainerBody": "这不是通用 AI。它只基于 Ewan 真实且已验证的 CV：他的项目、经历和他自己的文字。它会重新排序并表述已经真实存在的内容，以匹配你描述的职位；绝不会编造经历或技能。"

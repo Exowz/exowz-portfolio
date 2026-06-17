@@ -41,6 +41,9 @@
     "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
     "rateLimited": "Zu viele Anfragen - bitte in einigen Minuten erneut versuchen.",
     "noMatches": "Keine starken Treffer - vollständiger Lebenslauf wird angezeigt.",
+    "downloadPdf": "Angepassten Lebenslauf herunterladen",
+    "generatingPdf": "Wird erstellt...",
+    "pdfFailed": "Der angepasste Lebenslauf konnte nicht erstellt werden - der Standard-CV wurde heruntergeladen.",
     "explainerLink": "Wie funktioniert das?",
     "explainerTitle": "Wie die Anpassung funktioniert",
     "explainerBody": "Das ist keine generische KI. Es ist ein Agent, der nur auf Ewans echtem, geprüftem CV basiert: seinen Projekten, seiner Erfahrung und seinen eigenen Texten. Er ordnet neu und rahmt ein, was bereits stimmt, passend zur beschriebenen Rolle; er erfindet niemals Erfahrung oder Fähigkeiten."

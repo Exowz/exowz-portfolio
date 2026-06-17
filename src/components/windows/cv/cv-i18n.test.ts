@@ -25,7 +25,19 @@ describe('cv i18n chrome', () => {
       expect(c.projectsSeeAll, `${loc} projectsSeeAll`).toBeTruthy();
       expect(c.projectsCollapse, `${loc} projectsCollapse`).toBeTruthy();
       expect(c.modalClose, `${loc} modalClose`).toBeTruthy();
-      for (const k of ['title', 'placeholder', 'button', 'reset', 'tailoredFor', 'whyFits', 'disclaimer', 'unavailable']) {
+      for (const k of [
+        'title',
+        'placeholder',
+        'button',
+        'reset',
+        'tailoredFor',
+        'whyFits',
+        'disclaimer',
+        'unavailable',
+        'downloadPdf',
+        'generatingPdf',
+        'pdfFailed',
+      ]) {
         expect(c.tailor?.[k], `${loc} tailor.${k}`).toBeTruthy();
       }
       for (const k of ['explainerLink', 'explainerTitle', 'explainerBody']) {

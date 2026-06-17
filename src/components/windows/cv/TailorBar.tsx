@@ -1,20 +1,68 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { IconSparkles, IconX } from '@tabler/icons-react';
-import { useTranslations } from 'next-intl';
+import { IconDownload, IconSparkles, IconX } from '@tabler/icons-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { resumeHref } from '@/lib/resume';
 import type { UseTailor } from './useTailor';
 import { AiTailoredExplainer } from './AiTailoredExplainer';
 
 export function TailorBar({ tailor }: { tailor: UseTailor }) {
+  const locale = useLocale();
   const t = useTranslations('cv.tailor');
   const [role, setRole] = useState('');
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [pdfError, setPdfError] = useState(false);
   const { status, result } = tailor;
   const disabled = status === 'unavailable';
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
     if (role.trim().length >= 3 && status !== 'loading') void tailor.tailor(role);
+  };
+
+  const downloadStatic = () => {
+    const anchor = document.createElement('a');
+    anchor.href = resumeHref(locale);
+    anchor.download = '';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+  };
+
+  const downloadTailored = async () => {
+    if (!result) return;
+    setPdfBusy(true);
+    setPdfError(false);
+
+    try {
+      const response = await fetch('/api/cv/pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          locale,
+          label: result.label || tailor.role,
+          slugs: result.projects.map((project) => project.slug),
+        }),
+      });
+
+      if (!response.ok) throw new Error('pdf');
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'Ewan_Kapoor_CV.pdf';
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+    } catch {
+      setPdfError(true);
+      downloadStatic();
+    } finally {
+      setPdfBusy(false);
+    }
   };
 
   // Title + "how does this work?" explainer, shown above every state.
@@ -41,13 +89,27 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
           </span>
           <button
             type="button"
+            onClick={downloadTailored}
+            disabled={pdfBusy}
+            className="ml-auto flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium transition hover:brightness-110 disabled:opacity-50"
+            style={{ background: 'var(--accent)', color: 'white' }}
+          >
+            <IconDownload className="h-3.5 w-3.5" /> {pdfBusy ? t('generatingPdf') : t('downloadPdf')}
+          </button>
+          <button
+            type="button"
             onClick={tailor.reset}
-            className="ml-auto flex items-center gap-1 text-xs transition-opacity hover:opacity-70"
+            className="flex items-center gap-1 text-xs transition-opacity hover:opacity-70"
             style={{ color: 'var(--text-secondary)' }}
           >
             <IconX className="h-3.5 w-3.5" /> {t('reset')}
           </button>
         </div>
+        {pdfError && (
+          <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+            {t('pdfFailed')}
+          </p>
+        )}
       </div>
     );
   }

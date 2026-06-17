@@ -41,6 +41,9 @@
     "error": "Algo correu mal. Tente novamente.",
     "rateLimited": "Demasiados pedidos - tente novamente em alguns minutos.",
     "noMatches": "Sem correspondências fortes - a mostrar o CV completo.",
+    "downloadPdf": "Baixar CV adaptado",
+    "generatingPdf": "A gerar...",
+    "pdfFailed": "Não foi possível gerar o CV adaptado - o CV padrão foi baixado.",
     "explainerLink": "Como funciona?",
     "explainerTitle": "Como funciona a adaptação",
     "explainerBody": "Não é IA genérica. É um agente baseado apenas no CV real e verificado de Ewan: os seus projetos, experiência e os seus próprios textos. Reordena e enquadra o que já é verdadeiro para se ajustar à função descrita; nunca inventa experiência nem competências."
