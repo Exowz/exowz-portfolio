@@ -2,10 +2,12 @@ import Redis from 'ioredis';
 import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
 
 const POINTS = 10;
+const PDF_POINTS = 5;
 const DURATION = 600;
 
 let redisLimiter: RateLimiterRedis | null = null;
 let cvRedisLimiter: RateLimiterRedis | null = null;
+let pdfRedisLimiter: RateLimiterRedis | null = null;
 let warnedMissingRedisUrl = false;
 
 const memoryLimiter = new RateLimiterMemory({
@@ -15,6 +17,11 @@ const memoryLimiter = new RateLimiterMemory({
 
 const cvMemoryLimiter = new RateLimiterMemory({
   points: POINTS,
+  duration: DURATION,
+});
+
+const pdfMemoryLimiter = new RateLimiterMemory({
+  points: PDF_POINTS,
   duration: DURATION,
 });
 
@@ -70,6 +77,29 @@ function getCvRedisLimiter(): RateLimiterRedis | null {
   return cvRedisLimiter;
 }
 
+function getPdfRedisLimiter(): RateLimiterRedis | null {
+  if (pdfRedisLimiter) return pdfRedisLimiter;
+
+  const url = process.env.REDIS_URL;
+  if (!url) return null;
+
+  const client = new Redis(url, {
+    lazyConnect: true,
+    maxRetriesPerRequest: 1,
+    enableOfflineQueue: false,
+  });
+  client.on('error', () => {});
+
+  pdfRedisLimiter = new RateLimiterRedis({
+    storeClient: client,
+    points: PDF_POINTS,
+    duration: DURATION,
+    keyPrefix: 'cv-pdf',
+  });
+
+  return pdfRedisLimiter;
+}
+
 export async function allowAssistantRequest(ip: string): Promise<boolean> {
   const limiter = getRedisLimiter();
   if (limiter) {
@@ -106,6 +136,27 @@ export async function allowCvTailorRequest(ip: string): Promise<boolean> {
 
   try {
     await cvMemoryLimiter.consume(ip, 1);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function allowCvPdfRequest(ip: string): Promise<boolean> {
+  const limiter = getPdfRedisLimiter();
+  if (limiter) {
+    try {
+      await limiter.consume(ip, 1);
+      return true;
+    } catch (error) {
+      if (error && typeof error === 'object' && 'msBeforeNext' in error) {
+        return false;
+      }
+    }
+  }
+
+  try {
+    await pdfMemoryLimiter.consume(ip, 1);
     return true;
   } catch {
     return false;
