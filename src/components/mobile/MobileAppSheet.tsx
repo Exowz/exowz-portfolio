@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { motion, useDragControls } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
@@ -12,6 +12,7 @@ import { getProjectBySlug } from '@/data/projects';
 import { shouldDismissDownward, shouldGoBackRightward } from './gestures';
 import { consumeCameFromFolder } from './folderNavigation';
 import { StatusBar } from './StatusBar';
+import { ControlCenter } from './ControlCenter';
 import { MobileNavBar } from './MobileNavBar';
 import { ProjectsWindow } from '@/components/windows/ProjectsWindow';
 import { AboutWindow } from '@/components/windows/AboutWindow';
@@ -42,11 +43,16 @@ export function MobileAppSheet() {
   const tSettings = useTranslations('settings');
   const tCv = useTranslations('cv');
   const tProjects = useTranslations('projects');
+  const [controlOpen, setControlOpen] = useState(false);
 
   if (isMobile !== true) return null;
 
   const { id, isDetail, slug } = parseActiveRoute(pathname);
   if (id === null) return null;
+
+  // The Settings app already exposes everything Control Center does, so its status
+  // bar stays non-interactive; every other app gets a tappable Control Center.
+  const isSettings = id === 'settings';
 
   let title = '';
   let content: ReactNode = null;
@@ -105,7 +111,10 @@ export function MobileAppSheet() {
         className="absolute inset-y-0 left-0 z-10 w-5 touch-none"
         aria-hidden="true"
       />
-      <StatusBar />
+      <StatusBar
+        onOpenControlCenter={isSettings ? undefined : () => setControlOpen(true)}
+        controlCenterOpen={controlOpen}
+      />
       <div
         className="flex shrink-0 touch-none cursor-grab justify-center pt-1.5 pb-0.5"
         onPointerDown={(e) => dragControls.start(e)}
@@ -118,6 +127,7 @@ export function MobileAppSheet() {
       </div>
       <MobileNavBar title={title} onBack={onBack} />
       <div className="flex-1 overflow-y-auto">{content}</div>
+      {!isSettings && <ControlCenter open={controlOpen} onClose={() => setControlOpen(false)} />}
     </motion.div>
   );
 }
