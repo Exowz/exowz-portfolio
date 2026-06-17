@@ -50,7 +50,7 @@ export function ContactWindow() {
   ];
 
   const inputClass =
-    'w-full rounded-xl border bg-[var(--window-content-bg)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors border-[var(--window-border)] placeholder:text-[var(--text-tertiary)] focus:border-[var(--accent)] disabled:opacity-60';
+    'w-full rounded-xl border bg-[var(--field-bg)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors border-[var(--field-border)] placeholder:text-[var(--text-tertiary)] focus:border-[var(--accent-text)] disabled:opacity-60';
 
   return (
     <div className="p-6 md:p-12">
@@ -210,7 +210,7 @@ export function ContactWindow() {
             type="submit"
             disabled={status === 'loading'}
             className="flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-            style={{ background: 'var(--accent)', boxShadow: '0 2px 12px color-mix(in srgb, var(--accent) 40%, transparent)' }}
+            style={{ background: 'var(--accent-solid)', boxShadow: '0 2px 12px color-mix(in srgb, var(--accent) 40%, transparent)' }}
           >
             {status === 'loading' ? (
               <>

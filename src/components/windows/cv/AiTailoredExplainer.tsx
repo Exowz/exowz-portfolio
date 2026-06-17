@@ -18,7 +18,11 @@ export function AiTailoredExplainer() {
         onClick={() => setOpen(true)}
         aria-label={t('explainerTitle')}
         className="flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-xs transition-colors hover:text-foreground"
-        style={{ color: 'var(--text-secondary)', border: '1px solid var(--window-border)' }}
+        style={{
+          color: 'var(--text-secondary)',
+          border: '1px solid var(--border)',
+          background: 'color-mix(in srgb, var(--foreground) 4%, transparent)',
+        }}
       >
         <IconInfoCircle className="h-4 w-4" />
         <span className="hidden sm:inline">{t('explainerLink')}</span>

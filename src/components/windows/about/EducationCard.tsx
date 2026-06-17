@@ -11,7 +11,11 @@ export function EducationCard() {
         {/* Placeholder for cleared school logos/photo; swap when assets are supplied. */}
         <div
           className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-xl text-sm font-semibold sm:flex"
-          style={{ border: '1px solid var(--window-border)', color: 'var(--text-secondary)' }}
+          style={{
+            border: '1px solid var(--border)',
+            background: 'color-mix(in srgb, var(--foreground) 4%, transparent)',
+            color: 'var(--text-secondary)',
+          }}
           aria-hidden
         >
           M+A

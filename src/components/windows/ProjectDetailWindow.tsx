@@ -14,7 +14,7 @@ interface ProjectDetailWindowProps {
   hideBackLink?: boolean;
 }
 
-const ICON_GRADIENT = 'linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, #1e3a5f))';
+const ICON_GRADIENT = 'linear-gradient(135deg, var(--accent-solid), color-mix(in srgb, var(--accent-solid) 70%, #0b2545))';
 
 /** Highlights the section currently scrolled into the top third of the viewport. */
 function useScrollSpy(ids: string[]) {
@@ -402,7 +402,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white transition hover:brightness-110"
-                style={{ background: 'var(--accent)', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
+                style={{ background: 'var(--accent-solid)', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
               >
                 <IconExternalLink className="h-4 w-4" />
                 {t('liveDemo')}
@@ -414,7 +414,11 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition hover:opacity-80"
-                style={{ color: 'var(--foreground)', border: '1px solid var(--window-border)' }}
+                style={{
+                  color: 'var(--foreground)',
+                  background: 'color-mix(in srgb, var(--foreground) 5%, transparent)',
+                  border: '1px solid var(--border)',
+                }}
               >
                 <IconBrandGithub className="h-4 w-4" />
                 {t('viewCode')}

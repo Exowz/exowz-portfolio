@@ -19,8 +19,8 @@ export function FacetFilter({ active, onChange }: { active: CvFacet | null; onCh
         className="rounded-full px-3 py-1.5 text-xs font-medium transition-colors"
         style={{
           color: on ? 'white' : 'var(--text-secondary)',
-          background: on ? 'var(--accent)' : 'transparent',
-          border: '1px solid var(--window-border)',
+          background: on ? 'var(--accent-solid)' : 'color-mix(in srgb, var(--foreground) 4%, transparent)',
+          border: `1px solid ${on ? 'transparent' : 'var(--border)'}`,
         }}
       >
         {label}

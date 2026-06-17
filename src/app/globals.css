@@ -76,9 +76,15 @@
   /* Soft glass hairline (matches --window-border). Was a solid #e0e0e0 that
      rendered as a hard gray outline on every bare `border` utility. */
   --border: rgba(0, 0, 0, 0.08);
-  --accent: #64b5f6;          /* brand: fills, glows, rings */
+  --accent: #64b5f6;          /* brand: fills, glows, rings (icy blue) */
   --accent-text: #1976d2;     /* accent used as TEXT/icons on light bg (~5:1) */
+  --accent-solid: #1976d2;    /* accent as a FILL behind WHITE text/icons — icy --accent is far too light here (white ~1.9:1); this reads ~4.6:1 */
   --accent-glow: rgba(100, 181, 246, 0.2);
+
+  /* Form-field surface: a real (soft) fill so the field reads as a surface and
+     its border isn't a lone stark outline on the white page. */
+  --field-bg: #eef2f6;
+  --field-border: rgba(0, 0, 0, 0.10);
 
   /* Glass card: light mode separates by soft elevation, NOT a hard outline
      (white-on-white has no fill contrast, so a lone hairline reads as an
@@ -164,7 +170,12 @@
   --border: rgba(255, 255, 255, 0.12); /* soft glass hairline (was solid #4a4a4a) */
   --accent: #64b5f6;
   --accent-text: #64b5f6;    /* reads ~8:1 on dark; same as accent */
+  --accent-solid: #64b5f6;   /* dark: icy blue already reads as a fill on the dark UI */
   --accent-glow: rgba(100, 181, 246, 0.2);
+
+  /* Form-field surface (dark): faint lift off the panel + soft edge. */
+  --field-bg: rgba(255, 255, 255, 0.04);
+  --field-border: rgba(255, 255, 255, 0.14);
 
   /* Glass card — dark mode already separates via fill contrast; keep a soft
      bright edge + depth shadow. */

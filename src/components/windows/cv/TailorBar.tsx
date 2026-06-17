@@ -106,7 +106,7 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
               onClick={downloadTailored}
               disabled={pdfBusy}
               className="flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-50"
-              style={{ background: 'var(--accent)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
+              style={{ background: 'var(--accent-solid)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
             >
               <IconDownload className="h-4 w-4" /> {pdfBusy ? t('generatingPdf') : t('downloadPdf')}
             </button>
@@ -162,7 +162,7 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
           type="submit"
           disabled={disabled || status === 'loading' || role.trim().length < 3}
           className="shrink-0 self-end rounded-full px-5 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-40"
-          style={{ background: 'var(--accent)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
+          style={{ background: 'var(--accent-solid)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
         >
           {status === 'loading' ? t('loading') : t('button')}
         </button>

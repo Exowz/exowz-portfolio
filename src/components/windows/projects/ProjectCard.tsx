@@ -6,7 +6,7 @@ import { Link } from '@/i18n/routing';
 import type { Project } from '@/data/projects';
 import { monogram } from '@/lib/projects/gallery';
 
-const ICON_GRADIENT = 'linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 65%, #1e3a5f))';
+const ICON_GRADIENT = 'linear-gradient(135deg, var(--accent-solid), color-mix(in srgb, var(--accent-solid) 70%, #0b2545))';
 
 /** App-icon project card: monogram tile + facet label, title, summary, tech chips, links. */
 export function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {

@@ -74,14 +74,18 @@ export function CvSidebar() {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium"
-          style={{ background: 'var(--accent)', color: 'white' }}
+          style={{ background: 'var(--accent-solid)', color: 'white' }}
         >
           <IconDownload className="h-4 w-4" /> {t('actions.downloadPdf')}
         </a>
         <Link
           href="/contact"
           className="flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm"
-          style={{ border: '1px solid var(--window-border)', color: 'var(--foreground)' }}
+          style={{
+            border: '1px solid var(--border)',
+            background: 'color-mix(in srgb, var(--foreground) 5%, transparent)',
+            color: 'var(--foreground)',
+          }}
         >
           {t('actions.contact')}
         </Link>
