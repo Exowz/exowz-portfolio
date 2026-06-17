@@ -13,6 +13,14 @@ describe('projects data', () => {
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
+  it('marks exactly 3 featured projects', () => {
+    expect(projects.filter((p) => p.featured).map((p) => p.slug).sort()).toEqual([
+      'portfolio-projects-ai',
+      'risk-lens',
+      'thoraxai',
+    ]);
+  });
+
   it('every project has a non-empty key and at least one tag', () => {
     for (const p of projects) {
       expect(p.key.length).toBeGreaterThan(0);

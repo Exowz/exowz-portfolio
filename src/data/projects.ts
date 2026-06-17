@@ -5,6 +5,7 @@ export interface Project {
   key: string; // i18n namespace → projects.<key>.* in messages
   tags: string[];
   facets: CvFacet[];
+  featured?: boolean;
   github: string | null;
   demo: string | null;
   date: string; // 'YYYY-MM'
@@ -16,6 +17,7 @@ export const projects: Project[] = [
     key: 'risk-lens',
     tags: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'Mistral AI'],
     facets: ['finance', 'ml', 'ai-rag', 'web', 'sovereignty'],
+    featured: true,
     github: 'https://github.com/Exowz/risk-lens',
     demo: null,
     date: '2026-03',
@@ -25,6 +27,7 @@ export const projects: Project[] = [
     key: 'ThoraxAI',
     tags: ['Python', 'PyTorch', 'Deep Learning', 'Computer Vision', 'Streamlit', 'Explainable AI'],
     facets: ['ml'],
+    featured: true,
     github: 'https://github.com/Exowz/ThoraxAI',
     demo: 'https://thoraxai-exowz.streamlit.app',
     date: '2026-03',
@@ -88,6 +91,7 @@ export const projects: Project[] = [
     key: 'portfolio-projects-ai',
     tags: ['Python', 'RAG', 'LangChain', 'ChromaDB', 'Gemini API', 'AI/ML'],
     facets: ['ai-rag', 'ml'],
+    featured: true,
     github: 'https://github.com/Exowz/portfolio-projects-ai',
     demo: null,
     date: '2025-01',
