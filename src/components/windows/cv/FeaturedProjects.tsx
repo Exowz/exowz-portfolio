@@ -3,12 +3,11 @@
 import { useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { projects, type CvFacet, type Project } from '@/data/projects';
+import { projects, type CvFacet } from '@/data/projects';
 import { Link } from '@/i18n/routing';
+import { selectPdfProjects } from '@/lib/cv/select-projects';
 import type { TailorResult } from '@/lib/cv/tailor';
 import { FacetFilter } from './FacetFilter';
-
-const FEATURED = projects.filter((project) => project.featured);
 
 export function FeaturedProjects({ tailored }: { tailored?: TailorResult | null }) {
   const t = useTranslations('cv');
@@ -19,23 +18,7 @@ export function FeaturedProjects({ tailored }: { tailored?: TailorResult | null 
 
   const reasonBySlug = useMemo(() => new Map((tailored?.projects ?? []).map((project) => [project.slug, project.reason])), [tailored]);
 
-  const topRow = useMemo(() => {
-    if (!tailored || tailored.projects.length === 0) return FEATURED;
-
-    const picked: Project[] = [];
-    for (const tailorProject of tailored.projects) {
-      const project = projects.find((candidate) => candidate.slug === tailorProject.slug);
-      if (project && !picked.includes(project)) picked.push(project);
-      if (picked.length === 3) break;
-    }
-
-    for (const featured of FEATURED) {
-      if (picked.length === 3) break;
-      if (!picked.includes(featured)) picked.push(featured);
-    }
-
-    return picked.slice(0, 3);
-  }, [tailored]);
+  const topRow = useMemo(() => selectPdfProjects(tailored?.projects.map((project) => project.slug) ?? [], projects), [tailored]);
 
   const allOrdered = useMemo(() => {
     if (!tailored || tailored.projects.length === 0) return projects;
