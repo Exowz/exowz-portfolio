@@ -19,6 +19,10 @@ const TEMPLATES_DIR = path.join(process.cwd(), 'src/lib/cv-pdf/templates');
 const FONTS_DIR = path.join(process.cwd(), 'src/lib/cv-pdf/fonts');
 const njk = new nunjucks.Environment(new nunjucks.FileSystemLoader(TEMPLATES_DIR), { autoescape: true });
 
+// PDF rendering does not need WebGL, and skipping SwiftShader reduces serverless
+// cold-start work. The installed @sparticuz/chromium build expects shell mode.
+chromium.setGraphicsMode = false;
+
 function getIp(request: NextRequest): string {
   return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
 }
@@ -71,9 +75,9 @@ export async function POST(request: NextRequest) {
     html = html.replace(/url\(['"]?bg\.jpg['"]?\)/g, `url('${bg}')`).replace('</head>', `${fontFace}</head>`);
 
     const browser = await puppeteer.launch({
-      args: chromium.args,
+      args: await puppeteer.defaultArgs({ args: chromium.args, headless: 'shell' }),
       executablePath: await chromium.executablePath(),
-      headless: true,
+      headless: 'shell',
     });
 
     try {
