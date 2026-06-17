@@ -80,30 +80,34 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
       <div className="space-y-2">
         {header}
         <div
-          className="glass-card flex flex-wrap items-center gap-2 rounded-2xl px-4 py-3"
+          className="glass-card rounded-2xl px-4 py-3.5"
           style={{ background: 'color-mix(in srgb, var(--accent) 8%, transparent)' }}
         >
-          <IconSparkles className="h-4 w-4" style={{ color: 'var(--accent-text)' }} />
-          <span className="text-sm" style={{ color: 'var(--foreground)' }}>
-            {t('tailoredFor')}: <strong>{result.label || role}</strong>
-          </span>
-          <button
-            type="button"
-            onClick={downloadTailored}
-            disabled={pdfBusy}
-            className="ml-auto flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium transition hover:brightness-110 disabled:opacity-50"
-            style={{ background: 'var(--accent)', color: 'white' }}
-          >
-            <IconDownload className="h-3.5 w-3.5" /> {pdfBusy ? t('generatingPdf') : t('downloadPdf')}
-          </button>
-          <button
-            type="button"
-            onClick={tailor.reset}
-            className="flex items-center gap-1 text-xs transition-opacity hover:opacity-70"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            <IconX className="h-3.5 w-3.5" /> {t('reset')}
-          </button>
+          <div className="flex items-center gap-2">
+            <IconSparkles className="h-4 w-4 shrink-0" style={{ color: 'var(--accent-text)' }} />
+            <span className="text-sm" style={{ color: 'var(--foreground)' }}>
+              {t('tailoredFor')}: <strong>{result.label || role}</strong>
+            </span>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <button
+              type="button"
+              onClick={downloadTailored}
+              disabled={pdfBusy}
+              className="flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-50"
+              style={{ background: 'var(--accent)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
+            >
+              <IconDownload className="h-4 w-4" /> {pdfBusy ? t('generatingPdf') : t('downloadPdf')}
+            </button>
+            <button
+              type="button"
+              onClick={tailor.reset}
+              className="flex items-center gap-1 text-xs transition-opacity hover:opacity-70"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              <IconX className="h-3.5 w-3.5" /> {t('reset')}
+            </button>
+          </div>
         </div>
         {pdfError && (
           <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
@@ -118,10 +122,10 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
     <form onSubmit={submit} className="space-y-2">
       {header}
       <div
-        className="glass-card flex items-end gap-2 rounded-2xl px-4 py-3"
+        className="glass-card flex items-start gap-3 rounded-2xl px-4 py-3.5"
         style={{ background: 'var(--window-content-bg)' }}
       >
-        <IconSparkles className="mb-1.5 h-5 w-5 shrink-0" style={{ color: 'var(--accent-text)' }} />
+        <IconSparkles className="mt-0.5 h-5 w-5 shrink-0" style={{ color: 'var(--accent-text)' }} />
         <textarea
           value={role}
           onChange={(event) => setRole(event.target.value)}
@@ -136,7 +140,7 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
         <button
           type="submit"
           disabled={disabled || status === 'loading' || role.trim().length < 3}
-          className="shrink-0 rounded-full px-5 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-40"
+          className="mt-auto shrink-0 self-end rounded-full px-5 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-40"
           style={{ background: 'var(--accent)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
         >
           {status === 'loading' ? t('loading') : t('button')}
