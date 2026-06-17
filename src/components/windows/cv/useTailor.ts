@@ -9,6 +9,7 @@ export type TailorStatus = 'idle' | 'loading' | 'ready' | 'empty' | 'error' | 'r
 export interface UseTailor {
   status: TailorStatus;
   result: TailorResult | null;
+  role: string;
   tailor: (role: string) => Promise<void>;
   reset: () => void;
 }
@@ -26,6 +27,7 @@ export function useTailor(): UseTailor {
   const locale = useLocale();
   const [status, setStatus] = useState<TailorStatus>('idle');
   const [result, setResult] = useState<TailorResult | null>(null);
+  const [role, setRole] = useState('');
 
   const tailor = useCallback(
     async (role: string) => {
@@ -34,6 +36,7 @@ export function useTailor(): UseTailor {
 
       setStatus('loading');
       setResult(null);
+      setRole(trimmed);
 
       try {
         const response = await fetch('/api/cv/tailor', {
@@ -60,8 +63,9 @@ export function useTailor(): UseTailor {
 
   const reset = useCallback(() => {
     setResult(null);
+    setRole('');
     setStatus('idle');
   }, []);
 
-  return { status, result, tailor, reset };
+  return { status, result, role, tailor, reset };
 }
