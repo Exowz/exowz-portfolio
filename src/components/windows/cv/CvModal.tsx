@@ -44,9 +44,9 @@ export function CvModal({ open, onClose, title, triggerRef, children }: CvModalP
           transition={{ duration: reduce ? 0.12 : 0.2 }}
           className="fixed inset-0 z-[95] flex items-center justify-center p-4"
           style={{
-            background: 'color-mix(in srgb, var(--background) 40%, transparent)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
+            background: 'color-mix(in srgb, var(--background) 58%, transparent)',
+            backdropFilter: 'blur(28px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(28px) saturate(140%)',
           }}
           onClick={onClose}
         >

@@ -2,7 +2,6 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { cvFor } from '@/data/cv';
-import { AiTailoredExplainer } from './AiTailoredExplainer';
 import { CvSkills } from './CvSkills';
 import { CvSummary } from './CvSummary';
 import { EducationRow } from './EducationRow';
@@ -25,17 +24,12 @@ export function CvBento({ tailor }: { tailor: UseTailor }) {
   return (
     <div className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-3">
       <div className="md:col-span-3">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
-          <div className="flex-1">
-            <TailorBar tailor={tailor} />
-          </div>
-          <AiTailoredExplainer />
-        </div>
+        <TailorBar tailor={tailor} />
       </div>
-      <div className="md:col-span-2">
+      <div className="md:col-span-3">
         <CvSummary tailored={tailored} />
       </div>
-      <div className="md:col-span-1">
+      <div className="md:col-span-3">
         <CvSkills tailored={tailored} />
       </div>
       <div className="md:col-span-3">
