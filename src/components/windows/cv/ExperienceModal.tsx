@@ -18,7 +18,17 @@ export function ExperienceModal({
   layoutId?: string;
 }) {
   return (
-    <CvModal open={open} onClose={onClose} title={`${entry.role} · ${entry.company}`} triggerRef={triggerRef} layoutId={layoutId}>
+    <CvModal
+      open={open}
+      onClose={onClose}
+      title={entry.role}
+      triggerRef={triggerRef}
+      layoutId={layoutId}
+      titleLayoutId={layoutId ? `${layoutId}-title` : undefined}
+    >
+      <p className="mb-1 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
+        {entry.company}
+      </p>
       <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
         {entry.period} · {entry.location}
       </p>

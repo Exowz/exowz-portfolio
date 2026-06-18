@@ -18,9 +18,16 @@ export function EducationModal({
   layoutId?: string;
 }) {
   return (
-    <CvModal open={open} onClose={onClose} title={entry.institution} triggerRef={triggerRef} layoutId={layoutId}>
-      <p className="mb-2 text-sm" style={{ color: 'var(--accent-text)' }}>
-        {entry.degree}
+    <CvModal
+      open={open}
+      onClose={onClose}
+      title={entry.degree}
+      triggerRef={triggerRef}
+      layoutId={layoutId}
+      titleLayoutId={layoutId ? `${layoutId}-title` : undefined}
+    >
+      <p className="mb-1 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
+        {entry.institution}
       </p>
       <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
         {entry.period}

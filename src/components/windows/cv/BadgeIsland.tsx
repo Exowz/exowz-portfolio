@@ -21,9 +21,9 @@ export function BadgeIsland({ credential }: { credential: CvCredential }) {
         aria-label={credential.title}
         className="glass-card flex shrink-0 items-center justify-center rounded-xl p-2 transition-shadow hover:shadow-lg"
       >
-        <div className="relative h-12 w-12">
+        <motion.div layoutId={`${layoutId}-img`} className="relative h-12 w-12">
           <Image src={credential.image} alt={credential.title} fill className="object-contain" sizes="48px" />
-        </div>
+        </motion.div>
       </motion.button>
       <CredentialModal credential={credential} open={open} onClose={() => setOpen(false)} triggerRef={buttonRef} layoutId={layoutId} />
     </>

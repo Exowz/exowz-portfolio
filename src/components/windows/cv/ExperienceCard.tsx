@@ -19,7 +19,9 @@ export function ExperienceCard({ entry }: { entry: CvExperience }) {
         onClick={() => setOpen(true)}
         className="glass-card flex w-full flex-col items-start gap-1 rounded-xl p-4 text-left transition-shadow hover:shadow-lg"
       >
-        <p className="font-semibold text-foreground">{entry.role}</p>
+        <motion.p layoutId={`${layoutId}-title`} className="font-semibold text-foreground">
+          {entry.role}
+        </motion.p>
         <p className="text-sm" style={{ color: 'var(--accent-text)' }}>
           {entry.company}
         </p>

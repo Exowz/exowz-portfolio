@@ -21,7 +21,9 @@ export function EducationRow({ entry, credentials }: { entry: CvEducationEntry; 
         onClick={() => setOpen(true)}
         className="glass-card flex flex-1 flex-col items-start gap-0.5 rounded-xl p-4 text-left transition-shadow hover:shadow-lg"
       >
-        <p className="font-medium text-foreground">{entry.degree}</p>
+        <motion.p layoutId={`${layoutId}-title`} className="font-medium text-foreground">
+          {entry.degree}
+        </motion.p>
         <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
           {entry.institution} · {entry.period}
         </p>

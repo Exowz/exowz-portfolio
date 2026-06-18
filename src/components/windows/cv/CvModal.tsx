@@ -13,15 +13,18 @@ interface CvModalProps {
   triggerRef?: RefObject<HTMLElement | null>;
   /** Shared-layout id of the trigger card, enabling an expand-from-card morph. */
   layoutId?: string;
+  /** Shared-layout id for the heading, so the card's title glides into place. */
+  titleLayoutId?: string;
   children: ReactNode;
 }
 
-export function CvModal({ open, onClose, title, triggerRef, layoutId, children }: CvModalProps) {
+export function CvModal({ open, onClose, title, triggerRef, layoutId, titleLayoutId, children }: CvModalProps) {
   const t = useTranslations('cv');
   const reduce = useReducedMotion();
   // Morph the panel out of its trigger card when we have a shared id and motion
   // is allowed; otherwise fall back to the plain scale-fade.
   const morph = Boolean(layoutId) && !reduce;
+  const morphTitle = Boolean(titleLayoutId) && !reduce;
   const panelRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
   useHistoryOverlay(open, onClose);
@@ -71,7 +74,12 @@ export function CvModal({ open, onClose, title, triggerRef, layoutId, children }
             className="glass-card relative max-h-[80vh] w-full max-w-md overflow-y-auto rounded-2xl p-5 outline-none"
           >
             <div className="mb-3 flex items-start justify-between gap-3">
-              <h3 className="text-base font-semibold text-foreground">{title}</h3>
+              <motion.h3
+                layoutId={morphTitle ? titleLayoutId : undefined}
+                className="text-base font-semibold text-foreground"
+              >
+                {title}
+              </motion.h3>
               <button
                 type="button"
                 onClick={onClose}
@@ -82,7 +90,13 @@ export function CvModal({ open, onClose, title, triggerRef, layoutId, children }
                 <IconX className="h-5 w-5" />
               </button>
             </div>
-            {children}
+            <motion.div
+              initial={morph ? { opacity: 0, y: 6 } : false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, delay: morph ? 0.06 : 0 }}
+            >
+              {children}
+            </motion.div>
           </motion.div>
         </motion.div>
       )}
