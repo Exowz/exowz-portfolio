@@ -30,7 +30,8 @@ describe('cv data', () => {
       for (const e of c.education)
         for (const b of e.badges ?? []) expect(credIds.has(b), `${lang} badge ${b}`).toBe(true);
       for (const e of c.education)
-        if (e.logo) expect(existsSync(join(process.cwd(), 'public', e.logo)), `${lang} edu logo ${e.logo}`).toBe(true);
+        for (const lg of e.logos ?? [])
+          expect(existsSync(join(process.cwd(), 'public', lg)), `${lang} edu logo ${lg}`).toBe(true);
       for (const cr of c.credentials) {
         expect(cr.title && cr.body, `${lang} credential ${cr.id} text`).toBeTruthy();
         expect(existsSync(join(process.cwd(), 'public', cr.image)), `${lang} credential image ${cr.image}`).toBe(true);

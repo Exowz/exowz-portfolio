@@ -24,14 +24,17 @@ export function EducationRow({ entry, credentials }: { entry: CvEducationEntry; 
         onClick={() => setOpen(true)}
         className="glass-card flex flex-1 items-center gap-3 rounded-xl p-4 text-left transition-shadow hover:shadow-lg"
       >
-        {entry.logo && (
+        {entry.logos && entry.logos.length > 0 && (
           // White plate: institution logos are dark/coloured marks, so they need
-          // a constant light backing to stay legible in both themes.
+          // a constant light backing to stay legible in both themes. Joint
+          // degrees (e.g. Mines × Albert) stack their logos here.
           <span
-            className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg p-1.5"
+            className="flex h-12 w-12 shrink-0 flex-col items-center justify-center gap-1 overflow-hidden rounded-lg p-1.5"
             style={{ background: '#ffffff', border: '1px solid var(--border)' }}
           >
-            <Image src={entry.logo} alt="" width={40} height={40} className="h-full w-full object-contain" />
+            {entry.logos.map((logo) => (
+              <Image key={logo} src={logo} alt="" width={44} height={44} className="h-auto w-full object-contain" />
+            ))}
           </span>
         )}
         <span className="flex min-w-0 flex-col items-start gap-0.5">

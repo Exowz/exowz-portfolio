@@ -31,6 +31,15 @@ export function PersonalDetails() {
           {t('cooking')}
         </figcaption>
       </figure>
+      <div className="relative col-span-3 h-44 overflow-hidden rounded-xl">
+        <Image
+          src="/images/about/profile.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 768px"
+        />
+      </div>
     </div>
   );
 }
