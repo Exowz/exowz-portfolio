@@ -5,7 +5,7 @@ import { useRouter, usePathname } from '@/i18n/routing';
 import { FiCheck } from 'react-icons/fi';
 import { useTheme } from 'next-themes';
 import { perspective } from './language-animations';
-import { LanguageOption } from './language-types';
+import type { Locale, LanguageOption } from './language-types';
 
 interface LanguagePanelProps {
   languages: Record<string, LanguageOption>;
@@ -18,7 +18,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
   const router = useRouter();
   const pathname = usePathname();
 
-  const switchLocale = (newLocale: string) => {
+  const switchLocale = (newLocale: Locale) => {
     // Close menu first
     onLanguageClick();
 
@@ -27,7 +27,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-center px-8 py-6">
+    <div className="relative flex h-full w-full flex-col px-5 pb-5 pt-16">
       {/* Background elements - theme aware */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -59,19 +59,19 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
       </div>
 
       {/* Language Selection Header */}
-      <div className="relative z-10 text-center mb-6">
-        <h3 className={`text-sm font-semibold opacity-80 ${theme === 'dark' ? 'text-white' : 'text-[#333333]'}`}>
+      <div className="relative z-10 mb-4 text-center">
+        <h3 className={`text-sm font-semibold opacity-80 ${'text-foreground'}`}>
           Choose Language
         </h3>
       </div>
 
-      {/* Main Language Grid */}
-      <div className="relative z-10 flex flex-col items-center justify-center space-y-4">
+      {/* Main Language List */}
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto px-1 py-1 [scrollbar-width:thin]">
         {Object.entries(languages).map(([locale, language], i) => {
           const isActive = locale === currentLang;
 
           return (
-            <div key={`lang_${i}`} className="group relative overflow-hidden w-full max-w-[320px]" style={{ perspective: '1200px' }}>
+            <div key={`lang_${i}`} className="group relative overflow-visible" style={{ perspective: '1200px' }}>
               {/* Accent line - theme aware */}
               <div
                 className="absolute -left-6 top-1/2 w-0.5 h-0 rounded-full opacity-0 group-hover:opacity-50 group-hover:h-10 transition-all duration-500 transform -translate-y-1/2"
@@ -91,18 +91,18 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                 }}
               >
                 <button
-                  onClick={() => switchLocale(locale)}
+                  onClick={() => switchLocale(language.locale)}
                   className={`
-                    grid grid-cols-[36px_1fr_24px] items-center gap-3
-                    w-full h-14 px-4 py-3 rounded-xl border backdrop-blur-md
-                    font-medium transition-all duration-500 hover:scale-[1.02]
+                    grid grid-cols-[36px_minmax(0,1fr)_24px] items-center gap-3
+                    min-h-16 w-full rounded-xl border px-4 py-3 text-left backdrop-blur-md
+                    font-medium transition-all duration-500 hover:scale-[1.01]
                     ${isActive
                       ? theme === 'dark'
-                        ? 'text-[#64b5f6] bg-[rgba(100,181,246,0.15)] border-[rgba(100,181,246,0.3)]'
-                        : 'text-[#64b5f6] bg-[rgba(100,181,246,0.1)] border-[rgba(100,181,246,0.25)]'
+                        ? 'text-accent-text bg-[rgba(100,181,246,0.15)] border-[rgba(100,181,246,0.3)]'
+                        : 'text-accent-text bg-[rgba(100,181,246,0.1)] border-[rgba(100,181,246,0.25)]'
                       : theme === 'dark'
-                        ? 'text-white hover:text-[#64b5f6] border-transparent hover:border-[rgba(100,181,246,0.2)] hover:bg-[rgba(100,181,246,0.1)]'
-                        : 'text-[#333333] hover:text-[#64b5f6] border-transparent hover:border-[rgba(100,181,246,0.15)] hover:bg-[rgba(100,181,246,0.08)]'
+                        ? 'text-white hover:text-accent-text border-transparent hover:border-[rgba(100,181,246,0.2)] hover:bg-[rgba(100,181,246,0.1)]'
+                        : 'text-foreground hover:text-accent-text border-transparent hover:border-[rgba(100,181,246,0.15)] hover:bg-[rgba(100,181,246,0.08)]'
                     }
                   `}
                   style={{
@@ -110,16 +110,16 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                   }}
                 >
                   {/* Flag Column - Fixed Width */}
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center justify-center">
                     <span className="text-xl">{language.flag}</span>
                   </div>
 
                   {/* Text Column - Flexible */}
-                  <div className="flex flex-col justify-center min-w-0">
-                    <div className="font-semibold text-sm leading-tight truncate">
+                  <div className="flex min-w-0 flex-col justify-center overflow-visible">
+                    <div className="break-words text-[15px] font-semibold leading-[1.35]" dir="auto">
                       {language.name}
                     </div>
-                    <div className="text-xs opacity-70 leading-tight truncate">
+                    <div className="break-words text-xs leading-[1.35] opacity-70" dir="auto">
                       {language.region}
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.2, delay: 0.1 }}
                       >
-                        <FiCheck className="h-4 w-4 text-[#64b5f6]" />
+                        <FiCheck className="h-4 w-4 text-accent-text" />
                       </motion.div>
                     )}
                   </div>

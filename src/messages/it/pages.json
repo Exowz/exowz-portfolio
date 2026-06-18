@@ -1,0 +1,100 @@
+{
+  "about": {
+    "title": "Su di me",
+    "description": "Scopri di più sul mio percorso e su ciò che faccio",
+    "name": "Mathew Kristoffer Ewan KAPOOR",
+    "jobTitle": "Studente di Dati e IA · MSc Albert School × Mines de Paris",
+    "pitch": "Costruisco strumenti di dati e IA con cui le persone possano effettivamente prendere decisioni, colmando il divario tra 'funziona tecnicamente' e 'è realmente utile'. Un'unica ambizione attraversa tutto ciò che faccio: contribuire alla sovranità digitale europea.",
+    "story": {
+      "intro1": "Ciao! Mi chiamo Mathew Kristoffer Ewan KAPOOR, ma di solito mi faccio chiamare Ewan. Ho 24 anni, vengo dalle Mauritius e vivo a Parigi. Sto terminando la mia laurea triennale in Dati e IA presso l'ECE Paris e questo settembre inizierò il Master in Data & AI for Finance, un doppio titolo tra Albert School e Mines de Paris - PSL, come apprendista in alternanza scuola-lavoro.",
+      "intro2": "Ti racconterò la mia storia. Perché oltre allo sviluppatore che sono, oltre a questo portfolio, c'è una persona reale, piena di sogni e ambizioni.",
+      "origins1": "La mia storia inizia nel marzo 2002, in un piccolo paradiso nell'Oceano Indiano: le Mauritius. Sono cresciuto circondato da genitori amorevoli che mi sostengono ancora oggi. La mia vita era scandita dalla spiaggia, dalla famiglia, dai deliziosi pasti di mia madre e dallo sport. Una vita semplice, ma felice.",
+      "family": "I miei genitori mi hanno insegnato tutto. Mia madre, casalinga, mi ha trasmesso l'arte dell'organizzazione e ha risvegliato la mia passione per la cucina (che ora è uno dei miei hobby preferiti!). Mio padre, ingegnere meccanico in una centrale termica, è stato la mia prima ispirazione. Mi ha trasmesso il gusto per la scienza, i calcoli e ha sempre ammirato la Francia. È stato lui a iscrivermi a una scuola francese, trasmettendomi il suo amore per questo paese, la sua cultura e la sua storia.",
+      "computer": "Parallelamente, un'altra passione cresceva. Ricordo il primo computer che mio padre mi regalò a 7 anni: un vecchio laptop HP con Windows XP, il suo vecchio PC di lavoro. Ne rimasi affascinato. Lo smontai, ci armeggiai, sperimentai... finché non lo ruppi. Ma la mia curiosità era stata stuzzicata. In breve tempo, diventai l'esperto informatico di famiglia: assemblavo PC, gestivo il router, consigliavo i miei genitori nei loro acquisti. All'epoca era solo un hobby; il mio sogno era altrove.",
+      "dream": "Volevo essere come mio padre. Un ingegnere, ma nel settore dell'energia nucleare, in cui credo. Così ho tracciato il mio percorso: Maturità Scientifica, poi partenza per la Francia con un piano ben stabilito, diretto alle classi preparatorie per le scuole di ingegneria.",
+      "challenge": "Ma la vita aveva in serbo per me altre sorprese.",
+      "struggle": "Questo periodo è stato segnato dalla morte di mio zio, a cui ero molto legato, e da altri problemi personali. Questo mix mi ha fatto inciampare. Non ho avuto successo al primo anno. È stato il mio primo vero fallimento e lo shock è stato brutale. Lo studente brillante che ero si sentì improvvisamente inutile. Decisi di tornare alle Mauritius per ricaricarmi, ma anche per aiutare mio padre, la cui salute stava declinando, a gestire l'azienda di famiglia, una società di integratori alimentari che avrei finito per dirigere io stesso.",
+      "introspection": "Sono rimasto alle Mauritius per due anni. Due anni per fermarmi, per 'guarire' mentalmente e ritrovare me stesso. Ho finito per dirigere l'azienda: e-commerce, vendita diretta, inventario, clienti. È lì che ho imparato a chiedermi cosa significhi effettivamente un numero per la persona che deve prendere una decisione, non solo quanto valga tecnicamente. Ho anche imparato a suonare la chitarra da autodidatta, per far crescere il lato artistico che sentivo mancare in un profilo puramente scientifico.",
+      "return": "Dopo questi due anni, non avendo dimenticato il mio sogno iniziale ma non potendo tornare alle classi preparatorie, ho scoperto il programma dell'ECE, che mi ha permesso di entrare al primo anno del ciclo preparatorio attraverso un semestre accelerato a marzo, così mi sono iscritto. La difficoltà di riprendere studi così intensivi mi ha colto di sorpresa e mi sono ammalato proprio in quel periodo; quell'anno è stato difficile. Nonostante ciò, il direttore degli studi notò il mio potenziale in informatica, dato che avevo comunque ottenuto voti eccellenti, e mi suggerì di frequentare invece la loro laurea triennale. Ci ho messo molto tempo a decidere, perché non corrispondeva al mio sogno iniziale, ma alla fine ho accettato. Ed è allora che è avvenuta la rivelazione.",
+      "revelation": "Ho capito che non era l'informatica che non mi piaceva, ma il modo in cui mi veniva insegnata alle classi preparatorie. Nella laurea triennale, tutto era basato su casi pratici, progetti innovativi. La mia passione latente si è risvegliata all'improvviso.",
+      "webdev": "Lo sviluppo web mi ha affascinato per primo. Mi ha permesso di esprimere la mia creatività e di curare un progetto dalla A alla Z. Sono un grande ammiratore di Apple, della loro capacità di creare prodotti che siano allo stesso tempo innovativi, potenti, utili e belli, ed è una filosofia che porto in tutto ciò che costruisco.",
+      "dataAI": "Poi una nuova materia ha cambiato tutto: Dati e IA. E mi sono reso conto che la mia deviazione era in realtà un vantaggio: sapere come lanciare un'applicazione completa significa che non mi limito ad addestrare un modello, ma so come esporlo tramite un'API, collegarlo a un back-end e metterlo di fronte a un utente reale. Sviluppo e dati hanno smesso di essere due percorsi e sono diventati uno solo.",
+      "building": "Da allora, l'ho messo in pratica. Presso Purecontrol lavoro su machine learning in produzione reale, pipeline ETL, rilevamento di anomalie per perdite d'acqua, previsioni su serie temporali IoT. Per conto mio ho lanciato RiskLens, una piattaforma di rischio quantitativo dove un livello di caching ha ridotto i tempi di risposta da 2,8 secondi a 45 millisecondi; ThoraxAI, un classificatore di radiografie del torace che raggiunge 0,971 AUC con previsioni spiegabili; uno strumento RAG che scrive i propri casi di studio; e questo stesso portfolio. Ho persino costruito Career Agent, uno strumento che redige i miei CV e le mie lettere di presentazione personalizzati.",
+      "philosophy": "Se c'è un filo conduttore in tutto questo, è questo: la distanza tra 'funziona tecnicamente' e 'qualcuno può usarlo per decidere'. Un modello che gira una volta in un notebook è un prototipo; un modello che gira in modo pulito a ogni aggiornamento dei dati, senza interventi, è un prodotto. Una dashboard che nessuno apre è un progetto fallito. Quella distanza è ciò che voglio colmare, ogni singola volta.",
+      "sovereignty1": "Ho anche compreso l'importanza dei nostri dati, l'oro di questo secolo, e, con un po' di timore, quanto l'Europa sia rimasta indietro e dipendente. Quando una manciata di hyperscaler statunitensi gestisce la maggior parte del cloud e un singolo aggiornamento di Windows può bloccare gli aeroporti, è spaventoso per la nostra indipendenza.",
+      "sovereignty2": "L'indipendenza è profondamente importante per me e cerco di viverla piuttosto che predicarla: ospito su provider europei come Scaleway e Infomaniak e mi affido a strumenti che rispettano la privacy. Ecco perché mi sto specializzando in Dati e IA per la finanza; l'infrastruttura di dati finanziari dell'Europa è esattamente il tipo di cosa che non possiamo permetterci di esternalizzare. Un continente così ricco di storia e cultura non può rimanere così indietro.",
+      "comeback": "E il cerchio si è chiuso in un modo che non avrei mai immaginato. Dopo aver fallito proprio le classi preparatorie per cui avevo attraversato un oceano, sono stato ammesso a tre programmi di master e ho scelto quello che significava di più: un doppio titolo con Mines de Paris - PSL, una delle scuole di ingegneria più prestigiose della Francia. La 'grande école' che un tempo mi era sfuggita è esattamente il luogo in cui sono diretto ora.",
+      "closing": "Questa è la mia storia, ora sai un po' meglio chi c'è dietro questo computer e chi potrebbe essere il tuo prossimo collaboratore. Attualmente sto cercando un apprendistato in alternanza scuola-lavoro in ingegneria dei dati e IA a partire da settembre 2026, quindi non esitare a contattarmi, qualunque sia il progetto. Ti auguro una splendida giornata!",
+      "signature": "EXOWZ"
+    },
+    "displayName": "Ewan Kapoor",
+    "status": {
+      "degree": "MSc Data & AI · Albert × Mines",
+      "seeking": "Cerco apprendistato · Sett. 2026"
+    },
+    "toolkit": {
+      "dataAILabel": "Dati & IA",
+      "webLabel": "Prodotto & Web",
+      "cloudLabel": "Cloud & Infra",
+      "domainLabel": "Dominio",
+      "dataAI": "Python, SQL, Pandas, Scikit-learn, PyTorch, XGBoost, LangChain, RAG",
+      "web": "Next.js, React, Node.js, TypeScript, FastAPI, Laravel",
+      "cloud": "AWS Foundation, Docker, Linux, Git, C++, Java",
+      "domain": "Finance, IoT, Forecasting, Anomaly detection, Time-series"
+    },
+    "chapters": {
+      "origins": "Origini — Mauritius",
+      "dream": "Il primo computer & il sogno",
+      "fall": "La caduta",
+      "return": "Ritrovare la strada",
+      "dataAI": "Dati & IA — la rivelazione",
+      "sovereignty": "Sovranità & il prossimo capitolo"
+    },
+    "captions": {
+      "mauritius": "Mauritius",
+      "cooking": "Cucina — un hobby di casa",
+      "cohort": "La mia coorte alla Albert School, Parigi"
+    },
+    "principlesTitle": "Come penso",
+    "principles": [
+      "Utile prima che impressionante",
+      "Sovranità europea",
+      "Sistemi aperti",
+      "Prodotti dati, non notebook",
+      "Il gusto conta"
+    ],
+    "education": {
+      "programme": "MSc Data & AI for Finance",
+      "schools": "Albert School × Mines Paris – PSL",
+      "grade": "Grade Master, riconosciuto dal Ministero francese dell’Istruzione superiore"
+    }
+  },
+  "contact": {
+    "title": "Contatti",
+    "description": "Mettiamoci in contatto e costruiamo qualcosa insieme",
+    "contactInfo": "Informazioni di contatto",
+    "sendMessage": "Invia un messaggio",
+    "labels": {
+      "name": "Nome",
+      "email": "Email",
+      "message": "Messaggio",
+      "location": "Località"
+    },
+    "location": "Parigi, Francia",
+    "submit": "Invia messaggio",
+    "subtitle": "Aperto a opportunità e collaborazioni — di solito rispondo entro un giorno.",
+    "availability": "Disponibile per apprendistato · Settembre 2026",
+    "status": {
+      "sending": "Invio…",
+      "success": "Messaggio inviato — grazie! Ti risponderò presto.",
+      "error": "Impossibile inviare il messaggio. Riprova."
+    }
+  },
+  "projects": {
+    "title": "I miei progetti",
+    "description": "Esplora il mio lavoro nei dati, nell'IA e nello sviluppo web",
+    "empty": "Nessun progetto",
+    "featured": "In evidenza",
+    "allProjects": "Tutti i progetti"
+  }
+}

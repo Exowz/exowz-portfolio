@@ -1,0 +1,1422 @@
+{
+  "risk-lens": {
+    "title": "RiskLens",
+    "description": "Desmistificando a análise de risco de carteiras institucionais através de modelos quantitativos e IA.",
+    "metadata": {
+      "role": "Engenheiro de Dados e Desenvolvedor Full-Stack de IA",
+      "category": "FinTech, Finanças Quantitativas, Engenharia de Dados",
+      "timeline": "Março de 2026",
+      "liveUrl": "null",
+      "githubUrl": "https://github.com/Exowz/risk-lens"
+    },
+    "overview": "RiskLens é uma plataforma avançada de gestão de risco que simplifica análises institucionais complexas para investidores de retalho. Construída como projeto final da ECE Paris, faz a ponte entre métricas financeiras brutas e insights acionáveis, combinando um núcleo analítico em Python com um frontend Next.js de última geração.",
+    "challenge": {
+      "problem": "Os investidores de retalho carecem de ferramentas de nível profissional para analisar correlações de multi-ativos. Métricas chave como Value at Risk (VaR), covariância de ativos e Teoria Moderna de Carteiras estão bloqueadas atrás de plataformas complexas ou bases de código académicas.",
+      "goal": "Construir uma aplicação web intuitiva que forneça traçagem interativa da Fronteira Eficiente de Markowitz, testes de stress de crises históricas e relatórios estruturados de saúde de carteira gerados por IA.",
+      "constraints": "Gerir a alta latência de chamadas dinâmicas da API Yahoo Finance, lidar com transferências de matrizes multidimensionais entre Python e TypeScript e manter uma persistência de estado ágil."
+    },
+    "discovery": {
+      "requirements": "Identificadas duas personas de utilizador: Noviços que desejam avaliações de risco simples e Analistas Quantitativos que necessitam de matrizes de covariância brutas. Isto levou diretamente a um modo de interface alternável entre Iniciante/Especialista.",
+      "competitiveAnalysis": "Os corretores de retalho tradicionais exibem gráficos históricos simples, mas não mostram como os ativos se comportam em conjunto durante interrupções sistemáticas do mercado, realçando uma necessidade clara de ferramentas interativas de correlação de retalho.",
+      "technicalResearch": "Selecionado Python para cálculos devido ao PyPortfolioOpt e NumPy, utilizado PostgreSQL JSONB caching para minimizar a sobrecarga operacional da BD e selecionada a Mistral AI para síntese bilingue de alto desempenho."
+    },
+    "architecture": {
+      "informationArchitecture": "Uma arquitetura de microserviços desacoplada que separa um backend Python FastAPI para processamento analítico de um frontend Next.js 15+ para gestão de sessões de utilizador e visualização.",
+      "technicalDecisions": "Implementada uma cache de cálculo SHA-256 no PostgreSQL para contornar limites de taxa de terceiros. Utilizado Zustand para estado leve de frontend e TanStack Query v5 para sincronização assíncrona perfeita com o servidor."
+    },
+    "developmentProcess": {
+      "phase1": "Orquestrados os ambientes PostgreSQL e backend com Docker Compose, configurados os endpoints FastAPI e estabelecidas as migrações de base de dados BetterAuth.",
+      "phase2": "Desenvolvido o motor matemático central PyPortfolioOpt, construídas as rotinas de simulação de drawdown histórico e implementados prompts estruturados de IA Mistral para relatórios financeiros localizados.",
+      "phase3": "Desenvolvido o cliente Next.js 15 usando next-intl para localização, construídos gráficos de dispersão interativos Recharts e adicionadas transições polidas Framer Motion."
+    },
+    "keyFeatures": [
+      {
+        "title": "Motor de Otimização Quantitativa de Markowitz",
+        "description": "Calcula pesos ideais de ativos de carteira com base na Teoria Moderna de Carteiras.",
+        "implementation": "Usa PyPortfolioOpt para gerar retornos históricos esperados e matrizes de covariância, renderizando o Max Sharpe Ratio e traçando a curva da Fronteira Eficiente via Recharts.",
+        "challenges": "Garantiu que os solvers matemáticos convergissem corretamente e retornassem consistentemente pesos válidos somando 1.0."
+      },
+      {
+        "title": "Motor de Teste de Stress Histórico",
+        "description": "Simula desempenhos de carteira através das principais crises económicas históricas.",
+        "implementation": "Executa novamente retornos de carteira normalizados sobre janelas de datas históricas específicas (ex: 2008 GFC, 2020 COVID) para calcular o Drawdown Máximo e métricas de recuperação.",
+        "challenges": "Agregação fiável de preços históricos de ativos quando os pontos de dados são escassos ou os ativos não existiam durante as janelas históricas selecionadas."
+      },
+      {
+        "title": "Explicador Narrativo Impulsionado por IA",
+        "description": "Traduz métricas estatísticas complexas em relatórios de carteira estruturados em linguagem natural.",
+        "implementation": "Injeta cálculos quantitativos determinísticos em prompts estruturados da IA Mistral para gerar resumos executivos bilingues precisos, adaptados a utilizadores Iniciantes ou Especialistas.",
+        "challenges": "Eliminação de alucinações numéricas de LLM ao executar toda a matemática de forma determinística em Python antes de analisar os resultados para o contexto da LLM."
+      }
+    ],
+    "testing": "Executada validação pytest para garantir a consistência da saída do motor matemático e verificar as somas dos pesos dos ativos. Implementadas rotinas de fallback de API para tickers de ações inválidos e ativos de IPO de curta duração. Conduzidos testes de usabilidade para refinar a responsividade da alternância da interface de iniciante para especialista.",
+    "results": {
+      "technicalAchievements": "Redução dos tempos de renderização analítica de ativos de 3,4 segundos para 180 milissegundos usando cache PostgreSQL localizada. Alcançadas atualizações de UI sem atraso e uma ponte de integração 100% segura entre FastAPI e Next.js.",
+      "businessImpact": "Sucesso em tornar métricas complexas de correlação de carteira compreensíveis, interativas e acionáveis para investidores de retalho sem formação matemática.",
+      "personalGrowth": "Conhecimento aprofundado em matemática financeira quantitativa, estruturas de API desacopladas e engenharia de prompts defensiva para traduzir conjuntos de dados numéricos em linguagem natural."
+    },
+    "techStack": {
+      "frontend": "Next.js 15+, TypeScript, Tailwind CSS, Zustand, Recharts, Framer Motion",
+      "backend": "Python 3.12, FastAPI, PostgreSQL 16, Docker Compose",
+      "tools": "Git, Docker, BetterAuth, TanStack Query v5",
+      "libraries": "PyPortfolioOpt, Pandas, NumPy, yfinance, Mistral AI SDK, next-intl"
+    },
+    "learnings": [
+      "O cache de respostas dinâmicas da API do mercado de ações é crucial para garantir tempos de resposta abaixo de um segundo e evitar limites de taxa.",
+      "A matemática determinística deve ser sempre isolada da IA generativa para eliminar vetores de alucinação.",
+      "Fazer a ponte entre a lacuna de execução requer traduzir saídas quantitativas académicas áridas em designs de UI adaptáveis e fáceis de usar.",
+      "A segurança de tipos estrita em esquemas de backend e interfaces de frontend reduz drasticamente os erros de integração em tempo de execução."
+    ],
+    "futureEnhancements": [
+      "Integração de APIs Plaid e de Corretagem para importar automaticamente as participações da carteira do utilizador.",
+      "Integração do modelo Black-Litterman para combinar visões subjetivas de mercado com alocações históricas.",
+      "Motor de simulação estocástica de Monte Carlo executando mais de 10.000 cenários de previsão aleatórios.",
+      "Alertas de deriva automáticos notificando os utilizadores quando as carteiras atuais se desviam dos perfis de risco alvo.",
+      "Suporte para classes de ativos expandidas, incluindo matérias-primas, moedas globais e principais criptomoedas."
+    ],
+    "conclusion": "RiskLens demonstra como as arquiteturas web modernas e a IA generativa podem democratizar a gestão de património institucional. Ao fundir a computação quantitativa em Python com Next.js e LLMs estruturados, converte matemática de carteira intimidante em inteligência clara e acionável."
+  },
+  "ThoraxAI": {
+    "title": "ThoraxAI",
+    "description": "Pipeline de deep learning explicável para classificação altamente precisa de radiografias de tórax.",
+    "metadata": {
+      "role": "Engenheiro Líder de Machine Learning e Desenvolvedor de Deep Learning",
+      "category": "Visão Computacional, Imagiologia Médica, IA Explicável (XAI)",
+      "timeline": "Março de 2026",
+      "liveUrl": "https://thoraxai-exowz.streamlit.app",
+      "githubUrl": "https://github.com/Exowz/ThoraxAI"
+    },
+    "overview": "ThoraxAI é um pipeline de deep learning de ponta a ponta, pronto para produção, concebido para classificar imagens de radiografia de tórax nas classes Normal e Pneumonia. Combina CNNs de última geração com algoritmos avançados de IA Explicável como Grad-CAM e Integrated Gradients. O sistema foi treinado, otimizado e implementado como uma aplicação web leve durante um sprint intensivo de 4 dias.",
+    "challenge": {
+      "problem": "A pneumonia é uma das principais causas de mortalidade global, mas o diagnóstico clínico manual a partir de radiografias de tórax é frequentemente dificultado pela fadiga, carga cognitiva e consolidações pulmonares subtis em estágio inicial.",
+      "goal": "Desenvolver um classificador binário altamente preciso que minimize os falsos negativos (maximizando o recall) e forneça justificações visuais claras e interpretáveis para validação clínica.",
+      "constraints": "Os dados médicos apresentam um forte desequilíbrio de classes. A implementação de redes de deep learning massivas em plataformas de alojamento gratuitas e com restrição de memória corre o risco de falhas por falta de memória, enquanto as previsões de 'caixa negra' impedem a confiança clínica."
+    },
+    "discovery": {
+      "requirements": "Os fluxos de trabalho clínicos ditam que os falsos negativos são muito mais perigosos do que os falsos positivos, necessitando de um limite de decisão otimizado para a pontuação F2 em vez dos limites padrão de 0,5.",
+      "competitiveAnalysis": "Enquanto as aplicações tradicionais de deep learning escondem a lógica de decisão, a adoção clínica requer verificação visual para confirmar que a rede se foca em anomalias patológicas em vez de artefactos de imagem.",
+      "technicalResearch": "Avaliada uma CNN personalizada leve contra as arquiteturas ResNet18, DenseNet121 e EfficientNet-B0, combinadas com implementações personalizadas de ganchos (hooks) de backpropagation para Grad-CAM, Grad-CAM++ e Integrated Gradients."
+    },
+    "architecture": {
+      "informationArchitecture": "Estruturado como um pacote Python modular contendo motores de fábrica de modelos, avaliação e visualização desacoplados, controlados por uma UI interativa Streamlit.",
+      "technicalDecisions": "Reprodutibilidade estrita imposta com configurações PyTorch multiplataforma. Escolhida a DenseNet121 como modelo principal para reutilização densa de características. Transmissão dinâmica de checkpoints de pesos de modelos a partir do Hugging Face Hub para permanecer dentro dos limites de RAM em tempo de execução web."
+    },
+    "developmentProcess": {
+      "phase1": "Conduzida análise exploratória de dados, tratado o desequilíbrio de classes com divisões estratificadas e construído um pipeline de pré-processamento com normalização ImageNet e dimensionamento de entrada 224x224.",
+      "phase2": "Desenvolvida a fábrica de modelos PyTorch e arquiteturas de transfer learning, otimizando o treino usando perda de Cross-Entropy, otimizador Adam e agendamento de taxa de aprendizagem.",
+      "phase3": "Desenvolvidos gestores de hooks de retropropagação de gradiente leves para extrair mapas de saliência de alta fidelidade sem depender de bibliotecas XAI externas inchadas."
+    },
+    "keyFeatures": [
+      {
+        "title": "Fábrica de Modelos Unificada",
+        "description": "Desacopla o carregamento e configuração de modelos do tempo de execução da implementação.",
+        "implementation": "Implementa um padrão de fábrica abstrata para instanciar e carregar dinamicamente pesos para CNN Personalizada, ResNet18, DenseNet121 ou EfficientNet-B0.",
+        "challenges": "Permitiu avaliações de desempenho entre modelos perfeitas e mecanismos de votação por consenso."
+      },
+      {
+        "title": "Motor de Interpretabilidade de Alta Fidelidade",
+        "description": "Gera mapas de calor de ativação localizados sobrepostos às entradas de radiografia brutas.",
+        "implementation": "Aproveita hooks diretos e inversos do PyTorch para capturar gradientes de camadas convolucionais alvo para Grad-CAM, Grad-CAM++ e Integrated Gradients.",
+        "challenges": "Exposta e corrigida a aprendizagem por atalhos (shortcut learning) onde modelos iniciais se focavam erradamente em sobreposições de texto em vez de campos pulmonares anatómicos."
+      },
+      {
+        "title": "Otimizador Dinâmico de Limites",
+        "description": "Ajusta os limites de decisão de classificação com base na prioridade clínica.",
+        "implementation": "Procura iterativamente por um limite de decisão que maximize a pontuação F2, pesando o Recall duas vezes mais que a Precisão.",
+        "challenges": "Aumentou com sucesso a sensibilidade do modelo principal para 98,97%, minimizando previsões perigosas de falsos negativos."
+      }
+    ],
+    "testing": "Validado o desempenho numa partição de teste estratificada independente usando AUC-ROC, Precisão-Recall e matrizes de confusão. Conduzida verificação de saliência para garantir que a atenção do modelo estava alinhada com os campos pulmonares. Comparado o consumo de memória da implementação no Streamlit Cloud para evitar falhas de contentores.",
+    "results": {
+      "technicalAchievements": "O modelo principal DenseNet121 alcançou um AUC-ROC de 0,971 e um recall clínico otimizado de 98,97%. A EfficientNet-B0 entregou um recall próximo de 97,23% com uma pegada de parâmetros significativamente reduzida.",
+      "businessImpact": "Demonstrou que o deep learning médico pode ser implementado de forma segura e transparente em plataformas com restrição de recursos, combinando transmissão dinâmica de pesos com verificações rigorosas de explicabilidade.",
+      "personalGrowth": "Ganhou experiência profunda em hooks de retropropagação de baixo nível do PyTorch, otimização de limites clínicos de alta sensibilidade e estratégias de serviço de modelos leves."
+    },
+    "techStack": {
+      "frontend": "Streamlit",
+      "backend": "PyTorch (2.0+), Hugging Face Hub",
+      "tools": "UV Package Manager, Git, Jupyter Notebooks",
+      "libraries": "Torchvision, Scikit-Learn, OpenCV, Pillow, Matplotlib, Seaborn"
+    },
+    "learnings": [
+      "As redes neurais são altamente oportunistas; sem ferramentas XAI, a aprendizagem por atalhos em marcadores de filme textuais passaria despercebida.",
+      "A precisão padrão é enganosa na IA médica; otimizar para a pontuação F2 é essencial para garantir a utilidade clínica e a segurança do paciente.",
+      "A transmissão dinâmica de pesos de modelos em tempo de execução contorna os limites de armazenamento da plataforma e mantém os repositórios leves.",
+      "O transfer learning com DenseNet121 é excecionalmente adequado para tarefas médicas devido à reutilização contínua de características que capturam gradientes patológicos subtis."
+    ],
+    "futureEnhancements": [
+      "Expandir o pipeline de classificação para suportar diagnósticos multi-classe, incluindo pneumonia viral vs. bacteriana, tuberculose e pneumotórax.",
+      "Incorporar análise direta e processamento de ficheiros de imagem médica DICOM na interface de utilizador interativa.",
+      "Atualizar o treino para validação cruzada de 5 dobras e implementar um conjunto de votação suave ponderada por consenso.",
+      "Sintetizar caixas delimitadoras (bounding boxes) em torno das ativações de pico do Grad-CAM para isolar automaticamente regiões de interesse.",
+      "Integrar valores SHAP para sobrepor metadados tabulares de pacientes juntamente com atribuições visuais ao nível do pixel."
+    ],
+    "conclusion": "ThoraxAI prova que a IA médica de alto desempenho não precisa de ser uma caixa negra incompreensível. Ao combinar arquiteturas de última geração com visualização dinâmica leve e otimização F2, o sistema fornece um auxílio diagnóstico robusto e clinicamente seguro."
+  },
+  "shiatsuGuyane": {
+    "title": "Shiatsu Guyane",
+    "description": "Plataforma web sofisticada para uma prática de terapia Shiatsu com um sistema de design de jardim botânico exclusivo.",
+    "metadata": {
+      "role": "Desenvolvedor Full-Stack",
+      "category": "Desenvolvimento Web, Saúde e Bem-Estar, Pequenas Empresas",
+      "timeline": "Q3 - Q4 2025 (Em Desenvolvimento)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/shiatsu-guyane"
+    },
+    "overview": "\"Shiatsu Guyane\" é uma plataforma web sofisticada e de alto desempenho, meticulosamente concebida para uma prática de terapia Shiatsu localizada na Guiana Francesa. Este projeto é mais do que um simples website; é um santuário digital desenhado para espelhar a essência terapêutica e calmante do próprio Shiatsu, proporcionando uma experiência fluida e informativa para clientes que procuram soluções de saúde holísticas. O que realmente distingue o \"Shiatsu Guyane\" é o seu inovador e imersivo \"Sistema de Componentes de Jardim\", que tece um tema botânico consistente em toda a interface do utilizador, criando um ambiente digital exclusivamente tranquilo.",
+    "challenge": {
+      "problem": "Num mercado de bem-estar competitivo, uma prática de terapia Shiatsu na Guiana Francesa necessitava de uma presença online profissional, moderna e altamente acessível. O desafio era ir além dos modelos web genéricos e construir uma plataforma personalizada que transmitisse com precisão a natureza serena e curativa do Shiatsu, alcançando eficazmente os clientes locais, fornecendo informações abrangentes sobre os serviços e simplificando a comunicação e potenciais processos de reserva.",
+      "goal": "O objetivo principal era desenvolver um website de alto desempenho, responsivo e otimizado para SEO que funcionasse como um hub central para a prática de Shiatsu Guyane. O sucesso seria medido pela sua capacidade de apresentar serviços de forma eficaz, aumentar a credibilidade do profissional, facilitar o contacto sem esforço do cliente (e eventualmente a reserva) e proporcionar uma experiência de utilizador exclusivamente imersiva que reflita o compromisso da marca com o bem-estar.",
+      "constraints": "As principais restrições técnicas incluíam garantir tempos de carregamento ultra-rápidos e uma navegação fluida, crucial para reter a atenção do utilizador e melhorar o SEO, especialmente em regiões com velocidades de internet variáveis. A implementação de um sistema de design abrangente e modular, como os \"Componentes de Jardim\", sem comprometer o desempenho ou a facilidade de manutenção do código, exigiu um planeamento arquitetónico cuidadoso."
+    },
+    "discovery": {
+      "requirements": "O requisito central era criar uma plataforma online para uma prática de terapia Shiatsu servindo potenciais clientes que procuram terapias alternativas e clientes existentes que necessitam de acesso fácil a informações. As suas necessidades incluíam uma estética calmante e confiável, conteúdo fácil de entender (potencialmente em francês e inglês), chamadas à ação claras para contacto e acessibilidade móvel para navegação em movimento.",
+      "competitiveAnalysis": "A decisão de construir um site personalizado, potenciado por Next.js, com uma estética única sugere um desejo de se destacar dos websites genéricos baseados em modelos frequentemente utilizados por pequenas empresas. Muitos sites de bem-estar carecem de integração profunda de SEO, excelência em design responsivo ou uma identidade de marca distinta. Este projeto visou alavancar tecnologias web modernas para ultrapassar limitações comuns.",
+      "technicalResearch": "A escolha do Next.js 15 com o App Router foi fundamental, impulsionada pela sua reputação de desempenho superior, capacidades de SEO integradas e renderização eficiente do lado do servidor. O TypeScript garantiu a qualidade e manutenção do código. O Tailwind CSS permitiu o desenvolvimento rápido de designs responsivos. A Vercel foi escolhida para implementação perfeita e funções serverless."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto segue uma arquitetura de informação lógica e centrada no utilizador, claramente estruturada pelo paradigma Next.js App Router. As rotas principais incluem /about (perfil do profissional), /services (detalhes do tratamento), /booking (agendamento futuro de consultas), /blog (recursos de bem-estar) e /contact (consultas de clientes). A estrutura de componentes modulares inclui um diretório garden/ dedicado com componentes botânicos reutilizáveis.",
+      "technicalDecisions": "O Next.js 15 App Router foi escolhido para Server Components e desempenho melhorado. O TypeScript (96,6% da base de código) impõe uma tipagem forte e reduz bugs. Uma abordagem híbrida Tailwind CSS/CSS Modules equilibra o desenvolvimento rápido com o controlo granular. A integração SMTP fornece comunicação fiável por e-mail. O Sistema modular de Componentes de Jardim cria uma experiência de marca imersiva através de componentes React independentes e compostos."
+    },
+    "developmentProcess": {
+      "phase1": "Fundação - Inicializado projeto Next.js 15 com App Router e configuração TypeScript para verificação de tipos rigorosa. Integrado e configurado Tailwind CSS com tema personalizado verde sálvia. Estabelecida estrutura central do projeto com diretório app/ para páginas e src/components/ para elementos de UI reutilizáveis. Desenhada API inicial para o sistema único de Componentes de Jardim.",
+      "phase2": "Desenvolvimento de Funcionalidades - Desenvolvidas páginas detalhadas de informações de serviço com renderização de conteúdo estático. Criada página de perfil do profissional com imagens responsivas e texto estruturado. Implementado formulário de contacto com integração SMTP e modelos de e-mail personalizados. Construído Sistema modular de Componentes de Jardim (GardenBackground, SectionGarden, GardenDivider, FloatingBotanicals) com interfaces TypeScript. Lançadas as bases para suporte multilingue com estruturas de conteúdo em dois idiomas.",
+      "phase3": "Polimento e Otimização - Implementado design responsivo abrangente em todos os pontos de interrupção usando utilitários Tailwind. Otimizado SEO com API de metadados do Next.js, protocolos Open Graph e dados estruturados. Conduzidas auditorias de desempenho focadas na otimização de imagens e lazy loading. Garantida estrutura HTML semântica e acessibilidade. Realizados testes de compatibilidade entre navegadores e dispositivos."
+    },
+    "keyFeatures": [
+      {
+        "title": "Sistema de Componentes de Jardim Botânico",
+        "description": "Cria uma experiência de utilizador imersiva, tranquila e temática da natureza em todo o website com fundos botânicos dinâmicos, divisores de secção e elementos animados flutuantes.",
+        "implementation": "Concebido como um sistema de componentes React altamente modular com interfaces TypeScript definindo propriedades configuráveis como intensidade (leve, média, densa), vida selvagem (pássaros, borboletas), atmosfera (raios de sol), tema (bosque, zen, ervas) e posição. Animações otimizadas usando transformações CSS para um desempenho fluido.",
+        "challenges": "Equilibrar animações visualmente ricas e fundos dinâmicos com o desempenho geral do website foi abordado através da otimização de animações CSS, gestão cuidadosa do ciclo de vida dos componentes e design para modularidade para renderizar apenas os elementos necessários."
+      },
+      {
+        "title": "Design Responsivo Abrangente",
+        "description": "Garante uma experiência de visualização e interação ideal em dispositivos, desde telemóveis (320px) a grandes desktops (1920px+).",
+        "implementation": "Implementado usando a framework utility-first Tailwind CSS com prefixos responsivos (sm:, md:, lg:) para estilização condicional baseada em pontos de interrupção predefinidos. O sistema de grelha flexível e as classes utilitárias permitiram uma iteração rápida e uma responsividade consistente.",
+        "challenges": "Garantir o alinhamento pixel-perfect e a legibilidade ideal em tamanhos de ecrã vastamente diferentes exigiu uma atenção meticulosa aos detalhes e testes extensivos em dispositivos emulados, particularmente para layouts complexos com elementos botânicos."
+      },
+      {
+        "title": "Otimização Avançada de SEO",
+        "description": "Maximiza a visibilidade do website nos motores de busca, particularmente para pesquisas locais relacionadas com a terapia Shiatsu na Guiana Francesa.",
+        "implementation": "Alavanca a API de metadados do Next.js para gerar dinamicamente meta tags, tags de título e propriedades Open Graph. Implementada estrutura HTML5 semântica com cabeçalhos apropriados, texto alternativo para imagens e dados estruturados para o esquema de negócios locais. A renderização do lado do servidor garante que o conteúdo esteja prontamente disponível para os crawlers.",
+        "challenges": "Monitorizar e adaptar continuamente às melhores práticas de SEO em evolução, garantindo ao mesmo tempo uma implementação abrangente num site em crescimento, exigiu uma abordagem sistemática e uma configuração cuidadosa da API de metadados."
+      },
+      {
+        "title": "Serviço de Contacto e E-mail Robusto",
+        "description": "Fornece um canal fiável e profissional para os clientes contactarem a prática e receberem confirmações automáticas.",
+        "implementation": "Formulário de contacto integrado com serviço SMTP configurado através de variáveis de ambiente. Modelos de e-mail React personalizados (ClientConfirmationEmail.tsx) desenhados para suporte multilingue (Francês/Inglês). Funções serverless garantem um backend escalável para processamento de formulários.",
+        "challenges": "Gerir de forma segura as credenciais SMTP sensíveis e garantir a entrega fiável de e-mails sem filtros de spam exigiu uma configuração cuidadosa. A implementação de uma validação robusta para as entradas do formulário foi crucial."
+      },
+      {
+        "title": "Fundação de Conteúdo Multilingue",
+        "description": "Lança as bases para oferecer conteúdo do website em vários idiomas, com o francês como primário e suporte para inglês.",
+        "implementation": "A arquitetura acomoda várias versões de idiomas com objetos fr e en distintos definindo o conteúdo textual, particularmente visível nos modelos de e-mail. Estruturado para tradução fácil e alternância dinâmica de idiomas, pronto para integração total de solução i18n.",
+        "challenges": "Garantir a consistência entre as traduções e gerir eficientemente o conteúdo para vários locais. A estrutura atual fornece uma base sólida pronta para expansão para uma solução i18n completa."
+      }
+    ],
+    "testing": "Ciclo de feedback contínuo com testes funcionais rigorosos de todos os elementos interativos, particularmente formulários de contacto. Verificação extensiva de design responsivo em dispositivos emulados em todos os pontos de interrupção. Otimização de desempenho usando auditorias Lighthouse focadas nos core web vitals, estratégias de lazy loading e entrega eficiente de CSS. Testes iniciais de acessibilidade com HTML semântico e verificações de navegabilidade por teclado. Testes de compatibilidade entre navegadores no Chrome, Firefox e Safari. Controlo de versão Git disciplinado com ramos de funcionalidades para uma iteração perfeita.",
+    "results": {
+      "technicalAchievements": "Alcançada a adoção de 96,6% de TypeScript em mais de 50 ficheiros para alta qualidade de código e facilidade de manutenção. Desenhado com sucesso o versátil Sistema de Componentes de Jardim com quatro componentes React distintos e altamente personalizáveis. Alavancado o Next.js 15 App Router para desempenho otimizado e base de SEO. Integrado serviço de e-mail seguro baseado em SMTP com modelos profissionais multilingues. Entregue design totalmente responsivo otimizado para dispositivos de 320px a 1920px+.",
+      "businessImpact": "Fornece à prática Shiatsu Guyane uma montra digital moderna e profissional, elevando a imagem da marca e a credibilidade. Oferece descrições de serviço claras e opções de contacto fáceis, promovendo a confiança e simplificando a jornada do cliente. A arquitetura otimizada para SEO visa pesquisas locais atraindo novos clientes. O Sistema único de Componentes de Jardim cria uma experiência de utilizador memorável, diferenciando a prática dos competidores. Comunicação simplificada através da gestão integrada de formulários e e-mails modelados.",
+      "personalGrowth": "Ganhou experiência extensiva com Next.js 15 App Router, dominando Server Components e busca de dados avançada. O design do Sistema de Componentes de Jardim aprimorou as competências na arquitetura de componentes de UI reutilizáveis e configuráveis com requisitos visuais complexos. Melhor compreensão das estratégias abrangentes de SEO dentro de frameworks modernos. Superou desafios no equilíbrio da riqueza visual com o desempenho, solidificando capacidades de resolução de problemas na arquitetura frontend."
+    },
+    "techStack": {
+      "frontend": "Next.js 15 (App Router), TypeScript, React, Tailwind CSS, CSS Modules, Geist Font Family",
+      "backend": "Vercel, Node.js, Serviço de E-mail SMTP",
+      "tools": "Git/GitHub, npm/yarn/pnpm/bun, React Email",
+      "libraries": "React Email para e-mails transacionais modelados"
+    },
+    "learnings": [
+      "Domínio do Next.js 15 App Router e Server Components - Mergulho profundo em novos paradigmas, compreensão de Server vs Client Components, otimização de busca de dados e estruturação de aplicações performantes.",
+      "Arquitetura de Sistemas de UI Extensíveis e Performantes - Aprendidas as complexidades da criação de sistemas de UI modulares, configuráveis e visualmente ricos, equilibrando estética com desempenho usando interfaces TypeScript.",
+      "Integração Holística de SEO em Frameworks Modernos - Compreensão abrangente da incorporação de SEO na arquitetura da aplicação usando API de metadados, HTML semântico e dados estruturados desde o início.",
+      "Construção de Fluxos de Comunicação Robustos e Seguros - Experiência prática na configuração de comunicação backend fiável com integração SMTP segura, variáveis de ambiente, gestão de formulários e e-mails automatizados profissionais."
+    ],
+    "futureEnhancements": [
+      "Implementação Multilingue Total - Expandir além dos modelos de e-mail para fornecer suporte multilingue completo para todo o conteúdo do website com seletor de idioma e roteamento localizado.",
+      "Sistema de Reservas Integrado - Implementar um sistema completo de reserva de consultas com integração de API de terceiros ou solução personalizada para agendamento direto.",
+      "Integração de Mapa Interativo - Integrar a API do Google Maps para exibir a localização da prática, oferecendo direções e melhorando o SEO local.",
+      "Funcionalidade de Blog Melhorada - Desenvolver funcionalidades avançadas como filtragem por categoria, pesquisa, paginação e editor de texto rico para recursos de bem-estar dinâmicos.",
+      "Secção de Testemunhos e Avaliações de Clientes - Implementar uma secção dedicada com formulário de submissão e moderação de administrador para construir prova social e credibilidade."
+    ],
+    "conclusion": "\"Shiatsu Guyane\" representa uma plataforma web robusta, orientada pela estética e tecnicamente avançada, transformando com sucesso uma prática de bem-estar local numa presença digital poderosa. Ao alavancar meticulosamente o Next.js 15, TypeScript e um Sistema de Componentes de Jardim único, o projeto entrega uma experiência de utilizador de alto desempenho, otimizada para SEO e profundamente envolvente. Este projeto é um testemunho da capacidade de arquitetar, desenvolver e implementar aplicações web modernas e complexas que misturam excelência técnica com jornadas de utilizador cativantes."
+  },
+  "Cancer": {
+    "title": "Análise de Investigação do Cancro",
+    "description": "Compara o financiamento da investigação do cancro com as taxas de mortalidade para expor disparidades na alocação de recursos.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento Python - Análise de Dados e Futuro Machine Learning",
+      "timeline": "Dezembro 2025 - Janeiro 2026",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Le-skal/Cancer"
+    },
+    "overview": "Este projeto analisa a alocação de recursos na investigação oncológica, comparando o financiamento com as taxas de mortalidade por cancro. Utiliza um pipeline ETL para recolher, processar e visualizar dados de fontes autoritárias. Uma descoberta fundamental: o Cancro do Pulmão, com uma mortalidade 6 vezes superior à da Leucemia, recebe 3,7 vezes menos orçamento por morte, realçando disparidades significativas.",
+    "challenge": {
+      "problem": "O desafio central era a desconexão entre a gravidade do cancro (mortalidade global) e o investimento na investigação. As abordagens tradicionais careciam de análise comparativa, impedindo a clareza sobre o alinhamento ideal dos recursos com a carga da doença.",
+      "goal": "O objetivo principal era desenvolver uma solução abrangente de análise de dados. Pretendia integrar diversos dados sobre cancro em métricas comparativas como 'orçamento por morte' e apresentá-los através de um dashboard interativo, respondendo se o investimento se correlaciona com a gravidade.",
+      "constraints": "As restrições incluíram a heterogeneidade dos dados de várias fontes (web scraping, APIs, ficheiros), grande volume de dados exigindo processamento Pandas eficiente e carregamentos em lote, e problemas de qualidade necessitando de limpeza rigorosa. A visualização interativa de descobertas complexas também representou um desafio."
+    },
+    "discovery": {
+      "requirements": "Os requisitos foram impulsionados pela hipótese de que o investimento pode não se correlacionar com a gravidade da doença. Isto exigiu acesso a dados fiáveis e atuais sobre mortalidade (OMS), orçamentos (NCI), ensaios (ClinicalTrials.gov) e interesse público (Google Trends) para comparação padronizada.",
+      "competitiveAnalysis": "Embora existam conjuntos de dados individuais sobre o cancro, plataformas analíticas abrangentes que comparam diretamente o investimento na investigação com as taxas de mortalidade globais são menos comuns. Este projeto visou preencher essa lacuna fornecendo uma perspetiva única e baseada em dados sobre a alocação de recursos.",
+      "technicalResearch": "Python foi escolhido pelas suas bibliotecas de ciência de dados. O Pandas foi fundamental para manipulação de dados, Selenium para web scraping de conteúdo dinâmico e PostgreSQL (Supabase) para armazenamento escalável. Streamlit e Plotly foram selecionados para o desenvolvimento rápido de dashboards interativos e visualizações ricas."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto utiliza um pipeline ETLV: Extração (web scraping, APIs, dados abertos), Transformação (Pandas para limpeza, normalização, cálculo de métricas, geolocalização), Carregamento (PostgreSQL via Supabase com carregamentos em lote) e Visualização (dashboard Streamlit com gráficos Plotly).",
+      "technicalDecisions": "O ecossistema de ciência de dados do Python, especialmente o Pandas, foi fundamental. O Supabase ofereceu um backend PostgreSQL escalável, simplificando a gestão da base de dados. O Streamlit facilitou o desenvolvimento rápido de uma aplicação web interativa, combinada com o Plotly para visualizações dinâmicas de alta qualidade. O Selenium foi crucial para recolher conteúdo dinâmico de sites como o ClinicalTrials.gov não acessíveis via APIs."
+    },
+    "developmentProcess": {
+      "phase1": "A fundação focou-se na configuração do ambiente Python, estabelecendo ligações com diversas fontes de dados via Selenium e APIs, e desenhando o esquema PostgreSQL do Supabase. Scripts iniciais de extração de dados foram desenvolvidos e testados.",
+      "phase2": "O desenvolvimento de funcionalidades construiu o pipeline ETL completo e o dashboard. O Pandas implementou a limpeza, normalização, junção de dados e cálculos de 'dólares por morte'. O mecanismo de carregamento em lote para PostgreSQL foi otimizado e o dashboard Streamlit integrou gráficos Plotly com filtragem dinâmica.",
+      "phase3": "O polimento e a otimização refinaram os algoritmos de processamento de dados para eficiência e precisão. As consultas à base de dados foram otimizadas e os índices ajustados para o desempenho do dashboard. A interface do Streamlit foi melhorada iterativamente para uma melhor experiência do utilizador e clareza."
+    },
+    "keyFeatures": [
+      {
+        "title": "Extração de Dados Multi-Fonte",
+        "description": "Recolhe dados abrangentes da API PubMed, OMS GLOBOCAN, Orçamento NCI, ClinicalTrials.gov (via Selenium) e Google Trends.",
+        "implementation": "Scripts Python usam `requests` para APIs, `Selenium` para web scraping dinâmico e parsing direto para dados abertos CSV/JSON, gerindo métodos de fonte distintos.",
+        "challenges": "Superou limites de taxa de API, medidas anti-bot e formatos de dados inconsistentes através de gestão de erros robusta e parsing padronizado."
+      },
+      {
+        "title": "Transformação de Dados Robusta",
+        "description": "Limpa, padroniza e enriquece dados brutos, normalizando a nomenclatura, realizando junções complexas, calculando métricas derivadas e adicionando contexto geográfico.",
+        "implementation": "DataFrames `Pandas` e funções Python personalizadas são usados para limpeza, operações `merge`/`join` para integração e um dicionário de mais de 800 palavras-chave para geolocalização.",
+        "challenges": "Reconciliar terminologias diversas e granularidade de dados entre fontes exigiu tabelas de mapeamento e algoritmos de correspondência difusa para junções precisas."
+      },
+      {
+        "title": "Armazenamento de Dados Escalável",
+        "description": "Persiste dados limpos e transformados numa base de dados estruturada e consultável, garantindo integridade, eficiência e escalabilidade para análise.",
+        "implementation": "Uma base de dados `PostgreSQL` via `Supabase` armazena os dados. Scripts Python carregam dados em lotes de 1000 registos, com tabelas normalizadas e indexadas otimizando o desempenho das consultas.",
+        "challenges": "Desenhar um esquema relacional ideal e gerir carregamentos em lote para atomicidade e gestão de erros durante grandes inserções foram fundamentais."
+      },
+      {
+        "title": "Visualização de Dados Interativa",
+        "description": "Apresenta descobertas analíticas complexas através de um dashboard web intuitivo e interativo, permitindo aos utilizadores explorar disparidades e tendências com filtros dinâmicos.",
+        "implementation": "O `Streamlit` constrói o dashboard, integrando o `Plotly` para gráficos interativos como gráficos de barras e séries temporais. Widgets Streamlit fornecem filtros dinâmicos que renderizam novamente os gráficos em tempo real.",
+        "challenges": "Criar visualizações performantes para grandes conjuntos de dados filtráveis e desenhar uma interface intuitiva para dados complexos para evitar sobrecarregar o utilizador foram críticos."
+      },
+      {
+        "title": "Cálculo de Métricas Comparativas",
+        "description": "Calcula métricas comparativas críticas, como '$ por morte' para vários tipos de cancro, abordando diretamente a questão central do projeto sobre a alocação de recursos.",
+        "implementation": "Dentro da fase TRANSFORM, após a junção dos dados de orçamento (NCI) e mortalidade (OMS), o `Pandas` realiza operações aritméticas (`orçamento / contagem_mortalidade`) para derivar e armazenar a métrica.",
+        "challenges": "Garantir o alinhamento perfeito dos dados de orçamento e mortalidade por tipo de cancro específico e ano foi crucial para evitar cálculos enganosos, exigindo limpeza de dados meticulosa."
+      }
+    ],
+    "testing": "Os testes foram fundamentais, validando cada fase do ETL. A extração verificou a obtenção de dados, a transformação usou testes unitários para funções Pandas e profiling de dados, e o carregamento confirmou a inserção correta na base de dados com carregamentos em lote otimizados. A interatividade e precisão dos dados do dashboard Streamlit foram testadas rigorosamente.",
+    "results": {
+      "technicalAchievements": "Integrou com sucesso diversas fontes de dados (web scraping, APIs, dados abertos) demonstrando engenharia de dados robusta. Desenvolveu um pipeline ETL resiliente usando Pandas. Implementou um mecanismo de carregamento em lote eficiente numa base de dados PostgreSQL normalizada e criou um dashboard interativo Streamlit/Plotly.",
+      "businessImpact": "O projeto fornece análise crítica baseada em dados revelando disparidades significativas no financiamento da investigação oncológica em relação à mortalidade global. Esta análise pode informar decisores políticos e organismos de financiamento para reavaliarem estratégias de alocação de recursos.",
+      "personalGrowth": "Proficiência aprimorada no fluxo de trabalho de análise de dados de ponta a ponta. Ganhou experiência no ecossistema de ciência de dados de Python, Pandas, Streamlit/Plotly, e aprofundou a compreensão de design de bases de dados e soluções baseadas na nuvem como o Supabase."
+    },
+    "techStack": {
+      "frontend": "Streamlit 1.30, Plotly 5",
+      "backend": "Supabase, PostgreSQL",
+      "tools": "Selenium 4",
+      "libraries": "Python 3.8+, Pandas 2.0, Requests"
+    },
+    "learnings": [
+      "Orquestrar diversas fontes de dados sublinhou a complexidade de integrar dados variados, realçando a necessidade de conectores e validação robustos.",
+      "Dominar o Pandas para limpeza, normalização, junção e derivação de insights de dados desorganizados foi central, demonstrando como a transformação ponderada é primordial para resultados analíticos precisos.",
+      "Ganhou experiência prática em todo o pipeline de análise de dados, desde a ingestão de dados brutos até dashboards interativos, destacando a interligação de cada fase.",
+      "Percebeu como as visualizações convincentes e interativas com Streamlit e Plotly podem comunicar eficazmente descobertas de dados complexos, transformando números brutos em insights acionáveis."
+    ],
+    "futureEnhancements": [
+      "Implementar tarefas agendadas para web scraping e extração de dados automática, garantindo que o dashboard apresente as informações mais atuais.",
+      "Desenvolver modelos de machine learning para identificar tendências emergentes na investigação do cancro ou prever necessidades de financiamento.",
+      "Explorar arquiteturas de dados em streaming para atualizações do dashboard em tempo real, particularmente para fontes alimentadas continuamente.",
+      "Melhorar as capacidades de geolocalização e visualizar dados de investigação/mortalidade em mapas globais interativos.",
+      "Implementar a aplicação Streamlit numa plataforma de nuvem pública para tornar a análise acessível a um público mais vasto."
+    ],
+    "conclusion": "O projeto 'Análise de Investigação do Cancro' demonstra poderosamente a investigação baseada em dados na saúde global, revelando disparidades significativas no financiamento da investigação oncológica versus mortalidade. Utilizando tecnologia para um impacto social significativo, o projeto mostra competências técnicas robustas em engenharia de dados, Python e visualização."
+  },
+  "reviewai-platform": {
+    "title": "ReviewAI Platform",
+    "description": "Revolucionando a gestão e análise de avaliações de clientes com insights impulsionados por IA.",
+    "metadata": {
+      "role": "Desenvolvedor Full-Stack",
+      "category": "Desenvolvimento Full-Stack - Integração de IA",
+      "timeline": "Q1 2026 (Desenvolvimento em Curso)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/reviewai-platform"
+    },
+    "overview": "A ReviewAI Platform é uma aplicação web full-stack de última geração concebida para automatizar a análise de avaliações de clientes usando IA. Combina um frontend Vue.js 3 com um backend Laravel 12 para recolher, organizar e derivar insights acionáveis a partir de feedback. Integrando a Mistral AI, fornece deteção automática de sentimento, pontuação de satisfação e extração de tópicos, permitindo que as empresas tomem decisões baseadas em dados rapidamente.",
+    "challenge": {
+      "problem": "As empresas estão sobrecarregadas por vastas quantidades de avaliações de clientes, tornando o processamento manual demorado, tendencioso e pouco esclarecedor. O problema era criar um sistema automatizado para dados de avaliação claros e concisos.",
+      "goal": "O objetivo principal era construir uma aplicação full-stack intuitiva e segura para gerir avaliações de clientes, integrando IA avançada para análise de sentimento e extração de tópicos. Necessitava de apresentar estes insights através de um dashboard interativo com uma UI moderna e responsiva.",
+      "constraints": "Os principais desafios técnicos incluíram a integração perfeita da Mistral AI para análise de texto fiável, o desenho de uma arquitetura escalável para volumes crescentes de avaliações e a garantia de autenticação de utilizador e proteção de dados seguras. Além disso, exigia uma UI responsiva entre dispositivos e uma base de código de fácil manutenção e extensível."
+    },
+    "discovery": {
+      "requirements": "A análise inicial identificou necessidades fundamentais: autenticação de utilizador, CRUD para avaliações e insights acionáveis como sentimento, satisfação e temas recorrentes. O tratamento seguro de dados e uma interface moderna e acessível foram primordiais para a adoção pelos utilizadores.",
+      "competitiveAnalysis": "Embora existam muitas plataformas de avaliação, poucas oferecem análise de sentimento por IA integrada e em tempo real como funcionalidade central. A ReviewAI visou diferenciar-se ao automatizar a análise sofisticada por IA, fornecendo insights mais profundos sem configuração extensiva do utilizador.",
+      "technicalResearch": "O Laravel 12 foi escolhido pelo seu robusto MVC e ecossistema para desenvolvimento backend. O Vue.js 3 com TypeScript forneceu desempenho, escalabilidade e segurança de tipos para o frontend. A API da Mistral AI foi selecionada para tarefas de NLP eficientes e precisas, enquanto o Shadcn-vue e o Tailwind CSS garantiram uma UI personalizável e responsiva. O Laravel Sanctum e o Pinia completaram a stack tecnológica para autenticação segura e gestão de estado."
+    },
+    "architecture": {
+      "informationArchitecture": "A aplicação segue uma arquitetura cliente-servidor, desacoplando o frontend Vue.js 3/TypeScript do backend Laravel 12. O frontend gere as vistas, as stores do Pinia e o Axios para comunicação de API, enquanto o backend adere ao MVC, lidando com pedidos, interações com a base de dados e integração da Mistral AI.",
+      "technicalDecisions": "O desacoplamento full-stack permite escala e flexibilidade independentes. O Laravel Sanctum foi escolhido para autenticação de API baseada em tokens e sem estado, adequada para SPAs. A API de Composição do Vue 3 e o TypeScript garantiram código frontend mantível e seguro em termos de tipos. Shadcn-vue e Tailwind CSS priorizaram o desenvolvimento de UI rápido, personalizável e responsivo. O Pinia simplificou a gestão de estado e a integração da API da Mistral AI foi gerida inteiramente pelo backend."
+    },
+    "developmentProcess": {
+      "phase1": "Inicializados os projetos Laravel e Vue, configuradas variáveis de ambiente e definidos esquemas de base de dados. Integrado o Laravel Sanctum para autenticação de utilizador e estabelecidos endpoints básicos de API RESTful para operações fundamentais de CRUD de avaliações.",
+      "phase2": "Implementado CRUD completo para avaliações no backend com validação e desenvolvidos os componentes de frontend correspondentes. Integrada a Mistral AI criando serviços Laravel para enviar texto de avaliação, analisar respostas de sentimento/tópicos e armazenar resultados. Construída a lógica de backend e as vistas de frontend para o dashboard interativo.",
+      "phase3": "UI/UX aprimorada com Shadcn-vue e Tailwind CSS, focando em estética moderna, responsividade e modo escuro. Implementados testes unitários e de funcionalidades abrangentes no backend usando Pest PHP para módulos críticos, garantindo alta cobertura de código e estabilidade."
+    },
+    "keyFeatures": [
+      {
+        "title": "Autenticação de Utilizador",
+        "description": "Fornece registo e login de utilizador seguros, protegendo dados privados e funcionalidades da aplicação.",
+        "implementation": "Usa o Laravel Sanctum para autenticação baseada em tokens. Após o login, o backend emite um token de API para pedidos de frontend autenticados subsequentes.",
+        "challenges": "Garantir autenticação sem estado para SPAs, gerir a expiração de tokens e proteger rotas sensíveis de acesso não autorizado."
+      },
+      {
+        "title": "Gestão de Avaliações (Operações CRUD)",
+        "description": "Permite que os utilizadores autenticados criem, leiam, atualizem e eliminem as suas avaliações de clientes.",
+        "implementation": "O backend oferece uma API RESTful com endpoints dedicados (`/api/reviews`), geridos pelo `ReviewController`. O frontend usa o Axios para interagir com estes endpoints, exibindo listas de avaliações e formulários.",
+        "challenges": "Implementação de validação de dados robusta no backend, gestão de atualizações otimistas no frontend e tratamento de erros de interação de API."
+      },
+      {
+        "title": "Análise Impulsionada por IA (Integração Mistral AI)",
+        "description": "Analisa automaticamente o conteúdo das avaliações para sentimento, pontuações de satisfação e extração de tópicos chave.",
+        "implementation": "Quando uma avaliação é submetida, o backend envia o seu texto para a API da Mistral AI via HTTP. A IA processa-o e devolve dados estruturados, que o backend armazena juntamente com a avaliação.",
+        "challenges": "Tratamento de limites de pedidos de API, parsing eficiente de respostas de IA, gestão de latência de rede e armazenamento eficaz de resultados de IA diversos."
+      },
+      {
+        "title": "Dashboard Interativo",
+        "description": "Oferece uma vista centralizada de estatísticas agregadas de avaliações e visualizações para insights rápidos.",
+        "implementation": "O `StatisticsController` do backend procura e processa dados de avaliações do MySQL para calcular métricas. O frontend consome estes pontos de dados agregados via API, renderizando-os com componentes Vue.js.",
+        "challenges": "Consulta eficiente de grandes conjuntos de dados, desenho de visualizações claras e garantia de atualizações de dados em tempo real."
+      },
+      {
+        "title": "Design Responsivo e Modo Escuro",
+        "description": "Entrega uma interface de utilizador adaptável que funciona perfeitamente entre dispositivos e suporta temas claro/escuro preferidos pelo utilizador.",
+        "implementation": "UI construída com componentes Shadcn-vue inerentemente responsivos e estilizada com Tailwind CSS. O modo escuro usa o composable `useColorMode` do VueUse para aplicar classes de tema dinamicamente.",
+        "challenges": "Garantir consistência visual entre pontos de interrupção, gerir o estado do tema em toda a aplicação e estilização personalizada de componentes Shadcn-vue."
+      }
+    ],
+    "testing": "Um robusto conjunto de testes de backend, aproveitando o Pest PHP, garante qualidade e fiabilidade. Isto inclui 48 testes unitários e de funcionalidades, alcançando alta cobertura de código (95% para AuthController, 90% para ReviewController, 85% para AnalysisController, 90% para StatisticsController). Esta abordagem de testes iterativa facilitou a deteção precoce de problemas e o refinamento contínuo.",
+    "results": {
+      "technicalAchievements": "Desenvolveu com sucesso uma aplicação web full-stack com frameworks modernos, autenticação segura baseada em tokens (Laravel Sanctum) e integração perfeita da Mistral AI. Implementou CRUD completo de avaliações com validação robusta e um dashboard interativo. Alcançou alta qualidade de código via testes extensivos de backend e uma UI responsiva com Shadcn-vue e Tailwind CSS.",
+      "businessImpact": "A análise de avaliações automatizada e impulsionada por IA poupa às empresas custos operacionais e tempo significativos, transitando de processos manuais. Fornece dados claros e acionáveis sobre o sentimento e tendências dos clientes, permitindo decisões estratégicas mais rápidas e informadas.",
+      "personalGrowth": "Aprofundou a perícia na arquitetura de aplicações full-stack complexas com Laravel 12 e Vue 3/TypeScript. Ganhou experiência inestimável na integração de APIs de IA externas e solidificou competências em testes de backend abrangentes com Pest PHP. Dominou o desenvolvimento de UI moderno com Shadcn-vue e Tailwind CSS."
+    },
+    "techStack": {
+      "frontend": "Vue.js 3, TypeScript, Tailwind CSS, Shadcn-vue, Pinia, Axios, Vue Router, VueUse, Phosphor Icons",
+      "backend": "Laravel 12, PHP, MySQL/SQLite, Laravel Sanctum, Pest PHP, API Mistral AI",
+      "tools": "",
+      "libraries": "Laravel Sanctum (autenticação), Pinia (gestão de estado), Axios (cliente HTTP), Shadcn-vue (componentes UI), Vue Router (roteamento), VueUse (utilitários), Phosphor Icons (ícones)"
+    },
+    "learnings": [
+      "Aprendeu a integrar e abstrair eficazmente serviços de IA de terceiros numa aplicação full-stack, desenhando clientes de API cuidadosos, tratando erros e armazenando resultados de IA eficientemente.",
+      "Obteve insights profundos sobre o desenho de uma arquitetura cliente-servidor limpa e desacoplada usando Laravel e Vue 3, enfatizando o desenvolvimento API-first e a comunicação segura.",
+      "Percebeu os benefícios significativos do TypeScript para melhorar a qualidade do código, manutenibilidade e colaboração em aplicações Vue.js complexas quando combinado com Pinia e a API de Composição.",
+      "Reforçou a importância de testes de backend extensivos com ferramentas como o Pest PHP para garantir a estabilidade da API, integridade dos dados e minimizar regressões."
+    ],
+    "futureEnhancements": [
+      "Implementar visualizações de dados mais sofisticadas, geração de relatórios personalizados e análise de tendências ao longo do tempo para sentimento e tópicos.",
+      "Introduzir diferentes papéis de utilizador (ex: Administrador, Revisor, Analista) com níveis variados de acesso e capacidades.",
+      "Permitir suporte multi-tenant para a plataforma alojar várias empresas independentes, cada uma com dados e definições isolados.",
+      "Permitir que os utilizadores forneçam contexto ou palavras-chave específicas do domínio para ajustar a análise da IA para resultados mais precisos e relevantes para o setor.",
+      "Adicionar capacidades para obter avaliações automaticamente de plataformas externas como Google My Business ou Yelp.",
+      "Implementar notificações em tempo real para novas avaliações, mudanças significativas no sentimento ou menções a tópicos críticos."
+    ],
+    "conclusion": "A ReviewAI Platform combina eficazmente engenharia de backend robusta com desenvolvimento frontend moderno e integração inteligente de IA, abordando a necessidade crítica de análise automatizada de avaliações. O projeto capacita as empresas com insights acionáveis, impulsionados por autenticação segura, funcionalidades abrangentes e design intuitivo."
+  },
+  "purecontrol-ml-technical-test": {
+    "title": "Teste Técnico Purecontrol ML",
+    "description": "Preve a temperatura da piscina e otimiza a bomba de calor para um controlo antecipatório e económico.",
+    "metadata": {
+      "role": "Candidato ao Teste",
+      "category": "Machine Learning, Análise de Dados, Teste Técnico",
+      "timeline": "Desenvolvimento Rápido (Concluído num dia para o teste técnico em 2026-01-30)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/purecontrol-ml-technical-test"
+    },
+    "overview": "Este projeto fornece uma solução inteligente para a gestão da temperatura da água de piscinas. Preve com precisão as flutuações de temperatura usando ML e otimiza a ativação da bomba de calor para a manutenção da temperatura alvo e minimização dos custos energéticos. O sistema usa estratégias antecipatórias, demonstrando um fluxo de trabalho de ciência de dados robusto de EDA ao treino do modelo e otimização do controlo.",
+    "challenge": {
+      "problem": "O problema central envolveu a modelação e previsão precisa da temperatura da água da piscina, contabilizando variáveis exógenas e de controlo. Em segundo lugar, exigiu o desenho de um sistema de controlo inteligente para manter uma temperatura mínima enquanto minimiza os custos de energia da bomba de calor.",
+      "goal": "O objetivo era criar um sistema preditivo e prescritivo. Isto envolveu o desenvolvimento de um modelo de ML robusto para previsão da variação da temperatura, integrando-o depois numa framework de otimização para regulação de temperatura económica, garantindo que a piscina nunca desce abaixo do mínimo desejado.",
+      "constraints": "Um desafio significativo foi a inércia térmica inerente da piscina, tornando o controlo reativo ineficiente. A solução teve de incorporar capacidades antecipatórias e preditivas para superar este atraso, exigindo uma abordagem de otimização orientada para o futuro."
+    },
+    "discovery": {
+      "requirements": "Os requisitos focaram-se na previsão da variação de temperatura `y[k+1] - y[k]` e no uso desta para a otimização do controlo. Isto necessitou de análise de séries temporais e de um agente inteligente equilibrando objetivos de temperatura com minimização de custos.",
+      "competitiveAnalysis": "Embora não explícito, o projeto visou superar os controlos básicos de termostato reativo, que desperdiçam energia devido à inércia térmica. O objetivo era construir um sistema proativo e preditivo, inerentemente superior a alternativas mais simples.",
+      "technicalResearch": "A investigação focou-se na previsão de séries temporais de *variações* de temperatura para estabilidade e engenharia de características a partir de variáveis chave. O XGBoost foi escolhido pelo seu desempenho robusto e conceitos de teoria de controlo como controlo antecipatório guiaram a solução."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto usou uma estrutura modular: `data/`, `notebooks/`, `src/` (para `modeling/` e `control/`) e `outputs/`. Isto promoveu a manutenibilidade e a separação lógica de preocupações.",
+      "technicalDecisions": "As decisões chave incluíram a modelação de `temp_variation` para estabilidade e o uso de XGBoost pela sua eficiência, precisão e interpretabilidade. A otimização iterativa do controlo foi implementada com uma estratégia 'greedy' e uma estratégia 'improved look-ahead' para abordar a inércia térmica."
+    },
+    "developmentProcess": {
+      "phase1": "A configuração inicial envolveu a estruturação do repositório e a ingestão de dados brutos. A exploração preliminar de dados em `notebooks/exploration.py` ajudou a compreender os tipos de dados, valores em falta e a calcular estatísticas descritivas.",
+      "phase2": "Esta fase desenvolveu o sistema central: `data_preparation.py` para engenharia de características, `model_training.py` para XGBoost e `optimizer.py` para controlo básico. Uma framework de `evaluation.py` integrou as previsões do modelo e avaliou o desempenho inicial.",
+      "phase3": "O refinamento incluiu o `optimizer_improved.py` com um mecanismo de look-ahead para melhor gerir a inércia térmica. A suite de visualização em `outputs/figures/` foi expandida para análises detalhadas, fornecendo insights profundos sobre o comportamento do sistema."
+    },
+    "keyFeatures": [
+      {
+        "title": "Previsão Inteligente da Temperatura da Água",
+        "description": "Preve com precisão a *variação* na temperatura da água da piscina para o próximo passo temporal, formando a espinha dorsal do sistema de controlo antecipatório.",
+        "implementation": "Um regressor XGBoost, treinado em dados históricos, aprende relações entre as condições atuais para prever mudanças de temperatura. A `temp_variation` é calculada como `data['water temp'].diff()`.",
+        "challenges": "Superou o ruído na previsão da temperatura absoluta focando-se na taxa de mudança, tornando as previsões mais estáveis e robustas para um controlo eficaz."
+      },
+      {
+        "title": "Exploração de Dados e Engenharia de Características",
+        "description": "Fornece uma compreensão profunda das características do conjunto de dados e prepara-o para o machine learning.",
+        "implementation": "`exploration.py` usa Pandas para exibir tipos de dados, identificar valores em falta e computar estatísticas descritivas. Também cria a característica `temp_variation`.",
+        "challenges": "Garantir a qualidade e relevância dos dados; compreender as propriedades estatísticas dos dados é fundamental para construir um modelo eficaz."
+      },
+      {
+        "title": "Otimização do Controlo Antecipatório",
+        "description": "Ativa estrategicamente a bomba de calor para manter uma restrição de temperatura mínima da água enquanto minimiza o consumo de energia.",
+        "implementation": "`optimizer_improved.py` usa o modelo ML treinado para simular futuras mudanças de temperatura sob diferentes cenários da bomba de calor. Uma estratégia de 'look-ahead' avalia ações sobre um horizonte, selecionando a sequência de menor custo.",
+        "challenges": "Abordou diretamente a inércia térmica da piscina ao planear ações baseadas em estados futuros previstos, garantindo uma gestão proativa da temperatura em vez de um controlo reativo ineficiente."
+      },
+      {
+        "title": "Avaliação de Desempenho e Visualização Abrangente",
+        "description": "Fornece uma avaliação minuciosa da precisão do modelo e da eficácia do sistema de controlo através de gráficos ilustrativos.",
+        "implementation": "`evaluation.py` gera numerosas visualizações (ex: séries temporais, correlação, importância de características, comparações de controlo) guardadas em `outputs/figures/`.",
+        "challenges": "Comunicou eficazmente o desempenho complexo do ML e do sistema de controlo, fornecendo insights imediatos e acionáveis sobre a fiabilidade do modelo."
+      }
+    ],
+    "testing": "O script `evaluation.py` serviu como uma framework de testes dedicada, avaliando o modelo preditivo sobre um horizonte de 8 horas com métricas quantitativas e feedback visual. O desenvolvimento iterativo de otimizadores básicos e melhorados, guiado pela acumulação de erros e visualizações de comparação de controlo, refinou a estratégia de controlo.",
+    "results": {
+      "technicalAchievements": "Implementou com sucesso um pipeline de ML de ponta a ponta para modelação de sistema dinâmico e controlo usando XGBoost. Identificou variáveis influentes via importância de características. Desenvolveu um sistema de controlo antecipatório que supera demonstravelmente abordagens puramente reativas.",
+      "businessImpact": "A solução oferece poupanças significativas de custos operacionais ao minimizar o consumo de energia da bomba de calor enquanto mantém as temperaturas desejadas. Otimiza o uso de recursos e promove a sustentabilidade.",
+      "personalGrowth": "Compreensão aprofundada da modelação de séries temporais e ganhou experiência prática no desenho de sistemas inteligentes de controlo de feedback de ML. Melhorou competências em exploração de dados e avaliação de modelos."
+    },
+    "techStack": {
+      "frontend": null,
+      "backend": null,
+      "tools": "Python (Linguagem primária para desenvolvimento)",
+      "libraries": "Pandas, NumPy, XGBoost, Matplotlib/Seaborn, Scikit-learn"
+    },
+    "learnings": [
+      "Prever *variações* em séries temporais leva a modelos mais estáveis e robustos do que valores absolutos, reduzindo o erro cumulativo.",
+      "A inércia térmica exige uma abordagem antecipatória (ex: estratégias 'look-ahead') para uma otimização bem-sucedida, pois os sistemas reativos são ineficientes.",
+      "O XGBoost é eficaz para dados estruturados, oferecendo alta precisão preditiva e importância de características facilmente extraível.",
+      "A visualização abrangente é inestimável para compreender dados, diagnosticar erros do modelo e comparar a eficácia da estratégia de controlo."
+    ],
+    "futureEnhancements": [
+      "Implementar algoritmos avançados de aprendizagem por reforço para permitir que o sistema de controlo aprenda políticas ideais através da interação ambiental.",
+      "Integrar características rolantes mais sofisticadas como variáveis de atraso (lag) ou médias móveis para capturar dependências temporais eficazmente.",
+      "Explorar redes neurais recorrentes (LSTMs/GRUs) para previsão de temperatura, adequadas para modelar sequências e dependências de longo prazo.",
+      "Implementar uma framework completa de Controlo Preditivo Baseado em Modelo (MPC) usando o modelo ML como motor de previsão do sistema."
+    ],
+    "conclusion": "Este projeto abordou com sucesso a gestão inteligente da temperatura de piscinas, integrando modelação preditiva e controlo otimizado por custos. Ao alavancar ML e adotar uma estratégia antecipatória, o sistema mantém eficientemente as temperaturas enquanto minimiza a energia."
+  },
+  "blue-gold-analytics": {
+    "title": "Blue Gold Analytics",
+    "description": "Ilumina a ligação entre o acesso à água e a mortalidade infantil para guiar a ajuda humanitária.",
+    "metadata": {
+      "role": "Analista de Dados",
+      "category": "Análise de Dados, Visualização",
+      "timeline": "2026-01-30",
+      "liveUrl": "null",
+      "githubUrl": "https://github.com/Exowz/blue-gold-analytics"
+    },
+    "overview": "O Blue Gold Analytics visualiza a relação entre o acesso a água potável e a mortalidade infantil, criando um 'Score de Prioridade Humanitária (SPH)' para direcionar a ajuda. Implementado em Python e R, entrega diversas visualizações e dashboards, oferecendo insights acionáveis para a saúde pública global.",
+    "challenge": {
+      "problem": "O acesso desigual a água potável contribui para a alta mortalidade infantil, e a ajuda humanitária carece de insights precisos baseados em dados para a alocação eficiente de recursos. Era necessária uma métrica quantificável para priorizar as intervenções.",
+      "goal": "Quantificar a correlação acesso à água-mortalidade infantil, desenvolver um Score de Prioridade Humanitária (SPH) para classificar regiões, fornecer diversas visualizações de alta qualidade e implementar dashboards interativos em Python (Streamlit) e R (Shiny).",
+      "constraints": "A análise cobriu cerca de 170 países ao longo de 8 anos (2015-2022). Exigiu desenvolvimento paralelo em Python e R, mantendo a consistência e gerando diversas saídas de alta resolução (300 DPI PNGs, GIFs, HTML interativo)."
+    },
+    "discovery": {
+      "requirements": "O projeto precisava de ir além de evidências anedóticas, fornecendo insights estatisticamente validados e baseados em dados através de comunicação visual clara e interfaces fáceis de usar.",
+      "competitiveAnalysis": "O projeto diferencia-se ao oferecer implementações em dois idiomas (Python/R) e uma suite abrangente de tipos de visualização, maximizando a flexibilidade e o alcance. Isto atende a um público mais vasto de profissionais de dados e decisores.",
+      "technicalResearch": "Investigados ggplot2 (R) para gráficos estáticos, gganimate (R) para animações e Plotly (Python/R) para visualizações HTML interativas. Streamlit (Python) e Shiny (R) foram escolhidos para o desenvolvimento rápido de dashboards."
+    },
+    "architecture": {
+      "informationArchitecture": "Uma arquitetura modular separa as implementações em Python e R, com diretórios de saída distintos para gráficos estáticos, animações e visualizações interativas. Esta estrutura garante navegação e recuperação fáceis de tipos de saída específicos.",
+      "technicalDecisions": "Uma abordagem de stack dupla maximizou o apelo e alavancou ambos os ecossistemas de linguagens. Formatos de saída padronizados (PNG, GIF, HTML) garantiram ampla compatibilidade, com 300 DPI para gráficos estáticos. O Plotly gerou saídas HTML interativas."
+    },
+    "developmentProcess": {
+      "phase1": "A configuração inicial envolveu a configuração dos ambientes Python e R, a ligação à API de dados do Banco Mundial e a realização da limpeza/pré-processamento essencial para cerca de 170 países (2015-2022).",
+      "phase2": "Desenvolvidas funcionalidades centrais: análise estatística (correlação, regressão, ANOVA), cálculo do Score de Prioridade Humanitária (SPH) e geração de diversas visualizações. Frameworks de dashboard (Streamlit/Shiny) foram então usados para integrar estes elementos.",
+      "phase3": "Foco no refinamento das saídas para cumprir padrões de alta resolução (300 DPI) e qualidade, otimização de elementos interativos e elaboração de documentação abrangente. Esta fase foi crucial para garantir a acessibilidade e clareza."
+    },
+    "keyFeatures": [
+      {
+        "title": "Implementação em Dois Idiomas (Python e R)",
+        "description": "Todo o pipeline analítico é implementado de forma independente em Python e R, oferecendo flexibilidade e apelo a diferentes comunidades de ciência de dados.",
+        "implementation": "Diretórios de projeto separados para Python e R alojam bases de código distintas alavancando o ecossistema de cada linguagem (ex: Streamlit/Plotly em Python, Shiny/ggplot2/gganimate in R).",
+        "challenges": "Garantiu a consistência analítica e resultados comparáveis ao aderir às melhores práticas específicas de cada linguagem e suas bibliotecas."
+      },
+      {
+        "title": "Dashboards Interativos (Streamlit e Shiny)",
+        "description": "Fornece interfaces dinâmicas baseadas na web para os utilizadores explorarem dados, interagirem com visualizações e obterem insights sem programar.",
+        "implementation": "O Streamlit de Python (`partie_6_app.py`) integra gráficos Plotly, enquanto o Shiny de R (`app.R`) apresenta gráficos gerados em R. Estes dashboards permitem a exploração de tendências regionais e mapas de prioridade.",
+        "challenges": "Desenhou experiências de utilizador intuitivas para dados humanitários complexos e renderizou eficazmente diversos gráficos interativos dentro de aplicações web."
+      },
+      {
+        "title": "Análise Geoespacial e Score de Prioridade Humanitária (SPH)",
+        "description": "Identifica hotspots globais de necessidade humanitária urgente combinando baixo acesso à água e alta mortalidade infantil num SPH.",
+        "implementation": "Mapas coropléticos interativos (ex: `choropleth_sph_map.html`) gerados com Plotly representam visualmente o SPH derivado através das regiões. O score é uma métrica agregada estatisticamente.",
+        "challenges": "Calculou e representou visualmente de forma precisa um score de prioridade composto através de diversas regiões geográficas, tornando o mapa interativo para detalhamento regional."
+      },
+      {
+        "title": "Formatos Abrangentes de Saída de Visualização",
+        "description": "Oferece visualizações versáteis, imagens estáticas de alta resolução para relatórios, GIFs animados para tendências temporais e HTML interativo para exploração.",
+        "implementation": "Gráficos estáticos usam ggplot2 (R) para PNGs de 300 DPI. gganimate (R) cria animações GIF. Plotly gera ficheiros HTML interativos para exploração no navegador com zoom e funcionalidades de hover.",
+        "challenges": "Geriu a geração automática de múltiplos tipos de ficheiros, garantiu a consistência visual e qualidade entre formatos, e otimizou tamanhos de ficheiros para entrega na web."
+      }
+    ],
+    "testing": "Os testes abrangeram validação rigorosa de dados para completude e consistência. A validação estatística verificou todos os cálculos, incluindo correlação, regressão e o SPH. Verificações de integridade de visualização garantiram a representação precisa dos dados e interatividade funcional. Crucialmente, a consistência multiplataforma validou que as implementações em Python e R produziram resultados analíticos comparáveis.",
+    "results": {
+      "technicalAchievements": "Implementou com sucesso uma análise abrangente em Python e R. Desenvolveu pipelines robustos para PNGs prontos para publicação (300 DPI), GIFs dinâmicos e gráficos HTML interativos. Criou dashboards funcionais usando Streamlit e Shiny, validando uma forte relação estatística (r = -0,70, p < 0,001).",
+      "businessImpact": "Permitiu a alocação de ajuda baseada em dados com o Score de Prioridade Humanitária (SPH). Informou decisores políticos com insights claros sobre tendências globais (+3,2% acesso à água, -12,4% mortalidade infantil, 2015-2022).",
+      "personalGrowth": "Aprofundou a perícia em fluxos de trabalho de análise de dados multi-linguagem e dominou técnicas avançadas de visualização. Ganhou experiência valiosa no desenho e implementação de dashboards web interativos."
+    },
+    "techStack": {
+      "frontend": "HTML, JavaScript",
+      "backend": "Python, R",
+      "tools": "Jupyter Notebook, Git/GitHub, Dados do Banco Mundial",
+      "libraries": "Python: pandas, NumPy, Plotly, Streamlit. R: tidyverse, ggplot2, gganimate, Plotly, Shiny."
+    },
+    "learnings": [
+      "Executar um projeto complexo em Python e R demonstrou o valor da proficiência multi-linguagem, alargando o alcance e impacto do projeto.",
+      "A importância de diversos formatos de visualização foi destacada, servindo cada um propósitos distintos para relatórios detalhados, storytelling dinâmico e exploração pelo utilizador.",
+      "O desenvolvimento de dashboards intuitivos com Streamlit e Shiny sublinhou o seu poder na democratização dos dados para partes interessadas não técnicas.",
+      "Este projeto reforçou o profundo impacto da ciência de dados nos desafios globais, demonstrando como quantificar relações complexas pode otimizar a ajuda humanitária."
+    ],
+    "futureEnhancements": [
+      "Implementar modelos avançados de previsão de séries temporais para o planeamento proativo da ajuda.",
+      "Integrar fontes de dados adicionais como imagens de satélite, dados climáticos ou indicadores socioeconómicos para uma análise holística.",
+      "Desenvolver pipelines para integração de dados em tempo real, garantindo que os dashboards reflitam a situação global mais atual.",
+      "Alargar a análise a níveis sub-nacionais para insights mais localizados e intervenções direcionadas."
+    ],
+    "conclusion": "O projeto blue-gold-analytics é uma conquista significativa ao alavancar a ciência de dados para impacto humanitário. Ao analisar meticulosamente a ligação entre o acesso à água e a mortalidade infantil, capacita os decisores a alocarem a ajuda de forma mais eficaz."
+  },
+  "ascord-appwrite": {
+    "title": "Ascord",
+    "description": "Ascord é uma plataforma unificada em tempo real para gestão de tarefas e colaboração de equipa.",
+    "metadata": {
+      "role": "Desenvolvedor Frontend",
+      "category": "Desenvolvimento Web, Gestão de Tarefas, Colaboração",
+      "timeline": "Dezembro 2024 - Presente (Desenvolvimento em Curso)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/ascord-appwrite"
+    },
+    "overview": "Ascord é uma plataforma ambiciosa de gestão de tarefas e colaboração em projetos, combinando a UI do Discord com as funcionalidades robustas do Asana/Trello. Utilizando Next.js e Appwrite, entrega criação de áreas de trabalho em tempo real, vistas de quadro personalizáveis, gestão detalhada de tarefas e comunicação fluida. A plataforma enfatiza a eficiência, o design centrado no utilizador e atualizações instantâneas para produtividade melhorada da equipa.",
+    "challenge": {
+      "problem": "As ferramentas tradicionais de gestão de projetos sofrem frequentemente de interfaces complexas ou fluxos de trabalho fragmentados, forçando as equipas a gerir múltiplas aplicações. O problema central era unificar funcionalidades díspares de comunicação, rastreio de tarefas e partilha de ficheiros numa experiência de utilizador única e coesa.",
+      "goal": "Desenvolver o Ascord, uma plataforma de gestão de tarefas e colaboração com UI inspirada no Discord, gestão poderosa de tarefas e colaboração em tempo real. O objetivo era garantir um backend robusto e escalável, priorizando uma excelente experiência de desenvolvedor e manutenibilidade.",
+      "constraints": "Os principais desafios incluíram a implementação de sincronização de dados em tempo real, desenho de uma interface flexível de drag & drop, garantia de autenticação robusta com permissões baseadas em papéis e gestão eficiente de diversos tipos de dados. O uso do Appwrite como BaaS acelerou o desenvolvimento mas impôs restrições de flexibilidade comparado a um backend personalizado."
+    },
+    "discovery": {
+      "requirements": "Os requisitos foram reunidos enfatizando gestão abrangente de áreas de trabalho, quadros e tarefas, atualizações em tempo real, papéis de utilizador, anexos de ficheiros e drag & drop. Histórias de utilizador focaram em líderes de equipa a organizar projetos e membros a atualizar tarefas.",
+      "competitiveAnalysis": "A análise competitiva envolveu o estudo do Asana, Trello e Discord. A estrutura de servidor/canal do Discord e a comunicação em tempo real foram adotadas, o Kanban e drag & drop do Trello, e a gestão detalhada de tarefas do Asana.",
+      "technicalResearch": "Next.js 14 com App Router foi escolhido pelas práticas web modernas, alavancando server components para desempenho. O Appwrite forneceu um BaaS versátil para autenticação, base de dados, armazenamento e APIs em tempo real. TypeScript garantiu a segurança de tipos e Tailwind CSS facilitou o desenvolvimento rápido da UI."
+    },
+    "architecture": {
+      "informationArchitecture": "A arquitetura do projeto é modular e escalável, usando o Next.js App Router para separação lógica de áreas de autenticação e dashboard. Componentes React reutilizáveis são organizados em `ui`, específicos de funcionalidades e `modals`. `lib/` contém cliente Appwrite e abstrações de API, enquanto `hooks/` centraliza a lógica específica do domínio.",
+      "technicalDecisions": "O Next.js 14 App Router foi selecionado para SSR/SSG, rotas de API e otimização de desempenho via server components. O Appwrite como BaaS forneceu autenticação, base de dados, armazenamento e APIs em tempo real, acelerando o desenvolvimento. O TypeScript garantiu a segurança de tipos, melhorando a legibilidade e manutenibilidade. A API Realtime do Appwrite entregou atualizações instantâneas cruciais."
+    },
+    "developmentProcess": {
+      "phase1": "A Fase 1 estabeleceu a fundação: configuração do Next.js 14 e Appwrite SDK, estruturação do projeto e configuração de variáveis de ambiente. A autenticação básica de utilizador foi implementada para garantir o acesso seguro à plataforma.",
+      "phase2": "A Fase 2 focou no desenvolvimento de funcionalidades centrais, incluindo Gestão de Áreas de Trabalho (criação, sidebar, convites de membros, gestão de papéis). O Sistema de Quadros (Kanban, lista, calendário) e a Gestão de Tarefas robusta (cartões detalhados, atribuições, datas de entrega, etiquetas, anexos) foram construídos.",
+      "phase3": "A Fase 3 concentrou-se no polimento e otimização, integrando colaboração em tempo real via API Realtime do Appwrite para atualizações instantâneas. A interface drag & drop foi refinada, elementos de UI polidos com Tailwind CSS e permissões baseadas em papéis implementadas para controlo de acesso eficaz."
+    },
+    "keyFeatures": [
+      {
+        "title": "Gestão de Áreas de Trabalho (estilo Discord)",
+        "description": "Permite criar ambientes isolados para equipas/projetos, espelhando a estrutura de servidor do Discord com navegação na sidebar. Suporta convidar e gerir membros com permissões baseadas em papéis.",
+        "implementation": "Dados de áreas de trabalho e membros são armazenados na Base de Dados do Appwrite, com autenticação gerida pelo Appwrite Auth. Hooks React personalizados gerem o estado da área de trabalho ativa. As permissões são aplicadas via segurança ao nível do documento do Appwrite.",
+        "challenges": "Garantir a recuperação segura de dados, implementar navegação dinâmica na sidebar e aplicar corretamente controlos de acesso baseados em papéis a várias ações da área de trabalho."
+      },
+      {
+        "title": "Colaboração em Tempo Real",
+        "description": "Fornece atualizações instantâneas em toda a aplicação, refletindo mudanças em tarefas, comentários ou movimentos de cartões em tempo real para todos os membros da equipa.",
+        "implementation": "Potenciado pela API Realtime do Appwrite, componentes frontend subscrevem mudanças em coleções ou documentos específicos. O Appwrite envia atualizações para clientes subscritos, despoletando re-renderizações da UI com os dados mais recentes.",
+        "challenges": "Gerir eficientemente inúmeras subscrições em tempo real, garantir consistência de dados entre clientes e lidar graciosamente com desconexões de rede."
+      },
+      {
+        "title": "Interface Drag & Drop (Vista Kanban)",
+        "description": "Oferece um quadro de tarefas visual intuitivo onde os utilizadores podem arrastar e largar cartões de tarefas entre colunas para atualizar o estado ou reordená-los.",
+        "implementation": "Integra uma biblioteca moderna de drag & drop dentro de componentes React. Ao largar, o frontend captura a nova posição/estado, envia uma atualização para a Base de Dados do Appwrite e funcionalidades em tempo real propagam as mudanças.",
+        "challenges": "Integração perfeita com o estado do React e dados do Appwrite, lidar com cenários complexos de arrasto e garantir uma experiência de utilizador fluida e performante sem lentidão."
+      },
+      {
+        "title": "Gestão Rica de Tarefas",
+        "description": "Permite criar cartões de tarefas detalhados suportando múltiplas atribuições, datas de entrega personalizáveis, níveis de prioridade, etiquetas, anexos de ficheiros e comentários integrados.",
+        "implementation": "Todos os dados relacionados com tarefas são armazenados na Base de Dados do Appwrite. Anexos de ficheiros utilizam o Appwrite Storage. Os comentários são geridos numa coleção ligada separada.",
+        "challenges": "Desenhar um esquema de base de dados flexível para diversos atributos de tarefas, implementar gestão de ficheiros robusta e garantir atualizações em tempo real para elementos aninhados."
+      },
+      {
+        "title": "Permissões Baseadas em Papéis",
+        "description": "Controla as ações que os utilizadores podem realizar numa área de trabalho. Papéis como Proprietário, Admin e Membro têm privilégios distintos.",
+        "implementation": "Utiliza a segurança ao nível do documento do Appwrite e lógica ao nível da aplicação baseada em papéis de utilizador dos registos de pertença à área de trabalho. Isto protege as ações da UI e as chamadas de API.",
+        "challenges": "Definir e aplicar permissões granulares para muitas ações, garantir consistência entre regras de backend e UI de frontend, e prevenir acesso ou manipulação de dados não autorizados."
+      }
+    ],
+    "testing": "Uma abordagem pragmática envolveu testes unitários para funções utilitárias e hooks personalizados, e testes de integração para interações de componentes e chamadas de API do Appwrite. Funcionalidades em tempo real receberam testes extensivos para garantir atualizações concorrentes e sincronização de dados.",
+    "results": {
+      "technicalAchievements": "Ascord alcançou uma aplicação web complexa em tempo real integrando Next.js com Appwrite. A implementação bem-sucedida de colaboração em tempo real, drag & drop e permissões baseadas em papéis demonstra compreensão profunda de padrões full-stack. A estrutura do projeto e as melhores práticas de TypeScript garantem alta manutenibilidade.",
+      "businessImpact": "Ascord visa aumentar significativamente a produtividade da equipa ao unificar comunicação e gestão de tarefas, reduzindo a mudança de contexto. O seu ambiente intuitivo e em tempo real fomenta melhor colaboração e supervisão clara dos projetos.",
+      "personalGrowth": "Este projeto forneceu experiência inestimável na arquitetura e desenvolvimento de uma aplicação rica em funcionalidades e em tempo real. Ganhei experiência prática extensiva com o App Router do Next.js 14 e o ecossistema do Appwrite (Auth, Database, Storage, Realtime)."
+    },
+    "techStack": {
+      "frontend": "Next.js 14 (App Router), React, TypeScript, Tailwind CSS, Geist Font Family",
+      "backend": "Appwrite (BaaS, Realtime API, Auth, Database, Storage)",
+      "tools": "GitHub",
+      "libraries": "dnd-kit (ou biblioteca de drag & drop semelhante)"
+    },
+    "learnings": [
+      "Alavancar o Appwrite como BaaS acelerou significativamente o desenvolvimento ao fornecer soluções robustas e prontas a usar para autenticação, base de dados, armazenamento e funcionalidades em tempo real.",
+      "Obteve insight profundo na arquitetura e implementação de sincronização de dados em tempo real usando a API do Appwrite, gerindo subscrições e garantindo a consistência de dados.",
+      "Dominou as complexidades do Next.js 14 App Router, incluindo Server Components, renderização do lado do cliente, padrões de busca de dados e roteamento eficiente para estruturas de UI complexas.",
+      "Reforçou o valor do TypeScript para construir aplicações mantíveis e escaláveis e a eficiência do Tailwind CSS para desenvolver rapidamente interfaces de utilizador visualmente atraentes e responsivas."
+    ],
+    "futureEnhancements": [
+      "Implementar um sistema abrangente de notificações em tempo real para atribuições de tarefas, datas de entrega e comentários.",
+      "Desenvolver integrações com ferramentas populares de terceiros como Slack, GitHub ou Google Drive para automação de fluxo de trabalho melhorada.",
+      "Introduzir dashboards de análise avançada com acompanhamento detalhado do progresso do projeto e métricas de desempenho da equipa.",
+      "Oferecer opções de personalização aos utilizadores, incluindo temas personalizáveis e um modo escuro."
+    ],
+    "conclusion": "O Ascord exemplifica o poder das tecnologias web modernas na criação de aplicações intuitivas e altamente colaborativas. Ao misturar a UI envolvente do Discord com a gestão robusta de tarefas do Asana/Trello, entrega uma plataforma abrangente em tempo real desenhada para elevar a produtividade da equipa."
+  },
+  "B2javaECE": {
+    "title": "Projeto B2javaECE",
+    "description": "Portfólio Java B2 da ECE Paris: conceitos, algoritmos e práticas de software.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento Java, Escola",
+      "timeline": "Ano Académico 2024-2025 (Fevereiro a Outubro 2025)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/B2javaECE"
+    },
+    "overview": "B2javaECE é um portfólio académico que documenta diversos projetos e exercícios Java do segundo ano da ECE Paris. Demonstra a mestria de conceitos centrais de Java, algoritmos, integrações de base de dados e aplicações multithreaded. Este repositório destaca a capacidade do desenvolvedor em aplicar conhecimento teórico a problemas práticos e aderir às melhores práticas.",
+    "challenge": {
+      "problem": "O principal desafio foi organizar diversos projetos Java do currículo da ECE Paris num repositório unificado. Sem isto, era difícil acompanhar o progresso e demonstrar a mestria de vários tópicos tanto para o estudante como para os avaliadores.",
+      "goal": "O objetivo era criar um repositório GitHub único e bem estruturado, apresentando conceitos de programação, algoritmos e práticas de desenvolvimento de software. Os objetivos chave incluíram dominar OOP, estruturas de dados, algoritmos, padrões de desenho e melhores práticas Java.",
+      "constraints": "As principais restrições envolveram a adesão aos requisitos do currículo da ECE Paris e aos objetivos de aprendizagem. O foco foi demonstrar a compreensão de tópicos definidos, não desenvolver um produto comercial."
+    },
+    "discovery": {
+      "requirements": "Os requisitos do projeto estavam diretamente ligados ao currículo do segundo ano da ECE Paris, exigindo compreensão profunda dos objetivos académicos para cada trabalho. Isto incluiu implementar estruturas de dados, aplicar OOP e integrar com bases de dados.",
+      "competitiveAnalysis": "Como um portfólio académico, a 'competição' focou-se em demonstrar um forte domínio do assunto em comparação com os pares. O objetivo era produzir projetos limpos, bem documentados e funcionalmente corretos.",
+      "technicalResearch": "A investigação técnica extensiva cobriu Java Collections, tratamento de exceções, I/O de ficheiros, multithreading, JDBC, padrões de desenho e JUnit. Isto garantiu que todas as implementações estivessem alinhadas com os padrões da indústria."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto adotou uma estrutura padrão organizada típica de projetos Java/Maven/Gradle, com `src/main`, `src/test`, `lib/` e `docs/`. O `README.md` serviu como o hub central de informação.",
+      "technicalDecisions": "Java foi escolhido como a linguagem principal, alinhando-se com os requisitos do currículo. Maven ou Gradle forneceram gestão padronizada de build e dependências. Git garantiu o controlo de versão padrão da indústria. A presença de CSS implicou fortemente o uso de JavaFX para UI."
+    },
+    "developmentProcess": {
+      "phase1": "A Fase 1 envolveu a configuração do ambiente de desenvolvimento, incluindo JDK 11+, configuração de IDE e estabelecimento do sistema de build Maven/Gradle. O repositório foi clonado e foi criada uma estrutura de pastas padrão.",
+      "phase2": "A Fase 2 focou-se na implementação de projetos académicos individuais, cada um abordando objetivos de aprendizagem específicos. Isto incluiu desenhar classes OOP, implementar estruturas de dados e algoritmos, lidar com I/O de ficheiros e integrar bases de dados via JDBC.",
+      "phase3": "A Fase 3 enfatizou a qualidade do código e as melhores práticas Java, com testes unitários JUnit garantindo a correção e estabilidade. O código foi refatorado para legibilidade, manutenibilidade e eficiência, aderindo a padrões de desenho."
+    },
+    "keyFeatures": [
+      {
+        "title": "Implementações de Programação Orientada a Objetos (OOP)",
+        "description": "Apresenta princípios fundamentais de OOP como encapsulamento, herança, polimorfismo e abstração através de vários designs de classes.",
+        "implementation": "Projetos incluem classes bem estruturadas, interfaces e classes abstratas modelando entidades, demonstrando substituição de métodos e implementação de interfaces para domínios de problemas específicos.",
+        "challenges": "Desenhar estruturas de classes flexíveis e extensíveis aderindo aos princípios SOLID, garantindo controlo de acesso adequado e gerindo relações complexas entre objetos."
+      },
+      {
+        "title": "Estruturas de Dados e Algoritmos (DSA)",
+        "description": "Implementa e aplica várias estruturas de dados (ex: Listas, Conjuntos, Mapas) e algoritmos clássicos para resolver problemas computacionais.",
+        "implementation": "Alavanca a Java's Collections Framework (`ArrayList`, `HashMap`) e inclui implementações de algoritmos personalizados (ex: ordenação, pesquisa) para demonstrar mecânica e desempenho.",
+        "challenges": "Otimizar a eficiência dos algoritmos para complexidade de tempo/espaço, selecionar estruturas de dados apropriadas e lidar eficazmente com casos limite."
+      },
+      {
+        "title": "Operações de I/O de Ficheiros e Tratamento de Exceções",
+        "description": "Fornece mecanismos robustos para leitura e escrita em ficheiros, e trata sistematicamente erros de execução para evitar falhas na aplicação.",
+        "implementation": "Utiliza componentes do pacote `java.io` (ex: `FileReader`, `BufferedReader`) para manipulação eficiente de dados. Blocos `try-catch-finally` e exceções personalizadas gerem erros graciosamente.",
+        "challenges": "Garantir a integridade dos dados, gerir de forma fiável o fecho de recursos e fornecer mensagens de erro claras para vários cenários de falha."
+      },
+      {
+        "title": "Conectividade de Base de Dados com JDBC",
+        "description": "Estabelece ligações entre aplicações Java e bases de dados relacionais, permitindo a persistência e recuperação de dados.",
+        "implementation": "Implementa a API JDBC para ligar a bases de dados (ex: MySQL), executar consultas SQL (INSERT, SELECT, UPDATE, DELETE) e processar objetos `ResultSet`.",
+        "challenges": "Segurança das credenciais da base de dados, gestão eficiente de pools de ligação, tratamento de exceções específicas da base de dados e desenho de esquemas apropriados."
+      },
+      {
+        "title": "Aplicação de Gestão de Utilizadores (Implied: `UserManagerFX`)",
+        "description": "Uma mini-aplicação para gerir dados de utilizadores, provavelmente com uma interface gráfica, indicada pela estilização CSS para menu e botões.",
+        "implementation": "Combina OOP para modelos `User`, estruturas de dados para armazenamento em memória e JDBC para persistência. A UI é construída usando JavaFX (implícito) com estilização CSS personalizada.",
+        "challenges": "Integrar a UI com a lógica de backend, implementar validação de dados, garantir uma experiência de utilizador intuitiva e gerir o fluxo de dados entre UI e base de dados."
+      },
+      {
+        "title": "Testes Unitários com JUnit",
+        "description": "Garante a correção, fiabilidade e manutenibilidade de unidades de código individuais (métodos, classes) em todos os projetos.",
+        "implementation": "Utiliza a framework de testes JUnit para escrever casos de teste automatizados cobrindo operações normais, casos limite e exceções esperadas.",
+        "challenges": "Alcançar uma cobertura de teste abrangente, escrever testes isolados e determinísticos, e realizar o mocking de dependências eficazmente."
+      }
+    ],
+    "testing": "Testes rigorosos com JUnit foram fundamentais para garantir a qualidade e correção do código. Testes unitários automatizados foram desenvolvidos para cada componente, alavancando Maven/Gradle, fornecendo feedback rápido. Este processo iterativo garantiu a correção funcional e validou os objetivos de aprendizagem.",
+    "results": {
+      "technicalAchievements": "O projeto demonstra proficiência robusta em Java, implementando com sucesso princípios de OOP, estruturas de dados e algoritmos. Foi alcançada perícia em I/O de ficheiros, tratamento de exceções, multithreading e JDBC. Experiência prática com desenvolvimento de UI JavaFX e JUnit solidifica as conquistas técnicas.",
+      "businessImpact": "Como um portfólio académico, o impacto primário é o avanço na carreira e validação educacional. Melhora significativamente o perfil profissional do desenvolvedor, demonstrando a capacidade de aprender, aplicar e documentar conceitos técnicos complexos.",
+      "personalGrowth": "O projeto instrumentalizou o crescimento pessoal e profissional, solidificando os fundamentos de Java e melhorando competências de resolução de problemas. Forneceu experiência prática em melhores práticas de engenharia de software e padrões de desenho."
+    },
+    "techStack": {
+      "frontend": "CSS, JavaFX (Implícito)",
+      "backend": "Java, JDBC",
+      "tools": "Maven, Gradle, Git, IntelliJ IDEA, Eclipse, VS Code",
+      "libraries": "JUnit"
+    },
+    "learnings": [
+      "Obteve compreensão prática profunda do ecossistema central de Java, incluindo OOP, Collections Framework, tratamento de exceções e concorrência.",
+      "Tornou-se proficiente no fluxo de trabalho de desenvolvimento Java moderno, utilizando ferramentas padrão da indústria como Maven/Gradle e JUnit.",
+      "Aplicou padrões comuns de desenho de software e melhores práticas, levando a estruturas de código modulares, mantíveis e escaláveis.",
+      "Adquiriu experiência prática na integração full-stack focada em desktop, desde UIs JavaFX interativas com CSS até persistência de base de dados usando JDBC."
+    ],
+    "futureEnhancements": [
+      "Expandir para desenvolvimento web usando Spring Boot para construir APIs RESTful ou aplicações web full-stack.",
+      "Implementar frameworks de ORM como Hibernate para simplificar interações com a base de dados e melhorar a modelação de dados.",
+      "Desenvolver aplicações JavaFX avançadas com mais controlos de UI, animações e FXML para design de UI declarativo.",
+      "Implementar pipelines de CI/CD (ex: GitHub Actions) para automatizar testes, build e implementação dos projetos académicos."
+    ],
+    "conclusion": "O projeto B2javaECE demonstra poderosamente a perícia Java fundacional e evolutiva através de uma jornada académica diligente. Apresenta meticulosamente a aplicação prática de OOP, estruturas de dados, design de software e ferramentas de desenvolvimento críticas."
+  },
+  "RIB": {
+    "title": "Projeto RIB",
+    "description": "Gera e valida IBANs franceses a partir de detalhes de RIB, garantindo precisão e educando sobre chaves de controlo.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento Python, Algoritmos Financeiros, Desenvolvimento de GUI, Integração de API",
+      "timeline": "Setembro 2025 (Fase de Desenvolvimento Inicial)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/RIB"
+    },
+    "overview": "O projeto RIB gera e valida IBANs franceses a partir de detalhes tradicionais de RIB, calculando automaticamente as chaves de controlo em conformidade com a norma ISO 13616 e integrando-se com `ibanapi.com` para verificação em tempo real. Também serve como ferramenta educativa, demonstrando a importância das chaves de controlo corretas através de validação comparativa. Desenvolvido com Python, Tkinter e uma arquitetura modular.",
+    "challenge": {
+      "problem": "Gerar e validar manualmente IBANs franceses a partir de detalhes de RIB é complexo, propenso a erros e moroso, com erros de cálculo a causarem atrasos financeiros significativos. Era necessário um sistema automatizado e fiável para garantir a conformidade e precisão.",
+      "goal": "Criar um sistema completo de análise de RIB/IBAN que calcule automaticamente chaves de controlo conformes com a ISO 13616, realize validação externa via API profissional, forneça uma GUI intuitiva e ofereça uma demonstração educativa do processo.",
+      "constraints": "O sistema tinha de processar com precisão os dados de RIB franceses (banco, agência, conta, chave nacional) aderindo estritamente à ISO 13616 (Módulo 97). A integração segura com `ibanapi.com` exigiu `.env` para chaves de API e gestão de erros robusta."
+    },
+    "discovery": {
+      "requirements": "A análise detalhada da estrutura do RIB francês foi crucial para analisar e combinar dados num IBAN válido. O requisito central era automatizar a geração e verificação, satisfazendo a necessidade do utilizador por uma ferramenta fiável e fácil de usar.",
+      "competitiveAnalysis": "Embora existam calculadoras online, o RIB inova ao combinar geração automática conforme as normas com validação profissional em tempo real (`ibanapi.com`) e uma componente educativa.",
+      "technicalResearch": "Investigação extensiva cobriu o algoritmo Módulo 97 da ISO 13616 e regras de conversão alfanumérica. A integração de API focou-se na documentação da `ibanapi.com`, uso da biblioteca `requests` e gestão segura de chaves em `.env`."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto adotou uma arquitetura modular clara, separando a lógica de backend (`main.py`) para algoritmos bancários e integração de API da interface GUI (`interface_iban.py`). Esta separação melhora a manutenibilidade.",
+      "technicalDecisions": "Python foi escolhido pela sua versatilidade e ecossistema rico (Tkinter, Requests) para desenvolvimento rápido. O Tkinter foi selecionado para a GUI para garantir compatibilidade. A biblioteca Requests facilitou a comunicação robusta com a API, e o `.env` foi implementado para gestão segura de chaves de API."
+    },
+    "developmentProcess": {
+      "phase1": "A Fase 1 estabeleceu a lógica central através da configuração do ambiente Python e tratamento do parsing de dados RIB. O algoritmo crítico Módulo 97 foi implementado, traduzindo com precisão a ISO 13616 para o cálculo da chave de controlo do IBAN.",
+      "phase2": "A Fase 2 focou no desenvolvimento de funcionalidades, integrando o cálculo do Módulo 97 para a geração automática do IBAN. A integração de API com a `ibanapi.com` foi implementada usando `requests`. A GUI Tkinter foi desenvolvida com campos de entrada/saída e botões interativos.",
+      "phase3": "A Fase 3 refinou o projeto com uma demonstração educativa comparando IBANs corretos e intencionalmente incorretos via validação de API, mostrando a importância da chave de controlo. A experiência do utilizador foi melhorada com feedback intuitivo na GUI."
+    },
+    "keyFeatures": [
+      {
+        "title": "Geração Automática de IBAN (Conforme ISO 13616)",
+        "description": "Calcula automaticamente a chave de controlo de 2 dígitos do IBAN e constrói a string completa do IBAN a partir dos detalhes do RIB francês, garantindo a conformidade bancária.",
+        "implementation": "Implementa o complexo algoritmo Módulo 97, envolvendo conversões alfanuméricas específicas, concatenação de elementos do RIB e divisão iterativa, aderindo estritamente à ISO 13616.",
+        "challenges": "Traduzir com precisão uma norma bancária matemática e alfanumérica complexa para código e lidar com casos limite para conversão alfanumérica e aritmética de grandes números."
+      },
+      {
+        "title": "Validação de API Externa em Tempo Real",
+        "description": "Submete IBANs gerados ao `ibanapi.com` para verificação em tempo real da sua validade e correção estrutural.",
+        "implementation": "Usa a biblioteca `requests` para pedidos HTTP GET autenticados para o endpoint de validação da `ibanapi.com`, com chaves de API geridas via `.env`. Analisa respostas JSON para exibir resultados de validação.",
+        "challenges": "Gerir de forma segura a chave de API e lidar robustamente com várias respostas da API, incluindo validação bem-sucedida, formatos inválidos e erros de rede."
+      },
+      {
+        "title": "Interface Gráfica de Utilizador (GUI) Baseada em Tkinter",
+        "description": "Fornece uma interface amigável para introduzir dados de RIB, despoletar a geração de IBAN, iniciar a validação e exibir resultados.",
+        "implementation": "Desenvolvida usando `tkinter` com campos `Entry`, widgets `Button` e áreas de `Text`. Os manipuladores de eventos ligam as ações da GUI às funções Python de backend para cálculo e chamadas de API.",
+        "challenges": "Desenhar um layout funcional e fácil de navegar apesar da estilização básica do Tkinter, garantindo comunicação fluida entre a UI e a lógica de backend."
+      },
+      {
+        "title": "Demonstração Educativa de Validação",
+        "description": "Ilustra a criticidade da chave de controlo do IBAN ao comparar resultados de validação de um IBAN calculado corretamente contra dois intencionalmente incorretos.",
+        "implementation": "Calcula o IBAN correto e constrói mais dois com chaves de controlo incorretas forçadas. Todos os três são enviados para a `ibanapi.com` e os resultados são exibidos lado a lado.",
+        "challenges": "Comunicar claramente o conceito complexo da importância da chave de controlo através de um exemplo prático e comparativo dentro da GUI."
+      },
+      {
+        "title": "Parsing Flexível de Dados RIB",
+        "description": "Lê e analisa automaticamente detalhes de RIB a partir de um ficheiro de texto simples, preparando-os para a geração de IBAN.",
+        "implementation": "Emprega I/O de ficheiros do Python e métodos `split()` para extrair código do banco, código da agência, número da conta e chave nacional de `bankaccount.txt`.",
+        "challenges": "Garantir parsing robusto para formatos de entrada potencialmente variados dentro do ficheiro de texto, tornando o sistema flexível o suficiente para lidar com estilos típicos de entrada de dados."
+      }
+    ],
+    "testing": "Os testes primários envolveram validação manual e funcional minuciosa. A 'Demonstração Educativa de Validação' foi um teste funcional crítico, validando explicitamente a lógica central e a integração da API com IBANs conhecidamente bons/maus. As iterações focaram-se no refinamento da precisão do algoritmo bancário e na melhoria da gestão de erros da API.",
+    "results": {
+      "technicalAchievements": "Mestria na implementação do complexo algoritmo bancário Módulo 97 e regras de conversão alfanumérica. Estabeleceu integração robusta com a `ibanapi.com`, demonstrando proficiência em `requests` e gestão segura de chaves de API. Desenvolveu uma arquitetura modular e entregou uma GUI Tkinter funcional.",
+      "businessImpact": "Embora seja um projeto de estudante, o RIB reduz significativamente os erros manuais na geração de IBAN, poupando tempo e prevenindo discrepâncias financeiras. O seu aspeto educativo promove uma melhor compreensão das normas bancárias.",
+      "personalGrowth": "Ganhou experiência extensiva na tradução de normas bancárias intrincadas para código funcional e na integração segura de APIs de terceiros. Solidificou a compreensão do design de software modular."
+    },
+    "techStack": {
+      "frontend": "Tkinter",
+      "backend": "Python, Requests",
+      "tools": ".env",
+      "libraries": "Tkinter do Python para GUI, `requests` para pedidos HTTP, `ibanapi.com` para validação de IBAN externa."
+    },
+    "learnings": [
+      "A precisão na implementação de algoritmos bancários complexos como o Módulo 97 é primordial; desvios menores levam a resultados inválidos, exigindo testes rigorosos.",
+      "Alavancar APIs especializadas de terceiros (ex: `ibanapi.com`) para funcionalidades de nicho como a validação de dados é eficiente, permitindo foco na lógica central da aplicação.",
+      "A arquitetura modular, separando o backend da GUI, melhora significativamente a organização do código, manutenibilidade e facilita a depuração e expansão independente.",
+      "Focar numa interface de utilizador intuitiva e funcional, mesmo com estilização básica, é crucial para a experiência do utilizador e compreensão de processos complexos."
+    ],
+    "futureEnhancements": [
+      "Implementar um algoritmo de validação de IBAN offline como alternativa para resiliência à API externa.",
+      "Adicionar funcionalidade para exportar IBANs gerados e validados para formatos como CSV ou PDF.",
+      "Melhorar o sistema para processamento em lote de múltiplos RIBs a partir de ficheiros de entrada em massa.",
+      "Introduzir uma funcionalidade para armazenar um histórico de validações passadas para revisão do utilizador."
+    ],
+    "conclusion": "O projeto RIB entrega com sucesso um sistema robusto e educativo para a geração e validação de IBANs franceses, aplicando eficazmente Python para algoritmos financeiros complexos e integração de API."
+  },
+  "DNA": {
+    "title": "Análise de ADN",
+    "description": "Ferramenta de bioinformática robusta para análise abrangente de sequências de ADN com composição de dinucleótidos e deteção de mutações.",
+    "metadata": {
+      "role": "Estudante (Desenvolvido como parte do projeto ECE B3 - DNA Analysis, para fins educacionais)",
+      "category": "Desenvolvimento Python, Bioinformática, Análise de Dados",
+      "timeline": "Repositório criado em 21-09-2025 (desenvolvimento abrangendo um período mais longo no currículo académico)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/DNA"
+    },
+    "overview": "O projeto DNA é uma ferramenta de bioinformática robusta desenvolvida em Python, desenhada para a análise abrangente de sequências de ADN. Destaca-se pelo cálculo meticuloso da composição de dinucleótidos, focando-se particularmente nos pares GC e AT, usando um método de contagem não sobreposto cientificamente rigoroso. Além da composição de bases fundamental, o sistema também integra capacidades avançadas para detetar vários tipos de mutações genéticas e apresentar estes pontos de dados complexos através de visualizações gráficas intuitivas.",
+    "challenge": {
+      "problem": "O problema central abordado pelo projeto DNA foi a necessidade de um sistema abrangente e preciso para analisar sequências genéticas. Isto envolveu determinar com precisão a composição de dinucleótidos (especificamente pares GC/AT) usando um método não sobreposto, detetar vários tipos de mutações genéticas (substituições, inserções, eliminações) e fornecer representações visuais claras.",
+      "goal": "O objetivo principal era desenvolver uma aplicação baseada em Python que pudesse: (1) Realizar análise precisa e não sobreposta de dinucleótidos. (2) Identificar e classificar mutações genéticas. (3) Gerar visualizações gráficas abrangentes. (4) Fornecer uma arquitetura modular e performante. (5) Oferecer uma interface gráfica intuitiva.",
+      "constraints": "Como um projeto educacional, o desenvolvimento foi restringido por: Stack Tecnológica (predominantemente Python, usando Matplotlib e Tkinter), Rigor Algorítmico (método não sobreposto para contagem de dinucleótidos), Desempenho e Gestão de Erros para fiabilidade."
+    },
+    "discovery": {
+      "requirements": "Os requisitos do projeto incluíram a validação de sequências de ADN, cálculo da composição de bases, deteção de motivos repetidos e análise de dinucleótidos (CG/GC, AT/TA) usando um método específico sem sobreposição. A capacidade de comparar sequências para deteção de mutações e visualizar as descobertas através de vários gráficos foi primordial.",
+      "competitiveAnalysis": "O projeto visou criar uma ferramenta acessível mas robusta para o seu contexto educacional específico. Focou-se em funcionalidades centrais de análise com uma interface amigável, tornando técnicas sofisticadas abordáveis para estudantes e investigadores.",
+      "technicalResearch": "Investigação conduzida para implementar um método de contagem de dinucleótidos cientificamente rigoroso sem sobreposição (parcours sans chevauchement avec saut de 2 positions). Matplotlib foi escolhido para visualizações científicas e Tkinter para a interface gráfica."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto adotou uma abordagem modular, segregando preocupações. `main.py` serve como o módulo de backend, encapsulando a lógica analítica central. `interface_adn.py` gere a GUI usando Tkinter. O `README.md` fornece as diretrizes de instalação e uso.",
+      "technicalDecisions": "Python escolhido como linguagem principal pela sua legibilidade e bibliotecas científicas. Contagem de dinucleótidos sem sobreposição para garantir rigor científico. Matplotlib para visualização versátil. Design de funções modular para melhorar a organização e depuração do código."
+    },
+    "developmentProcess": {
+      "phase1": "Fundação - Configuração e arquitetura. Envolveu a configuração do ambiente de desenvolvimento Python e estabelecimento da estrutura central do projeto. Implementação da funcionalidade básica de leitura de ficheiros para carregar sequências de ADN.",
+      "phase2": "Desenvolvimento de Funcionalidades - Construção das capacidades analíticas e de visualização centrais: Análise de Dinucleótidos (algoritmo sem sobreposição), Deteção de Mutações (classificação de substituições, inserções, eliminações) e integração do Matplotlib para gráficos.",
+      "phase3": "Polimento e Otimização - Refinamento da robustez, desempenho e experiência do utilizador. Otimização de algoritmos para datasets de tamanho realista, gestão de erros robusta e criação de documentação detalhada."
+    },
+    "keyFeatures": [
+      {
+        "title": "Análise da Composição de Dinucleótidos",
+        "description": "Calcula precisamente a percentagem de composição dos dinucleótidos GC e AT dentro de uma sequência de ADN usando um método não sobreposto.",
+        "implementation": "A função `analyser_adn(sequence)` itera através da string de ADN com um passo de 2, contando ocorrências de CG, GC, AT e TA, calculando depois as suas percentagens relativas.",
+        "challenges": "O principal desafio foi implementar corretamente o método de contagem sem sobreposição, garantindo que cada dinucleótido é contado apenas uma vez sem interferir com pares adjacentes."
+      },
+      {
+        "title": "Leitura de Ficheiros de Sequência de ADN",
+        "description": "Permite carregar sequências de ADN a partir de ficheiros de texto externos, facilitando o processamento em lote de dados genéticos.",
+        "implementation": "A função `lire_fichier_adn(nom_fichier)` lê o ficheiro linha a linha, removendo caracteres brancos para limpar as sequências antes da análise.",
+        "challenges": "Garantir operações de I/O de ficheiros robustas, incluindo o tratamento de várias codificações e limpeza de dados de texto bruto."
+      },
+      {
+        "title": "Deteção e Classificação de Mutações",
+        "description": "Permite aos utilizadores comparar duas sequências de ADN para identificar e classificar variações genéticas como substituições, inserções e eliminações.",
+        "implementation": "Envolve algoritmos que alinham duas sequências e destacam as discrepâncias, localizando precisamente as variações.",
+        "challenges": "O desafio técnico envolve desenvolver algoritmos capazes de realizar alinhamento de sequências eficiente e categorizar precisamente os diferentes tipos de mutações."
+      },
+      {
+        "title": "Visualização Gráfica de Dados",
+        "description": "Transforma os resultados das análises numéricas complexas em formatos visuais claros, como gráficos de barras e histogramas.",
+        "implementation": "Alavanca a biblioteca `matplotlib` para gerar gráficos de alta qualidade baseados nos resultados das análises, integrados na GUI Tkinter.",
+        "challenges": "Integrar gráficos Matplotlib perfeitamente dentro de um ambiente GUI Tkinter, garantindo a renderização correta em várias plataformas."
+      },
+      {
+        "title": "Interface Gráfica de Utilizador Intuitiva",
+        "description": "Fornece uma interface amigável e interativa, tornando as capacidades analíticas do programa acessíveis sem interação por linha de comandos.",
+        "implementation": "Implementada usando a biblioteca `tkinter`. Permite carregar ficheiros, iniciar análises e gerar relatórios gráficos através de botões e áreas de exibição.",
+        "challenges": "Desenhar um layout funcional e responsivo para a GUI, garantindo que todas as funcionalidades sejam fáceis de descobrir e operar."
+      }
+    ],
+    "testing": "O projeto incorporou uma abordagem prática de testes, focando-se na precisão e robustez. Verificação manual dos resultados da análise para sequências conhecidas (ex: `CGCGAT`). Análise de diversos conjuntos de dados para demonstrar a capacidade de tratar composições variadas, de homopolímeros a alternâncias perfeitas. Feedback de desempenho e gestão de erros foram fundamentais.",
+    "results": {
+      "technicalAchievements": "Implementação de um método cientificamente rigoroso para contagem de dinucleótidos. Entrega de visualizações complementares e informativas. Estabelecimento de uma arquitetura modular e manutenível. Desempenho otimizado para datasets de tamanho realista e gestão de erros robusta.",
+      "businessImpact": "Fornece um exemplo prático de princípios de bioinformática, melhorando competências de aplicação para estudantes. Oferece uma ferramenta precisa para investigação bioinformática em estágio inicial.",
+      "personalGrowth": "Experiência profunda no design de algoritmos especializados para análise de sequências genéticas. Melhoria das competências em integração de lógica de backend com GUI frontend e visualização de dados."
+    },
+    "techStack": {
+      "frontend": "Tkinter",
+      "backend": "Python",
+      "tools": "Git/GitHub",
+      "libraries": "Matplotlib (para criação de visualizações científicas), Tkinter (para a interface gráfica)"
+    },
+    "learnings": [
+      "O projeto destacou a importância crítica de selecionar algoritmos cientificamente rigorosos para garantir a validade das análises biológicas.",
+      "A integração bem-sucedida de lógica de análise complexa com uma GUI amigável e visualizações gráficas demonstrou competências cruciais no desenvolvimento de aplicações completas.",
+      "Desenhar o programa com uma arquitetura modular melhorou significativamente a legibilidade e manutenibilidade do código.",
+      "A gestão abrangente de erros e a otimização de desempenho são práticas essenciais para criar software fiável e eficiente em aplicações científicas."
+    ],
+    "futureEnhancements": [
+      "Expandir a análise de dinucleótidos para incluir trinucleótidos ou motivos de sequência personalizados.",
+      "Implementar suporte total para formatos padrão da indústria como FASTA ou FASTQ.",
+      "Integrar algoritmos de alinhamento de sequências mais sofisticados (ex: Needleman-Wunsch).",
+      "Adicionar métodos estatísticos para avaliar a significância das frequências de dinucleótidos observadas."
+    ],
+    "conclusion": "O projeto DNA é um testemunho do desenvolvimento bem-sucedido de uma ferramenta de bioinformática abrangente e cientificamente rigorosa. Através da sua análise precisa de dinucleótidos e deteção de mutações, aborda desafios complexos dentro de uma framework Python modular."
+  },
+  "mots-fleches": {
+    "title": "Mots-Fléchés",
+    "description": "Um projeto académico em C que implementa um gerador e solucionador de puzzles 'mots-fléchés' (palavras cruzadas com setas) baseado em consola.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento em C, Puzzles Algorítmicos",
+      "timeline": "Maio 2024 - Junho 2024",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/mots-fleches"
+    },
+    "overview": "Este projeto da Bachelor 1 da ECE Paris desafiou os estudantes a aplicarem fundamentos de programação em C para criar uma aplicação funcional de palavras cruzadas. Explorou o design algorítmico, estruturação de dados e implementação robusta num ambiente de consola.",
+    "challenge": {
+      "problem": "O problema principal era desenhar um programa em C para puzzles 'mots-fléchés', exigindo lógica intrincada para colocação de palavras, gestão de grelha e interação com o utilizador. Sem frameworks de alto nível, a maioria das funcionalidades teve de ser construída do zero.",
+      "goal": "O objetivo geral era entregar uma aplicação funcional que cumprisse os requisitos académicos, demonstrando proficiência na sintaxe C, programação modular e gestão de memória.",
+      "constraints": "As restrições incluíram a limitação ao C (gestão manual de memória, estruturas de dados personalizadas), um cronograma curto de um mês e uma interface baseada em consola."
+    },
+    "discovery": {
+      "requirements": "Os requisitos centrais incluíram geração/carregamento robusto de puzzles, exibição intuitiva da grelha e entrada de utilizador responsiva. Requisitos académicos enfatizaram clareza de código e algoritmos eficientes.",
+      "competitiveAnalysis": "Embora os competidores baseados em consola fossem escassos, a equipa inspirou-se em geradores online existentes, focando-se na apresentação de pistas e interseção de palavras.",
+      "technicalResearch": "Investigação extensiva cobriu algoritmos de preenchimento de grelha (ex: backtracking), estruturas de dados em C (`struct`s, arrays dinâmicos), manipulação de strings e gestão de build com CMake."
+    },
+    "architecture": {
+      "informationArchitecture": "O projeto empregou uma estrutura modular com `main.c` a orquestrar a UI. Ficheiros separados para grelha, palavras, dicionário e gerador de puzzles melhoraram a manutenibilidade.",
+      "technicalDecisions": "As decisões chave incluíram o uso extensivo de alocação dinâmica de memória (`malloc`, `free`), uso de `struct`s para representação de dados e escolha do CMake para gestão de build multiplataforma."
+    },
+    "developmentProcess": {
+      "phase1": "Configuração fundacional: inicialização do repositório, configuração do CMake, definição das `struct`s centrais, gestão básica da grelha e carregamento do dicionário a partir de ficheiros de texto.",
+      "phase2": "Desenvolvimento de funcionalidades: lógica de colocação de palavras, integração num algoritmo de backtracking para geração de puzzles e implementação de mecanismos de entrada do utilizador.",
+      "phase3": "Refinamento com gestão de erros robusta para entradas e operações de ficheiros. Melhorias na visualização da consola e auditoria de gestão de memória para prevenir fugas."
+    },
+    "keyFeatures": [
+      {
+        "title": "Geração Dinâmica de Grelha de Puzzles",
+        "description": "Cria grelhas únicas organizando palavras do dicionário horizontalmente e verticalmente com interseções corretas.",
+        "implementation": "Utiliza um algoritmo de backtracking numa matriz 2D alocada dinamicamente. O algoritmo tenta a colocação de palavras, voltando atrás em caso de conflitos.",
+        "challenges": "Gerir a lógica complexa de interseção e lidar com o custo computacional do backtracking para variados tamanhos de grelha."
+      },
+      {
+        "title": "Gestão Abrangente de Dicionário",
+        "description": "Carrega, armazena e permite a pesquisa eficiente de palavras e as suas pistas associadas a partir de um ficheiro de texto externo.",
+        "implementation": "Lê palavras e pistas para um array dinâmico ou lista ligada de structs `Word`. Funções de pesquisa permitem filtrar por comprimento ou padrões de caracteres.",
+        "challenges": "Parsing robusto de formatos de ficheiro e desenho de mecanismos de pesquisa eficientes em C."
+      },
+      {
+        "title": "Interface de Utilizador Interativa Baseada em Consola",
+        "description": "Apresenta a grelha e pistas no terminal, permitindo a introdução de letras e interação básica.",
+        "implementation": "Renderiza a grelha usando `printf` e gere a entrada do utilizador (coordenadas, caracteres) via `scanf` ou `fgets`.",
+        "challenges": "Criar uma representação clara da grelha em ASCII e garantir uma navegação intuitiva na consola dentro das restrições de texto."
+      },
+      {
+        "title": "Verificação de Solução em Tempo Real",
+        "description": "Verifica as letras introduzidas pelo utilizador contra a solução gerada, fornecendo feedback imediato.",
+        "implementation": "Compara o carácter introduzido pelo utilizador numa célula específica com o carácter correspondente da representação interna do puzzle resolvido.",
+        "challenges": "Garantir a indexação precisa entre a entrada do utilizador (ex: A1) e a matriz 2D interna."
+      },
+      {
+        "title": "Gestão de Erros Robusta e Validação de Entrada",
+        "description": "Previne falhas no programa devido a entradas inválidas ou operações de ficheiro inesperadas.",
+        "implementation": "Implementa verificações antes da entrada, após alocação de memória e durante operações de ficheiros, fornecendo mensagens claras ao utilizador.",
+        "challenges": "Antecipar diversos tipos de entradas inválidas e garantir a recuperação graciosa do programa sem fugas de memória."
+      }
+    ],
+    "testing": "Os testes foram maioritariamente manuais, focando-se na correção funcional e robustez. Testes unitários verificaram funções individuais com vários casos limite. Testes de integração garantiram a operação coesa do sistema. A deteção de fugas de memória foi crucial, auxiliada por ferramentas como o Valgrind.",
+    "results": {
+      "technicalAchievements": "Domínio dos fundamentos de C, implementando algoritmos complexos usando ponteiros, structs e arrays com gestão de memória robusta. Desenvolveu um algoritmo de geração otimizado.",
+      "businessImpact": "Cumpriu os requisitos do currículo da Bachelor 1 da ECE Paris, servindo como uma demonstração forte de competências práticas de programação em C.",
+      "personalGrowth": "Ganhou experiência inestimável com as subtilezas do C, particularmente gestão manual de memória e controlo de baixo nível. Fortaleceu o pensamento algorítmico."
+    },
+    "techStack": {
+      "frontend": "",
+      "backend": "C",
+      "tools": "CMake",
+      "libraries": "Biblioteca Padrão do C (stdio.h, stdlib.h, string.h)"
+    },
+    "learnings": [
+      "Compreensão profunda de como usar ponteiros e `struct`s em C para criar estruturas de dados complexas e interligadas.",
+      "Domínio da importância crítica e dos desafios da alocação e desalocação explícita de memória para garantir a estabilidade do programa.",
+      "Desenvolvimento de algoritmos sofisticados como o backtracking dentro das limitações do C, focando-se na eficiência e clareza lógica.",
+      "Reforço do princípio de decompor projetos grandes em módulos geríveis para melhorar a organização e simplificar a depuração."
+    ],
+    "futureEnhancements": [
+      "Desenvolver uma Interface Gráfica de Utilizador (GUI) usando bibliotecas como GTK ou Qt para melhorar a experiência do utilizador.",
+      "Implementar algoritmos de geração de puzzles avançados para criar puzzles maiores e com níveis de dificuldade variados.",
+      "Estender a gestão do dicionário para suporte multi-idioma.",
+      "Adicionar funcionalidades de persistência para guardar o estado atual de um puzzle e carregar jogos guardados anteriormente."
+    ],
+    "conclusion": "O projeto `mots-fleches` marca um marco crucial, demonstrando um forte domínio da programação em C e resolução de problemas algorítmicos. Apesar das restrições da linguagem, abordou com sucesso um desafio lógico complexo."
+  },
+  "wine-cultivar-classification": {
+    "title": "Classificação de Cultivares de Vinho",
+    "description": "Projeto abrangente de ML que classifica e agrupa cultivares de vinho usando métodos supervisionados e não supervisionados.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento Python, Machine Learning, Data Mining",
+      "timeline": "Desenvolvido e concluído até Janeiro de 2025",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/wine-cultivar-classification"
+    },
+    "overview": "Este projeto académico analisa o conjunto de dados Wine usando KNN para classificação, juntamente com K-Means e Agrupamento Hierárquico para agrupamento não supervisionado. Integra 8 análises avançadas e gera mais de 25 visualizações, enfatizando código pronto para produção e resultados reprodutíveis.",
+    "challenge": {
+      "problem": "O problema central era categorizar e descobrir estruturas inerentes dentro do conjunto de dados Wine. Isto envolveu construir modelos preditivos para classificação e descobrir agrupamentos naturais baseados em propriedades químicas.",
+      "goal": "O objetivo principal era desenvolver um pipeline de machine learning completo para classificar cultivares de vinho e realizar análises de agrupamento robustas, suportadas por métricas de avaliação abrangentes.",
+      "constraints": "Como projeto académico, as restrições incluíram a demonstração de compreensão teórica profunda, documentação meticulosa e resultados reprodutíveis dentro de um cronograma académico definido."
+    },
+    "discovery": {
+      "requirements": "Os requisitos do curso 'ECE B3 Data Mining' exigiram validação profunda do modelo, interpretabilidade e comparação robusta de algoritmos. Isto necessitou de métricas como curvas ROC e Silhouette scores.",
+      "competitiveAnalysis": "O projeto envolveu análise competitiva algorítmica rigorosa comparando diretamente KNN, K-Means e CAH no mesmo conjunto de dados, identificando as forças de cada abordagem.",
+      "technicalResearch": "Investigação técnica focada na seleção de Python e scikit-learn como ferramentas centrais, escolha de algoritmos de ML representativos e identificação de métricas de avaliação apropriadas.",
+      "additionalResearch": "A investigação também abrangeu técnicas de visualização para o desempenho do modelo, distribuição de dados e estruturas de clusters (dendrogramas, PCA), garantindo a comunicação eficaz de insights complexos. A reprodutibilidade através do uso de sementes aleatórias fixas foi um resultado chave da investigação para o rigor científico."
+    },
+    "architecture": {
+      "informationArchitecture": "A arquitetura do projeto foi planeada para clareza e modularidade, com caminhos de saída estruturados para visualizações e um `README.md` abrangente com Índice.",
+      "technicalDecisions": "Decisões chave incluíram alavancar Python e scikit-learn, empregar Validação Cruzada de 10 dobras para avaliação robusta do KNN e usar uma vasta gama de métricas para avaliação holística do modelo."
+    },
+    "developmentProcess": {
+      "phase1": "Configuração inicial, carregamento do conjunto de dados Wine e realização de análise exploratória de dados. Estabelecida uma estrutura de projeto robusta com diretórios de saída dedicados.",
+      "phase2": "Implementação dos algoritmos centrais: KNN com otimização de hiperparâmetros, K-Means com métodos Elbow e Silhouette, e Agrupamento Hierárquico. Geração de 8 análises avançadas e 25+ visualizações.",
+      "phase3": "Refinamento do projeto para padrões 'prontos para produção', incorporando gestão de erros, documentação abrangente e reprodutibilidade via sementes aleatórias fixas."
+    },
+    "keyFeatures": [
+      {
+        "title": "Classificação K-Nearest Neighbors (KNN) com Avaliação Avançada",
+        "description": "Preve o cultivar de vinho baseado em propriedades químicas encontrando os 'k' exemplos mais próximos no espaço de características.",
+        "implementation": "Usa o `KNeighborsClassifier` do scikit-learn com otimização de hiperparâmetros e Validação Cruzada de 10 dobras.",
+        "challenges": "Superar desafios no tratamento eficaz da avaliação ROC/AUC multi-classe e garantir a estabilidade do modelo."
+      },
+      {
+        "title": "Agrupamento K-Means com Análise Abrangente de Clusters",
+        "description": "Divide os vinhos em 'k' clusters baseados em características semelhantes sem conhecimento prévio de rótulos.",
+        "implementation": "Alavanca o `KMeans` do scikit-learn. O 'k' ideal é determinado pelos métodos Elbow e Silhouette. A análise inclui PCA e estabilidade de clusters (ARI).",
+        "challenges": "Determinar o 'k' ideal num contexto não supervisionado e fornecer visualizações claras e interpretáveis da qualidade da composição dos clusters."
+      },
+      {
+        "title": "Agrupamento Hierárquico (CAH) com Dendrogramas Visuais",
+        "description": "Constrói uma hierarquia de clusters fundindo ou dividindo grupos de vinhos, visualizada através de um dendrograma.",
+        "implementation": "Implementado usando scikit-learn/scipy, explorando diferentes métodos de ligação (linkage). Inclui análise de Silhouette e projeções PCA.",
+        "challenges": "Escolher critérios de ligação apropriados para hierarquias significativas e visualizar eficazmente estruturas hierárquicas complexas."
+      },
+      {
+        "title": "Suite de Visualização de Dados Extensiva (25+ Gráficos)",
+        "description": "Fornece compreensão visual rica dos dados, comportamentos dos modelos e métricas de avaliação em todos os métodos.",
+        "implementation": "Gerados mais de 25 gráficos distintos, incluindo matrizes de confusão, projeções PCA, dendrogramas e curvas ROC, guardados sistematicamente.",
+        "challenges": "Criar um grande volume de visualizações distintas, claras e informativas que comuniquem eficazmente insights analíticos complexos."
+      },
+      {
+        "title": "Framework de Análise Comparativa Robusta",
+        "description": "Oferece comparação direta de desempenho e características para KNN, K-Means e CAH.",
+        "implementation": "Desenvolvido um framework para avaliação sistemática, incluindo gráficos de comparação de métricas, análise de tempo de execução e projeções PCA lado a lado.",
+        "challenges": "Garantir uma comparação justa e relevante entre diferentes tipos de algoritmos de machine learning (supervisionados vs não supervisionados)."
+      }
+    ],
+    "testing": "O projeto empregou testes rigorosos via Validação Cruzada de 10 dobras para KNN. Uma metodologia científica focada em resultados reprodutíveis com sementes aleatórias fixas permitiu experimentação consistente. O foco em código pronto para produção com gestão de erros adequada garante fiabilidade.",
+    "results": {
+      "technicalAchievements": "Implementou e avaliou extensivamente KNN, K-Means e CAH. Gerou mais de 25 visualizações distintas, alcançou código pronto para produção e garantiu resultados reprodutíveis.",
+      "businessImpact": "Fornece um framework robusto e reutilizável para analisar características de vinhos, extensível a aplicações reais em viticultura ou controlo de qualidade.",
+      "personalGrowth": "Mestria aprofundada de algoritmos de aprendizagem supervisionada e não supervisionada. Melhoria significativa das competências em avaliação avançada de modelos e técnicas de validação robustas."
+    },
+    "techStack": {
+      "frontend": null,
+      "backend": null,
+      "tools": "Git/GitHub para controlo de versão e desenvolvimento colaborativo.",
+      "libraries": "Python, scikit-learn, NumPy, Pandas, Matplotlib, Seaborn."
+    },
+    "learnings": [
+      "Confiar apenas em métricas básicas é insuficiente; análises avançadas como curvas ROC e scores de silhueta fornecem uma compreensão mais profunda.",
+      "Mais de 25 visualizações foram cruciais para transformar saídas complexas em insights compreensíveis, provando que a visualização é indispensável.",
+      "Fixar sementes aleatórias e garantir documentação abrangente são vitais para o rigor científico e garantem resultados confiáveis.",
+      "Comparar diretamente diferentes paradigmas de machine learning revela as suas forças e limitações, guiando uma seleção de modelos mais informada."
+    ],
+    "futureEnhancements": [
+      "Implementar o projeto como uma aplicação web usando Streamlit ou FastAPI.",
+      "Integrar e comparar algoritmos de classificação (ex: SVM, Random Forests) e agrupamento (ex: DBSCAN) adicionais.",
+      "Atualizar gráficos estáticos para dashboards interativos usando Plotly ou Bokeh."
+    ],
+    "conclusion": "O projeto 'Classificação de Cultivares de Vinho' é uma demonstração robusta de data mining e machine learning avançado, apresentando proficiência técnica e compromisso com as melhores práticas."
+  },
+  "TripHackathon": {
+    "title": "TripWise (TripHackathon)",
+    "description": "Revoluciona o planeamento de viagens misturando design intuitivo com IA local para recomendações personalizadas e criação fluida de itinerários.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento Web, Implementação de IA",
+      "timeline": "Desenvolvido rapidamente em 05-05-2025 (Hackathon/Prototipagem)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Le-skal/TripHackathon"
+    },
+    "overview": "TripWise (anteriormente TripHackathon) é uma aplicação web inovadora que utiliza React para o frontend e IA local via Ollama/Mistral para recomendações de viagem personalizadas. Combina Firebase para gestão de dados e um backend Node.js para comunicação eficiente. Este projeto demonstra competências de desenvolvimento full-stack e integração de IA num ambiente de prototipagem rápida.",
+    "challenge": {
+      "problem": "O planeamento de viagens tradicional é tedioso e avassalador, carecendo de insights personalizados. O objetivo era superar isto fornecendo recomendações inteligentes e adaptadas.",
+      "goal": "Desenvolver uma aplicação intuitiva com funcionalidades inteligentes, incluindo navegação fluida, gestão de dados robusta e itinerários personalizados gerados por IA.",
+      "constraints": "Uma restrição significativa foi o cronograma de desenvolvimento rápido típico de um hackathon. Tecnicamente, integrar um modelo de IA local como o Ollama (Mistral) colocou desafios de comunicação e parsing de dados."
+    },
+    "discovery": {
+      "requirements": "Necessidades centrais incluíram uma interface limpa, organização eficiente de dados de viagem, sugestões personalizadas de destinos e atividades e capacidade de lidar com interações dinâmicas.",
+      "competitiveAnalysis": "A integração de uma IA local (Ollama/Mistral) diferencia o TripWise ao oferecer benefícios em privacidade, eficiência de custos e customização em comparação com planeadores baseados em templates estáticos.",
+      "technicalResearch": "React escolhido para o frontend, Firebase para as funcionalidades de BaaS e Node.js para a orquestração do backend. Ollama com Mistral foi crítico para a inferência local de LLM."
+    },
+    "architecture": {
+      "informationArchitecture": "A aplicação emprega uma arquitetura cliente-servidor: React para UI, backend Node.js como intermediário para Firebase e Ollama AI, Firebase como armazenamento principal e Ollama a correr localmente com o LLM Mistral.",
+      "technicalDecisions": "Decisões chave incluíram usar React para uma SPA fluida e Ollama para inferência local de LLM para fornecer capacidades poderosas de IA sem dependência externa da nuvem, oferecendo benefícios de desempenho e privacidade."
+    },
+    "developmentProcess": {
+      "phase1": "Configuração do ambiente central: inicialização da app React, configuração do roteamento e estabelecimento de um servidor Node.js básico para preparar o caminho para os endpoints de API.",
+      "phase2": "Desenvolvimento de funcionalidades focado nos componentes de UI, integração com o Firebase para armazenamento e implementação da integração crítica com a IA, criando endpoints para proxy de pedidos para o Ollama.",
+      "phase3": "Polimento e otimização prioritários dado o cronograma curto. Estilização para uma UI profissional e refinamento do parsing das respostas da IA para garantir a robustez."
+    },
+    "keyFeatures": [
+      {
+        "title": "Interface de Utilizador Moderna com React",
+        "description": "Fornece uma interface gráfica envolvente, responsiva e intuitiva para os utilizadores interagirem com o planeador de viagens.",
+        "implementation": "Frontend construído usando a arquitetura baseada em componentes do React, com React Router DOM garantindo uma experiência fluida de aplicação de página única.",
+        "challenges": "Desenvolver rapidamente uma UI complexa mas funcional dentro de um período limitado exigiu design eficiente de componentes e gestão de estado."
+      },
+      {
+        "title": "Recomendações de Viagem Impulsionadas por IA (Ollama com Mistral)",
+        "description": "Gera planos de viagem personalizados, itinerários e recomendações baseadas nas entradas do utilizador usando um modelo de linguagem de grande escala.",
+        "implementation": "O backend Node.js atua como um proxy para uma instância local do Ollama que aloja o modelo Mistral. O componente `TripList.jsx` analisa o texto livre gerado pela IA em elementos estruturados da UI.",
+        "challenges": "Analisar o texto livre gerado pelo LLM num formato estruturado adequado para a UI foi um desafio técnico major."
+      },
+      {
+        "title": "Firebase para Gestão de Dados",
+        "description": "Lida com o armazenamento seguro e recuperação de dados do utilizador e planos de viagem, fornecendo uma solução de backend escalável.",
+        "implementation": "A aplicação integra-se com o Firebase para armazenamento persistente de dados, permitindo operações CRUD através de APIs do Firebase.",
+        "challenges": "Garantir a sincronização de dados sem falhas entre o frontend e a base de dados mantendo regras de segurança apropriadas."
+      },
+      {
+        "title": "Navegação Fluida com React Router",
+        "description": "Permite o roteamento suave no lado do cliente, permitindo aos utilizadores navegar entre diferentes secções sem recarregamentos totais da página.",
+        "implementation": "A biblioteca `react-router-dom` define rotas e renderiza componentes específicos baseados no URL, criando uma experiência responsiva.",
+        "challenges": "Gerir parâmetros de rota e navegação programática para garantir um fluxo de utilizador consistente em toda a aplicação."
+      },
+      {
+        "title": "Backend Node.js para Orquestração de API",
+        "description": "Serve como um intermediário crucial, gerindo pedidos do frontend, comunicando com o Firebase e orquestrando a interação com a IA Ollama.",
+        "implementation": "Um servidor Node.js expõe endpoints de API consumidos pelo React através de `axios`, gerindo a lógica de negócio antes de interagir com outros serviços.",
+        "challenges": "Orquestrar operações assíncronas entre múltiplos serviços (frontend, Firebase, Ollama) de forma eficiente e segura."
+      }
+    ],
+    "testing": "O teste focou-se na validação das funcionalidades centrais e pontos de integração críticos, como a geração de planos por IA e a gravação de dados no Firebase. Ciclos de feedback rápidos permitiram a resolução imediata de bugs durante o hackathon.",
+    "results": {
+      "technicalAchievements": "Integrou com sucesso um LLM local (Mistral via Ollama) numa aplicação web. Construiu uma aplicação full-stack robusta usando tecnologias modernas e Firebase num cronograma muito restrito.",
+      "businessImpact": "Potencial para simplificar significativamente o planeamento de viagens. Ao oferecer recomendações personalizadas por IA, reduz o tempo de pesquisa do utilizador.",
+      "personalGrowth": "Experiência inestimável na configuração e interação com modelos de IA locais e orquestração de interações full-stack complexas sob pressão."
+    },
+    "techStack": {
+      "frontend": "React, React Router DOM, CSS",
+      "backend": "Node.js, Axios, Cors",
+      "tools": "Firebase (BaaS), Ollama (Local LLM runtime)",
+      "libraries": "Axios, Cors, React Router DOM"
+    },
+    "learnings": [
+      "Integrar um LLM local via Ollama requer um intermediário robusto no lado do servidor para garantir fiabilidade e facilidade de uso.",
+      "A saída bruta do LLM precisa frequentemente de ser estruturada eficazmente para apresentação na UI; desenvolver lógica de parsing flexível é crucial.",
+      "O uso estratégico de BaaS como o Firebase acelera significativamente o desenvolvimento do backend, permitindo focar em funcionalidades centrais e integração de IA.",
+      "Unir tecnologias díspares num curto espaço de tempo realça a importância do design modular e contratos de API claros."
+    ],
+    "futureEnhancements": [
+      "Implementar autenticação de utilizador abrangente e perfis detalhados para guardar históricos de viagens e preferências.",
+      "Permitir conversas com a IA mais dinâmicas e interativas para ajuste de itinerários em tempo real.",
+      "Explorar a integração com APIs de terceiros para reservas de voos e alojamento diretamente na aplicação."
+    ],
+    "conclusion": "TripWise demonstra a sinergia entre frameworks frontend modernos, serviços backend robustos e inteligência artificial de ponta, apontando para um futuro de planeamento de viagens intuitivo e profundamente personalizado."
+  },
+  "Scraping": {
+    "title": "EPFL Memento Web Scraper",
+    "description": "Automatiza a extração de eventos do EPFL Memento, garantindo a recolha de dados estruturados e interação ética.",
+    "metadata": {
+      "role": "Estudante",
+      "category": "Desenvolvimento Python, Web Scraping",
+      "timeline": "Outubro 2025",
+      "liveUrl": "null",
+      "githubUrl": "https://github.com/Exowz/Scraping"
+    },
+    "overview": "Este web scraper em Python extrai informações de eventos do site EPFL Memento, navegando por múltiplas páginas para recolher dados estruturados. Exporta CSVs limpos para análise, demonstrando práticas éticas como gestão de erros, limites de taxa e processamento de dados.",
+    "challenge": {
+      "problem": "Recolher manualmente informações de eventos do EPFL Memento é demorado, propenso a erros e impraticável para atualizações ou análises em larga escala.",
+      "goal": "Desenvolver uma solução automatizada para extrair detalhes chave de eventos (título, data, horas, local, categoria) das listagens paginadas do EPFL Memento e estruturá-los em CSV.",
+      "constraints": "O scraper depende da estrutura HTML do site e usa paginação codificada. Requer adesão estrita a práticas de scraping ético e gestão graciosa de dados em falta."
+    },
+    "discovery": {
+      "requirements": "Transformar listagens de eventos HTML dinâmicas num conjunto de dados tabular e estruturado, identificando pontos de dados específicos para cada evento.",
+      "competitiveAnalysis": "O projeto aborda a ineficiência da recolha manual oferecendo velocidade, precisão e escalabilidade através de um script Python leve e personalizável.",
+      "technicalResearch": "Investigação focada em `requests` para chamadas HTTP, `BeautifulSoup4` para parsing de HTML e o módulo `csv` para exportação de dados. Práticas éticas como cabeçalhos `User-Agent` e limites de taxa foram investigadas."
+    },
+    "architecture": {
+      "informationArchitecture": "O script segue uma arquitetura linear de três partes: inicialização de cabeçalhos; iteração pelas páginas com extração de dados; e exportação dos dados para um ficheiro CSV.",
+      "technicalDecisions": "Python escolhido pelo seu ecossistema. Dados dos eventos armazenados em dicionários para exportação CSV. Seletores CSS usados para precisão e robustez priorizada através de lógica de retry com exponential backoff."
+    },
+    "developmentProcess": {
+      "phase1": "Configuração do ambiente Python e instalação das bibliotecas necessárias. Estabelecimento da estrutura básica do script, incluindo a URL base e cabeçalhos de navegador.",
+      "phase2": "Desenvolvimento da lógica central de scraping: integração de pedidos para obter páginas e BeautifulSoup para parsing. Implementação de gestão de erros robusta e limpeza de dados.",
+      "phase3": "Integração do módulo `csv` para escrita dos dados recolhidos em `epfl_events.csv`. Adição de documentação e notas técnicas sobre limitações e melhorias futuras."
+    },
+    "keyFeatures": [
+      {
+        "title": "Scraping Multi-Página",
+        "description": "Navega automaticamente através de até 16 listagens de eventos paginadas no site EPFL Memento.",
+        "implementation": "Um ciclo `for` constrói dinamicamente as URLs para cada página, garantindo a recolha contínua de dados além da vista inicial.",
+        "challenges": "Gerir estruturas de URL dinâmicas para paginação e manter o fluxo contínuo de dados entre múltiplas páginas."
+      },
+      {
+        "title": "Gestão de Erros Robusta",
+        "description": "Lida graciosamente com problemas de rede, erros de servidor e páginas sem resposta para prevenir falhas no script.",
+        "implementation": "Cada pedido é tentado até 3 vezes com atrasos crescentes exponencialmente. Se todas as tentativas falharem, o script regista o erro e continua para a página seguinte.",
+        "challenges": "Prevenir falhas devido a problemas de rede transientes e maximizar a recuperação de dados apesar de conectividade intermitente."
+      },
+      {
+        "title": "Práticas de Scraping Respeitosas",
+        "description": "Adera a diretrizes éticas de web scraping para minimizar a carga no servidor e evitar bloqueios de IP.",
+        "implementation": "O script envia um cabeçalho `User-Agent` para se identificar e inclui um atraso de `time.sleep(1)` entre pedidos de páginas.",
+        "challenges": "Equilibrar a eficiência da recolha de dados com a necessidade de evitar comportamento agressivo que possa prejudicar o desempenho do servidor."
+      },
+      {
+        "title": "Extração e Limpeza de Dados Estruturados",
+        "description": "Extrai precisamente detalhes de eventos de HTML bruto e limpa-os para consistência e usabilidade.",
+        "implementation": "`BeautifulSoup4` analisa o HTML usando seletores CSS específicos. O texto extraído é limpo e campos em falta recebem o valor 'Non trouvé'.",
+        "challenges": "Localizar precisamente dados dinâmicos em HTML complexo e manter a integridade dos dados através da limpeza de texto."
+      },
+      {
+        "title": "Exportação para CSV",
+        "description": "Guarda todos os dados de eventos recolhidos e processados num ficheiro CSV bem estruturado, pronto para análise.",
+        "implementation": "Após a recolha, o `DictWriter` do módulo `csv` mapeia as chaves dos dicionários para os cabeçalhos das colunas do CSV com codificação UTF-8.",
+        "challenges": "Mapear corretamente os dados para os cabeçalhos CSV e garantir um formato de saída universalmente acessível."
+      }
+    ],
+    "testing": "Os testes envolveram a verificação manual do ficheiro `epfl_events.csv` para precisão. Simulações de casos de erro validaram o mecanismo de retry. Os seletores CSS foram validados continuamente e a eficácia da limpeza de dados foi verificada.",
+    "results": {
+      "technicalAchievements": "Automatizou a extração de dados estruturados de um site dinâmico. Implementou gestão de erros avançada e aderiu a práticas éticas de scraping, produzindo saídas limpas.",
+      "businessImpact": "Reduz significativamente o tempo e recursos para reunir dados de eventos da EPFL. Fornece um conjunto de dados abrangente para análise de tendências ou integração noutras apps.",
+      "personalGrowth": "Compreensão aprofundada de protocolos HTTP e estrutura de páginas web. Experiência prática no design de estratégias de scraping respeitosas e robustas."
+    },
+    "techStack": {
+      "frontend": "null",
+      "backend": "Python",
+      "tools": "null",
+      "libraries": "requests, BeautifulSoup4, csv, time"
+    },
+    "learnings": [
+      "O scraping ético é primordial, enfatizando a adesão ao robots.txt, limites de taxa e cabeçalhos apropriados para práticas sustentáveis.",
+      "Construir um scraper fiável necessita de gestão de erros abrangente para gerir graciosamente as flutuações da rede e problemas do servidor.",
+      "Dominar o BeautifulSoup4 e seletores CSS eficazes é fundamental para extrair dados específicos de estruturas HTML complexas e inconsistentes.",
+      "O texto bruto extraído requer limpeza significativa para produzir conjuntos de dados de alta qualidade e utilizáveis para análise."
+    ],
+    "futureEnhancements": [
+      "Implementar lógica para detetar automaticamente o número total de páginas disponíveis.",
+      "Permitir que os utilizadores especifiquem parâmetros via argumentos de linha de comandos.",
+      "Integrar uma barra de progresso para melhor feedback ao utilizador durante o scraping."
+    ],
+    "conclusion": "O projeto 'Scraping' demonstra técnicas robustas de web scraping em Python, entregando uma ferramenta funcional e destacando as melhores práticas em soluções de recolha de dados fiáveis e éticas."
+  },
+  "portfolio-projects-ai": {
+    "title": "Portfolio Projects AI",
+    "description": "Ferramenta inteligente impulsionada por IA para automatizar a geração detalhada de casos de estudo de portfólio no GitHub usando RAG e LLMs.",
+    "metadata": {
+      "role": "Engenheiro de Dados",
+      "category": "IA/ML, Desenvolvimento Python",
+      "timeline": "Outubro 2025 (Sprint de Desenvolvimento Inicial)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/portfolio-projects-ai"
+    },
+    "overview": "O projeto `portfolio-projects-ai` é uma ferramenta inovadora desenhada para automatizar o processo moroso de criação de casos de estudo detalhados para projetos no GitHub. Utilizando o poder da análise de código por IA e Geração Aumentada por Recuperação (RAG), transforma repositórios de código bruto em conteúdo de portfólio envolvente, estruturado e multilingue.",
+    "challenge": {
+      "problem": "Os desenvolvedores têm dificuldade em documentar os seus projetos. Extrair detalhes técnicos, descrever funcionalidades e escrever narrativas convincentes é uma tarefa laboriosa e muitas vezes negligenciada, levando a portfólios desatualizados.",
+      "goal": "Criar um sistema automatizado capaz de analisar repositórios GitHub e gerar casos de estudo detalhados e multilingues de alta qualidade com intervenção mínima do utilizador.",
+      "constraints": "Desafios técnicos incluíram a análise fiável de diversas estruturas de código, garantia de precisão do conteúdo gerado sem alucinações via RAG e suporte multilingue robusto."
+    },
+    "discovery": {
+      "requirements": "Permitir que os desenvolvedores mantenham portfólios atualizados com o mínimo esforço. Necessidades chave incluíram geração automática de conteúdo, precisão técnica e suporte para saídas JSON e Markdown.",
+      "competitiveAnalysis": "As ferramentas existentes dependiam de entrada manual ou templates básicos. Nenhuma oferecia análise profunda de código por IA e geração narrativa como este assistente inteligente.",
+      "technicalResearch": "Foco na avaliação de LLMs para geração de texto complexo (Google Gemini), investigação de RAG para aumentar a precisão e identificação de bases de dados vetoriais (ChromaDB) para pesquisa de similaridade eficiente."
+    },
+    "architecture": {
+      "informationArchitecture": "O sistema segue um pipeline modular: Configuração → Recolha de Repositório → Análise de Código (embeddings, ChromaDB, RAG) → Geração de Caso de Estudo → Formatação de Saída.",
+      "technicalDecisions": "Python escolhido pelo ecossistema IA/ML. Google Gemini API para capacidades avançadas de NLU/NLG. ChromaDB para armazenamento vetorial leve. Arquitetura RAG implementada para basear as respostas no código real, prevenindo alucinações."
+    },
+    "developmentProcess": {
+      "phase1": "Fase de fundação estabeleceu a configuração do projeto, clonagem de repositórios e integração do ChromaDB. Implementado o esqueleto do analisador de código com geração de embeddings.",
+      "phase2": "Desenvolvimento de funcionalidades focado na lógica de análise por RAG com pesquisa de similaridade. Integrada a API Google Gemini para geração de texto e desenvolvido o formatador de saída para JSON e Markdown.",
+      "phase3": "Fase de refinamento melhorou os prompts da LLM para saídas envolventes, implementou suporte multilingue e desenvolveu a Smart Skip Logic para eficiência no processamento."
+    },
+    "keyFeatures": [
+      {
+        "title": "Análise Automática de Código com RAG",
+        "description": "Analisa inteligentemente repositórios GitHub e usa Geração Aumentada por Recuperação para responder a perguntas específicas sobre o projeto.",
+        "implementation": "O CodeAnalyzer cria embeddings e armazena-os no ChromaDB. O método de análise realiza pesquisa de similaridade para recuperar trechos de código relevantes que alimentam a LLM.",
+        "challenges": "Superou desafios de alucinação garantindo que cada insight é fundamentado no contexto direto do código fonte através do RAG."
+      },
+      {
+        "title": "Geração Multilingue de Casos de Estudo",
+        "description": "Gera casos de estudo em múltiplos idiomas (Português, Inglês, Francês, etc.) a partir da mesma análise de base de código.",
+        "implementation": "O processo itera pelos locais especificados na configuração, usando prompts adaptados para instruir a LLM a gerar texto técnico natural nos idiomas alvo.",
+        "challenges": "Garantiu conteúdo técnico de alta qualidade através de engenharia de prompts cuidadosa, evitando traduções literais estranhas."
+      },
+      {
+        "title": "Modos de Saída Duplos: JSON Estruturado e Markdown",
+        "description": "Fornece opções flexíveis - JSON estruturado para frameworks web modernos ou Markdown legível para plataformas gerais.",
+        "implementation": "A lógica de geração produz conteúdo bruto, depois um formatador dedicado transforma-o baseado no modo escolhido. JSON garante dados consumíveis por API.",
+        "challenges": "Desenhada uma estrutura de conteúdo flexível que se adapta perfeitamente a ambos os formatos sem duplicar a lógica de geração."
+      },
+      {
+        "title": "Estrutura Abrangente de Caso de Estudo",
+        "description": "Gera casos de estudo completos cobrindo desde a visão geral até detalhes técnicos profundos e melhorias futuras.",
+        "implementation": "Define estrutura incluindo Descoberta, Arquitetura, Funcionalidades Chave, Resultados e Melhorias Futuras. Cada secção usa prompts personalizados para a LLM.",
+        "challenges": "Orquestrou a LLM para gerar conteúdo diverso para secções distintas mantendo uma voz e fluxo narrativo consistentes em todo o documento."
+      }
+    ],
+    "testing": "Abordagem iterativa com revisão manual, testes A/B de prompts para qualidade, testes de diversidade de repositórios e validação de formatos de saída JSON e Markdown.",
+    "results": {
+      "technicalAchievements": "Integrou com sucesso pipeline RAG complexo com embeddings de código e Google Gemini. Desenvolveu arquitetura modular e eficiente com Smart Skip Logic.",
+      "businessImpact": "Reduz significativamente o esforço manual para criar casos de estudo. Garante apresentações profissionais consistentes e suporte multilingue para alcance global.",
+      "personalGrowth": "Aprofundou perícia em IA/ML com integração de LLM, engenharia de prompts e arquitetura RAG. Desenvolveu proficiência em bases de dados vetoriais."
+    },
+    "techStack": {
+      "frontend": "Python",
+      "backend": "Google Gemini API, ChromaDB, GitHub API",
+      "tools": "Python 3.x, ChromaDB, GitHub API",
+      "libraries": "Google Gemini API, ChromaDB, langchain/sentence-transformers"
+    },
+    "learnings": [
+      "O poder da Engenharia de Prompts: Pequenas mudanças nos prompts alteram drasticamente a qualidade da saída. Iteração e instruções claras foram fundamentais.",
+      "O papel do RAG na Precisão Factual: Implementar RAG foi essencial para basear as respostas da LLM no contexto factual do código, minimizando alucinações.",
+      "Código como Dados: Tratar o código como dados semânticos estruturados permitiu uma compreensão contextual mais profunda do que a simples correspondência de palavras-chave.",
+      "Design Modular para Complexidade: Dividir a tarefa complexa em módulos distintos melhorou imensamente a capacidade de gestão e depuração."
+    ],
+    "futureEnhancements": [
+      "Suporte para mais linguagens de programação para expandir a análise além do Python.",
+      "Métricas de código avançadas e insights incorporando ferramentas de análise estática.",
+      "Loop de feedback interativo permitindo que os utilizadores refinem secções geradas pela LLM.",
+      "Otimização de custos com monitorização de tokens e estratégias de chunking mais inteligentes."
+    ],
+    "conclusion": "`portfolio-projects-ai` demonstra o poder transformador da IA na otimização dos fluxos de trabalho dos desenvolvedores, estabelecendo um novo padrão para a gestão automatizada de portfólios."
+  },
+  "backToProjects": "Voltar aos Projetos",
+  "viewCode": "Ver Código",
+  "liveDemo": "Demo ao Vivo",
+  "overview": "Visão Geral",
+  "keyFeatures": "Funcionalidades Chave",
+  "technologiesUsed": "Tecnologias Utilizadas",
+  "notFound": "Projeto Não Encontrado",
+  "sections": {
+    "metadata": "Metadados do Projeto",
+    "overview": "Visão Geral",
+    "challenge": "O Desafio",
+    "discovery": "Descoberta e Investigação",
+    "architecture": "Arquitetura e Planeamento",
+    "developmentProcess": "Processo de Desenvolvimento",
+    "keyFeatures": "Funcionalidades Chave e Implementação",
+    "testing": "Testes e Iteração",
+    "results": "Resultados e Impacto",
+    "techStack": "Stack Tecnológica",
+    "learnings": "Aprendizagens Chave",
+    "futureEnhancements": "Melhorias Futuras",
+    "conclusion": "Conclusão"
+  },
+  "labels": {
+    "role": "Papel",
+    "category": "Categoria",
+    "timeline": "Cronograma",
+    "problem": "Problema",
+    "goal": "Objetivo",
+    "constraints": "Restrições",
+    "requirements": "Requisitos",
+    "competitiveAnalysis": "Análise Competitiva",
+    "technicalResearch": "Investigação Técnica",
+    "informationArchitecture": "Arquitetura de Informação",
+    "technicalDecisions": "Decisões Técnicas",
+    "technicalAchievements": "Conquistas Técnicas",
+    "businessImpact": "Impacto no Negócio",
+    "personalGrowth": "Crescimento Pessoal",
+    "implementation": "Implementação",
+    "challenges": "Desafios",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Ferramentas e Infraestrutura",
+    "libraries": "Bibliotecas e Frameworks"
+  }
+}

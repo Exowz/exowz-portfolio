@@ -10,6 +10,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'TegakiRussian';
+  src: url('/fonts/tegaki/russian/tegaki-russian.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TegakiChinese';
+  src: url('/fonts/tegaki/chinese/tegaki-chinese.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme inline {
   /* Fonts */
   --font-sans: var(--font-geist-sans);
@@ -31,6 +45,9 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -52,10 +69,36 @@
   --bg-secondary: #f5f5f5;
   --bg-elevated: #ffffff;
   --text-primary: #333333;
-  --text-secondary: #b0bec5;
-  --border: #e0e0e0;
-  --accent: #64b5f6;
+  /* Secondary/tertiary tuned for contrast on LIGHT backgrounds (was a single
+     #b0bec5 shared with dark mode, which failed ~1.8:1 on white). */
+  --text-secondary: #546e7a; /* ~5.5:1 on #fff */
+  --text-tertiary: #78909c;  /* hints / large text only */
+  /* Soft glass hairline (matches --window-border). Was a solid #e0e0e0 that
+     rendered as a hard gray outline on every bare `border` utility. */
+  --border: rgba(0, 0, 0, 0.05);
+  --accent: #64b5f6;          /* brand: fills, glows, rings (icy blue) */
+  --accent-text: #1976d2;     /* accent used as TEXT/icons on light bg (~5:1) */
+  --accent-solid: #1976d2;    /* accent as a FILL behind WHITE text/icons — icy --accent is far too light here (white ~1.9:1); this reads ~4.6:1 */
   --accent-glow: rgba(100, 181, 246, 0.2);
+
+  /* Form-field surface: a real (soft) fill so the field reads as a surface and
+     its border isn't a lone stark outline on the white page. */
+  --field-bg: #eef2f6;
+  --field-border: rgba(0, 0, 0, 0.10);
+
+  /* Glass card: light mode separates by soft elevation, NOT a hard outline
+     (white-on-white has no fill contrast, so a lone hairline reads as an
+     ugly border). Soft border + diffuse resting shadow = floating glass. */
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.09), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 10px 30px rgba(100, 181, 246, 0.22), 0 0 0 1px rgba(100, 181, 246, 0.25);
+
+  /* Mobile overlay scrim — theme-aware frosted veil (mirrors the assistant),
+     shared by every sheet so they dim/frost the springboard consistently.
+     Uses var(--background) so the one definition adapts to dark automatically. */
+  --sheet-scrim: color-mix(in srgb, var(--background) 40%, transparent);
+  /* Springboard app-label legibility over a busy wallpaper. */
+  --label-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
 
   /* Dock specific - light mode */
   --dock-bg: rgba(255, 255, 255, 0.15);
@@ -74,7 +117,7 @@
   --window-bg: rgba(255, 255, 255, 0.25);
   --window-titlebar-bg: rgba(255, 255, 255, 0.3);
   --window-content-bg: rgba(255, 255, 255, 0.2);
-  --window-border: rgba(0, 0, 0, 0.08);
+  --window-border: rgba(0, 0, 0, 0.05);
   --window-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 60px rgba(100, 181, 246, 0.08);
   --window-close-btn: #ff5f57;
   --window-minimize-btn: #ffbd2e;
@@ -122,23 +165,39 @@
   --bg-secondary: #2a2a2a;
   --bg-elevated: #333333;
   --text-primary: #ffffff;
-  --text-secondary: #b0bec5;
-  --border: #4a4a4a;
+  --text-secondary: #b0bec5; /* ~9:1 on #1a1a1a — already fine in dark */
+  --text-tertiary: #8a99a3;
+  --border: rgba(255, 255, 255, 0.12); /* soft glass hairline (was solid #4a4a4a) */
   --accent: #64b5f6;
+  --accent-text: #64b5f6;    /* reads ~8:1 on dark; same as accent */
+  --accent-solid: #64b5f6;   /* dark: icy blue already reads as a fill on the dark UI */
   --accent-glow: rgba(100, 181, 246, 0.2);
 
+  /* Form-field surface (dark): faint lift off the panel + soft edge. */
+  --field-bg: rgba(255, 255, 255, 0.04);
+  --field-border: rgba(255, 255, 255, 0.14);
+
+  /* Glass card — dark mode already separates via fill contrast; keep a soft
+     bright edge + depth shadow. */
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 10px 30px rgba(100, 181, 246, 0.25), 0 0 0 1px rgba(100, 181, 246, 0.35);
+
+  /* dark: white labels need a dark shadow instead */
+  --label-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+
   /* Dock specific - dark mode (override everything else) */
-  --dock-bg: rgba(26, 26, 26, 0.6) !important;
-  --dock-item-bg: rgba(26, 26, 26, 0.6) !important;
-  --dock-item-hover-bg: rgba(51, 51, 51, 0.7) !important;
-  --dock-border: rgba(255, 255, 255, 0.15) !important;
-  --dock-item-border: rgba(255, 255, 255, 0.15) !important;
-  --dock-item-hover-border: rgba(100, 181, 246, 0.5) !important;
-  --dock-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  --dock-item-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  --dock-item-hover-shadow: 0 4px 16px rgba(100, 181, 246, 0.3), 0 0 20px rgba(100, 181, 246, 0.2) !important;
-  --dock-text: #ffffff !important;
-  --dock-divider: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, transparent) !important;
+  --dock-bg: rgba(26, 26, 26, 0.6);
+  --dock-item-bg: rgba(26, 26, 26, 0.6);
+  --dock-item-hover-bg: rgba(51, 51, 51, 0.7);
+  --dock-border: rgba(255, 255, 255, 0.15);
+  --dock-item-border: rgba(255, 255, 255, 0.15);
+  --dock-item-hover-border: rgba(100, 181, 246, 0.5);
+  --dock-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --dock-item-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --dock-item-hover-shadow: 0 4px 16px rgba(100, 181, 246, 0.3), 0 0 20px rgba(100, 181, 246, 0.2);
+  --dock-text: #ffffff;
+  --dock-divider: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, transparent);
 
   /* Window specific - dark mode */
   --window-bg: rgba(26, 26, 26, 0.6);
@@ -187,6 +246,19 @@
 }
 
 @layer utilities {
+  /* Glass card surface — consistent floating look in both themes. Separation
+     comes from a diffuse resting shadow (depth), not a hard border line, so
+     light mode no longer shows the ugly outline. */
+  .glass-card {
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+  .glass-card-hover:hover {
+    box-shadow: var(--card-shadow-hover);
+    border-color: transparent;
+  }
+
   /* PRIMARY: Glassmorphism (90%) - Main design effect */
   .glass-light {
     background: rgba(255, 255, 255, 0.2);
@@ -251,4 +323,13 @@
   .animate-gradient {
     animation: gradient ease infinite;
   }
+}
+
+/* iOS mobile shell wallpaper — theme-aware via the html `.dark` class set by
+   next-themes pre-paint, so it renders the right colors with no hydration flash. */
+.mobile-wallpaper {
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 50%, #64b5f6 100%);
+}
+.dark .mobile-wallpaper {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #64b5f6 100%);
 }

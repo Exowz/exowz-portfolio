@@ -1,0 +1,14 @@
+{
+  "title": "Now",
+  "updatedLabel": "Updated",
+  "updated": "June 2026",
+  "intro": "A snapshot of what I'm up to right now.",
+  "items": [
+    "Finishing my Bachelor in Data & AI at ECE Paris.",
+    "Interning as a Data Science / AI engineer at Purecontrol in Rennes, building ML pipelines on IoT time-series.",
+    "Starting an MSc Data & AI for Finance (Albert School × Mines de Paris - PSL) this September, as a work-study apprentice.",
+    "Building this portfolio, and Career Agent, a tool that drafts tailored CVs and cover letters.",
+    "Levelling up on data engineering, MLOps and the cloud (AWS Practitioner in progress).",
+    "Looking for a data engineering / AI work-study apprenticeship from September 2026, and always open to interesting collaborations."
+  ]
+}

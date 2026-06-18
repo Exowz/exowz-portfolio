@@ -1,0 +1,26 @@
+{
+  "title": "Colofão",
+  "intro": "Este site é um pequeno parque de diversões. Eu queria que meu portfólio parecesse um lugar que você explora, não uma página pela qual você apenas rola.",
+  "sections": [
+    {
+      "heading": "Conceito",
+      "body": "No desktop, ele se comporta como um sistema operacional, uma barra de menu, um dock e janelas arrastáveis que você pode abrir e organizar. Nos celulares, torna-se uma interface estilo iOS feita à mão: um springboard, folhas de aplicativos, gestos e até uma pasta de Projetos. O mesmo conteúdo, dois mundos que parecem nativos em cada um."
+    },
+    {
+      "heading": "Stack",
+      "body": "Construído com Next.js 16 (App Router, Turbopack, React 19), TypeScript e Tailwind CSS. É totalmente bilíngue através do next-intl, com conteúdo idêntico em inglês e francês."
+    },
+    {
+      "heading": "Design e tipografia",
+      "body": "O movimento é controlado com Framer Motion, e o fundo fluido é um efeito WebGL do three.js (LiquidEther) que se ajusta graciosamente em dispositivos mais fracos ou quando o movimento reduzido está ativado. A saudação de inicialização é escrita à mão com Tegaki, e os projetos passam por um carrossel Embla. A tipografia combina duas fontes de exibição personalizadas, Stanley e TakenByVultures, com Geist para UI e mono."
+    },
+    {
+      "heading": "Hospedagem e privacidade",
+      "body": "Hospedado na Vercel com análises leves e voltadas para a privacidade, sem rastreamento pesado de terceiros. O formulário de contato é validado no servidor com modelos do React Email e enviado através do Resend, protegido por um honeypot e verificações de tempo. Uma pequena coisa, mas o minimalismo de dados é um princípio aqui, não uma reflexão tardia."
+    },
+    {
+      "heading": "Fonte",
+      "body": "Sem modelos e sem construtores de páginas, cada janela, gesto e animação é codificado à mão. O SEO também foi feito corretamente: metadados localizados, imagens Open Graph, um sitemap e robots. Fico feliz em conversar sobre qualquer um desses pontos."
+    }
+  ]
+}

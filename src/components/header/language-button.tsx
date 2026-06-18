@@ -87,11 +87,11 @@ export default function LanguageButton({ isActive, toggleMenu, currentLocale }: 
             >
               <IconWorld
                 size={18}
-                className={theme === 'dark' ? 'text-white' : 'text-[#333333]'}
+                className={'text-foreground'}
               />
               <span
                 className={`hidden md:inline text-base font-medium uppercase tracking-wide ${
-                  theme === 'dark' ? 'text-white' : 'text-[#333333]'
+                  'text-foreground'
                 }`}
               >
                 {displayLocale}
@@ -108,7 +108,7 @@ export default function LanguageButton({ isActive, toggleMenu, currentLocale }: 
             >
               <span
                 className={`text-base font-medium tracking-wide ${
-                  theme === 'dark' ? 'text-white' : 'text-[#333333]'
+                  'text-foreground'
                 }`}
               >
                 Close

@@ -1,0 +1,60 @@
+{
+  "title": "Curriculum Vitae",
+  "description": "Ewan Kapoor's CV — experience, skills, education and projects.",
+  "sections": {
+    "summary": "Summary",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects"
+  },
+  "actions": {
+    "downloadPdf": "Download PDF",
+    "contact": "Contact me",
+    "visit": "Visit",
+    "email": "Email"
+  },
+  "facets": {
+    "all": "All",
+    "data-eng": "Data Engineering",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "Finance",
+    "web": "Web & Product",
+    "sovereignty": "Sovereignty"
+  },
+  "labels": {
+    "languages": "Languages",
+    "availability": "Availability",
+    "filterHint": "Filter projects by focus"
+  },
+  "tailor": {
+    "title": "Tailor this CV to a role",
+    "placeholder": "Paste a role or job description...",
+    "button": "Tailor",
+    "reset": "Reset",
+    "tailoredFor": "Tailored for",
+    "whyFits": "Why this fits",
+    "disclaimer": "AI-tailored - may be imperfect",
+    "loading": "Tailoring...",
+    "unavailable": "AI tailoring unavailable right now",
+    "error": "Something went wrong. Please try again.",
+    "rateLimited": "Too many requests - please try again in a few minutes.",
+    "noMatches": "No strong matches - showing the full CV.",
+    "downloadPdf": "Download tailored PDF",
+    "generatingPdf": "Generating...",
+    "pdfFailed": "Couldn't generate the tailored PDF - downloaded the standard CV instead.",
+    "explainerLink": "How does this work?",
+    "explainerTitle": "How the tailoring works",
+    "explainerBody": "This isn't generic AI. It's an agent grounded only in Ewan's real, verified CV - his projects, experience and his own writing. It re-orders and frames what's already true to fit the role you describe; it never invents experience or skills.",
+    "pdfSteps": {
+      "reading": "Reading your CV",
+      "tailoring": "Tailoring to the role",
+      "rendering": "Rendering the PDF",
+      "finishing": "Almost ready"
+    }
+  },
+  "projectsSeeAll": "See all",
+  "projectsCollapse": "Show featured",
+  "modalClose": "Close"
+}

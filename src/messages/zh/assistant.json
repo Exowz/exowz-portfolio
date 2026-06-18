@@ -1,0 +1,23 @@
+{
+  "pillPrompts": [
+    "随便问我...",
+    "问问 Ewan...",
+    "了解我的作品...",
+    "了解 RiskLens...",
+    "了解我的原则..."
+  ],
+  "greeting": "你好。我是 Ewan 的助手。你可以问我他的工作、项目或原则。",
+  "title": "问问 Ewan",
+  "examples": [
+    "RiskLens 是什么？",
+    "Ewan 正在寻找什么？",
+    "Ewan 相信什么？"
+  ],
+  "inputPlaceholder": "输入消息...",
+  "send": "发送",
+  "close": "关闭",
+  "clear": "清空",
+  "errorGeneric": "出了点问题。请重试。",
+  "errorRateLimited": "你发送了很多消息。请几分钟后再试。",
+  "unavailable": "助手暂时不可用。"
+}

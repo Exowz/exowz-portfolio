@@ -1,0 +1,23 @@
+{
+  "pillPrompts": [
+    "Pergunte-me qualquer coisa...",
+    "Pergunte ao Ewan...",
+    "Pergunte sobre o meu trabalho...",
+    "Pergunte sobre o RiskLens...",
+    "Pergunte sobre os meus princípios..."
+  ],
+  "greeting": "Olá. Sou o assistente do Ewan. Pergunte-me sobre o seu trabalho, projetos ou princípios.",
+  "title": "Pergunte ao Ewan",
+  "examples": [
+    "O que é o RiskLens?",
+    "O que procura o Ewan?",
+    "Em que acredita o Ewan?"
+  ],
+  "inputPlaceholder": "Escreva uma mensagem...",
+  "send": "Enviar",
+  "close": "Fechar",
+  "clear": "Limpar",
+  "errorGeneric": "Algo correu mal. Tente novamente.",
+  "errorRateLimited": "Enviou muitas mensagens. Tente novamente dentro de alguns minutos.",
+  "unavailable": "O assistente está temporariamente indisponível."
+}

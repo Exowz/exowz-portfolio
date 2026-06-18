@@ -1,0 +1,26 @@
+{
+  "title": "制作说明",
+  "intro": "这个网站是一个小小的游乐场。我希望我的作品集感觉像是一个可以探索的地方，而不仅仅是一个可以滚动的页面。",
+  "sections": [
+    {
+      "heading": "理念",
+      "body": "在桌面端，它的行为就像一个操作系统，拥有菜单栏、Dock 栏和可以打开并排列的可拖动窗口。在手机上，它变成了一个手工构建的 iOS 风格外壳：包含跳板（springboard）、应用表单、手势，甚至还有一个项目文件夹。同样的内容，两个世界，每个都感觉像原生的一样。"
+    },
+    {
+      "heading": "技术栈",
+      "body": "使用 Next.js 16（App Router, Turbopack, React 19）、TypeScript 和 Tailwind CSS 构建。通过 next-intl 实现完全双语，英语和法语内容完全一致。"
+    },
+    {
+      "heading": "设计与字体",
+      "body": "动画由 Framer Motion 处理，流体背景是 three.js WebGL 效果（LiquidEther），在性能较弱的设备上或开启“减少动态效果”时会自动降级。开机问候语是用 Tegaki 手写的，项目展示使用 Embla carousel。字体结合了两种自定义展示字体 Stanley 和 TakenByVultures，以及用于 UI 和等宽字体的 Geist。"
+    },
+    {
+      "heading": "托管与隐私",
+      "body": "托管在 Vercel 上，使用轻量级、注重隐私的分析工具，没有繁重的第三方追踪。联系表单通过 React Email 模板进行服务器端验证，并通过 Resend 发送，受蜜罐和时间检查保护。虽然是件小事，但数据极简主义在这里是一项原则，而不是事后的想法。"
+    },
+    {
+      "heading": "源码",
+      "body": "没有模板，没有页面构建器，每一个窗口、手势和动画都是手工编写的。SEO 也做得非常妥当：本地化的元数据、Open Graph 图像、站点地图和 robots 文件。我很乐意讨论其中的任何细节。"
+    }
+  ]
+}

@@ -14,7 +14,10 @@ export function LayoutContent({ children }: { children: ReactNode }) {
   // Check if we're on a main windowed route
   const isMainWindowRoute = route === 'projects' ||
                             route === 'about' ||
-                            route === 'contact';
+                            route === 'contact' ||
+                            route === 'principles' ||
+                            route === 'colophon' ||
+                            route === 'settings';
 
   // Check if we're on a detail page
   const isDetailPage = route.startsWith('projects/');

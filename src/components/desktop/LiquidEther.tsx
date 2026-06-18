@@ -26,6 +26,9 @@ export interface LiquidEtherProps {
   takeoverDuration?: number;
   autoResumeDelay?: number;
   autoRampDuration?: number;
+  /** When false, skip pointer/touch listeners and let events pass through
+   *  (autoDemo still animates). Lighter — used for the mobile boot. */
+  interactive?: boolean;
 }
 
 // Type for Three.js shader uniforms
@@ -171,7 +174,8 @@ export default function LiquidEther({
   autoIntensity = 2.2,
   takeoverDuration = 0.25,
   autoResumeDelay = 1000,
-  autoRampDuration = 0.6
+  autoRampDuration = 0.6,
+  interactive = true
 }: LiquidEtherProps): React.ReactElement {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const webglRef = useRef<LiquidEtherWebGL | null>(null);
@@ -229,9 +233,9 @@ export default function LiquidEther({
       clock: THREE.Clock | null = null;
       init(container: HTMLElement) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
         this.resize();
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'low-power' });
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
         this.renderer.setPixelRatio(this.pixelRatio);
@@ -286,8 +290,11 @@ export default function LiquidEther({
       private _onMouseEnter = this.onMouseEnter.bind(this);
       private _onMouseLeave = this.onMouseLeave.bind(this);
       private _onTouchEnd = this.onTouchEnd.bind(this);
-      init(container: HTMLElement) {
+      init(container: HTMLElement, attachListeners = true) {
         this.container = container;
+        // Non-interactive (mobile boot): no pointer/touch tracking — autoDemo
+        // alone drives the fluid, so it's lighter and taps pass through.
+        if (!attachListeners) return;
         container.addEventListener('mousemove', this._onMouseMove);
         container.addEventListener('touchstart', this._onTouchStart, { passive: true });
         container.addEventListener('touchmove', this._onTouchMove, { passive: true });
@@ -1052,6 +1059,7 @@ export default function LiquidEther({
       takeoverDuration: number;
       autoResumeDelay: number;
       autoRampDuration: number;
+      interactive: boolean;
     }
 
     class WebGLManager implements LiquidEtherWebGL {
@@ -1066,7 +1074,7 @@ export default function LiquidEther({
       constructor(props: WebGLManagerProps) {
         this.props = props;
         Common.init(props.$wrapper);
-        Mouse.init(props.$wrapper);
+        Mouse.init(props.$wrapper, props.interactive);
         Mouse.autoIntensity = props.autoIntensity;
         Mouse.takeoverDuration = props.takeoverDuration;
         Mouse.onInteract = () => {
@@ -1148,7 +1156,8 @@ export default function LiquidEther({
       autoIntensity,
       takeoverDuration,
       autoResumeDelay,
-      autoRampDuration
+      autoRampDuration,
+      interactive
     });
     webglRef.current = webgl;
 
@@ -1232,7 +1241,8 @@ export default function LiquidEther({
     autoIntensity,
     takeoverDuration,
     autoResumeDelay,
-    autoRampDuration
+    autoRampDuration,
+    interactive
   ]);
 
   useEffect(() => {
@@ -1286,7 +1296,7 @@ export default function LiquidEther({
   return (
     <div
       ref={mountRef}
-      className={`w-full h-full relative overflow-hidden pointer-events-auto touch-auto ${className || ''}`}
+      className={`w-full h-full relative overflow-hidden ${interactive ? 'pointer-events-auto touch-auto' : 'pointer-events-none'} ${className || ''}`}
       style={style}
     />
   );

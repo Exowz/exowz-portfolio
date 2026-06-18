@@ -1,0 +1,15 @@
+{
+  "title": "Ajustes",
+  "intro": "Configura este pequeño sistema operativo.",
+  "description": "Los ajustes de escritorio reúnen los controles del portafolio que deben sentirse a nivel de sistema en lugar de a nivel de contenido.",
+  "appearance": "Apariencia",
+  "theme": "Tema",
+  "language": "Idioma",
+  "replayIntro": "Repetir intro",
+  "openSettings": "Abrir ajustes...",
+  "commandPalette": "Paleta de comandos",
+  "system": "Sistema",
+  "systemDescription": "Este portafolio está construido intencionalmente como un entorno de escritorio y móvil: localizado, respetuoso con la privacidad y diseñado en torno a interacciones con sensación nativa.",
+  "colophon": "Colofón",
+  "principles": "Principios"
+}

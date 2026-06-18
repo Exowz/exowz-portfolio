@@ -1,0 +1,15 @@
+{
+  "title": "Impostazioni",
+  "intro": "Configura questo piccolo sistema operativo.",
+  "description": "Le impostazioni desktop raccolgono i controlli del portfolio che dovrebbero sembrare a livello di sistema piuttosto che di contenuto.",
+  "appearance": "Aspetto",
+  "theme": "Tema",
+  "language": "Lingua",
+  "replayIntro": "Riproduci intro",
+  "openSettings": "Apri Impostazioni...",
+  "commandPalette": "Tavolozza dei comandi",
+  "system": "Sistema",
+  "systemDescription": "Questo portfolio è intenzionalmente costruito come una shell desktop e mobile: localizzato, attento alla privacy e progettato attorno a interazioni dal feeling nativo.",
+  "colophon": "Colophon",
+  "principles": "Principi"
+}

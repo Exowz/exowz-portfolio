@@ -1,0 +1,15 @@
+{
+  "title": "설정",
+  "intro": "이 작은 운영 체제를 구성합니다.",
+  "description": "데스크톱 설정은 콘텐츠 수준보다는 시스템 수준으로 느껴져야 하는 포트폴리오 제어 요소들을 모아둡니다.",
+  "appearance": "모양",
+  "theme": "테마",
+  "language": "언어",
+  "replayIntro": "인트로 재생",
+  "openSettings": "설정 열기...",
+  "commandPalette": "커맨드 팔레트",
+  "system": "시스템",
+  "systemDescription": "이 포트폴리오는 의도적으로 데스크톱 및 모바일 쉘로 구축되었습니다: 다국어 지원, 개인 정보 보호 중심, 네이티브 느낌의 상호작용을 위해 설계되었습니다.",
+  "colophon": "제작 정보",
+  "principles": "원칙"
+}

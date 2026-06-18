@@ -6,7 +6,7 @@ import { IconX, IconMinus, IconMaximize } from '@tabler/icons-react';
 import { useWindowManager } from './WindowManager';
 
 type WindowProps = {
-  id: 'projects' | 'about' | 'contact';
+  id: 'projects' | 'about' | 'contact' | 'principles' | 'colophon' | 'settings' | 'cv';
   title: string;
   icon: ReactNode;
   children: ReactNode;
@@ -83,8 +83,18 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
           borderColor: 'var(--window-border)',
         }}
       >
-        {/* Traffic Lights (macOS style) */}
-        <div className="flex items-center gap-2">
+        {/* Mobile: single clear, always-visible close (touch-friendly) */}
+        <button
+          onClick={handleClose}
+          className="flex md:hidden w-7 h-7 rounded-full items-center justify-center transition-transform hover:scale-110 active:scale-95"
+          style={{ background: 'var(--window-close-btn)' }}
+          aria-label="Close"
+        >
+          <IconX className="w-4 h-4" style={{ color: 'var(--window-btn-icon)' }} />
+        </button>
+
+        {/* Traffic Lights (macOS style) — desktop only */}
+        <div className="hidden md:flex items-center gap-2">
           <button
             onClick={handleClose}
             className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
@@ -130,7 +140,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
           <div
             className="w-4 h-4"
-            style={{ color: 'var(--accent)' }}
+            style={{ color: 'var(--accent-text)' }}
           >
             {icon}
           </div>
@@ -164,12 +174,12 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
           background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: var(--accent);
+          background: var(--accent-text);
           border-radius: 4px;
           opacity: 0.5;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: var(--accent);
+          background: var(--accent-text);
           opacity: 0.8;
         }
       `}</style>

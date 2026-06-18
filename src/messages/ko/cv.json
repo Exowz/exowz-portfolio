@@ -1,0 +1,60 @@
+{
+  "title": "이력서",
+  "description": "Ewan Kapoor의 이력서 — 경험, 기술, 교육 및 프로젝트.",
+  "sections": {
+    "summary": "요약",
+    "skills": "기술",
+    "experience": "경험",
+    "education": "교육",
+    "projects": "프로젝트"
+  },
+  "actions": {
+    "downloadPdf": "PDF 다운로드",
+    "contact": "연락하기",
+    "visit": "방문",
+    "email": "이메일"
+  },
+  "facets": {
+    "all": "전체",
+    "data-eng": "데이터 엔지니어링",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "금융",
+    "web": "Web & 제품",
+    "sovereignty": "주권"
+  },
+  "labels": {
+    "languages": "언어",
+    "availability": "가능 여부",
+    "filterHint": "초점별 프로젝트 필터"
+  },
+  "tailor": {
+    "title": "이 CV를 직무에 맞게 조정",
+    "placeholder": "직무명 또는 채용 공고를 붙여넣기...",
+    "button": "조정",
+    "reset": "초기화",
+    "tailoredFor": "맞춤 대상",
+    "whyFits": "적합한 이유",
+    "disclaimer": "AI 맞춤 - 부정확할 수 있음",
+    "loading": "조정 중...",
+    "unavailable": "AI 맞춤 기능을 지금 사용할 수 없습니다",
+    "error": "문제가 발생했습니다. 다시 시도하세요.",
+    "rateLimited": "요청이 너무 많습니다 - 몇 분 후 다시 시도하세요.",
+    "noMatches": "강한 일치 항목 없음 - 전체 CV를 표시합니다.",
+    "downloadPdf": "맞춤 CV 다운로드",
+    "generatingPdf": "생성 중...",
+    "pdfFailed": "맞춤 CV를 생성하지 못해 기본 CV를 다운로드했습니다.",
+    "explainerLink": "어떻게 작동하나요?",
+    "explainerTitle": "맞춤 조정 방식",
+    "explainerBody": "이것은 일반적인 AI가 아닙니다. Ewan의 실제 검증된 CV, 즉 프로젝트, 경험, 본인이 쓴 글에만 기반한 에이전트입니다. 설명한 직무에 맞게 이미 사실인 내용을 재정렬하고 표현할 뿐, 경험이나 기술을 절대 만들어내지 않습니다.",
+    "pdfSteps": {
+      "reading": "이력서를 읽는 중",
+      "tailoring": "직무에 맞춰 조정 중",
+      "rendering": "PDF 생성 중",
+      "finishing": "거의 완료"
+    }
+  },
+  "projectsSeeAll": "전체 보기",
+  "projectsCollapse": "주요 항목 보기",
+  "modalClose": "닫기"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Principi",
+  "intro": "Alcune convinzioni che danno forma a come costruisco, e perché.",
+  "items": [
+    {
+      "title": "Utile e bello",
+      "body": "Sono un ammiratore di lunga data di Apple: la tecnologia deve essere potente e un piacere da usare, mai l'una a scapito dell'altra. Mi dedico ai minimi dettagli di ogni progetto (il movimento, il testo, gli stati vuoti), perché quell'artigianalità è ciò che trasforma uno strumento in un prodotto."
+    },
+    {
+      "title": "Sovranità digitale europea",
+      "body": "Quando la maggior parte del cloud risiede in una manciata di provider statunitensi e un singolo aggiornamento di Windows può bloccare gli aeroporti, questo è un vero problema per la nostra indipendenza. Voglio aiutare l'Europa a costruire la propria infrastruttura di dati e IA; è il filo conduttore di tutto ciò che studio."
+    },
+    {
+      "title": "Sii padrone dei tuoi dati",
+      "body": "I dati sono l'oro di questo secolo e non dovrebbero essere raccolti silenziosamente per impostazione predefinita. Costruisco pensando alla privacy: tracciamento minimo, uno scopo chiaro, hosting rispettoso dell'UE. I tuoi dati dovrebbero lavorare per te, non contro di te."
+    },
+    {
+      "title": "Costruire end-to-end",
+      "body": "Mi piace curare un progetto dal primo schizzo alla produzione: dati, backend, frontend, distribuzione. Comprendere l'intera catena è il modo in cui imparo più velocemente e come realizzo cose che stanno davvero insieme."
+    },
+    {
+      "title": "Sempre imparando",
+      "body": "Sono arrivato all'informatica per la strada più lunga, e questo mi ha insegnato che la curiosità batte i titoli di studio. Sono autodidatta in molte cose, chitarra inclusa, e tratto ogni progetto come una scusa per imparare bene una cosa nuova."
+    }
+  ]
+}

@@ -2,37 +2,47 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { FloatingDock, DockItem } from "@/components/ui/floating-dock";
-import { IconHome, IconFolder, IconUser, IconMail, IconFileText, IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  IconHome,
+  IconFolder,
+  IconUser,
+  IconMail,
+  IconFileText,
+  IconBrandGithub,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 
 export function Dock() {
   const params = useParams();
   const locale = params.locale as string;
+  const t = useTranslations("nav");
 
   const links: DockItem[] = [
     {
-      title: "Home",
+      title: t("home"),
       icon: (
         <IconHome className="h-full w-full" />
       ),
       href: `/${locale}`,
     },
     {
-      title: "Projects",
+      title: t("projects"),
       icon: (
         <IconFolder className="h-full w-full" />
       ),
       href: `/${locale}/projects`,
     },
     {
-      title: "About",
+      title: t("about"),
       icon: (
         <IconUser className="h-full w-full" />
       ),
       href: `/${locale}/about`,
     },
     {
-      title: "Contact",
+      title: t("contact"),
       icon: (
         <IconMail className="h-full w-full" />
       ),
@@ -46,11 +56,11 @@ export function Dock() {
       isDivider: true,
     },
     {
-      title: "Resume",
+      title: t("resume"),
       icon: (
         <IconFileText className="h-full w-full" />
       ),
-      href: `/resume-${locale}.pdf`,
+      href: `/${locale}/cv`,
     },
     {
       title: "GitHub",
@@ -69,8 +79,8 @@ export function Dock() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex items-center justify-center pb-4 z-50">
-      <FloatingDock items={links} />
+    <div className="fixed bottom-0 left-0 right-0 hidden md:flex items-center justify-center pb-4 z-50">
+      <FloatingDock items={links} mobileToggleLabel={t("menu")} />
     </div>
   );
 }

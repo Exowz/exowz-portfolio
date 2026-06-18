@@ -1,210 +1,78 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
-import { Link } from '@/i18n/routing';
-import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react';
-
-// Project slugs and metadata
-const projects = [
-  {
-    slug: 'blue-gold-analytics',
-    key: 'blue-gold-analytics',
-    tags: ['Python', 'R', 'Streamlit', 'Shiny', 'Plotly', 'Data Visualization'],
-    github: 'https://github.com/Exowz/blue-gold-analytics',
-    demo: null
-  },
-  {
-    slug: 'purecontrol-ml-technical-test',
-    key: 'purecontrol-ml-technical-test',
-    tags: ['Python', 'XGBoost', 'Pandas', 'Machine Learning', 'Control Systems'],
-    github: 'https://github.com/Exowz/purecontrol-ml-technical-test',
-    demo: null
-  },
-  {
-    slug: 'cancer-research-analytics',
-    key: 'Cancer',
-    tags: ['Python', 'Pandas', 'Streamlit', 'Plotly', 'PostgreSQL', 'Selenium'],
-    github: 'https://github.com/Le-skal/Cancer',
-    demo: null
-  },
-  {
-    slug: 'reviewai-platform',
-    key: 'reviewai-platform',
-    tags: ['Vue.js 3', 'Laravel 12', 'TypeScript', 'Mistral AI', 'Tailwind CSS'],
-    github: 'https://github.com/Exowz/reviewai-platform',
-    demo: null
-  },
-  {
-    slug: 'ascord-appwrite',
-    key: 'ascord-appwrite',
-    tags: ['Next.js 14', 'TypeScript', 'Appwrite', 'Tailwind CSS', 'Real-time'],
-    github: 'https://github.com/Exowz/ascord-appwrite',
-    demo: null
-  },
-  {
-    slug: 'shiatsu-guyane',
-    key: 'shiatsuGuyane',
-    tags: ['Next.js 15', 'TypeScript', 'React', 'Tailwind CSS', 'Vercel'],
-    github: 'https://github.com/Exowz/shiatsu-guyane',
-    demo: 'https://www.shiatsu-guyane.com/fr'
-  },
-  {
-    slug: 'portfolio-projects-ai',
-    key: 'portfolio-projects-ai',
-    tags: ['Python', 'RAG', 'LangChain', 'ChromaDB', 'Gemini API', 'AI/ML'],
-    github: 'https://github.com/Exowz/portfolio-projects-ai',
-    demo: null
-  },
-  {
-    slug: 'wine-cultivar-classification',
-    key: 'wine-cultivar-classification',
-    tags: ['Python', 'Machine Learning', 'Scikit-learn', 'Data Analysis', 'Classification'],
-    github: 'https://github.com/Exowz/wine-cultivar-classification',
-    demo: null
-  },
-  {
-    slug: 'b2javaece',
-    key: 'B2javaECE',
-    tags: ['Java', 'OOP', 'JDBC', 'JUnit', 'Maven'],
-    github: 'https://github.com/Exowz/B2javaECE',
-    demo: null
-  },
-  {
-    slug: 'rib',
-    key: 'RIB',
-    tags: ['Python', 'Tkinter', 'API Integration', 'Financial Algorithms'],
-    github: 'https://github.com/Exowz/RIB',
-    demo: null
-  },
-  {
-    slug: 'dna',
-    key: 'DNA',
-    tags: ['Python', 'Bioinformatics', 'Matplotlib', 'Tkinter', 'Data Analysis'],
-    github: 'https://github.com/Exowz/DNA',
-    demo: null
-  },
-  {
-    slug: 'mots-fleches',
-    key: 'mots-fleches',
-    tags: ['C', 'Algorithms', 'Console Application', 'Academic Project'],
-    github: 'https://github.com/Exowz/mots-fleches',
-    demo: null
-  },
-  {
-    slug: 'scraping',
-    key: 'Scraping',
-    tags: ['Python', 'Web Scraping', 'BeautifulSoup', 'Automation'],
-    github: 'https://github.com/Exowz/Scraping',
-    demo: null
-  },
-  {
-    slug: 'trip-hackathon',
-    key: 'TripHackathon',
-    tags: ['Hackathon', 'Team Project', 'Innovation', 'Travel Tech'],
-    github: null,
-    demo: null
-  }
-];
+import { IconStarFilled } from '@tabler/icons-react';
+import { projects, type CvFacet } from '@/data/projects';
+import { filterProjects } from '@/lib/projects/gallery';
+import { FacetFilter } from './cv/FacetFilter';
+import { ProjectCard } from './projects/ProjectCard';
 
 export function ProjectsWindow() {
   const t = useTranslations('pages.projects');
-  const tProjects = useTranslations('projects');
+  const [facet, setFacet] = useState<CvFacet | null>(null);
+
+  const filtered = filterProjects(projects, facet);
+  // When unfiltered, surface featured projects in their own strip; once a facet is
+  // chosen the filter is global, so everything collapses into one grid.
+  const featured = facet === null ? filtered.filter((p) => p.featured) : [];
+  const rest = facet === null ? filtered.filter((p) => !p.featured) : filtered;
+
+  const heading = (text: string, icon?: React.ReactNode) => (
+    <div className="mb-4 flex items-center gap-2">
+      {icon}
+      <h2 className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: 'var(--accent-text)' }}>
+        {text}
+      </h2>
+    </div>
+  );
+
+  const grid = (list: typeof projects, featuredCards: boolean) => (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {list.map((project, index) => (
+        <motion.div
+          key={project.slug}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: Math.min(index, 8) * 0.04 }}
+        >
+          <ProjectCard project={project} featured={featuredCards && project.featured} />
+        </motion.div>
+      ))}
+    </div>
+  );
 
   return (
-    <div className="p-6 md:p-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto"
-      >
-        <div className="space-y-8">
-          <div>
-            <p className="text-lg md:text-xl text-foreground/80">
-              {t('description')}
-            </p>
-          </div>
+    <div className="p-5 md:p-10">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <header className="space-y-5">
+          <p className="text-base md:text-lg" style={{ color: 'var(--text-secondary)' }}>
+            {t('description')}
+          </p>
+          <FacetFilter active={facet} onChange={setFacet} />
+        </header>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="group rounded-lg border border-accent/20 bg-card/80 backdrop-blur-sm overflow-hidden hover:shadow-xl hover:shadow-accent/20 hover:border-accent/40 transition-all">
-                  {/* Project Image - Clickable to detail page */}
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="flex aspect-video bg-gradient-to-br from-accent/10 to-accent/5 items-center justify-center"
-                  >
-                    <div className="text-4xl font-bold text-muted-foreground/30">
-                      {tProjects(`${project.key}.title`).charAt(0)}
-                    </div>
-                  </Link>
+        {featured.length > 0 && (
+          <section>
+            {heading(t('featured'), <IconStarFilled className="h-3.5 w-3.5" style={{ color: 'var(--accent-text)' }} />)}
+            {grid(featured, true)}
+          </section>
+        )}
 
-                  {/* Project Info */}
-                  <div className="p-6 space-y-4">
-                    <div>
-                      <Link href={`/projects/${project.slug}`}>
-                        <h2 className="text-2xl font-semibold mb-2 text-foreground group-hover:text-foreground/80 transition-colors">
-                          {tProjects(`${project.key}.title`)}
-                        </h2>
-                      </Link>
-                      <p className="text-muted-foreground line-clamp-2">
-                        {tProjects(`${project.key}.description`)}
-                      </p>
-                    </div>
+        {rest.length > 0 && (
+          <section>
+            {featured.length > 0 && heading(t('allProjects'))}
+            {grid(rest, false)}
+          </section>
+        )}
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 text-xs rounded-full bg-background text-foreground border border-accent/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Links - Separate anchors, not nested */}
-                    <div className="flex gap-3 pt-2">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-foreground hover:text-foreground/70 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <IconBrandGithub className="w-4 h-4" />
-                          {tProjects('viewCode')}
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-foreground hover:text-foreground/70 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <IconExternalLink className="w-4 h-4" />
-                          {tProjects('liveDemo')}
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+        {filtered.length === 0 && (
+          <p className="py-12 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>
+            {t('empty')}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

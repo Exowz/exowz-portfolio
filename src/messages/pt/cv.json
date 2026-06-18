@@ -1,0 +1,60 @@
+{
+  "title": "Curriculum Vitae",
+  "description": "O CV de Ewan Kapoor — experiência, competências, formação e projetos.",
+  "sections": {
+    "summary": "Resumo",
+    "skills": "Competências",
+    "experience": "Experiência",
+    "education": "Formação",
+    "projects": "Projetos"
+  },
+  "actions": {
+    "downloadPdf": "Transferir PDF",
+    "contact": "Contactar-me",
+    "visit": "Visitar",
+    "email": "Email"
+  },
+  "facets": {
+    "all": "Todos",
+    "data-eng": "Engenharia de dados",
+    "ml": "Machine Learning",
+    "ai-rag": "IA / RAG",
+    "finance": "Finanças",
+    "web": "Web e produto",
+    "sovereignty": "Soberania"
+  },
+  "labels": {
+    "languages": "Idiomas",
+    "availability": "Disponibilidade",
+    "filterHint": "Filtrar projetos por foco"
+  },
+  "tailor": {
+    "title": "Adaptar este CV a uma função",
+    "placeholder": "Cole uma função ou descrição da vaga...",
+    "button": "Adaptar",
+    "reset": "Repor",
+    "tailoredFor": "Adaptado para",
+    "whyFits": "Porque se encaixa",
+    "disclaimer": "Adaptado por IA - pode conter imprecisões",
+    "loading": "A adaptar...",
+    "unavailable": "A adaptação por IA está indisponível agora",
+    "error": "Algo correu mal. Tente novamente.",
+    "rateLimited": "Demasiados pedidos - tente novamente em alguns minutos.",
+    "noMatches": "Sem correspondências fortes - a mostrar o CV completo.",
+    "downloadPdf": "Baixar CV adaptado",
+    "generatingPdf": "A gerar...",
+    "pdfFailed": "Não foi possível gerar o CV adaptado - o CV padrão foi baixado.",
+    "explainerLink": "Como funciona?",
+    "explainerTitle": "Como funciona a adaptação",
+    "explainerBody": "Não é IA genérica. É um agente baseado apenas no CV real e verificado de Ewan: os seus projetos, experiência e os seus próprios textos. Reordena e enquadra o que já é verdadeiro para se ajustar à função descrita; nunca inventa experiência nem competências.",
+    "pdfSteps": {
+      "reading": "Lendo o seu CV",
+      "tailoring": "Adaptando à vaga",
+      "rendering": "Gerando o PDF",
+      "finishing": "Quase pronto"
+    }
+  },
+  "projectsSeeAll": "Ver tudo",
+  "projectsCollapse": "Mostrar destaques",
+  "modalClose": "Fechar"
+}

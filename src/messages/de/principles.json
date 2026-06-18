@@ -1,0 +1,26 @@
+{
+  "title": "Prinzipien",
+  "intro": "Ein paar Überzeugungen, die prägen, wie und warum ich baue.",
+  "items": [
+    {
+      "title": "Nützlich und schön",
+      "body": "Ich bin ein langjähriger Bewunderer von Apple: Technologie sollte leistungsstark sein und Freude bei der Benutzung bereiten, niemals das eine auf Kosten des anderen. Ich achte auf die kleinen Details jedes Projekts (die Bewegung, die Wortwahl, die leeren Zustände), denn dieses Handwerk ist es, was ein Werkzeug in ein Produkt verwandelt."
+    },
+    {
+      "title": "Europäische digitale Souveränität",
+      "body": "Wenn der Großteil der Cloud bei einer Handvoll US-Anbieter liegt und ein einziges Windows-Update Flughäfen lahmlegen kann, ist das ein echtes Problem für unsere Unabhängigkeit. Ich möchte Europa dabei helfen, seine eigene Daten- und KI-Infrastruktur aufzubauen; das ist der rote Faden in allem, was ich studiere."
+    },
+    {
+      "title": "Eigentum an Ihren Daten",
+      "body": "Daten sind das Gold dieses Jahrhunderts und sollten nicht standardmäßig stillschweigend geerntet werden. Ich baue mit Blick auf den Datenschutz: minimales Tracking, ein klarer Zweck, EU-freundliches Hosting. Ihre Daten sollten für Sie arbeiten, nicht gegen Sie."
+    },
+    {
+      "title": "End-to-End bauen",
+      "body": "Ich liebe es, ein Projekt von der ersten Skizze bis zur Produktion zu begleiten: Daten, Backend, Frontend, Deployment. Die gesamte Kette zu verstehen, ist der Weg, wie ich am schnellsten lerne und Dinge ausliefere, die wirklich zusammenhalten."
+    },
+    {
+      "title": "Immer lernen",
+      "body": "Ich bin über Umwege zur Informatik gekommen, und das hat mich gelehrt, dass Neugier wichtiger ist als Zeugnisse. Ich habe mir viele Dinge selbst beigebracht, auch Gitarre, und ich betrachte jedes Projekt als Vorwand, um eine neue Sache richtig zu lernen."
+    }
+  ]
+}

@@ -2,14 +2,18 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { SITE_NAME, SITE_URL, OG_LOCALE, buildAlternates, buildOgImageUrl } from '@/lib/seo';
 import { ThemeProvider } from '@/components/theme-provider';
 import { PageTransition } from '@/components/transitions/PageTransition';
 import { Dock } from '@/components/dock/Dock';
+import { MobileShell } from '@/components/mobile/MobileShell';
+import { MobileAppSheet } from '@/components/mobile/MobileAppSheet';
 import { Header } from '@/components/header/Header';
 import { WindowManagerProvider } from '@/components/desktop/WindowManager';
+import { CommandPaletteProvider } from '@/components/command/CommandPaletteProvider';
 import { LayoutContent } from '@/components/layout/LayoutContent';
 import BootWrapper from '@/components/boot/BootWrapper';
 import { Analytics } from '@vercel/analytics/react';
@@ -30,10 +34,36 @@ const stanley = localFont({
   variable: "--font-stanley",
 });
 
-export const metadata: Metadata = {
-  title: "Exowz - Portfolio",
-  description: "Portfolio of Exowz - Developer passionate about Data, AI, and web experiences",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+  const title = t('siteTitle');
+  const description = t('siteDescription');
+
+  return {
+    title: { default: title, template: `%s · ${SITE_NAME}` },
+    description,
+    alternates: buildAlternates(locale, ''),
+    openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
+      locale: OG_LOCALE[locale] ?? OG_LOCALE[routing.defaultLocale],
+      url: `${SITE_URL}/${locale}`,
+      title,
+      description,
+      images: [buildOgImageUrl({ title: SITE_NAME, subtitle: description })],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -49,9 +79,12 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as 'en-GB' | 'fr')) {
+  if (!(routing.locales as readonly string[]).includes(locale)) {
     notFound();
   }
+
+  // Enable static rendering (must be called before getMessages/getTranslations).
+  setRequestLocale(locale);
 
   // Providing all messages to the client
   // side is the easiest way to get started
@@ -69,13 +102,17 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <BootWrapper>
-              <WindowManagerProvider>
-                <Header />
-                <PageTransition>
-                  <LayoutContent>{children}</LayoutContent>
-                </PageTransition>
-                <Dock />
-              </WindowManagerProvider>
+              <CommandPaletteProvider>
+                <WindowManagerProvider>
+                  <Header />
+                  <PageTransition>
+                    <LayoutContent>{children}</LayoutContent>
+                  </PageTransition>
+                  <Dock />
+                  <MobileShell />
+                  <MobileAppSheet />
+                </WindowManagerProvider>
+              </CommandPaletteProvider>
             </BootWrapper>
           </NextIntlClientProvider>
         </ThemeProvider>

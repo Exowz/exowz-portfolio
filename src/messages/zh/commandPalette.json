@@ -1,0 +1,10 @@
+{
+  "title": "命令面板",
+  "placeholder": "搜索命令、项目和页面...",
+  "empty": "未找到结果。",
+  "navigation": "导航",
+  "projects": "项目",
+  "actions": "操作",
+  "language": "语言",
+  "toggleTheme": "切换主题"
+}

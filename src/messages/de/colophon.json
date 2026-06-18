@@ -1,0 +1,26 @@
+{
+  "title": "Kolophon",
+  "intro": "Diese Seite ist ein kleiner Spielplatz. Ich wollte, dass sich mein Portfolio wie ein Ort anfühlt, den man erkundet, und nicht wie eine Seite, durch die man scrollt.",
+  "sections": [
+    {
+      "heading": "Konzept",
+      "body": "Auf dem Desktop verhält es sich wie ein Betriebssystem: eine Menüleiste, ein Dock und verschiebbare Fenster, die man öffnen und anordnen kann. Auf dem Handy wird es zu einer handgefertigten Shell im iOS-Stil: ein Springboard, App-Sheets, Gesten und sogar ein Projektordner. Derselbe Inhalt, zwei Welten, die sich jeweils nativ anfühlen."
+    },
+    {
+      "heading": "Stack",
+      "body": "Gebaut mit Next.js 16 (App Router, Turbopack, React 19), TypeScript und Tailwind CSS. Dank next-intl ist es vollständig zweisprachig mit identischen Inhalten in Englisch und Französisch."
+    },
+    {
+      "heading": "Design & Typografie",
+      "body": "Animationen werden mit Framer Motion gesteuert, und der flüssige Hintergrund ist ein three.js WebGL-Effekt (LiquidEther), der auf schwächeren Geräten oder bei aktivierter Option 'reduzierte Bewegung' elegant herunterskaliert. Der Boot-Gruß ist mit Tegaki handgeschrieben, und die Projekte laufen durch ein Embla-Karussell. Die Typografie kombiniert zwei spezielle Display-Schriften, Stanley und TakenByVultures, mit Geist für die Benutzeroberfläche und Mono."
+    },
+    {
+      "heading": "Hosting & Datenschutz",
+      "body": "Gehostet auf Vercel mit leichtgewichtigen, datenschutzfreundlichen Analysen, ohne schweres Drittanbieter-Tracking. Das Kontaktformular wird serverseitig mit React-Email-Templates validiert und über Resend versendet, geschützt durch einen Honeypot und Timing-Checks. Eine Kleinigkeit, aber Datenminimalismus ist hier ein Prinzip, kein nachträglicher Gedanke."
+    },
+    {
+      "heading": "Quelle",
+      "body": "Keine Vorlagen und keine Page-Builder, jedes Fenster, jede Geste und jede Animation ist handcodiert. Auch die SEO wurde ordnungsgemäß umgesetzt: lokalisierte Metadaten, Open-Graph-Bilder, eine Sitemap und Robots. Gerne können wir über jedes Detail sprechen."
+    }
+  ]
+}

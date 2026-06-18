@@ -1,0 +1,26 @@
+{
+  "title": "Colophon",
+  "intro": "Questo sito è un piccolo campo di gioco. Volevo che il mio portfolio sembrasse un luogo da esplorare, non una pagina da scorrere.",
+  "sections": [
+    {
+      "heading": "Concept",
+      "body": "Su desktop si comporta come un sistema operativo: una barra dei menu, un dock e finestre trascinabili che puoi aprire e disporre. Sui telefoni diventa una shell in stile iOS costruita a mano: uno springboard, fogli di app, gesti e persino una cartella Progetti. Stesso contenuto, due mondi che sembrano entrambi nativi."
+    },
+    {
+      "heading": "Stack",
+      "body": "Costruito con Next.js 16 (App Router, Turbopack, React 19), TypeScript e Tailwind CSS. È completamente bilingue tramite next-intl, con contenuti identici in inglese e francese."
+    },
+    {
+      "heading": "Design e tipografia",
+      "body": "Il movimento è gestito con Framer Motion e lo sfondo fluido è un effetto WebGL di three.js (LiquidEther) che si adatta con grazia ai dispositivi meno potenti o quando la riduzione del movimento è attiva. Il saluto di avvio è scritto a mano con Tegaki e i progetti scorrono attraverso un carosello Embla. La tipografia accosta due caratteri display personalizzati, Stanley e TakenByVultures, con Geist per l'interfaccia utente e i caratteri monospazio."
+    },
+    {
+      "heading": "Hosting e privacy",
+      "body": "Ospitato su Vercel con analisi leggere e rispettose della privacy, senza tracciamento invasivo di terze parti. Il modulo di contatto è validato sul server con modelli React Email e inviato tramite Resend, protetto da un honeypot e controlli temporali. Una piccola cosa, ma il minimalismo dei dati è un principio qui, non un'aggiunta tardiva."
+    },
+    {
+      "heading": "Sorgente",
+      "body": "Niente template o page builder, ogni finestra, gesto e animazione è codificato a mano. Anche la SEO è fatta a regola d'arte: metadati localizzati, immagini Open Graph, sitemap e robots. Sarò lieto di discuterne con te."
+    }
+  ]
+}

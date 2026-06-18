@@ -1,0 +1,1445 @@
+{
+  "risk-lens": {
+    "title": "RiskLens",
+    "description": "通过量化模型和人工智能揭开机构投资组合风险分析的神秘面纱。",
+    "metadata": {
+      "role": "数据工程师与全栈 AI 开发人员",
+      "category": "金融科技、量化金融、数据工程",
+      "timeline": "2026年3月",
+      "liveUrl": "null",
+      "githubUrl": "https://github.com/Exowz/risk-lens"
+    },
+    "overview": "RiskLens 是一个先进的风险管理平台，旨在为零售投资者简化复杂的机构分析。作为 ECE Paris 的毕业设计项目，它结合了 Python 分析核心与尖端的 Next.js 前端，弥合了原始金融指标与可操作见解之间的差距。",
+    "challenge": {
+      "problem": "零售投资者缺乏分析多资产相关性的专业级工具。风险价值 (VaR)、资产协方差和现代投资组合理论等关键指标往往被锁定在复杂的平台或学术代码库之后。",
+      "goal": "构建一个直观的网络应用程序，提供交互式马科维茨有效边界绘图、历史危机压力测试以及结构化的人工智能生成的投资组合健康报告。",
+      "constraints": "管理来自动态 Yahoo Finance API 调用的高延迟，处理 Python 和 TypeScript 之间的多维矩阵传输，并保持流畅的状态持久化。"
+    },
+    "discovery": {
+      "requirements": "确定了两种用户角色：需要简单风险评估的初学者和需要原始协方差矩阵的量化分析师。这直接促成了可切换的初学者/专家 UI 模式。",
+      "competitiveAnalysis": "传统的零售经纪商只显示简单的历史图表，未能展示资产在系统性市场中断期间如何共同表现，凸显了对交互式零售相关性工具的明确需求。",
+      "technicalResearch": "选择 Python 进行计算（由于 PyPortfolioOpt 和 NumPy），利用 PostgreSQL JSONB 缓存以最小化数据库操作开销，并选择 Mistral AI 进行高性能的双语合成。"
+    },
+    "architecture": {
+      "informationArchitecture": "采用解耦的微服务架构，将用于分析处理的 Python FastAPI 后端与用于用户会话管理和可视化的 Next.js 15+ 前端分离。",
+      "technicalDecisions": "在 PostgreSQL 中实现了 SHA-256 计算缓存，以绕过第三方频率限制。使用 Zustand 进行轻量级前端状态管理，使用 TanStack Query v5 进行无缝的异步服务器同步。"
+    },
+    "developmentProcess": {
+      "phase1": "使用 Docker Compose 编排 PostgreSQL 和后端环境，配置 FastAPI 端点，并建立 BetterAuth 数据库迁移。",
+      "phase2": "开发了 PyPortfolioOpt 核心数学引擎，构建了历史回撤模拟例程，并为本地化财务报告实施了结构化的 Mistral AI 提示词。",
+      "phase3": "使用 next-intl 进行本地化设计了 Next.js 15 客户端，构建了交互式 Recharts 散点图，并添加了精致的 Framer Motion 过渡效果。"
+    },
+    "keyFeatures": [
+      {
+        "title": "量化马科维茨优化引擎",
+        "description": "基于现代投资组合理论计算最佳投资组合资产权重。",
+        "implementation": "使用 PyPortfolioOpt 生成预期的历史收益和协方差矩阵，渲染最大夏普比率并通过 Recharts 绘制有效边界曲线。",
+        "challenges": "确保数学求解器正确收敛，并始终返回总和为 1.0 的有效权重。"
+      },
+      {
+        "title": "历史压力测试引擎",
+        "description": "模拟投资组合在重大历史经济危机中的表现。",
+        "implementation": "在特定的历史日期窗口（如 2008 年全球金融危机、2020 年新冠疫情）内重新运行标准化投资组合收益，以计算最大回撤和恢复指标。",
+        "challenges": "在数据点稀疏或资产在选定的历史窗口期内不存在的情况下，可靠地汇总历史资产价格。"
+      },
+      {
+        "title": "人工智能驱动的叙事解释器",
+        "description": "将复杂的统计指标翻译成结构化的自然语言投资组合报告。",
+        "implementation": "将确定性的量化计算注入结构化的 Mistral AI 提示词中，生成为初学者或专家用户量身定制的精确双语执行摘要。",
+        "challenges": "通过在将结果解析到 LLM 上下文之前在 Python 中确定性地执行所有数学运算，消除大语言模型的数值幻觉。"
+      }
+    ],
+    "testing": "执行了 pytest 验证，以确保数学引擎输出的一致性并检查资产权重总和。针对无效的股票代码和寿命短的 IPO 资产实施了 API 降级例程。进行了可用性测试，以优化初学者到专家界面切换的响应能力。",
+    "results": {
+      "technicalAchievements": "使用本地化 PostgreSQL 缓存将资产分析渲染时间从 3.4 秒缩短至 180 毫秒。实现了零延迟的 UI 更新以及 FastAPI 和 Next.js 之间 100% 类型安全的集成桥接。",
+      "businessImpact": "成功地使复杂的投资组合相关性指标对没有数学背景的零售投资者变得易于理解、可交互且具有操作性。",
+      "personalGrowth": "深化了在量化金融数学、解耦 API 结构和防御性提示工程方面的知识，以将数值数据集转化为自然语言。"
+    },
+    "techStack": {
+      "frontend": "Next.js 15+, TypeScript, Tailwind CSS, Zustand, Recharts, Framer Motion",
+      "backend": "Python 3.12, FastAPI, PostgreSQL 16, Docker Compose",
+      "tools": "Git, Docker, BetterAuth, TanStack Query v5",
+      "libraries": "PyPortfolioOpt, Pandas, NumPy, yfinance, Mistral AI SDK, next-intl"
+    },
+    "learnings": [
+      "缓存动态股市 API 响应对于确保亚秒级响应时间和防止频率限制至关重要。",
+      "确定性数学必须始终与生成式 AI 隔离，以消除幻觉向量。",
+      "弥补执行差距需要将枯燥、学术的量化输出转化为适应性的、用户友好的 UI 设计。",
+      "后端模式和前端界面之间的严格类型安全显著减少了运行时集成错误。"
+    ],
+    "futureEnhancements": [
+      "集成 Plaid 和经纪商 API，以自动导入用户的投资组合持仓。",
+      "集成 Black-Litterman 模型，将主观市场观点与历史分配相结合。",
+      "执行 10,000 多个随机预测场景的随机蒙特卡洛模拟引擎。",
+      "自动漂移警报，在当前投资组合偏离目标风险状况时通知用户。",
+      "支持扩展的资产类别，包括大宗商品、全球货币和主流加密货币。"
+    ],
+    "conclusion": "RiskLens 展示了现代网络架构和生成式人工智能如何实现机构财富管理的民主化。通过将量化 Python 计算与 Next.js 和结构化大语言模型相结合，它将令人生畏的投资组合数学转化为清晰、可操作的智能信息。"
+  },
+  "ThoraxAI": {
+    "title": "ThoraxAI",
+    "description": "用于高精度胸部 X 线分类的可解释深度学习流水线。",
+    "metadata": {
+      "role": "首席机器学习工程师与深度学习开发人员",
+      "category": "计算机视觉、医学成像、可解释人工智能 (XAI)",
+      "timeline": "2026年3月",
+      "liveUrl": "https://thoraxai-exowz.streamlit.app",
+      "githubUrl": "https://github.com/Exowz/ThoraxAI"
+    },
+    "overview": "ThoraxAI 是一个端到端、生产就绪的深度学习流水线，旨在将胸部 X 线图像分类为“正常”和“肺炎”类别。它将最先进的 CNN 与 Grad-CAM 和积分梯度等先进的可解释 AI 算法相结合。该系统在紧张的 4 天冲刺期间完成训练、优化并部署为轻量级 Web 应用程序。",
+    "challenge": {
+      "problem": "肺炎是全球死亡的主要原因之一，但由于疲劳、认知负荷和细微的早期肺实变，通过胸部 X 线进行临床手动诊断往往存在瓶颈。",
+      "goal": "开发一个高精度的二元分类器，在最大程度减少漏诊（最大化召回率）的同时，为临床验证提供清晰、可解释的视觉理由。",
+      "constraints": "医学数据表现出严重的类别不平衡。在内存受限的免费托管平台上部署大型深度学习网络存在内存溢出崩溃的风险，而“黑盒”预测则阻碍了临床信任。"
+    },
+    "discovery": {
+      "requirements": "临床工作流程表明漏诊比误诊危险得多，因此需要比标准 0.5 阈值更优化的 F2 分数决策边界。",
+      "competitiveAnalysis": "虽然传统的深度学习应用隐藏了决策逻辑，但临床应用需要视觉验证，以确认网络关注的是病理异常而非图像伪影。",
+      "technicalResearch": "评估了轻量级自定义 CNN 与 ResNet18、DenseNet121 和 EfficientNet-B0 架构，并配以用于 Grad-CAM、Grad-CAM++ 和积分梯度的自定义反向传播钩子实现。"
+    },
+    "architecture": {
+      "informationArchitecture": "结构化为模块化 Python 包，包含解耦的模型工厂、评估和可视化引擎，由交互式 Streamlit UI 控制。",
+      "technicalDecisions": "通过设定种子的多平台 PyTorch 配置强制执行严格的可重复性。选择 DenseNet121 作为密集特征重用的旗舰模型。从 Hugging Face Hub 动态流式传输模型权重检查点，以保持在 Web 运行时 RAM 限制内。"
+    },
+    "developmentProcess": {
+      "phase1": "进行探索性数据分析，通过分层拆分处理类别不平衡，并构建了具有 ImageNet 标准化和 224x224 输入尺寸的预处理流水线。",
+      "phase2": "设计了 PyTorch 模型工厂和迁移学习架构，使用交叉熵损失、Adam 优化器和学习率调度优化训练。",
+      "phase3": "开发了轻量级梯度反向传播钩子管理器，在不依赖臃肿的外部 XAI 库的情况下提取高保真显著性图。"
+    },
+    "keyFeatures": [
+      {
+        "title": "统一模型工厂",
+        "description": "将模型加载和配置与部署运行时解耦。",
+        "implementation": "实施抽象工厂模式，为自定义 CNN、ResNet18、DenseNet121 或 EfficientNet-B0 动态实例化并加载权重。",
+        "challenges": "实现了无缝的跨模型性能评估和共识投票机制。"
+      },
+      {
+        "title": "高保真可解释性引擎",
+        "description": "生成覆盖在原始 X 线输入上的局部激活热图。",
+        "implementation": "利用自定义 PyTorch 前向和后向钩子捕捉 Grad-CAM、Grad-CAM++ 和积分梯度的目标卷积层梯度。",
+        "challenges": "暴露并修正了“捷径学习”，即早期模型错误地关注文本覆盖层而非解剖学肺野。"
+      },
+      {
+        "title": "动态阈值优化器",
+        "description": "根据临床优先级调整分类决策边界。",
+        "implementation": "迭代搜索使 F2 分数最大化的决策阈值，召回率的权重是精确率的两倍。",
+        "challenges": "成功将旗舰模型的敏感度提高到 98.97%，最大限度地减少了危险的漏诊预测。"
+      }
+    ],
+    "testing": "使用 AUC-ROC、精确率-召回率和混淆矩阵在独立的、分层的测试分区上验证了性能。进行了显著性验证，以确保模型注意力与肺野一致。在 Streamlit Cloud 上对部署内存消耗进行了基准测试，以防止容器崩溃。",
+    "results": {
+      "technicalAchievements": "旗舰 DenseNet121 模型实现了 0.971 的 AUC-ROC 和 98.97% 的优化临床召回率。EfficientNet-B0 以显著减少的参数量提供了接近 97.23% 的召回率。",
+      "businessImpact": "证明了通过将动态权重流式传输与严格的可解释性检查相结合，医学深度学习可以安全、透明地部署在资源受限的平台上。",
+      "personalGrowth": "在底层 PyTorch 反向传播钩子、高敏感度临床阈值优化和轻量级模型服务策略方面积累了深入经验。"
+    },
+    "techStack": {
+      "frontend": "Streamlit",
+      "backend": "PyTorch (2.0+), Hugging Face Hub",
+      "tools": "UV 包管理器, Git, Jupyter Notebooks",
+      "libraries": "Torchvision, Scikit-Learn, OpenCV, Pillow, Matplotlib, Seaborn"
+    },
+    "learnings": [
+      "神经网络非常投机取巧；如果没有 XAI 工具，文本标记上的捷径学习将无法被察觉。",
+      "在医学 AI 中，标准准确率具有欺骗性；针对 F2 分数进行优化对于确保临床实用性和患者安全至关重要。",
+      "在运行时动态流式传输模型权重绕过了平台存储限制，并使存储库保持轻量化。",
+      "使用 DenseNet121 进行迁移学习特别适合医学任务，因为它通过连续的特征重用来捕捉细微的病理梯度。"
+    ],
+    "futureEnhancements": [
+      "扩展分类流水线以支持多类别诊断，包括病毒性与细菌性肺炎、肺结核和气胸。",
+      "在交互式用户界面中加入对 DICOM 医学影像文件的直接解析和处理。",
+      "将训练升级为 5 折交叉验证，并实施加权软投票共识集成。",
+      "围绕峰值 Grad-CAM 激活合成边界框，自动隔离感兴趣区域。",
+      "集成 SHAP 值，将表格化的患者元数据与像素级视觉归因相结合。"
+    ],
+    "conclusion": "ThoraxAI 证明了高性能的医学 AI 不必是一个无法解释的黑盒。通过将最先进的架构与动态、轻量级可视化和 F2 优化相结合，该系统提供了一个稳健、临床安全的诊断辅助工具。"
+  },
+  "shiatsuGuyane": {
+    "title": "Shiatsu Guyane",
+    "description": "一个精密且高性能的 Shiatsu（指压）疗法实践网络平台，具有独特的植物园设计系统",
+    "metadata": {
+      "role": "全栈开发人员",
+      "category": "网络开发, 健康与养生, 小企业",
+      "timeline": "2025年第三至第四季度（开发中）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/shiatsu-guyane"
+    },
+    "overview": "“Shiatsu Guyane”是一个精密且高性能的网络平台，专为位于法属圭亚那的 Shiatsu 疗法中心打造。本项目不仅仅是一个宣传网站；它是一个精心设计的数字避风港，旨在镜像 Shiatsu 本身的疗愈和宁静本质，为寻求整体健康方案的客户提供无缝且信息丰富的体验。真正让 “Shiatsu Guyane” 脱颖而出的是其创新且沉浸式的“花园组件系统”，该系统在整个用户界面中贯穿了一致的植物主题，营造出独特、宁静的数字环境。",
+    "challenge": {
+      "problem": "在竞争激烈的养生市场中，法属圭亚那的一家 Shiatsu 疗法中心需要一个专业、现代且高度可访问的在线形象。挑战在于超越通用的网络模板，构建一个量身定制的平台，准确传达 Shiatsu 的宁静和治愈性质，同时有效地触达当地客户，提供全面的服务信息，并简化沟通和潜在的预约流程。",
+      "goal": "主要目标是开发一个高性能、响应式且经过 SEO 优化的网站，作为 Shiatsu Guyane 的中心枢纽。成功将通过其有效展示服务、增强从业者信誉、促进轻松的客户联系（以及最终的预约）以及提供反映品牌对健康承诺的独特沉浸式用户体验的能力来衡量。",
+      "constraints": "关键的技术限制包括确保极快的加载时间和流畅的导航，这对于留住用户注意力和提高 SEO 至关重要，特别是在网速各异的地区。实施像“花园组件”这样全面、模块化的设计系统，同时不损害性能或代码可维护性，需要精心的架构规划。"
+    },
+    "discovery": {
+      "requirements": "核心需求是为寻求替代疗法的潜在客户和需要轻松获取信息的现有客户创建一个在线平台。他们的需求包括平静、值得信赖的美学、易于理解的内容（可能包含法语和英语）、清晰的联系呼吁以及支持随时随地浏览的移动辅助功能。",
+      "competitiveAnalysis": "决定构建一个具有独特美学的自定义 Next.js 驱动网站，表明了希望从小型企业常用的通用、基于模板的网站中脱颖而出的愿望。许多养生网站缺乏深度的 SEO 集成、卓越的响应式设计或独特的品牌身份。本项目旨在利用现代网络技术超越常见的限制。",
+      "technicalResearch": "选择带有 App Router 的 Next.js 15 是基础，这源于其卓越的性能声誉、内置的 SEO 功能和高效的服务器端渲染。TypeScript 确保了代码质量和可维护性。Tailwind CSS 实现了响应式设计的快速开发。选择 Vercel 进行无缝部署和无服务器函数集成。"
+    },
+    "architecture": {
+      "informationArchitecture": "本项目遵循逻辑严密且以用户为中心的信息架构，由 Next.js App Router 范式清晰构建。关键路由包括 /about（从业者简介）、/services（治疗详情）、/booking（未来预约安排）、/blog（养生资源）和 /contact（客户咨询）。模块化组件结构包括一个专用的 garden/ 目录，包含可重用的植物组件。",
+      "technicalDecisions": "选择 Next.js 15 App Router 是为了服务器组件和增强性能。TypeScript（占代码库的 96.6%）强制执行强类型并减少错误。混合使用 Tailwind CSS/CSS Modules 方案平衡了快速开发与精细控制。SMTP 集成提供了可靠的电子邮件通信。模块化的花园组件系统通过独立、可组合的 React 组件打造沉浸式品牌体验。"
+    },
+    "developmentProcess": {
+      "phase1": "基础构建 - 使用 App Router 和 TypeScript 配置初始化 Next.js 15 项目，以进行严格的类型检查。集成并配置了带有自定义鼠尾草绿主题的 Tailwind CSS。建立了以 app/ 目录存放页面和 src/components/ 存放可重用 UI 元素的中心项目结构。设计了独特的花园组件系统的初始 API。",
+      "phase2": "功能开发 - 开发了带有静态内容渲染的详细服务信息页面。创建了具有响应式图像和结构化文本的从业者简介页面。实施了带有 SMTP 集成和自定义邮件模板的联系表单。构建了模块化的花园组件系统（GardenBackground, SectionGarden, GardenDivider, FloatingBotanicals），并带有 TypeScript 接口。为双语内容结构的多语言支持奠定了基础。",
+      "phase3": "润色与优化 - 使用 Tailwind 工具在所有断点处实施了全面的响应式设计。使用 Next.js 元数据 API、Open Graph 协议和结构化数据优化了 SEO。进行了侧重于图像优化和延迟加载的性能审计。确保了语义化的 HTML 结构和辅助功能。执行了跨浏览器和设备的兼容性测试。"
+    },
+    "keyFeatures": [
+      {
+        "title": "植物园组件系统",
+        "description": "通过动态植物背景、部分分隔符和浮动动画元素，在整个网站中营造出沉浸式、宁静且以自然为主题的用户体验",
+        "implementation": "设计为一个高度模块化的 React 组件系统，具有定义可配置属性（如强度、野生动物、氛围、主题和位置）的 TypeScript 接口。使用 CSS 转换优化动画以实现流畅性能。",
+        "challenges": "通过优化 CSS 动画、精心管理组件生命周期以及为模块化设计仅渲染必要元素，解决了在视觉丰富的动画、动态背景与整体网站性能之间取得平衡的问题。"
+      },
+      {
+        "title": "全面的响应式设计",
+        "description": "确保从手机 (320px) 到大型桌面 (1920px+) 的各种设备上都能获得最佳的查看和交互体验",
+        "implementation": "使用 Tailwind CSS 实用优先框架实施，通过响应式前缀（sm:, md:, lg:）根据预定义的断点进行条件样式设置。灵活的网格系统和实用类实现了快速迭代和一致的响应能力。",
+        "challenges": "确保在极其不同的屏幕尺寸上实现像素级完美的对齐和最佳的可读性，需要细致入微的关注以及在模拟设备上进行广泛测试，特别是对于带有植物元素的复杂布局。"
+      },
+      {
+        "title": "先进的 SEO 优化",
+        "description": "最大化网站在搜索引擎上的可见性，特别是针对法属圭亚那 Shiatsu 疗法相关的本地搜索",
+        "implementation": "利用 Next.js 元数据 API 动态生成元标签、标题标签和 Open Graph 属性。实施了具有适当标题、图像替代文本和本地企业架构结构化数据的语义化 HTML5 结构。服务器端渲染确保内容易于被爬虫抓取。",
+        "challenges": "持续监控并适应不断变化的 SEO 最佳实践，同时确保在不断扩大的网站上进行全面实施，需要系统的方法和精心的元数据 API 配置。"
+      },
+      {
+        "title": "稳健的联系与邮件服务",
+        "description": "为客户提供可靠且专业的渠道来联系诊所并接收自动确认",
+        "implementation": "联系表单集成通过环境变量配置的 SMTP 服务。自定义 React 邮件模板 (ClientConfirmationEmail.tsx) 设计支持多语言（法语/英语）。无服务器函数确保了表单处理的可扩展后端。",
+        "challenges": "安全管理敏感的 SMTP 凭据并确保邮件能够可靠投递而不被垃圾邮件过滤器拦截需要精心配置。实施稳健的表单输入验证至关重要。"
+      },
+      {
+        "title": "多语言内容基础",
+        "description": "为提供多语言网站内容奠定基础，支持法语（主要）和英语",
+        "implementation": "架构适应了多个语言版本，具有定义文本内容的独特 fr 和 en 对象，在邮件模板中尤为明显。结构易于翻译和动态语言切换，为集成完整的 i18n 方案做好了准备。",
+        "challenges": "确保翻译的一致性并高效管理多个区域设置的内容。当前的结构为扩展到完整的 i18n 解决方案提供了坚实的基础。"
+      }
+    ],
+    "testing": "通过对所有交互元素（特别是联系表单）进行严格的功能测试，形成了持续的反馈循环。在所有断点处的模拟设备上进行了广泛的响应式设计验证。使用 Lighthouse 审计进行性能优化，重点关注核心 Web 指标、延迟加载策略和高效的 CSS 交付。进行了带有语义化 HTML 和键盘导航检查的初始辅助功能测试。在 Chrome、Firefox 和 Safari 上进行了跨浏览器兼容性测试。采用带功能分支的规范 Git 版本控制以实现无缝迭代。",
+    "results": {
+      "technicalAchievements": "在 50 多个文件中实现了 96.6% 的 TypeScript 采用率，保证了高代码质量和可维护性。成功设计了由四个独特、高度可定制的 React 组件组成的通用花园组件系统。利用 Next.js 15 App Router 优化了性能和 SEO 基础。集成了带有专业多语言模板的安全性 SMTP 邮件服务。交付了针对 320px 到 1920px+ 设备优化的全响应式设计。",
+      "businessImpact": "为 Shiatsu Guyane 提供了一个现代、专业的数字门面，提升了品牌形象和信誉。提供清晰的服务描述和便捷的联系方式，培养信任并简化客户旅程。SEO 优化的架构针对本地搜索，吸引新客户。独特的花园组件系统创造了难忘的用户体验，使诊所在竞争对手中脱颖而出。通过集成的表单处理和模板化邮件简化了沟通。",
+      "personalGrowth": "在 Next.js 15 App Router 方面积累了广泛经验，掌握了服务器组件和高级数据获取。设计花园组件系统磨练了在架构具有复杂视觉要求的可重用、可配置 UI 组件方面的技能。增强了对现代框架内全面 SEO 策略的理解。克服了在平衡视觉丰富度与性能方面的挑战，巩固了在前端架构中的问题解决能力。"
+    },
+    "techStack": {
+      "frontend": "Next.js 15 (App Router), TypeScript, React, Tailwind CSS, CSS Modules, Geist 字体系列",
+      "backend": "Vercel, Node.js, SMTP 邮件服务",
+      "tools": "Git/GitHub, npm/yarn/pnpm/bun, React Email",
+      "libraries": "用于模板化事务邮件的 React Email"
+    },
+    "learnings": [
+      "掌握 Next.js 15 App Router 和服务器组件 - 深入研究新范式，理解服务器与客户端组件，优化数据获取并构建高性能应用程序",
+      "设计可扩展且高性能的 UI 系统 - 学习了使用 TypeScript 接口创建平衡美学与性能的模块化、可配置、视觉丰富的 UI 系统的复杂性",
+      "现代框架中的整体 SEO 集成 - 全面理解如何从项目开始就使用元数据 API、语义化 HTML 和结构化数据将 SEO 融入应用程序架构",
+      "构建稳健且安全的通信流 - 设置带有安全 SMTP 集成、环境变量、表单处理和专业自动邮件的可靠后端通信的实践经验"
+    ],
+    "futureEnhancements": [
+      "完整的多语言实施 - 超越邮件模板，通过语言切换器和本地化路由为所有网站内容提供完整的多语言支持",
+      "集成预约系统 - 实施完整的预约系统，采用第三方 API 集成或用于直接调度的自定义解决方案",
+      "交互式地图集成 - 集成 Google Maps API 以显示诊所位置，提供导航并增强本地 SEO",
+      "增强博客功能 - 开发高级功能，如类别过滤、搜索、分页和用于动态养生资源的富文本编辑器",
+      "客户评价与评论部分 - 实施带有提交表单和管理员审核的专用部分，以建立社交证明和信誉"
+    ],
+    "conclusion": "“Shiatsu Guyane”代表了一个稳健、美学驱动且技术先进的网络平台，成功地将本地养生诊所转化为强大的数字化存在。通过精心利用 Next.js 15、TypeScript 和独特的花园组件系统，该项目提供了高性能、SEO 优化且深度吸引人的用户体验。本项目证明了架构、开发和部署融合了卓越技术与动人用户旅程的复杂现代 Web 应用程序的能力。"
+  },
+  "Cancer": {
+    "title": "癌症研究分析",
+    "description": "比较癌症研究资金与死亡率，以揭示资源分配的不平等。",
+    "metadata": {
+      "role": "学生",
+      "category": "Python 开发 - 数据分析与未来机器学习",
+      "timeline": "2025年12月 - 2026年1月",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Le-skal/Cancer"
+    },
+    "overview": "该项目通过比较资金投入与癌症死亡率，分析肿瘤研究中的资源分配。它使用 ETL 流水线从权威来源收集、处理和可视化数据。一个关键发现是：肺癌的死亡率比白血病高 6 倍，但每例死亡获得的预算却少 3.7 倍，凸显了显著的不平等。",
+    "challenge": {
+      "problem": "核心挑战在于癌症严重程度（全球死亡率）与研究投资之间的脱节。传统方法缺乏比较分析，妨碍了明确资源与疾病负担的最佳对齐方式。",
+      "goal": "主要目标是开发一个全面的数据分析解决方案。旨在将各种癌症数据整合到“人均死亡预算”等比较指标中，并通过交互式仪表板展示，以回答投资是否与严重程度相关。",
+      "constraints": "限制因素包括来自各种来源（网页抓取、API、文件）的数据异构性，需要高效 Pandas 处理和批量上传的海量数据，以及需要严格清洗的质量问题。复杂发现的交互式可视化也构成了挑战。"
+    },
+    "discovery": {
+      "requirements": "需求源于这样一个假设，即投资可能与疾病严重程度不相关。这需要获取可靠、实时的死亡率 (WHO)、预算 (NCI)、临床试验 (ClinicalTrials.gov) 和公众兴趣 (Google Trends) 数据进行标准化比较。",
+      "competitiveAnalysis": "虽然存在单独的癌症数据集，但直接将研究投资与全球死亡率进行比较的综合分析平台并不常见。该项目旨在通过提供独特的、数据驱动的资源分配视角来填补这一空白，产生可操作的见解。",
+      "technicalResearch": "选择 Python 是因为其丰富的数据科学库。Pandas 是数据操作的关键，Selenium 用于抓取动态内容，PostgreSQL (Supabase) 用于可扩展存储。选择 Streamlit 和 Plotly 是为了快速开发交互式仪表板和丰富的可视化效果。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目使用 ETLV 流水线：提取 (Extract - 网页抓取、API、开放数据)、转换 (Transform - 使用 Pandas 进行清洗、标准化、指标计算、地理定位)、加载 (Load - 通过 Supabase 进入 PostgreSQL 并进行批量上传) 和可视化 (Visualize - 带有 Plotly 图表的 Streamlit 仪表板)。",
+      "technicalDecisions": "Python 的数据科学生态系统，特别是 Pandas，是其基础。Supabase 提供了一个可扩展的 PostgreSQL 后端，简化了数据库管理。Streamlit 促进了交互式 Web 应用程序的快速开发，并配合 Plotly 实现高质量、动态的可视化。Selenium 对于抓取 ClinicalTrials.gov 等无法通过 API 访问的网站上的动态内容至关重要。"
+    },
+    "developmentProcess": {
+      "phase1": "基础阶段侧重于设置 Python 环境，通过 Selenium 和 API 建立与各种数据源的连接，并设计 Supabase PostgreSQL 模式。开发并测试了初始数据提取脚本。",
+      "phase2": "功能开发阶段构建了完整的 ETL 流水线和仪表板。Pandas 实现了数据清洗、标准化、连接和“人均死亡美元”计算。优化了 PostgreSQL 的批量上传机制，Streamlit 仪表板集成了带有动态过滤功能的 Plotly 图表。",
+      "phase3": "润色与优化阶段改进了数据处理算法，以提高效率和准确性。优化了数据库查询，并针对仪表板性能微调了索引。迭代改进了 Streamlit UI 以获得更好的用户体验和清晰度，为未来的增强做好了准备。"
+    },
+    "keyFeatures": [
+      {
+        "title": "多源数据提取",
+        "description": "从 PubMed API、WHO GLOBOCAN、NCI 预算、ClinicalTrials.gov (通过 Selenium) 和 Google Trends 收集全面数据。",
+        "implementation": "Python 脚本使用 `requests` 处理 API，使用 `Selenium` 进行动态网页抓取，并直接解析 CSV/JSON 开放数据，处理不同的来源方法。",
+        "challenges": "通过稳健的错误处理和标准化解析，克服了 API 频率限制、反爬虫措施和不一致的数据格式。"
+      },
+      {
+        "title": "稳健的数据转换",
+        "description": "清洗、标准化和丰富原始数据，统一术语，执行复杂的连接，计算衍生指标，并添加地理背景。",
+        "implementation": "使用 `Pandas` DataFrame 和自定义 Python 函数进行清洗，使用 `merge`/`join` 操作进行整合，并使用包含 800 多个关键词的词典进行地理定位。",
+        "challenges": "调和不同来源之间多样的术语和数据粒度，需要映射表和模糊匹配算法来实现准确的连接。"
+      },
+      {
+        "title": "可扩展的数据存储",
+        "description": "将清洗和转换后的数据持久化到结构化的、可查询的数据库中，确保分析的完整性、效率和可扩展性。",
+        "implementation": "通过 `Supabase` 的 `PostgreSQL` 数据库存储数据。Python 脚本以每批 1000 条记录的形式上传数据，通过规范化和索引化的表优化查询性能。",
+        "challenges": "设计最佳的关系模式并管理原子性的批量上传，以及在大规模插入过程中的错误处理是关键。"
+      },
+      {
+        "title": "交互式数据可视化",
+        "description": "通过直观、交互式的 Web 仪表板展示复杂的分析结果，使用户能够通过动态过滤器探索不平等现象和趋势。",
+        "implementation": "使用 `Streamlit` 构建仪表板，集成 `Plotly` 实现条形图和时间序列等交互式图表。Streamlit 小组件提供实时重新渲染图表的动态过滤器。",
+        "challenges": "为大型、可过滤的数据集创建高性能的可视化效果，并为复杂数据设计直观的 UI 以防止用户感到不知所措是至关重要的。"
+      },
+      {
+        "title": "比较指标计算",
+        "description": "计算关键的比较指标，如各种癌症类型的“人均死亡支出”，直接回答项目关于资源分配的核心问题。",
+        "implementation": "在“转换”阶段，在合并预算 (NCI) 和死亡率 (WHO) 数据后，`Pandas` 执行算术运算 (`budget / mortality_count`) 来得出并存储指标。",
+        "challenges": "确保预算和死亡率数据按特定癌症类型和年份完美对齐，对于防止误导性的计算至关重要，这需要细致的数据清洗。"
+      }
+    ],
+    "testing": "测试是不可或缺的，验证了 ETL 的每个阶段。提取阶段验证了数据获取，转换阶段对 Pandas 函数和数据分析进行了单元测试，加载阶段确认了通过优化的批量上传实现的正确数据库插入。Streamlit 仪表板的交互性和数据准确性经过了严格测试，将显示的指标与原始数据进行了交叉引用。",
+    "results": {
+      "technicalAchievements": "成功整合了多样的数据源（网页抓取、API、开放数据），展示了稳健的数据工程。使用 Pandas 开发了具有韧性的 ETL 流水线，用于数据清洗和丰富。在规范化的 PostgreSQL 数据库中实现了高效的批量加载机制，并创建了交互式 Streamlit/Plotly 仪表板。",
+      "businessImpact": "该项目提供了关键的、数据驱动的分析，揭示了肿瘤研究资金相对于全球死亡率的显著不平等。这种分析可以为决策者和资助机构重新评估资源分配策略提供信息，确保投资与实际疾病负担对齐。",
+      "personalGrowth": "提高了在端到端数据分析工作流程（从数据收集到交互式可视化）中的熟练度。在 Python 的数据科学生态系统、Pandas、Streamlit/Plotly 方面获得了专业知识，并深化了对数据库设计和 Supabase 等云解决方案的理解。"
+    },
+    "techStack": {
+      "frontend": "Streamlit 1.30, Plotly 5",
+      "backend": "Supabase, PostgreSQL",
+      "tools": "Selenium 4",
+      "libraries": "Python 3.8+, Pandas 2.0, Requests"
+    },
+    "learnings": [
+      "编排多样的数据源强调了整合各种数据（API、网页抓取、开放数据）的复杂性，凸显了对稳健连接器和验证的需求。",
+      "掌握使用 Pandas 对杂乱数据进行清洗、标准化、合并和获取见解是核心，证明了深思熟虑的转换对于准确的分析结果至关重要。",
+      "获得了整个数据分析流水线的实践经验，从原始数据摄取到交互式面向用户的仪表板，强调了每个阶段的互联性。",
+      "意识到使用 Streamlit 和 Plotly 进行引人入胜的交互式可视化可以有效传达复杂的数据发现和不平等现象，将原始数字转化为可操作的见解。"
+    ],
+    "futureEnhancements": [
+      "实施自动网页抓取和数据提取的计划任务，确保仪表板显示最新信息。",
+      "开发机器学习模型以识别新兴的癌症研究趋势，预测未来的死亡率，或预测资金需求。",
+      "探索用于近实时仪表板更新的流式数据架构，特别是针对持续反馈的来源。",
+      "增强地理定位能力，并在交互式全球地图上可视化研究/死亡率数据，以进行扩展的地理分析。",
+      "将 Streamlit 应用程序部署到公共云平台（如 Streamlit Cloud, AWS, GCP），使交互式分析能被更广泛的受众访问。"
+    ],
+    "conclusion": "“癌症研究分析”项目有力地展示了全球健康领域的数据驱动探究，揭示了肿瘤研究资金与死亡率之间的显著不平等。通过展示在数据工程、Python 和可视化方面的卓越技术技能，它利用技术产生了有意义的社会影响。作为一个“开发中”的项目，它在进一步扩展和为公平的医疗研究资源分配做出贡献方面具有巨大潜力。"
+  },
+  "reviewai-platform": {
+    "title": "ReviewAI 平台",
+    "description": "通过人工智能驱动的见解彻底改变客户评价的管理和分析。",
+    "metadata": {
+      "role": "全栈开发人员",
+      "category": "全栈开发 - AI 集成",
+      "timeline": "2026年第一季度（持续开发中）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/reviewai-platform"
+    },
+    "overview": "ReviewAI 平台是一个尖端的全栈 Web 应用程序，旨在利用 AI 自动化客户评价分析。它结合了 Vue.js 3 前端和 Laravel 12 后端，用于收集、组织反馈并从中获取可操作的见解。通过集成 Mistral AI，它提供了自动情感检测、满意度评分和主题提取，使企业能够迅速做出数据驱动的决策。",
+    "challenge": {
+      "problem": "企业被海量的客户评价淹没，导致手动处理耗时、存在偏见且缺乏深度见解。问题在于如何创建一个能够提供清晰、简洁评价数据的自动化系统。",
+      "goal": "主要目标是构建一个直观、安全的客户评价管理全栈应用程序，集成先进的人工智能进行情感分析和主题提取。它需要通过具有现代响应式 UI 的交互式仪表板展示这些见解。",
+      "constraints": "关键技术挑战包括无缝集成 Mistral AI 以实现可靠的文本分析，设计可扩展的架构以应对不断增长的评价数量，以及确保安全的用户身份验证和数据保护。此外，它还需要跨设备的响应式 UI 以及可维护、可扩展的代码库。"
+    },
+    "discovery": {
+      "requirements": "初步分析确定了核心需求：用户身份验证、评价的 CRUD（增删改查）以及可操作的见解（如情感、满意度和重复出现的主题）。安全的数据处理和现代化的、可访问的界面对用户采用至关重要。",
+      "competitiveAnalysis": "虽然存在许多评价平台，但很少有将集成的、实时的 AI 情感分析作为核心功能的。ReviewAI 旨在通过自动化精密的人工智能分析来脱颖而出，在无需大量用户配置的情况下提供更深层的见解。",
+      "technicalResearch": "选择 Laravel 12 是因为其稳健的 MVC 模式和用于后端开发的生态系统。Vue.js 3 配合 TypeScript 为前端提供了性能、可扩展性和类型安全。选择 Mistral AI API 是为了高效准确的 NLP 任务，而 Shadcn-vue 和 Tailwind CSS 确保了可定制的响应式 UI。Laravel Sanctum 和 Pinia 完成了用于安全身份验证和状态管理的底层技术栈。"
+    },
+    "architecture": {
+      "informationArchitecture": "应用程序遵循客户端-服务器架构，将 Vue.js 3/TypeScript 前端与 Laravel 12 后端解耦。前端管理视图、Pinia 存储和用于 API 通信的 Axios，而后端遵循 MVC 模式，处理请求、数据库交互和 Mistral AI 集成。",
+      "technicalDecisions": "全栈解耦允许独立扩展和灵活性。选择 Laravel Sanctum 是因为它适用于 SPA 的无状态、基于令牌的 API 身份验证。Vue 3 Composition API 和 TypeScript 确保了可维护的、类型安全的前端代码。Shadcn-vue 和 Tailwind CSS 优先考虑快速、可定制和响应式的 UI 开发。Pinia 简化了状态管理，而 Mistral AI API 的集成完全由后端处理。"
+    },
+    "developmentProcess": {
+      "phase1": "初始化 Laravel 和 Vue 项目，配置环境变量，并定义数据库模式。集成了用于用户身份验证的 Laravel Sanctum，并为基础的评价 CRUD 操作建立了基本的 RESTful API 端点。",
+      "phase2": "在后端实现了具有验证功能的完整评价 CRUD，并开发了相应的前端组件。通过创建 Laravel 服务来发送评价文本、解析情感/主题响应并存储结果，从而集成了 Mistral AI。构建了用于交互式仪表板的后端逻辑和前端视图。",
+      "phase3": "使用 Shadcn-vue 和 Tailwind CSS 增强了 UI/UX，侧重于现代美学、响应能力和深色模式。使用 Pest PHP 对关键模块实施了全面的后端单元和功能测试，确保了高代码覆盖率和稳定性。"
+    },
+    "keyFeatures": [
+      {
+        "title": "用户身份验证",
+        "description": "提供安全的用户注册和登录，保护私人数据和应用程序功能。",
+        "implementation": "使用 Laravel Sanctum 进行基于令牌的身份验证。登录后，后端为后续经过身份验证的前端请求发放 API 令牌。",
+        "challenges": "确保 SPA 的无状态身份验证，管理令牌过期，并保护敏感路由免受未经授权的访问。"
+      },
+      {
+        "title": "评价管理 (CRUD 操作)",
+        "description": "允许经过身份验证的用户创建、读取、更新和删除其客户评价。",
+        "implementation": "后端提供由 `ReviewController` 管理的专用 RESTful API 端点 (`/api/reviews`)。前端使用 Axios 与这些端点交互，显示评价列表和表单。",
+        "challenges": "实施稳健的后端数据验证，管理前端的乐观更新，以及处理 API 交互错误。"
+      },
+      {
+        "title": "AI 赋能的分析 (集成 Mistral AI)",
+        "description": "自动分析评价内容的情感、满意度得分和关键主题提取。",
+        "implementation": "提交评价时，后端通过 HTTP 将其文本发送到 Mistral AI API。人工智能处理文本并返回结构化数据，后端将其与评价一起存储。",
+        "challenges": "处理 API 请求限制，高效解析 AI 响应，管理网络延迟，以及有效地存储多样的 AI 结果。"
+      },
+      {
+        "title": "交互式仪表板",
+        "description": "提供汇总评价统计数据和可视化图表的集中视图，以便快速获取见解。",
+        "implementation": "后端的 `StatisticsController` 从 MySQL 获取并处理评价数据以计算指标。前端通过 API 使用这些汇总的数据点，使用 Vue.js 组件（可能还包括图表库）进行渲染。",
+        "challenges": "高效查询大型数据集，设计清晰的可视化效果，并确保数据的实时更新。"
+      },
+      {
+        "title": "响应式设计与深色模式",
+        "description": "提供一个自适应的用户界面，可在不同设备上无缝运行，并支持用户偏好的浅色/深色主题。",
+        "implementation": "UI 使用固有的响应式 Shadcn-vue 组件构建，并使用 Tailwind CSS 设置样式。深色模式使用 VueUse 的 `useColorMode` 组合式函数来动态应用主题类。",
+        "challenges": "确保跨断点的视觉一致性，管理全局主题状态，以及对 Shadcn-vue 组件进行自定义样式设置。"
+      }
+    ],
+    "testing": "利用 Pest PHP 构建了稳健的后端测试套件，确保了质量和可靠性。这包括 48 个单元和功能测试，实现了极高的代码覆盖率（AuthController 95%，ReviewController 90%，AnalysisController 85%，StatisticsController 90%）。这种迭代测试方法促进了问题的早期发现和持续完善，从而构建了一个稳定且高性能的应用程序。",
+    "results": {
+      "technicalAchievements": "成功开发了一个使用现代框架、安全令牌身份验证 (Laravel Sanctum) 并无缝集成 Mistral AI 的全栈 Web 应用程序。实现了具有稳健验证功能的完整评价 CRUD 和交互式仪表板。通过广泛的后端测试 (Pest PHP) 实现了高代码质量，并使用 Shadcn-vue 和 Tailwind CSS 打造了响应式、易访问的 UI。",
+      "businessImpact": "人工智能驱动的自动化评价分析为企业节省了大量的运营成本和时间，实现了从手动流程的转变。它提供了关于客户情感和趋势的清晰、可操作的数据，使企业能够做出更快、更明智的战略决策，并通过更快地识别痛点来增强客户体验。",
+      "personalGrowth": "深化了使用 Laravel 12 和 Vue 3/TypeScript 架构复杂全栈应用程序的专业知识。在集成外部 AI API 方面获得了宝贵的经验，并巩固了使用 Pest PHP 进行全面后端测试的技能。掌握了使用 Shadcn-vue 和 Tailwind CSS 进行现代 UI 开发，增强了对解耦架构和状态管理的理解。"
+    },
+    "techStack": {
+      "frontend": "Vue.js 3, TypeScript, Tailwind CSS, Shadcn-vue, Pinia, Axios, Vue Router, VueUse, Phosphor 图标",
+      "backend": "Laravel 12, PHP, MySQL/SQLite, Laravel Sanctum, Pest PHP, Mistral AI API",
+      "tools": "",
+      "libraries": "Laravel Sanctum (身份验证), Pinia (状态管理), Axios (HTTP 客户端), Shadcn-vue (UI 组件), Vue Router (路由), VueUse (工具库), Phosphor 图标 (图标)"
+    },
+    "learnings": [
+      "学习了如何有效地将第三方 AI 服务集成并抽象到全栈应用程序中，设计精细的 API 客户端，处理错误并高效存储 AI 结果。",
+      "通过使用 Laravel 和 Vue 3 对设计干净、解耦的客户端-服务器架构获得了更深入的见解，强调了 API 优先开发和安全通信。",
+      "意识到在复杂的 Vue.js 应用程序中结合 Pinia 和 Composition API 时，TypeScript 在提高代码质量、可维护性和协作效率方面的显著益处。",
+      "强化了使用 Pest PHP 等工具进行广泛后端测试的重要性，以确保 API 稳定性、数据完整性并最大限度地减少回归错误，从而构建更可靠的应用程序。"
+    ],
+    "futureEnhancements": [
+      "针对情感和主题，实施更精密的数据可视化、自定义报告生成以及随时间变化的趋势分析。",
+      "引入不同的用户角色（如管理员、评论员、分析师），并具有不同级别的访问权限和功能。",
+      "支持平台的多租户功能，以托管多个独立的企业，每个企业的数据和设置都相互隔离。",
+      "允许用户提供特定领域的背景或关键词，以微调 AI 分析，从而获得更准确、行业相关的结果。",
+      "增加从 Google My Business 或 Yelp 等外部平台自动抓取评价的功能。",
+      "实施针对新评价、情感重大转变或关键主题提及的实时通知。",
+      "通过 API 频率限制和数据缓存机制增强后端性能和资源管理。",
+      "将应用程序打包到 Docker 容器中，以便于部署、扩展和环境一致性。"
+    ],
+    "conclusion": "ReviewAI 平台有效地结合了稳健的后端工程、现代前端开发和智能 AI 集成，解决了自动化评价分析的关键需求。该项目通过安全的身份验证、全面的功能、直观的设计和严格的测试，成功地为企业提供了可操作的见解。这次经历巩固了我的全栈专业知识，并展示了我交付具有重大商业影响的创新、数据驱动解决方案的能力。"
+  },
+  "purecontrol-ml-technical-test": {
+    "title": "Purecontrol 机器学习技术测试",
+    "description": "预测泳池温度并优化热泵，以实现预见性、高成本效益的控制。",
+    "metadata": {
+      "role": "测试候选人",
+      "category": "机器学习, 数据分析, 技术测试",
+      "timeline": "快速开发（2026-01-30 在一天内完成技术测试）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/purecontrol-ml-technical-test"
+    },
+    "overview": "本项目为游泳池温度管理提供了一个智能解决方案。它使用机器学习准确预测温度波动，并优化热泵启动，以维持目标温度并最小化能源成本。系统采用预见性策略，展示了从 EDA 到模型训练和控制优化的稳健数据科学工作流程。",
+    "challenge": {
+      "problem": "核心问题在于准确建模和预测泳池水温，同时考虑外源变量和控制变量。其次，它需要设计一个智能控制系统，在最小化热泵能源成本的同时保持最低温度。",
+      "goal": "目标是创建一个预测性和规范性系统。这包括开发一个稳健的 ML 模型用于温度变化预测，然后将其集成到优化框架中，以实现高成本效益的温度调节，确保泳池水温绝不低于预期最小值。",
+      "constraints": "一个重大的挑战是泳池固有的热惯性，这使得响应式控制效率低下。解决方案必须包含预见性和预测能力来克服这种滞后，需要一种前瞻性的优化方法。"
+    },
+    "discovery": {
+      "requirements": "需求侧重于预测温度变化 `y[k+1] - y[k]` 并将其用于控制优化。这需要时间序列分析以及一个在温度目标与成本最小化之间取得平衡的智能代理。",
+      "competitiveAnalysis": "虽然不明确，但该项目旨在超越基础的响应式温控器控制，后者因热惯性而浪费能源。目标是构建一个主动的、预测性的系统，其本质上优于简单的替代方案。",
+      "technicalResearch": "研究侧重于温度“变化”的时间序列预测以保持稳定性，以及关键变量的特征工程。选择 XGBoost 是因为其稳健的性能，预见性控制等控制理论概念指导了解决方案。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目采用模块化结构：`data/`、`notebooks/`、`src/`（用于 `modeling/` 和 `control/`）以及 `outputs/`。这促进了可维护性和逻辑上的关注点分离。",
+      "technicalDecisions": "关键决策包括为稳定性建模 `temp_variation` 以及使用 XGBoost 追求其效率、准确性和可解释性。实施了带有“贪婪”和“改进的前瞻”策略的迭代控制优化，以解决热惯性问题。优先考虑了全面的可视化，以便理解数据并比较控制策略。"
+    },
+    "developmentProcess": {
+      "phase1": "初始设置涉及构建存储库和摄取原始数据。在 `notebooks/exploration.py` 中进行的初步数据探索有助于理解数据类型、缺失值，并计算描述性统计数据，包括目标变量的变化。",
+      "phase2": "此阶段开发了核心系统：用于特征工程的 `data_preparation.py`，用于 XGBoost 的 `model_training.py`，以及用于基础控制的 `optimizer.py`。一个 `evaluation.py` 框架集成了模型预测并评估了 8 小时跨度内的初始性能。",
+      "phase3": "完善阶段包括带有前瞻机制的 `optimizer_improved.py`，以更好地管理热惯性。扩展了 `outputs/figures/` 中的可视化套件以进行详细分析，提供了对系统行为和性能比较的深入见解。"
+    },
+    "keyFeatures": [
+      {
+        "title": "智能水温预测",
+        "description": "准确预测下一时间步的泳池水温“变化”，构成预见性控制系统的骨干。",
+        "implementation": "一个在历史数据上训练的 XGBoost 回归器学习当前条件之间的关系，以预测温度变化。`temp_variation` 被设计为 `data['water temp'].diff()`。",
+        "challenges": "通过关注变化率而非绝对温度预测，克服了噪声，使预测对于有效控制更加稳定和稳健。"
+      },
+      {
+        "title": "数据探索与特征工程",
+        "description": "提供对数据集特征的深入理解，并为机器学习做好准备。",
+        "implementation": "`exploration.py` 使用 Pandas 显示数据类型、识别缺失值并计算描述性统计数据。它还设计了 `temp_variation` 特征。",
+        "challenges": "确保数据的质量和相关性；理解数据的统计属性是构建有效模型的基础。"
+      },
+      {
+        "title": "预见性控制优化",
+        "description": "战略性地启动热泵，在最小化能源消耗的同时维持最低水温约束。",
+        "implementation": "`optimizer_improved.py` 使用训练好的 ML 模型模拟不同热泵场景下的未来温度变化。“前瞻”策略评估一段时间内的行动，选择成本最低的序列。",
+        "challenges": "通过基于预测的未来状态规划行动，直接解决了泳池的热惯性问题，确保主动的温度管理而非低效的响应式控制。"
+      },
+      {
+        "title": "全面的性能评估与可视化",
+        "description": "通过说明性图表对模型准确性和控制系统有效性进行彻底评估。",
+        "implementation": "`evaluation.py` 生成大量可视化效果（如时间序列、相关性、特征重要性、控制比较），并保存在 `outputs/figures/` 中。",
+        "challenges": "有效传达复杂的 ML 和控制系统性能，提供关于模型可靠性、特征影响和策略功效的即时、可操作的见解。"
+      }
+    ],
+    "testing": "`evaluation.py` 脚本作为一个专门的测试框架，通过定量指标和视觉反馈在 8 小时跨度内评估预测模型。在误差积累和控制比较可视化的指导下，基础优化器和改进优化器的迭代开发完善了控制策略。这种预测、控制、评估和完善的迭代循环是实现有效解决方案的关键。",
+    "results": {
+      "technicalAchievements": "使用 XGBoost 成功实施了用于动态系统建模和控制的端到端 ML 流水线。通过特征重要性识别了影响力变量，验证了物理直觉。设计了一个预见性控制系统，其表现明显优于纯响应式方法，有效管理了热惯性。创建了一个全面的可视化套件来解释数据、模型行为和控制策略的有效性。",
+      "businessImpact": "该解决方案通过在维持所需温度的同时最小化热泵能源消耗，提供了可观的运营成本节省。它优化了资源利用，促进了可持续性，并通过始终处于最佳状态的泳池温度增强了用户体验。",
+      "personalGrowth": "深化了对时间序列建模（特别是变化预测）的理解，并在设计智能 ML 反馈控制系统方面获得了实践经验。提高了在数据探索、特征工程和稳健模型评估方面的技能，体会到了问题分解和迭代完善的重要性。"
+    },
+    "techStack": {
+      "frontend": null,
+      "backend": null,
+      "tools": "Python (主要开发语言)",
+      "libraries": "Pandas (数据操作, 特征工程), NumPy (数值计算), XGBoost (用于预测的 ML 模型), Matplotlib/Seaborn (数据可视化), Scikit-learn (隐含用于预处理, 指标)"
+    },
+    "learnings": [
+      "预测时间序列中的“变化”比绝对值能产生更稳定和稳健的模型，减少了累积误差并提供了更清晰的控制信号。",
+      "热惯性需要预见性方法（如“前瞻”策略）来实现成功的优化，因为响应式系统对于此类动态系统是低效的。",
+      "XGBoost 对结构化数据非常有效，具有很高的预测准确性，并且易于提取特征重要性以理解温度变化的驱动因素。",
+      "全面的可视化对于理解数据、诊断模型误差和比较控制策略功效非常有价值，能将抽象数据转化为可操作的见解。"
+    ],
+    "futureEnhancements": [
+      "实施先进的强化学习算法，使控制系统能够通过环境交互学习最佳策略。",
+      "集成更精细的滚动特征（如滞后变量或移动平均线），以有效捕捉时间依赖性。",
+      "探索循环神经网络 (LSTM/GRU) 用于温度预测，这非常适合建模序列和长期依赖关系。",
+      "实施完整的模型预测控制 (MPC) 框架，将 ML 模型作为系统的预测引擎，处理约束和多步前瞻。",
+      "为预测添加不确定性估计以获得置信区间，使控制系统能够做出更稳健的决策。"
+    ],
+    "conclusion": "本项目成功解决了智能泳池温度管理问题，整合了预测建模和成本优化控制。通过利用机器学习并采用预见性策略，系统在最小化能源的同时高效维持温度。它是将数据科学应用于现实挑战的有力范例，展示了强大的机器学习、系统设计和实际优化技能。"
+  },
+  "blue-gold-analytics": {
+    "title": "蓝金分析 (Blue Gold Analytics)",
+    "description": "阐明用水保障与儿童死亡率之间的联系，以指导人道主义援助。",
+    "metadata": {
+      "role": "数据分析师",
+      "category": "数据分析, 可视化",
+      "timeline": "2026-01-30",
+      "liveUrl": "null",
+      "githubUrl": "https://github.com/Exowz/blue-gold-analytics"
+    },
+    "overview": "蓝金分析将安全饮用水获取与儿童死亡率之间的关系可视化，创建了一个“人道主义优先级得分 (SPH)”来引导援助。该项目使用 Python 和 R 实施，提供各种可视化图表和仪表板，为全球公共卫生提供可操作的见解。",
+    "challenge": {
+      "problem": "安全饮用水获取的不平等导致了高儿童死亡率，而人道主义援助缺乏精确、有数据支持的见解来实现高效的资源分配。需要一个量化指标来确定干预措施的优先级。",
+      "goal": "量化用水保障与儿童死亡率的相关性，开发一个用于对地区进行排名的人道主义优先级得分 (SPH)，提供各种高质量的可视化效果（静态、动画、交互式），并在 Python (Streamlit) 和 R (Shiny) 中实施交互式仪表板。",
+      "constraints": "分析涵盖了 8 年间（2015-2022）的约 170 个国家。它需要 Python 和 R 的并行开发，保持一致性，并生成各种高分辨率输出（300 DPI PNG, GIF, 交互式 HTML）。"
+    },
+    "discovery": {
+      "requirements": "项目需要超越轶事证据，通过清晰的视觉沟通和用户友好的界面提供经统计验证的、数据驱动的见解。输出必须适用于正式报告、动态演示和交互式探索。",
+      "competitiveAnalysis": "该项目通过提供双语言实施（Python/R）和全套可视化类型来脱颖而出，实现了灵活性和影响范围的最大化。这迎合了更广泛的数据从业者和决策者受众。",
+      "technicalResearch": "研究了用于静态图表的 ggplot2 (R)、用于动画的 gganimate (R) 以及用于交互式 HTML 可视化的 Plotly (Python/R)，并使用 R 中的 htmlwidgets 促进集成。选择 Streamlit (Python) 和 Shiny (R) 进行仪表板的快速开发，并使用世界银行获取数据。"
+    },
+    "architecture": {
+      "informationArchitecture": "模块化架构分离了 Python 和 R 的实施，为静态图表、动画和交互式可视化设置了独特的输出目录。这种结构确保了对特定输出类型的轻松导航和检索。",
+      "technicalDecisions": "双技术栈方法最大化了吸引力，并利用了两种语言的生态系统。标准化的输出格式（PNG, GIF, HTML）确保了广泛的兼容性，静态图表采用 300 DPI。Plotly 生成符合现代网络实践的交互式 HTML 输出，所有文件都设计为自动生成，强调可重复性。"
+    },
+    "developmentProcess": {
+      "phase1": "初始设置涉及配置 Python 和 R 环境，连接到世界银行数据 API，并对约 170 个国家（2015-2022）进行基本的清洗/预处理。",
+      "phase2": "开发核心功能：统计分析（相关性、回归、方差分析），计算人道主义优先级得分 (SPH)，并生成多样化的可视化效果（静态、动画、交互式）。然后使用仪表板框架（Streamlit/Shiny）将这些元素集成到交互式 Web 应用程序中。",
+      "phase3": "侧重于完善输出以满足高分辨率 (300 DPI) 和质量标准，优化交互元素，并撰写全面的文档。这一阶段对于确保两种语言实施的可访问性和清晰度至关重要。"
+    },
+    "keyFeatures": [
+      {
+        "title": "双语言实施 (Python & R)",
+        "description": "整个分析流水线在 Python 和 R 中独立实施，为不同的数据科学社区提供灵活性和广泛的吸引力。",
+        "implementation": "独立的 Python 和 R 项目目录包含利用各自语言生态系统的独特代码库（如 Python 中的 Streamlit/Plotly，R 中的 Shiny/ggplot2/gganimate）。这保持了两个语言中项目目标的一致性。",
+        "challenges": "在遵循每种语言及其库特有的最佳实践的同时，确保分析的一致性和结果的可比性。"
+      },
+      {
+        "title": "交互式仪表板 (Streamlit & Shiny)",
+        "description": "提供基于 Web 的动态界面，使用户能够在无需编码的情况下探索数据、与可视化效果交互并获得见解。",
+        "implementation": "Python 的 Streamlit (`partie_6_app.py`) 集成了 Plotly 图表，而 R 的 Shiny (`app.R`) 展示了 R 生成的绘图。这些仪表板能够探索区域趋势、脆弱性矩阵和优先级地图。",
+        "challenges": "为复杂的人道主义数据设计直观的用户体验，并在 Web 应用程序中高效渲染各种交互式绘图，确保高性能。"
+      },
+      {
+        "title": "地理空间分析与人道主义优先级得分 (SPH)",
+        "description": "通过将低用水保障和高儿童死亡率结合成 SPH，识别全球紧急人道主义需求的热点地区。",
+        "implementation": "使用 Plotly 生成的交互式等值线图（如 `choropleth_sph_map.html`）直观地展示了各个地区的衍生 SPH。该得分是一个经过统计汇总和加权的指标。",
+        "challenges": "准确计算并直观展示跨越不同地理区域的综合优先级得分，使地图可交互以进行详细的区域深入分析。"
+      },
+      {
+        "title": "全面的可视化输出格式",
+        "description": "提供多功能的可视化效果：用于报告的高分辨率静态图像、用于时间趋势的动画 GIF 以及用于探索的交互式 HTML。",
+        "implementation": "静态图表使用 R 的 ggplot2 生成 300 DPI 的 PNG。gganimate (R) 创建 GIF 动画。Plotly（通过 R 中的 htmlwidgets 在 Python 和 R 中使用）生成用于带缩放和悬停功能的浏览器内探索的交互式 HTML 文件。",
+        "challenges": "管理多种文件类型的自动生成，确保不同格式之间的视觉一致性和质量，并优化 Web 交付的文件大小。"
+      }
+    ],
+    "testing": "测试涵盖了约 170 个国家（2015-2022）数据的完整性和一致性。统计验证确认了包括相关性、回归和 SPH 在内的所有计算。可视化完整性检查确保了准确的数据表示和功能性交互。至关重要的是，跨平台一致性验证了 Python 和 R 实施产生了可比的分析结果和可视化效果。仪表板功能经过了易用性、响应能力和显示准确性的测试。",
+    "results": {
+      "technicalAchievements": "在 Python 和 R 中成功实施了全面分析，展示了在两个生态系统中的专业知识。开发了用于出版级 PNG (300 DPI)、动态 GIF 和交互式 HTML 图表的稳健流水线。使用 Streamlit 和 Shiny 创建了功能性仪表板，验证了用水保障与儿童死亡率之间强烈的统计关系 (r = -0.70, p < 0.001; 解释了约 50% 的方差)。",
+      "businessImpact": "通过人道主义优先级得分 (SPH) 实现了数据驱动的援助分配，为人道主义干预优先级提供了客观指标。向决策者提供了关于全球趋势的清晰见解（2015-2022 年间，用水保障提高 3.2%，儿童死亡率下降 12.4%）。通过面向不同受众的各种可视化格式增强了沟通。",
+      "personalGrowth": "深化了在多语言数据分析工作流程方面的专业知识，并掌握了 ggplot2, gganimate 和 Plotly 的高级可视化技术。在设计和实施交互式 Web 仪表板方面获得了宝贵经验，增强了将人道主义数据转化为可操作见解以造福社会的能力。"
+    },
+    "techStack": {
+      "frontend": "HTML, JavaScript",
+      "backend": "Python, R",
+      "tools": "Jupyter Notebook, Git/GitHub, 世界银行数据",
+      "libraries": "Python: pandas, NumPy, SciPy/statsmodels (隐含), Plotly, Streamlit. R: tidyverse (隐含 dplyr, tidyr), ggplot2, gganimate, Plotly, htmlwidgets, Shiny."
+    },
+    "learnings": [
+      "在 Python 和 R 中同时执行一个复杂项目展示了多语言熟练程度的价值，扩大了项目的覆盖范围和影响。",
+      "强调了多样化可视化格式（静态、动画、交互式）的重要性，每种格式都适用于详细报告、动态叙事和用户驱动探索等不同目的。",
+      "使用 Streamlit 和 Shiny 开发用户友好的仪表板凸显了它们在数据民主化方面的力量，使非技术利益相关者能够通过与数据交互来获取见解。",
+      "该项目强化了数据科学对全球挑战的深远影响，展示了量化复杂关系如何能直接优化挽救生命的人道主义援助分配。"
+    ],
+    "futureEnhancements": [
+      "实施先进的时间序列预测模型（如 ARIMA, Prophet）以进行主动的援助规划。",
+      "集成更多数据源，如卫星图像、气候数据或社会经济指标，进行整体分析。",
+      "开发用于实时数据集成的流水线，确保仪表板反映最新的全球局势。",
+      "实施用户身份验证和基于角色的访问，以量身定制仪表板视图和功能。",
+      "将仪表板部署到云平台（如 AWS, Azure, GCP）以实现可扩展性和更广泛的公众访问。",
+      "将分析扩展到国家以下级别，以获得更本地化的见解和针对性的干预。",
+      "对数据和模型进行彻底的 AI 伦理和偏见缓解审查，以确保公平的援助分配。"
+    ],
+    "conclusion": "蓝金分析项目是利用数据科学产生人道主义影响的重大成就。通过细致分析用水保障与儿童死亡率之间的联系并开发实用的人道主义优先级得分，它使决策者能够更有效地分配援助。其双语言实施和多样化的交互式可视化凸显了对稳健、可访问且具有影响力的全球健康数据解决方案的承诺。"
+  },
+  "ascord-appwrite": {
+    "title": "Ascord",
+    "description": "Ascord 是一个用于任务管理和团队协作的实时、统一平台。",
+    "metadata": {
+      "role": "前端开发人员",
+      "category": "网络开发, 任务管理, 协作",
+      "timeline": "2024年12月 - 至今（持续开发中）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/ascord-appwrite"
+    },
+    "overview": "Ascord 是一个雄心勃勃的任务管理和项目协作平台，将 Discord 的 UI 与 Asana/Trello 的强大功能相结合。利用 Next.js 和 Appwrite，它提供了实时的任务空间创建、可定制的看板视图、详细的任务管理和无缝的沟通。该平台强调效率、以用户为中心的设计和即时更新，以提高团队生产力。",
+    "challenge": {
+      "problem": "传统的项目管理工具通常存在界面复杂或工作流程支离破碎的问题，迫使团队在多个应用程序之间切换。核心问题在于如何将分散的沟通、任务跟踪和文件共享功能统一到一个连贯且令人愉悦的用户体验中。",
+      "goal": "开发 Ascord，一个功能齐全的任务管理和项目协作平台，具有受 Discord 启发的 UI、强大的任务管理和实时协作功能。目标是在确保稳健、可扩展的后端的同步，优先考虑卓越的开发人员体验和可维护性。",
+      "constraints": "关键挑战包括实施实时数据同步、设计灵活的拖放界面、确保具有基于角色权限的稳健身份验证以及高效管理各种数据类型。使用 Appwrite 作为 BaaS 加速了开发，但与自定义后端相比带来了一些灵活性限制。"
+    },
+    "discovery": {
+      "requirements": "需求主要来自于对 Discord 风格 UI 的追求，强调全面的工作空间、看板和任务管理、实时更新、用户角色、文件附件以及拖放功能。用户故事侧重于团队负责人组织项目、成员更新任务以及获得即时反馈。",
+      "competitiveAnalysis": "竞争分析涉及研究 Asana、Trello 和 Discord。采用了 Discord 的服务器/频道结构和实时通信，借鉴了 Trello 的看板和拖放功能，以及 Asana 的详细任务管理，从而确定了 Ascord 的功能集和 UI。",
+      "technicalResearch": "选择带有 App Router 的 Next.js 14 以符合现代 Web 实践，利用服务器组件提升性能。Appwrite 为身份验证、数据库、存储和至关重要的实时 API 提供了一个通用的 BaaS。TypeScript 确保了类型安全，Tailwind CSS 促进了 UI 的快速开发。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目的架构是模块化且可扩展的，使用 Next.js App Router 在逻辑上分离身份验证和仪表板区域。可重用的 React 组件被组织到 `ui`、特定功能和 `modals` 目录中。`lib/` 包含 Appwrite 客户端、API 抽象和工具函数，而 `hooks/` 则集中了特定领域的逻辑。",
+      "technicalDecisions": "选择 Next.js 14 App Router 是为了 SSR/SSG、API 路由以及通过服务器组件进行的性能优化。Appwrite 作为 BaaS 提供了身份验证、数据库、存储和实时 API，加速了开发。TypeScript 确保了类型安全，提高了可读性和可维护性。Tailwind CSS 实现了快速、一致的 UI 开发，Appwrite Realtime API 提供了至关重要的瞬时更新。"
+    },
+    "developmentProcess": {
+      "phase1": "第一阶段奠定了基础：设置 Next.js 14 和 Appwrite SDK，构建项目结构并配置环境变量。实施了基本的用户身份验证（注册、登录），以确保对平台的安全访问。",
+      "phase2": "第二阶段侧重于核心功能开发，包括工作空间管理（创建、侧边栏、成员邀请、角色管理）。使用组件和自定义钩子构建了看板系统（看板、列表、日历视图）和稳健的任务管理（详细卡片、分配、截止日期、标签、文件附件）。",
+      "phase3": "第三阶段侧重于润色和优化，通过 Appwrite 的 Realtime API 集成了实时协作以实现即时更新。优化了拖放界面，使用 Tailwind CSS 润色了 UI 元素，并全面实施了用户角色和权限以实现有效的访问控制。"
+    },
+    "keyFeatures": [
+      {
+        "title": "工作空间管理 (Discord 风格)",
+        "description": "允许为团队/项目创建隔离的环境，镜像 Discord 的服务器结构并带有侧边栏导航。支持邀请和管理具有基于角色权限的成员。",
+        "implementation": "工作空间数据和成员存储在 Appwrite 数据库中，身份验证由 Appwrite Auth 处理。自定义 React 钩子管理活跃工作空间状态和成员工具。通过 Appwrite 的文档级安全和应用程序端逻辑强制执行权限。",
+        "challenges": "确保安全的数据检索、实施动态侧边栏导航以及正确地将基于角色的访问控制应用于各种工作空间操作是关键挑战。"
+      },
+      {
+        "title": "实时协作",
+        "description": "提供整个应用程序的即时更新，实时为所有团队成员反映任务、评论或卡片移动的变化。",
+        "implementation": "由 Appwrite 的 Realtime API 驱动，前端组件订阅特定 Appwrite 集合或文档的更改。Appwrite 将更新推送到订阅的客户端，触发使用最新数据的 UI 重新渲染。",
+        "challenges": "高效管理大量的实时订阅、确保跨客户端的数据一致性以及优雅地处理网络断开是关键挑战。"
+      },
+      {
+        "title": "拖放界面 (看板视图)",
+        "description": "提供直观的可视化任务板，用户可以毫不费力地在列之间拖放任务卡片以更新状态或重新排序。",
+        "implementation": "在 React 组件中集成现代拖放库。放置卡片后，前端捕获新位置/状态，向 Appwrite 数据库分派更新，实时功能将更改传播给协作人员。",
+        "challenges": "与 React 状态和 Appwrite 数据的无缝集成、处理复杂的拖动场景以及在没有卡顿的情况下确保流畅、高性能的用户体验。"
+      },
+      {
+        "title": "丰富的任务管理",
+        "description": "允许创建详细的任务卡片，支持多个受指派人、可定制的截止日期、优先级、标签、文件附件以及集成的评论/讨论。包括用于细化分解的任务清单项。",
+        "implementation": "所有与任务相关的数据（指派、日期、优先级、标签、清单项）都存储在 Appwrite 数据库中。文件附件利用 Appwrite 存储。评论在单独的关联集合中管理。",
+        "challenges": "为多样的任务属性设计灵活的数据库模式、实施稳健的文件管理以及确保评论和清单等嵌套元素的实时更新。"
+      },
+      {
+        "title": "基于角色的权限",
+        "description": "控制用户在工作空间内可以执行的操作。所有者、管理员和成员等角色具有不同的权限，例如，只有所有者可以删除，管理员可以邀请，成员可以更新任务。",
+        "implementation": "利用 Appwrite 的文档级安全和基于来自工作空间成员记录的用户角色的应用程序级逻辑。这保护了 UI 操作和 API 调用。",
+        "challenges": "精细地定义和强制执行许多操作的权限、确保后端规则与前端 UI 之间的一致性，以及防止未经授权的数据访问或操作。"
+      }
+    ],
+    "testing": "采用务实的方法，包括对工具函数和自定义钩子的单元测试，以及对组件交互和 Appwrite API 调用的集成测试。鉴于持续开发，强调了手动测试和基于开发人员反馈的持续迭代。实时功能接受了广泛测试，以确保并发更新和数据同步。未来的计划包括一套全面的端到端测试。",
+    "results": {
+      "technicalAchievements": "Ascord 成功实现了集成 Next.js 和 Appwrite 的复杂实时 Web 应用程序，展示了在前端架构和 BaaS 利用方面的熟练程度。实时协作、拖放和基于角色的权限的成功实施证明了对全栈模式和可扩展设计的深刻理解。项目结构和 TypeScript 最佳实践确保了高可维护性。",
+      "businessImpact": "Ascord 虽然仍在开发中，但旨在通过统一沟通和任务管理、减少上下文切换来显著提高团队生产力。其直观、实时的环境促进了更好的协作和更清晰的项目监督，解决了中小型团队的关键需求。",
+      "personalGrowth": "本项目在架构和开发功能丰富的实时应用程序方面提供了宝贵的经验。我在 Next.js 14 的 App Router、Appwrite 生态系统（身份验证、数据库、存储、实时）方面获得了广泛的实践经验，并磨练了 Tailwind CSS 和 TypeScript 的技能，巩固了作为通能前端开发人员的能力。"
+    },
+    "techStack": {
+      "frontend": "Next.js 14 (App Router), React, TypeScript, Tailwind CSS, Geist 字体系列",
+      "backend": "Appwrite (BaaS, Realtime API, Auth, Database, Storage)",
+      "tools": "GitHub",
+      "libraries": "dnd-kit (或类似的拖放库)"
+    },
+    "learnings": [
+      "利用 Appwrite 作为 BaaS 通过提供身份验证、数据库、存储和实时功能等成熟的开箱即用解决方案，显著加速了开发过程。",
+      "对使用 Appwrite 的 API 架构和实施实时数据同步、管理订阅以及确保分布式客户端之间的数据一致性有了深刻见解。",
+      "掌握了 Next.js 14 App Router 的错综复杂之处，包括服务器组件、客户端渲染、数据获取模式以及复杂 UI 结构的高效路由。",
+      "强化了 TypeScript 在构建可维护、可扩展应用程序方面的价值，以及 Tailwind CSS 在快速开发极具吸引力且响应迅速的用户界面方面的效率。"
+    ],
+    "futureEnhancements": [
+      "实施一个全面的实时通知系统，用于任务分配、截止日期和评论。",
+      "开发与 Slack、GitHub 或 Google Drive 等流行第三方工具的集成，以增强工作流程自动化。",
+      "引入具有详细项目进度跟踪、团队绩效指标和可定制报告的高级分析仪表板。",
+      "通过开发专用的移动应用程序或渐进式 Web 应用程序 (PWA) 来扩展 Ascord 的覆盖范围，以便随时随地访问。",
+      "为用户提供个性化选项，包括可定制的主题和深色模式。"
+    ],
+    "conclusion": "Ascord 体现了现代 Web 技术在创建直观、高度协作的应用程序方面的力量。通过将 Discord 引人入胜的 UI 与 Asana/Trello 稳健的任务管理相结合，它提供了一个旨在提升团队生产力的全面、实时平台。本项目展示了技术熟练程度以及致力于通过创新的、以用户为中心的解决方案解决现实协作挑战的承诺，代表了未来团队协作的愿景。"
+  },
+  "B2javaECE": {
+    "title": "B2javaECE 项目",
+    "description": "ECE Paris B2 Java 作品集：概念、算法和软件实践。",
+    "metadata": {
+      "role": "学生",
+      "category": "Java 开发, 学校项目",
+      "timeline": "2024-2025 学年（2025年2月至10月）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/B2javaECE"
+    },
+    "overview": "B2javaECE 是一个学术作品集，记录了 ECE Paris 二年级的各种 Java 项目和练习。它展示了对核心 Java 概念、算法、数据库集成和多线程应用程序的掌握。该存储库突出了开发人员将理论知识应用于实际问题并遵循最佳实践的能力。",
+    "challenge": {
+      "problem": "主要的挑战在于将 ECE Paris 课程中的各种 Java 项目组织成一个统一的存储库。如果不这样做，学生和评估人员都很难跟踪进度并证明对各种主题的掌握。",
+      "goal": "目标是创建一个单一、结构良好的 GitHub 存储库，展示编程概念、算法和软件开发实践。关键目标包括掌握 OOP、数据结构、算法、设计模式和用于稳健解决问题的 Java 最佳实践。",
+      "constraints": "主要的限制因素涉及遵循 ECE Paris 的课程要求和学习目标。重点在于展示对定义主题的理解，而不是开发商业产品。该存储库用于教育目的。"
+    },
+    "discovery": {
+      "requirements": "项目需求与 ECE Paris 二年级课程直接相关，要求对每项作业的学术目标有深入理解。这包括实施数据结构、应用 OOP 以及与数据库集成。README 作为路线图，列出了学习目标和主题。",
+      "competitiveAnalysis": "作为一个学术作品集，“竞争”侧重于证明与同行相比对学科内容的强大掌握。目标是产出干净、文档齐全且功能正确的项目。这突出了个人学习和技能习得，作为一个个人的学术展示。",
+      "technicalResearch": "广泛的技术研究涵盖了 Java 集合、异常处理、文件 I/O、多线程、JDBC、设计模式和 JUnit。这确保了所有实施都符合行业标准和学术预期。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目采用了典型的 Java/Maven/Gradle 项目标准组织结构，包含 `src/main`、`src/test`、`lib/` 和 `docs/`。`README.md` 是中心信息枢纽。这种结构便于导航、维护和扩展。",
+      "technicalDecisions": "选择 Java 作为主要语言，符合课程要求。Maven 或 Gradle 提供了标准化的构建和依赖管理。Git 确保了行业标准的版本控制和历史跟踪。CSS 的存在强烈暗示使用了 JavaFX 进行 UI 开发，从而实现了结构化的图形应用程序。"
+    },
+    "developmentProcess": {
+      "phase1": "第一阶段涉及设置开发环境，包括 JDK 11+、IDE 配置和 Maven/Gradle 构建系统的建立。克隆了存储库，并创建了标准的文件夹结构（`src/main`, `src/test`, `lib/`, `docs/`），确保了所有作业的稳固基础。",
+      "phase2": "第二阶段侧重于实施各个学术项目，每个项目都针对特定的学习目标。这包括设计 OOP 类、实施数据结构和算法、处理文件 I/O 以及通过 JDBC 集成数据库。开发了像 `UserManagerFX` 这样 UI 驱动的应用程序，将用户界面与业务逻辑相结合。多线程概念也被应用于并发问题。",
+      "phase3": "第三阶段强调代码质量和 Java 最佳实践，使用 JUnit 单元测试确保正确性和稳定性。代码根据设计模式进行了重构，以提高可读性、可维护性和效率。README 持续更新，以保持清晰且全面的学术展示。"
+    },
+    "keyFeatures": [
+      {
+        "title": "面向对象编程 (OOP) 实施",
+        "description": "通过各种类设计展示了封装、继承、多态和抽象等基本 OOP 原则。",
+        "implementation": "项目包括结构良好的类、接口和模拟实体的抽象类，展示了针对特定问题领域的各种方法重写和接口实施。",
+        "challenges": "设计遵循 SOLID 原则的灵活、可扩展的类结构，确保适当的访问控制并管理复杂的对象关系。"
+      },
+      {
+        "title": "数据结构与算法 (DSA)",
+        "description": "实施并应用各种数据结构（如列表、集合、映射）和经典算法来解决计算问题。",
+        "implementation": "利用 Java 集合框架（`ArrayList`, `HashMap`）并包括自定义算法实施（如排序、搜索），以演示其机制和性能。",
+        "challenges": "针对时间/空间复杂度优化算法效率，选择合适的数据结构，并有效处理边缘情况。"
+      },
+      {
+        "title": "文件 I/O 操作与异常处理",
+        "description": "提供稳健的读写文件机制，并系统地处理运行时错误以防止应用程序崩溃。",
+        "implementation": "利用 `java.io` 包组件（如 `FileReader`, `BufferedReader`）进行高效的数据操作。使用 `try-catch-finally` 块和自定义异常优雅地管理像 `FileNotFoundException` 这样的错误。",
+        "challenges": "确保数据完整性、可靠地管理资源关闭，并为各种失败场景提供清晰的错误消息。"
+      },
+      {
+        "title": "使用 JDBC 连接数据库",
+        "description": "建立 Java 应用程序与关系数据库之间的连接，实现数据持久化和检索。",
+        "implementation": "实施 JDBC API 连接数据库（如 MySQL），执行 SQL 查询（INSERT, SELECT, UPDATE, DELETE）并处理 `ResultSet` 对象。这包括管理连接和事务。",
+        "challenges": "保护数据库凭据、高效管理连接池、处理特定于数据库的异常以及设计合适的模式。"
+      },
+      {
+        "title": "用户管理应用程序 (隐含: `UserManagerFX`)",
+        "description": "一个用于管理用户数据的小型应用程序，可能带有图形用户界面，通过菜单和按钮的 CSS 样式体现。",
+        "implementation": "结合了用于 `User` 模型的 OOP、用于内存存储的数据结构以及用于持久化的 JDBC。UI 使用 JavaFX（隐含）构建，并带有用于美化的自定义 CSS 样式。",
+        "challenges": "将 UI 与后端逻辑集成、实施数据验证、确保直观的用户体验以及管理 UI 与数据库之间的数据流。"
+      },
+      {
+        "title": "使用 JUnit 进行单元测试",
+        "description": "确保所有项目中单个代码单元（方法、类）的正确性、可靠性和可维护性。",
+        "implementation": "利用 JUnit 测试框架编写涵盖正常操作、边缘情况和预期异常的自动化测试用例，提供对代码更改的即时反馈。",
+        "challenges": "实现全面的测试覆盖、编写隔离且确定性的测试，并有效地模拟 (mocking) 依赖项。"
+      }
+    ],
+    "testing": "使用 JUnit 进行严格测试是确保代码质量和正确性的基础。为每个组件开发了自动化单元测试，利用 Maven/Gradle 提供快速反馈。这个由测试失败引导的迭代过程确保了功能的正确性，验证了学习目标，并展示了专业的开发方法。",
+    "results": {
+      "technicalAchievements": "该项目展示了稳健的 Java 熟练程度，成功实施了 OOP 原则、数据结构和算法。实现了在文件 I/O、异常处理、多线程和用于数据库集成的 JDBC 方面的专业知识。隐含的 JavaFX UI 开发实践经验和一致的 JUnit 应用展示了对质量的承诺。遵循行业标准项目结构和构建过程进一步巩固了技术成就。",
+      "businessImpact": "作为一个学术作品集，主要影响在于职业发展和教育验证。它显著增强了开发人员的专业形象，证明了有效学习、应用和记录复杂技术概念的能力。该项目通过展示直接的课程成果验证了教育投资。",
+      "personalGrowth": "该项目促进了个人和专业成长，巩固了 Java 基础并增强了解决问题的能力。它提供了软件工程最佳实践、设计模式以及熟练使用 Git 和 Maven/Gradle 等基本开发工具的实践经验。培养了详尽文档和一致代码组织的习惯。"
+    },
+    "techStack": {
+      "frontend": "CSS, JavaFX (隐含)",
+      "backend": "Java, JDBC",
+      "tools": "Maven, Gradle, Git, IntelliJ IDEA, Eclipse, VS Code",
+      "libraries": "JUnit"
+    },
+    "learnings": [
+      "获得了对 Java 核心生态系统的深度实践理解，包括 OOP、集合框架、异常处理和并发。",
+      "熟练掌握了现代 Java 开发工作流程，利用 Maven/Gradle 等行业标准工具进行构建自动化，利用 JUnit 进行严格测试。",
+      "应用了通用的软件设计模式和最佳实践，为复杂项目构建了模块化、可维护且可扩展的代码结构。",
+      "获得了以桌面为中心的全栈集成实践经验，从带有 CSS 的交互式 JavaFX UI 到使用 JDBC 的数据库持久化。"
+    ],
+    "futureEnhancements": [
+      "使用 Spring Boot 扩展到 Web 开发，以构建 RESTful API 或全栈 Web 应用程序。",
+      "实施 Hibernate 等 ORM 框架以简化数据库交互并增强数据建模，取代直接的 JDBC。",
+      "开发具有更多 UI 控件、动画和用于声明式 UI 设计的 FXML 的高级 JavaFX 应用程序，以增强用户体验。",
+      "实施 CI/CD 流水线（如 GitHub Actions）以自动化学术项目的测试、构建和部署。",
+      "引入使用 Log4j2 或 SLF4j 等框架的稳健日志记录，以获得详细的应用程序见解、调试和监控。",
+      "使用 Docker 容器化单个项目，以确保环境一致并简化设置/依赖管理。"
+    ],
+    "conclusion": "B2javaECE 项目通过勤奋的学术旅程有力地展示了基础且不断进化的 Java 专业知识。它细致地展示了 OOP、数据结构、软件设计和关键开发工具的实际应用。这个全面的作品集验证了对学习的强烈承诺、技术熟练程度以及对未来软件开发事业的准备。"
+  },
+  "RIB": {
+    "title": "RIB 项目",
+    "description": "根据 RIB 详情生成并验证法国 IBAN，确保准确性并普及控制密钥知识。",
+    "metadata": {
+      "role": "学生",
+      "category": "Python 开发, 金融算法, GUI 开发, API 集成",
+      "timeline": "2025年9月（初始开发阶段）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/RIB"
+    },
+    "overview": "RIB 项目根据传统的 RIB（银行账户详情）生成并验证法国 IBAN，自动计算符合 ISO 13616 标准的控制密钥，并与 `ibanapi.com` 集成以进行实时验证。它还作为一个教育工具，通过比较验证展示了正确控制密钥的重要性。RIB 使用 Python、Tkinter 和模块化架构开发，展示了在银行数据处理方面的全栈开发技能。",
+    "challenge": {
+      "problem": "根据 RIB 详情手动生成和验证法国 IBAN 非常复杂、容易出错且耗时，计算错误会导致严重的财务延误。需要一个自动化、可靠的系统来确保合规性和准确性。",
+      "goal": "创建一个完整的 RIB/IBAN 分析系统，自动计算符合 ISO 13616 的控制密钥，通过专业 API 执行外部验证，提供直观的 GUI，并通过模块化架构提供验证过程的教育演示。",
+      "constraints": "系统必须准确处理严格遵循 ISO 13616 (Modulo 97) 的法国 RIB 数据（银行代码、网点代码、账号、国家密钥）。安全的 `ibanapi.com` 集成需要使用 `.env` 管理 API 密钥以及稳健的错误处理。应用程序需要使用像 Tkinter 这样的标准 Python 库保持自给自足。"
+    },
+    "discovery": {
+      "requirements": "对法国 RIB 结构的详细分析对于解析数据并将其组合成有效 IBAN 至关重要。核心需求是实现自动生成和验证，满足用户对可靠、易用的工具以确保交易准确性的需求。",
+      "competitiveAnalysis": "虽然存在在线计算器，但 RIB 通过将自动、符合标准的生成与实时、专业的 API 验证 (`ibanapi.com`) 以及教育组件相结合来实现创新。这种独特的融合使其成为一个更全面、更值得信赖的解决方案。",
+      "technicalResearch": "广泛的研究涵盖了 ISO 13616 的 Modulo 97 算法和字母数字转换规则。API 集成侧重于 `ibanapi.com` 的文档、`requests` 库的使用以及安全的 `.env` 密钥管理。还探索了 Tkinter 在直观 GUI 设计方面的能力。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目采用了清晰的模块化架构，将用于核心银行算法和 API 集成的后端逻辑 (`main.py`) 与用于用户界面和事件的前端 GUI (`interface_iban.py`) 分离开来。这种分离增强了可维护性和可扩展性。",
+      "technicalDecisions": "选择 Python 是因为其多功能性以及用于快速开发的丰富生态系统（Tkinter, Requests）。GUI 选择标准库 Tkinter 以确保兼容性。Requests 库促进了与 `ibanapi.com` 的稳健 API 通信以进行专业验证，并实施了 `.env` 进行安全的 API 密钥管理，符合最佳实践。"
+    },
+    "developmentProcess": {
+      "phase1": "第一阶段通过设置 Python 环境和处理 RIB 数据解析建立了核心逻辑。实施了关键的 Modulo 97 算法，准确翻译了用于 IBAN 控制密钥计算的 ISO 13616 标准，包括复杂的字母数字转换。",
+      "phase2": "第二阶段侧重于功能开发，集成了用于自动生成 IBAN 的 Modulo 97 计算。使用 `requests` 实施了与 `ibanapi.com` 的 API 集成，包括身份验证和错误处理。使用输入/输出字段和交互式按钮开发了 Tkinter GUI，将 UI 事件连接到后端函数。",
+      "phase3": "第三阶段通过一个教育演示对项目进行了完善，该演示通过 API 验证比较了正确和故意错误的 IBAN，展示了控制密钥的重要性。通过直观的 GUI 反馈增强了用户体验，并实施了 `.env` 进行安全的 API 密钥管理。"
+    },
+    "keyFeatures": [
+      {
+        "title": "自动生成 IBAN (符合 ISO 13616)",
+        "description": "自动计算 2 位 IBAN 控制密钥，并根据法国 RIB 详情构建完整的 IBAN 字符串，确保银行合规性。",
+        "implementation": "实施了复杂的 Modulo 97 算法，涉及特定的字母数字转换、RIB 元素连接和迭代除法，严格遵循 ISO 13616。",
+        "challenges": "将复杂的数学和字母数字银行标准精确翻译成代码，并处理字母数字转换和大数据算术的边缘情况，以确保准确的控制密钥。"
+      },
+      {
+        "title": "实时外部 API 验证",
+        "description": "将生成的 IBAN 提交给 `ibanapi.com`，以实时验证其有效性和结构正确性。",
+        "implementation": "使用 `requests` 库向 `ibanapi.com` 的验证端点发送经过身份验证的 HTTP GET 请求，API 密钥通过 `.env` 管理。解析 JSON 响应以显示验证结果。",
+        "challenges": "安全管理 API 密钥，并稳健处理各种 API 响应（包括验证成功、格式无效以及潜在的网络或 API 错误），以提供清晰的用户反馈。"
+      },
+      {
+        "title": "直观的基于 Tkinter 的图形用户界面 (GUI)",
+        "description": "提供一个用户友好的界面，用于输入 RIB 数据、触发 IBAN 生成、启动验证并显示结果。",
+        "implementation": "使用 `tkinter` 开发，包含 `Entry` 字段、`Button` 小组件和 `Text` 区域。事件处理程序将 GUI 操作连接到用于计算和 API 调用的后端 Python 函数。",
+        "challenges": "尽管 Tkinter 样式较基础，仍需设计功能性且易于导航的布局，并确保 UI 与后端逻辑之间的无缝通信，防止操作期间 UI 冻结。"
+      },
+      {
+        "title": "验证过程教育演示",
+        "description": "通过比较一个计算正确的 IBAN 与两个故意错误的 IBAN 的验证结果，阐明 IBAN 控制密钥的关键性。",
+        "implementation": "计算正确的 IBAN，然后构造两个控制密钥强制错误的 IBAN。将这三个都发送到 `ibanapi.com`，并并排显示结果，突出有效性差异。",
+        "challenges": "通过 GUI 内的一个实用的比较示例清晰地传达控制密钥重要性这一复杂概念，确保“固定密钥”逻辑不干扰标准计算。"
+      },
+      {
+        "title": "灵活的 RIB 数据解析",
+        "description": "自动从简单的文本文件中读取并解析 RIB 详情，为生成 IBAN 做好准备。",
+        "implementation": "采用 Python 的文件 I/O 和 `split()` 方法从 `bankaccount.txt` 中提取银行代码、网点代码、账号和国家密钥。",
+        "challenges": "确保对文本文件中潜在多样的输入格式进行稳健解析，使系统足够灵活以高效处理典型的输入风格。"
+      }
+    ],
+    "testing": "主要的测试涉及彻底的手动和功能验证。“教育验证演示”是一项关键的功能测试，显式验证了核心逻辑以及与已知正确/错误 IBAN 的 API 集成。迭代侧重于完善银行算法的准确性、提高 Tkinter 界面的响应能力以及增强 API 错误处理。",
+    "results": {
+      "technicalAchievements": "掌握了复杂的 Modulo 97 银行算法和字母数字转换规则的实施，证明了对 ISO 13616 的深刻理解。建立了稳健的 `ibanapi.com` 集成，展示了在 `requests` 和安全 API 密钥管理方面的熟练程度。开发了用于可维护代码的模块化架构，并交付了功能性的 Tkinter GUI。",
+      "businessImpact": "虽然是一个学生项目，但 RIB 显著减少了 IBAN 生成中的手动错误，节省了时间并防止了财务差异。其教育意义促进了对银行标准的更好理解，促进了更明智的财务操作。",
+      "personalGrowth": "在将复杂的银行标准转化为功能代码以及安全集成第三方 API 方面积累了广泛经验。巩固了对模块化软件设计的理解，并提高了使用 Tkinter 开发 GUI 的技能，深化了对金融数据结构的知识。"
+    },
+    "techStack": {
+      "frontend": "Tkinter",
+      "backend": "Python, Requests",
+      "tools": ".env",
+      "libraries": "用于 GUI 的 Python `tkinter`，用于 HTTP 请求的 `requests`，用于外部 IBAN 验证的 `ibanapi.com`。"
+    },
+    "learnings": [
+      "精确实施像 Modulo 97 这样的复杂银行算法至关重要；微小的偏差都会导致结果无效，需要严格测试。",
+      "利用专门的第三方 API（如 `ibanapi.com`）处理数据验证等细分功能非常高效，可以将精力集中在核心应用程序逻辑上。",
+      "将后端与 GUI 分离的模块化架构显著改善了代码组织和可维护性，并促进了独立的调试和扩展。",
+      "即使样式较基础，专注于直观且实用的用户界面对于用户体验和理解复杂过程也至关重要，正如教育演示所强调的那样。"
+    ],
+    "futureEnhancements": [
+      "实施离线 IBAN 验证算法作为外部 API 的弹性备选方案。",
+      "增加将生成的和验证过的 IBAN 导出为 CSV 或 PDF 等格式的功能以供记录。",
+      "增强系统处理来自大容量输入文件的多个 RIB 的批量处理能力，以提高效率。",
+      "引入存储过去验证历史的功能供用户查看。",
+      "使用现代设计升级 Tkinter 界面，或迁移到当代 GUI 框架（如 PyQt, Kivy）。"
+    ],
+    "conclusion": "RIB 项目成功交付了一个稳健的、具有教育意义的法国 IBAN 生成和验证系统，有效地应用 Python 处理复杂的金融算法和 API 集成。它达到了 ISO 13616 合规性的技术目标，并通过其比较验证功能展示了对用户理解的强烈承诺，体现了严谨的技术和直觉设计技能。"
+  },
+  "DNA": {
+    "title": "DNA 分析",
+    "description": "功能强大的生物信息学工具，用于包含二核苷酸组成和突变检测在内的全面 DNA 序列分析",
+    "metadata": {
+      "role": "学生（作为 ECE B3 - DNA 分析项目的一部分开发，用于 ECE 课程中的教育目的）",
+      "category": "Python 开发, 生物信息学, 数据分析",
+      "timeline": "存储库创建于 2025-09-21（实际开发跨越了学术课程中的较长时间）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/DNA"
+    },
+    "overview": "DNA 项目是一个使用 Python 开发的功能强大的生物信息学工具，旨在对 DNA 序列进行全面分析。它通过使用科学严谨的非重叠计数方法细致地计算二核苷酸组成（特别是关注 GC 和 AT 对）而脱颖而出。除了基本的碱基组成，该系统还集成了用于检测各种类型基因突变的先进功能，并通过直观的图形可视化展示这些复杂的数据点。这一举措旨在为遗传序列分析提供一种易于获取且精确的解决方案，满足生物信息学中的教育和研究需求。该程序展示了模块化架构的坚实基础，确保了可维护性和可扩展性，同时还优先考虑了针对现实生物数据集的最佳性能。其集成的图形用户界面 (GUI) 使得不懂深层编程知识的用户也能进行复杂的遗传分析，有效地将复杂算法与用户友好的交互结合起来。最终，DNA 项目为序列处理、突变识别和深入的数据展示提供了一个端到端的解决方案。它验证了开发人员处理多方面科学计算挑战的能力，从复杂的算法设计到精美的用户体验，证明了其作为生物信息学研究和教育宝贵资产的实用性。",
+    "challenge": {
+      "problem": "DNA 项目解决的核心问题是需要一个全面且准确的系统来分析遗传序列。这涉及使用科学严谨的非重叠方法精确确定二核苷酸的组成（特别是 GC/AT 对），检测各种类型的基因突变（替换、插入、删除），并提供这些分析的清晰且信息丰富的视觉表示。现有的工具可能过于复杂，或者缺乏针对特定教育和研究应用所需的特定功能，因此需要一个量身定制的解决方案。",
+      "goal": "主要目标是开发一个基于 Python 的应用程序，该程序可以：(1) 对 DNA 序列进行精确的非重叠二核苷酸分析。(2) 识别和分类基因突变。(3) 生成分析结果的全面图形可视化。(4) 提供模块化、高性能且稳健的架构。(5) 提供直观的图形用户界面以便于使用。",
+      "constraints": "作为 ECE 课程中的一个教育项目，开发受到以下限制：技术栈（主要使用 Python，利用 Matplotlib 进行可视化和 Tkinter 进行 GUI 等指定库）、算法严谨性（要求使用科学严谨的非重叠方法进行二核苷酸计数以确保准确性）、性能（程序需要证明针对现实数据集的最佳性能）、错误管理（实施稳健的错误管理以达到生产级别的可靠性）以及范围（平衡开发一个全面的分析工具的雄心与学术项目的实际局限性）。"
+    },
+    "discovery": {
+      "requirements": "该项目的需求由深入的 DNA 序列分析需求明确定义。这包括验证 DNA 序列、计算碱基组成、检测重复的主题，以及至关重要的使用特定的非重叠方法进行二核苷酸分析 (CG/GC, AT/TA)。此外，通过各种图表（条形图、直方图、统计图）比较序列以进行突变检测（替换、插入、删除）并可视化这些发现的能力也是至关重要的。用户交互需要通过 GUI 进行简化，输入文件预期为纯文本，可能为 FASTA 格式。",
+      "competitiveAnalysis": "虽然没有提供明确的竞争分析数据，但该项目隐含地旨在为其特定的教育背景创建一个易于访问且稳健的工具。专业的生物信息学软件可能既复杂又昂贵。该项目通过专注于具有用户友好界面的核心分析功能，开辟了一个利基市场，使不具备广泛命令行或编码经验的学生和研究人员能够使用复杂的分析技术，同时保持科学的准确性。",
+      "technicalResearch": "二核苷酸计数算法：进行了研究以实施科学严谨的二核苷酸计数方法，确保“sans chevauchement”（无重叠）。这可能涉及理解不同的计数方法，并选择一种通过以 2 为步长迭代序列来提供最准确生物学表示的方法。突变检测：虽然没有详细说明，但检测替换、插入和删除意味着对序列比对算法（如 Needleman-Wunsch 或 Smith-Waterman）或更简单的比较方法进行研究以识别变异。可视化库：选择 Matplotlib 是因为它在生成高质量科学图表方面具有广泛的功能，这需要对其用于条形图、直方图和统计图的 API 进行研究。GUI 框架：选择 Tkinter 用于图形用户界面，这表明对 Python 内置的 GUI 选项进行了研究，以便于部署和集成。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目采用了模块化且结构良好的方法，隔离关注点以增强可维护性和可扩展性。`main.py` 作为后端模块，封装了核心分析逻辑和算法。`interface_adn.py` 使用 Tkinter 管理图形用户界面 (GUI)，提供面向用户的交互。`rapport.md` 提供了项目分析方法和结果的详细文档。`README.md` 提供了高级概述、安装说明和使用指南。`sequence.txt` 是一个用于测试和演示的 DNA 序列文件示例。该程序的业务架构围绕 5 个主要函数构建（尽管提供的数据中仅详细描述了两个）：(1) `analyser_adn(sequence)`：用于二核苷酸组成的主要分析函数。(2) `lire_fichier_adn(nom_fichier)`：处理从文本文件中读取 DNA 序列。其余函数可能管理突变检测、可视化生成和整体程序执行流程。",
+      "technicalDecisions": "选择 Python 作为主要语言：因其可读性、丰富的库以及在科学计算和数据分析方面的强大支持而被选中，使其成为生物信息学的理想选择。非重叠二核苷酸计数：一项确保科学严谨性和准确性的关键决策，明确表述为“parcours sans chevauchement avec saut de 2 positions”（步长为 2 的非重叠遍历）。使用 Matplotlib 进行可视化：因其在创建各种统计图表和图形方面的强大功能和灵活性而被选中，这对于清晰的数据展示至关重要。使用 Tkinter 开发 GUI：选择原生的、轻量级的 Python GUI 框架，以提供直观的用户体验，且无需基础 GUI 功能的外部依赖。模块化函数设计：将复杂任务分解为较小的、可重用的函数（如 `analyser_adn`, `lire_fichier_adn`），以改善代码组织、测试和调试。错误处理：内置稳健的错误管理，以增强可靠性和用户反馈，使应用程序为现实世界的使用做好准备。"
+    },
+    "developmentProcess": {
+      "phase1": "基础构建 - 设置与架构。此阶段涉及设置 Python 开发环境并建立核心项目结构。关键任务包括：初始化 Git 存储库并定义目录布局，实施基础的文件读取功能 (`lire_fichier_adn`) 以从文本文件中加载 DNA 序列，确保正确处理每行序列并删除无关字符，以及设置 GUI 的初始 Tkinter 窗口，为用户交互提供骨架。",
+      "phase2": "功能开发 - 构建主要功能。在基础就绪后，此阶段侧重于构建核心分析和可视化能力：二核苷酸分析（开发 `analyser_adn` 函数，实施关键的非重叠算法以计算 CG/GC 和 AT/TA 对及其百分比。这需要精心的算法设计和测试）、突变检测（实施用于比较参考序列和突变序列以识别和分类遗传变异的逻辑：替换、插入、删除）、可视化集成（集成 Matplotlib 以根据分析结果生成条形图、直方图和统计图。这涉及将数据从分析函数传递给 Matplotlib 并配置绘图显示）以及 GUI 增强（将分析和可视化函数连接到 Tkinter 界面，添加“加载序列”、“分析突变”和“生成图表”按钮以及结果显示区域）。",
+      "phase3": "润色与优化 - 完善。最后阶段侧重于增强项目的稳健性、性能和用户体验：性能优化（审查算法和代码中的瓶颈，特别是处理现实规模的数据集，确保高效执行）、稳健的错误管理（为文件操作、序列验证和计算错误实施全面的错误处理机制，提供信息丰富的用户反馈）、文档（创建详细的 `rapport.md` 和 `README.md` 文件，记录功能、用法和项目架构）、可用性改进（微调 Tkinter GUI 以获得更直观、响应更快的用户体验，解决任何显示问题，如 Matplotlib 不显示的问题排查）以及测试（使用 `CGCGAT` 等示例进行手动验证，以及隐式的单元/集成测试，以验证各种 DNA 序列的计算准确性和功能完整性）。"
+    },
+    "keyFeatures": [
+      {
+        "title": "二核苷酸组成分析",
+        "description": "这一核心功能精确计算给定 DNA 序列中 GC 和 AT 二核苷酸（CG, GC, AT, TA）的百分比组成。它采用科学严谨的方法以确保准确性。",
+        "implementation": "`analyser_adn(sequence)` 函数负责此项工作。它以 2 为步长迭代输入的 DNA 字符串，有效地处理非重叠的二核苷酸对。它统计 CG, GC, AT 和 TA 的出现次数，然后计算它们相对于发现的非重叠二核苷酸总数的各自百分比。",
+        "challenges": "主要的挑战是正确实施非重叠 (sans chevauchement) 计数方法，确保每个二核苷酸被计数一次且不干扰相邻的对。这需要精心的算法设计和测试，以对照已知示例（如 `CGCGAT`）进行验证。"
+      },
+      {
+        "title": "DNA 序列文件读取",
+        "description": "使程序能够从外部文本文件加载 DNA 序列，促进遗传数据的批量处理和重用。",
+        "implementation": "`lire_fichier_adn(nom_fichier)` 函数处理输入。它逐行读取指定的文件，将每行视为潜在的 DNA 序列。然后它通过删除任何空白字符来处理这些行，以便在分析前清理序列。系统设计为处理 UTF-8 编码的文件和包含标准 IUPAC 字符的序列。",
+        "challenges": "确保稳健的文件 I/O 操作，包括处理各种文件编码和清洗原始文本数据以提取有效的 DNA 序列。"
+      },
+      {
+        "title": "突变检测与分类",
+        "description": "此功能允许用户比较两个 DNA 序列（例如参考序列和突变序列）以识别和分类遗传变异，包括替换、插入和删除。",
+        "implementation": "虽然未详细说明具体函数，但 `README.md` 提到了序列比较、突变分类和变异的精确准确定位。这意味着存在一种能够对齐两个序列并突出差异的基础算法。",
+        "challenges": "技术挑战在于开发或集成能够执行高效序列比对并准确归类不同类型突变的算法，这对于长序列可能计算量巨大。"
+      },
+      {
+        "title": "图形数据可视化",
+        "description": "将复杂的数值分析结果转化为清晰且信息丰富的视觉格式，如条形图、直方图和其他统计图。",
+        "implementation": "程序利用 `matplotlib` 库。在执行分析（如二核苷酸组成或突变检测）后，相关数据被传递给 Matplotlib 函数以生成适当的绘图。这些绘图随后展示给用户，可能集成在 Tkinter GUI 中。",
+        "challenges": "在 Tkinter GUI 环境中无缝集成 Matplotlib 绘图带来了挑战，如关于 Matplotlib 不显示的排查步骤所示。确保跨平台兼容性和在 GUI 内的正确渲染需要特定的配置。"
+      },
+      {
+        "title": "直观的图形用户界面 (GUI)",
+        "description": "提供一个用户友好且交互式的界面，使程序复杂的分析功能无需命令行交互即可供用户使用。",
+        "implementation": "使用 Python 的 `tkinter` 库实施 (`interface_adn.py`)。GUI 允许用户轻松加载 DNA 序列文件、启动不同的分析类型（如分析突变）并触发图形报告的生成和展示。",
+        "challenges": "为 GUI 设计清晰、实用且响应迅速的布局，确保所有功能都易于发现和操作，并保持一致的用户体验。"
+      }
+    ],
+    "testing": "该项目采用了实用的测试和迭代方法，重点是确保准确性和稳健性。手动验证：质量保证的一个关键方面涉及对分析结果的手动验证。`rapport.md` 为序列 `CGCGAT` 提供了一个清晰的示例，手动计算二核苷酸计数（2 个 CG, 1 个 AT）和百分比（50% GC, 16.67% AT），以验证程序的输出。这类手动检查对于确保算法的科学严谨性至关重要。多样化数据集分析：结论指出，对 10 个序列的分析证明了该程序处理从同聚物到完美交替等各种组成的能力，表明程序已针对一系列 DNA 序列类型进行了测试，以确认其稳健性和通用性。错误处理和性能反馈：对稳健错误管理和最佳性能的强调表明，在开发过程中通过各种输入测试和观察程序行为，识别并解决了潜在问题和性能瓶颈。排错：`README.md` 包含了一个针对 Matplotlib 显示问题的排错部分，强调了用户反馈或内部发现的错误导致了记录在案的解决方案，表明了解决问题和改善可用性的承诺。",
+    "results": {
+      "technicalAchievements": "成功实施了用于二核苷酸计数的科学严谨方法（非重叠），这是生物信息学准确性的关键成就。交付了互补且信息丰富的可视化效果，将复杂数据转化为易于理解的图形格式。建立了具有明确定义函数的模块化且可维护的架构，便于未来的扩展和调试。实现了针对现实规模数据集的最佳性能，证明了处理典型生物数据量的高效性。集成了稳健的错误管理，增强了应用程序针对各种用户输入的可靠性和稳定性。成功处理了 10 个序列，证明了程序处理极具多样性的组成的能力。",
+      "businessImpact": "作为 ECE B3 项目，它提供了一个切实的、可运行的生物信息学原理示例，增强了学生的学习和实际应用技能。为初期生物信息学研究提供了一个实用且准确的工具，特别是用于分析二核苷酸组成和突变模式。该项目作为一个强大的作品集，展示了开发人员从概念到部署设计、实施和记录复杂科学计算应用程序的能力。",
+      "personalGrowth": "在设计和实施遗传序列分析专用算法（特别是非重叠二核苷酸计数）方面积累了深入经验。增强了将后端数据分析逻辑与使用 Tkinter 的前端 GUI 开发以及使用 Matplotlib 的数据可视化相集成的技能。在真实项目背景下应用了模块化、错误处理和性能优化的原则，从而构建了稳健且可维护的代码库。在创建全面的技术报告和用户友好的 README 以进行项目沟通和提升可用性方面培养了强大的技能。"
+    },
+    "techStack": {
+      "frontend": "Tkinter",
+      "backend": "Python (占分析代码库的 100%)",
+      "tools": "Git/GitHub",
+      "libraries": "Matplotlib (用于创建静态、动画和交互式可视化的强大 Python 库，在生成专业级条形图、直方图和统计图方面发挥了作用), Tkinter (Python 的标准 GUI 工具包，用于创建直观的图形用户界面)"
+    },
+    "learnings": [
+      "该项目强调了选择并实施科学严谨算法（如非重叠二核苷酸计数法）的至关重要性，以确保生物分析的准确性和有效性。",
+      "成功将基于 Python 的复杂分析逻辑与用户友好的 Tkinter GUI 和 Matplotlib 可视化相结合，展示了构建全功能应用程序的关键技能。",
+      "采用模块化架构设计程序（如用于逻辑的 `main.py` 和用于 UI 的 `interface_adn.py`）显著提高了代码的可读性、可维护性和未来增强的可扩展性。",
+      "在数据密集型科学应用中，实施全面的错误管理并针对现实数据集进行性能优化是创建可靠且高效软件的基本实践。"
+    ],
+    "futureEnhancements": [
+      "扩展二核苷酸分析以包含三核苷酸、四核苷酸或自定义序列基序，提供更深层的基因组见解。",
+      "实施对 FASTA, FASTQ 或 GenBank 等行业标准生物信息学格式的全面支持，增强与多样化数据集的兼容性和可用性。",
+      "集成更复杂的序列比对算法（如 Needleman-Wunsch, Smith-Waterman），以实现更精确和敏感的突变检测，包括插入缺失和结构变异。",
+      "添加统计方法来评估观察到的二核苷酸频率或突变模式的显著性，为结论提供定量支持。",
+      "升级可视化效果，使其更具交互性，允许用户直接在 GUI 中缩放、平移和过滤数据点。",
+      "实施生成并导出各种格式（如 PDF, CSV, Excel）的详细分析报告的功能，包括所有原始数据、图表和摘要统计。",
+      "探索构建基于 Web 的界面（如使用 Flask 或 Django）以实现更广泛的可访问性和云端部署，允许无需本地安装即可进行分析。",
+      "实施数据库（如 SQLite, PostgreSQL）来存储序列、分析结果和用户偏好，实现持久的数据管理。"
+    ],
+    "conclusion": "DNA 项目是成功开发一个全面、科学严谨且用户友好的生物信息学工具的证明。通过其精确的二核苷酸分析、稳健的突变检测和信息丰富的图形可视化，该项目在一个模块化且高性能的 Python 框架内有效地解决了复杂的遗传分析挑战。这项努力不仅满足了教育课程的要求，还展示了在算法设计、全栈 Python 开发方面的强大能力，以及对产出高质量、可维护软件的承诺。DNA 项目作为将工程原理应用于科学问题的有力展示，为未来的生物信息学探索提供了宝贵的资产，并彰显了开发人员在创建具有影响力的技术解决方案方面的熟练程度。"
+  },
+  "mots-fleches": {
+    "title": "Mots-Fléchés",
+    "description": "一个学术 C 项目，实现了一个基于控制台的“mots-fléchés”（箭头填字）谜题生成器和求解器。",
+    "metadata": {
+      "role": "学生",
+      "category": "C 语言开发, 算法谜题",
+      "timeline": "2024年5月 - 6月",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/mots-fleches"
+    },
+    "overview": "这个 ECE Paris 一年级的项目“mots-fléchés”挑战学生应用 C 语言编程基础来创建一个实用的单词谜题应用程序。它在受限的基于控制台的环境中探索了算法设计、数据结构化和稳健实施，培养了基本的解决问题能力。",
+    "challenge": {
+      "problem": "主要问题是设计一个用于“mots-fléchés”谜题的 C 程序，这需要复杂的逻辑来进行单词放置、网格管理和用户交互。在没有高级框架的情况下，大多数功能（如动态内存和字符串处理）都需要从头开始构建。",
+      "goal": "总体目标是交付一个符合学术要求的实用“mots-fléchés”应用程序。这涉及展示在 C 语法、模块化编程、错误处理和有效实施复杂算法方面的熟练程度，以培养强大的解决问题能力。",
+      "constraints": "限制因素包括仅限于 C 语言（手动内存管理、自定义数据结构）、短短一个月的时间表以及有限的图形元素，因此必须开发基于控制台的应用程序。还需要遵循特定的学术编码标准。"
+    },
+    "discovery": {
+      "requirements": "“mots-fléchés”应用程序的核心用户需求转化为稳健的谜题生成/加载、直观的网格显示和响应迅速的用户输入。学术要求强调了代码清晰度、高效算法和正确的 C 语言内存管理。",
+      "competitiveAnalysis": "虽然基于控制台的 C 语言竞争对手很少，但团队从现有的在线“mots-fléchés”生成器和求解器中汲取了灵感。分析侧重于线索呈现、单词交叉和用户流程，将这些概念适应 C 语言的技术局限性。",
+      "technicalResearch": "广泛的研究涵盖了网格填充算法（如回溯法）、C 语言数据结构（结构体、动态数组、链表）、字符串操作（`strcpy`, `strlen`）、文件 I/O 策略以及用于构建管理的 CMake。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目采用了模块化结构，由 `main.c` 编排 UI 和模块调用。独立的 `grid.c`, `word.c`, `dictionary.c`, `puzzle_generator.c` 和 `input.c` 文件处理不同的关注点，增强了可维护性和可读性。",
+      "technicalDecisions": "关键决策涉及大量的动态内存分配（`malloc`, `free`）、使用结构体进行数据表示（如 `GridCell`, `Word`）以及选择 CMake 进行稳健的跨平台构建管理。选择了简单的基于控制台的 UI，并采用回溯算法进行谜题生成。"
+    },
+    "developmentProcess": {
+      "phase1": "第一阶段侧重于基础设置：初始化 GitHub 存储库、配置 CMake、定义核心结构体（`GridCell`, `Word`）、基础网格管理（初始化、显示、内存释放）以及从文本文件加载词典。",
+      "phase2": "功能开发涉及创建核心单词放置逻辑，将其集成到全面的回溯谜题生成算法中，关联并显示线索，并实施用于网格交互和答案检查的用户输入机制。",
+      "phase3": "最后阶段通过针对输入、文件 I/O 和内存分配的稳健错误处理来完善应用程序。它还包括输入验证、控制台输出的显示增强、彻底的内存管理审计以及代码审查/重构。"
+    },
+    "keyFeatures": [
+      {
+        "title": "动态谜题网格生成",
+        "description": "通过水平和垂直排列词典单词并实现正确的交叉来创建独特的“mots-fléchés”网格。",
+        "implementation": "在动态分配的二维数组（网格）上利用回溯算法。每个单元格（可能是一个结构体）存储字符数据和单词关联。算法尝试放置单词，在发生冲突或遇到死胡同时进行回溯。",
+        "challenges": "管理复杂的交叉逻辑、高效地在词典中搜索合适的单词，以及处理针对各种谜题规模的回溯算法计算开销。"
+      },
+      {
+        "title": "全面的词典管理",
+        "description": "从外部文本文件加载、存储并允许高效搜索单词及其关联的线索。",
+        "implementation": "将单词和线索逐行读取到 `Word` 结构体的动态数组或链表中。搜索功能允许按长度或特定字符模式进行过滤，以便生成谜题。",
+        "challenges": "稳健地解析文件格式、处理文件 I/O 错误，以及在 C 语言中设计高效的搜索机制（可能使用线性扫描或更高级的结构如哈希表）。"
+      },
+      {
+        "title": "交互式基于控制台的用户界面",
+        "description": "在终端中向用户展示“mots-fléchés”网格和线索，实现字母输入和基础交互。",
+        "implementation": "使用 `printf` 渲染网格，并通过 `scanf` 或 `fgets` 处理用户输入（坐标、字符）。线索单独列出。用户输入涉及输入网格坐标和字符。",
+        "challenges": "在文本限制下创建清晰的 ASCII 网格表示，在不使用高级库的情况下管理原始终端输入，并确保直观的控制台导航。"
+      },
+      {
+        "title": "实时答案验证",
+        "description": "根据生成的答案检查用户输入的字母，提供关于正确性的即时反馈。",
+        "implementation": "将用户在特定网格单元格中输入的字符与内部存储的已解谜题表示中的对应字符进行比较。反馈可以是简单的文本或字符样式变化。",
+        "challenges": "确保用户输入（如 A1）与内部二维数组之间的准确索引，以及管理每个网格单元格的状态（空、已填充、正确、错误）。"
+      },
+      {
+        "title": "稳健的错误处理和输入验证",
+        "description": "防止程序因无效的用户输入或意外的文件操作而崩溃，引导用户处理错误。",
+        "implementation": "在输入前、`malloc` 后以及文件操作期间实施检查，返回错误代码或使用 `errno`。函数会清除输入缓冲区并强制执行有效的输入范围。",
+        "challenges": "预见各种无效输入、处理文件读写权限，以及确保程序在没有内存泄漏的情况下优雅地恢复或退出。"
+      }
+    ],
+    "testing": "测试主要是手动的，重点是功能正确性和稳健性。单元测试通过各种输入和边缘情况（包括空词典和最小/最大网格尺寸）验证了单个函数。集成测试确保了系统的协调运行。严格的输入验证测试尝试使程序崩溃，内存泄漏检测至关重要（可能借助于 Valgrind 等工具）。",
+    "results": {
+      "technicalAchievements": "掌握了 C 语言基础，使用指针、结构体和数组以及稳健的内存管理实施了复杂算法。开发了一个优化的多阶段“mots-fléchés”生成算法，并采用了模块化的代码结构。成功集成并利用 CMake 进行构建管理。",
+      "businessImpact": "该项目满足了 ECE Paris 一年级课程的要求，有力地展示了实用的 C 语言编程技能。它为学生提供了一个在真实场景中理解数据结构、算法和系统编程的迷人平台。",
+      "personalGrowth": "在 C 语言的微妙之处（特别是手动内存管理和底层控制）方面获得了宝贵经验。强化了算法思维和解决问题的敏捷性，提高了在技术限制下调试和完善解决方案的能力。"
+    },
+    "techStack": {
+      "frontend": "",
+      "backend": "C",
+      "tools": "CMake",
+      "libraries": "标准 C 库 (例如 `stdio.h`, `stdlib.h`, `string.h` 用于文件 I/O、内存和字符串操作)"
+    },
+    "learnings": [
+      "深刻理解了如何有效地使用 C 语言中的指针和结构体来创建像谜题网格和单词词典这样复杂的、互连的数据结构。",
+      "掌握了显式内存分配和释放 (`malloc`, `free`) 的至关重要性和固有挑战，以防止泄漏并确保程序的稳定性。",
+      "发掘了如何在 C 语言的局限内设计并实施精密的算法（如用于谜题生成的回溯法），重点关注效率和逻辑清晰度。",
+      "强化了将大型项目拆分为较小的、可管理的模块的原则，以改善代码组织、可重用性并简化调试。"
+    ],
+    "futureEnhancements": [
+      "使用像 GTK 或 Qt 这样的库开发图形用户界面 (GUI)，以显著改善控制台之外的用户体验。",
+      "实施高级谜题生成算法，如遗传算法或 SAT 求解器，以创建更大、更复杂且难度多变的“mots-fléchés”。",
+      "扩展词典管理以支持多语言，允许用户生成并解决法语、英语、西班牙语和其他语言的谜题。",
+      "增加持久化功能，以保存谜题的当前状态并加载以前保存的游戏，增强用户便利性和可重玩性。",
+      "开发一个稳健的提示系统（显示字母或显示特定单词的定义），甚至是一个用于教学目的的完整谜题求解器。"
+    ],
+    "conclusion": "“mots-fleches”项目标志着一个重要的里程碑，展示了对 C 语言编程和算法问题解决的强大掌握。尽管存在语言限制且处于学术背景下，它仍成功解决了复杂的逻辑挑战。这项努力被证明在培养数据结构化、内存管理和系统软件开发技能方面是非常宝贵的，为未来的项目打下了坚实基础。"
+  },
+  "wine-cultivar-classification": {
+    "title": "葡萄酒品种分类",
+    "description": "全面的机器学习项目，使用监督和无监督方法对葡萄酒品种进行分类和聚类。",
+    "metadata": {
+      "role": "学生",
+      "category": "Python 开发, 机器学习, 数据挖掘",
+      "timeline": "2025年1月开发并完成",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/wine-cultivar-classification"
+    },
+    "overview": "该学术项目使用 KNN 进行分类，并使用 K-Means 和层次聚类进行无监督分组，分析了葡萄酒数据集。它整合了 8 项高级分析，并生成了 25 多个可视化图表，强调生产就绪的代码、文档和可重复的结果。",
+    "challenge": {
+      "problem": "核心问题是对葡萄酒数据集进行分类并发现其固有的结构。这涉及构建用于分类的预测模型，并根据化学属性揭示自然的分组，而无需事先的标签。",
+      "goal": "主要目标是开发一个完整的机器学习流水线，用于对葡萄酒品种进行分类并执行稳健的聚类分析。这需要实施和评估 KNN、K-Means 和 CAH，并辅以全面的评估指标和可视化效果。",
+      "constraints": "作为一个学术项目，约束条件包括展示深厚的理论理解、细致的文档和可重复的结果。这要求进行 8 项高级分析和 25 个以上可视化，以在规定的学术时间表内展示对知识的掌握。"
+    },
+    "discovery": {
+      "requirements": "来自“ECE B3 数据挖掘”课程的项目要求推动了深层的模型验证、可解释性和稳健的算法比较。这需要 ROC 曲线、轮廓分数和调整兰德指数等指标，以及全面的文档和可维护的代码。",
+      "competitiveAnalysis": "该项目通过在同一数据集上直接比较 KNN、K-Means 和 CAH 进行了严格的算法竞争分析。这一过程确定了用于跨范式比较（监督 vs 无监督）的适当指标和可视化技术，以突出每种方法的优势。",
+      "technicalResearch": "技术研究侧重于选择 Python 和 scikit-learn 作为核心工具，选择具有代表性的机器学习算法，并确定合适的评估指标。还对可视化技术和可重复性实践（固定随机种子）进行了广泛研究。",
+      "additionalResearch": "研究还涵盖了用于模型性能、数据分布和聚类结构（树状图、PCA）的可视化技术，确保了复杂见解的有效沟通。使用固定随机种子的可重复性是科学严谨性的关键研究成果。"
+    },
+    "architecture": {
+      "informationArchitecture": "项目的架构规划旨在实现清晰性、模块化和易于导航，这从可视化的结构化输出路径（如 `knn/`, `kmeans/`）中可见一斑。带有目录的全面 `README.md` 进一步引导用户浏览项目组件。",
+      "technicalDecisions": "关键技术决策包括利用 Python 和 scikit-learn 以提高效率，采用 10 折交叉验证进行稳健的 KNN 评估，并使用广泛的指标进行整体模型评估。致力于 25 个以上可视化以实现可解释性，并实施固定随机种子以实现可重复性也是至关重要的决策。"
+    },
+    "developmentProcess": {
+      "phase1": "初始设置涉及配置 Python 环境、安装库、加载葡萄酒数据集以及进行探索性数据分析。建立了具有专用输出目录的稳健项目结构，为多算法开发做好准备。",
+      "phase2": "这一密集阶段侧重于实施核心机器学习算法：带有超参数优化和交叉验证的 KNN，带有手肘法和轮廓系数法的 K-Means，以及具有各种联动方法的层次聚类。同时生成了 8 项高级分析和 25 个以上可视化图表。",
+      "phase3": "最后阶段将项目完善到“生产就绪”标准，加入了错误处理、全面文档以及通过固定随机种子实现的可重复性。一个关键部分是开发了用于并排评估所有三种方法的比较分析框架。"
+    },
+    "keyFeatures": [
+      {
+        "title": "带有高级评估的 K-最近邻 (KNN) 分类",
+        "description": "通过在特征空间中寻找“k”个最近的示例，根据化学属性预测葡萄酒品种。",
+        "implementation": "使用 scikit-learn 的 `KNeighborsClassifier` 并进行超参数优化。性能通过 10 折交叉验证、ROC 曲线和 AUC 分数（多类一对全）进行严格评估。",
+        "challenges": "克服了有效处理多类 ROC/AUC 评估以及通过稳健的交叉验证确保模型稳定性和泛化能力的挑战。"
+      },
+      {
+        "title": "带有全面聚类分析的 K-Means 聚类",
+        "description": "在没有先验标签知识的情况下，根据相似特征将葡萄酒划分为“k”个簇。",
+        "implementation": "利用 scikit-learn 的 `KMeans`。通过手肘法和轮廓分数确定最佳“k”。分析包括轮廓直方图、聚类稳定性 (ARI)、带质心的 PCA 投影以及聚类特征。",
+        "challenges": "解决了在无监督背景下确定最佳“k”以及为聚类质量和组成提供清晰、可解释可视化效果的挑战。"
+      },
+      {
+        "title": "带有视觉树状图的层次聚类 (CAH)",
+        "description": "通过合并或拆分葡萄酒组来建立聚类层级，并通过树状图进行可视化。",
+        "implementation": "使用 scikit-learn/scipy.cluster.hierarchy 实施，探索不同的联动方法。广泛的分析包括轮廓直方图、聚类稳定性、PCA 投影和特征分布。",
+        "challenges": "解决了选择合适的联动准则以获得有意义的层级，以及有效可视化复杂层级结构以获得深刻见解的挑战。"
+      },
+      {
+        "title": "广泛的数据可视化套件 (25+ 绘图)",
+        "description": "针对所有方法提供对数据、模型行为和评估指标的丰富视觉理解。",
+        "implementation": "在 KNN, K-Means, CAH 和比较分析中生成了 25 个以上的不同绘图。这些包括混淆矩阵、PCA 投影、树状图、ROC 曲线和学习曲线，系统地保存在专用文件夹中。",
+        "challenges": "克服了创建大量不同、清晰且信息丰富的可视化效果的挑战，这些效果能有效地传达复杂的分析见解。"
+      },
+      {
+        "title": "稳健的比较分析框架",
+        "description": "提供对 KNN, K-Means 和 CAH 的性能和特征的直接、并排比较。",
+        "implementation": "开发了一个系统评估框架，包括指标比较图（如准确率、F1）、执行时间分析以及并排的 PCA 投影，以直观对比分类和聚类结果。",
+        "challenges": "确保在不同类型的机器学习算法（监督 vs 无监督）之间进行公平且相关的比较，并有效地可视化它们的相对优势。"
+      }
+    ],
+    "testing": "项目通过 10 折交叉验证对 KNN 进行了严格测试，确保了稳健且可泛化的模型性能。侧重于“固定随机种子的可重复结果”的科学方法允许进行一致的实验和调试。对“具有适当错误处理的生产就绪代码”的承诺强调了对长期可维护性和可靠性的关注。",
+    "results": {
+      "technicalAchievements": "成功实施并广泛评估了 KNN, K-Means 和 CAH，整合了超越基本要求的 8 项高级分析技术。生成了 25 个以上的不同可视化效果，实现了具有错误处理的生产就绪代码，并通过固定随机种子确保了结果的可重复性。",
+      "businessImpact": "虽然主要是学术性的，但该项目为分析葡萄酒特征提供了一个稳健、可重用的框架，可扩展到葡萄栽培或质量控制的现实应用。它也是一个强大的作品集，展示了与数据科学职位相关的高级数据挖掘技能。",
+      "personalGrowth": "深化了对监督和无监督学习算法及其应用的掌握。显著提高了在高级模型评估、可解释性和稳健验证技术方面的技能，强化了数据科学软件开发中的最佳实践。"
+    },
+    "techStack": {
+      "frontend": null,
+      "backend": null,
+      "tools": "Git/GitHub 用于版本控制和协作开发。",
+      "libraries": "Python (3.8+) 作为主要语言；scikit-learn (1.0+) 用于机器学习算法；NumPy (隐含) 和 Pandas (隐含) 用于数据操作；Matplotlib (隐含) 和 Seaborn (隐含) 用于广泛的可视化。"
+    },
+    "learnings": [
+      "仅依赖基本指标是不够的；ROC 曲线和轮廓分数等高级分析能提供对模型性能和数据结构的更深理解。",
+      "25 个以上的可视化效果对于将复杂的模型输出转化为易于理解的见解至关重要，证明了数据可视化在传达发现方面是不可或缺的。",
+      "固定随机种子并确保全面的文档对于科学严谨性和协作开发至关重要，保证了结果的可重复性和可信度。",
+      "使用标准化框架直接比较不同的机器学习范式，可以揭示它们各自的优势和局限性，从而指导更明智的模型选择。"
+    ],
+    "futureEnhancements": [
+      "使用 Streamlit, Flask 或 FastAPI 将项目部署为 Web 应用程序，以进行交互式用户互动。",
+      "集成并比较其他先进的分类算法（如 SVM, 随机森林）和聚类算法（如 DBSCAN）。",
+      "使用 Plotly 或 Bokeh 等库将静态绘图升级为交互式仪表板，以便进行更深的数据探索。",
+      "开发一个脚本来自动生成包含发现、指标和关键可视化效果的全面摘要报告。",
+      "探索比 PCA 更精细的特征工程或降维方法，如 t-SNE 或 UMAP。"
+    ],
+    "conclusion": "“葡萄酒品种分类”项目是高级数据挖掘和机器学习的稳健演示。通过细致地实施和评估 KNN, K-Means 和 CAH，开发人员展示了技术熟练程度以及对数据科学最佳实践的深刻承诺。其广泛的分析、可视化和可重复结果凸显了能够交付深刻见解、文档齐全的解决方案的分析思维。"
+  },
+  "TripHackathon": {
+    "title": "TripWise (TripHackathon)",
+    "description": "通过将直观设计与本地人工智能相结合，提供个性化推荐和无缝的行程创建，从而彻底改变旅行规划。",
+    "metadata": {
+      "role": "学生",
+      "category": "网络开发, AI 实施",
+      "timeline": "2025-05-05 快速开发（黑客松/原型设计）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Le-skal/TripHackathon"
+    },
+    "overview": "TripWise (原名 TripHackathon) 是一个创新的 Web 应用程序，利用 React 构建响应式前端，并通过 Ollama/Mistral 使用本地 AI 提供个性化的旅行建议。它结合了用于数据管理的 Firebase、用于高效通信的 Node.js 后端以及用于动态路由的 React Router DOM。该项目展示了在快速原型开发环境中的全面全栈开发和 AI 集成技能。",
+    "challenge": {
+      "problem": "传统的旅行规划乏味且令人生畏，往往缺乏个性化的见解，需要用户筛选海量信息。目标是通过提供智能、量身定制的建议来克服这一问题。",
+      "goal": "开发一个具有智能功能的直观旅行规划应用程序，包括流畅的导航、稳健的数据管理以及由 AI 生成的个性化建议和行程。旨在简化并丰富用户的规划旅程。",
+      "constraints": "一个重要的限制是黑客松特有的快速开发时间表，这需要高效的决策。在技术上，集成像 Ollama (Mistral) 这样的本地 AI 模型在设置、服务器端通信以及有效解析 AI 输出以便前端显示方面带来了挑战。"
+    },
+    "discovery": {
+      "requirements": "核心用户需求包括干净的界面、高效的旅行数据组织、针对目的地和活动的个性化建议以及处理动态用户交互的能力。这些需求指导了应用程序的功能集。",
+      "competitiveAnalysis": "虽然是非正式的，但本地 AI (Ollama/Mistral) 的集成使 TripWise 与众不同，与依赖静态模板或基础算法的现有规划工具相比，它在隐私、成本效益（避免云端 AI API 调用）和可定制性方面提供了潜在优势。",
+      "technicalResearch": "选择 React 是因为其 SPA 能力，Firebase 用于其 BaaS 功能，Node.js 用于后端编排。Ollama 配合 Mistral 对于本地 LLM 推理至关重要，它提供了强大且保护隐私的 AI 能力，作为一个关键的切入点。"
+    },
+    "architecture": {
+      "informationArchitecture": "应用程序采用客户端-服务器架构：React 前端处理 UI，Node.js 后端充当 Firebase 数据和 Ollama AI 的中介，Firebase 作为主要数据存储，Ollama 在本地运行 Mistral LLM 进行 AI 处理。",
+      "technicalDecisions": "关键决策包括使用 React 打造流畅的 SPA，使用 `Axios` 通过 Node.js 端点进行 API 驱动的通信，以及使用 `cors` 启用安全的跨域请求。至关重要的是，选择 Ollama 进行本地 LLM 推理，以在不依赖外部云服务的情况下提供强大的 AI 能力，提供性能和隐私优势。"
+    },
+    "developmentProcess": {
+      "phase1": "项目始于核心环境的设置：初始化 React 应用，配置用于路由的 `react-router-dom`，安装 Firebase，并建立基本的 Node.js `server.js` 文件，为 API 端点和服务编排奠定基础。",
+      "phase2": "功能开发侧重于构建 React UI 组件、集成 Firebase 进行数据存储并实施关键的 AI 集成。这涉及设置 Ollama/Mistral 并创建 Node.js 端点以向 AI 代理请求、处理响应并将其发送到客户端。",
+      "phase3": "鉴于紧张的时间表，这一阶段优先处理关键的完善。解决了样式问题以打造专业的 UI，可能还实施了基础的错误处理，并改进了对 AI 响应的解析以确保稳健性。主要目标是确保核心功能正常运行且用户体验流畅。"
+    },
+    "keyFeatures": [
+      {
+        "title": "使用 React 构建的现代用户界面",
+        "description": "提供一个引人入胜、响应迅速且直观的图形用户界面，供用户与旅行规划器交互。",
+        "implementation": "前端使用 React 的组件化架构构建可重用的 UI 元素，React Router DOM 确保了流畅的单页应用程序体验和视图间的无缝转换。",
+        "challenges": "在有限的时间内快速开发一个既美观又实用的复杂 UI，需要高效的组件设计和状态管理。"
+      },
+      {
+        "title": "人工智能驱动的旅行建议 (Ollama 配合 Mistral)",
+        "description": "使用大语言模型根据用户输入生成个性化的旅行计划、行程和建议，包括每日细分和预算分配。",
+        "implementation": "Node.js 后端充当代理，与托管 Mistral AI 模型的本地运行的 Ollama 实例进行交互。`TripList.jsx` 组件随后智能地将这种 AI 生成的自由文本解析为结构化的 UI 元素进行显示。",
+        "challenges": "集成本地 AI 模型涉及细致的 Ollama 设置。一个主要的挑战是将 LLM (Mistral) 的自由文本输出解析为适合 UI 的结构化格式。"
+      },
+      {
+        "title": "使用 Firebase 进行数据管理",
+        "description": "处理用户数据、旅行计划和其他应用程序特定信息的安全存储和检索，提供可扩展的后端解决方案。",
+        "implementation": "应用程序集成了 Firebase（可能是 Firestore 或 Realtime Database）进行持久数据存储。依赖项允许应用程序（通过 Node.js 或直接）与 Firebase API 交互以执行 CRUD 操作。",
+        "challenges": "配置 Firebase 服务并确保前端与数据库之间的无缝数据同步，同时维护适当的安全规则，这带来了挑战。"
+      },
+      {
+        "title": "使用 React Router 实现无缝导航",
+        "description": "在单页应用程序内实现流畅的客户端路由，允许用户在不同部分（如仪表板、个人资料）之间导航而无需完全重新加载页面。",
+        "implementation": "`react-router-dom` 库定义了路由并根据 URL 渲染特定组件。这种方法仅更新必要的 DOM 部分，从而创造了响应迅速的用户体验。",
+        "challenges": "管理路由参数、嵌套路由和程序化导航对于确保整个应用程序中一致且直观的用户流程是必要的。"
+      },
+      {
+        "title": "用于 API 编排的 Node.js 后端",
+        "description": "作为一个关键的中介，管理来自前端的请求，与 Firebase 通信，最重要的是编排与本地 Ollama AI 服务的交互。",
+        "implementation": "一个 Node.js 服务器（可能是 Express）通过 `axios` 暴露被 React 前端消费的 API 端点。该服务器通过 `cors` 处理跨域请求，并在与其他服务交互前处理业务逻辑。",
+        "challenges": "建立一个稳健且安全的 API，管理多个服务（前端、Firebase, Ollama）之间的异步操作，并确保高效的数据流，这些都需要精心的编排。"
+      }
+    ],
+    "testing": "鉴于黑客松的时间表，测试侧重于验证核心功能和关键集成点。这涉及对每个功能进行手动测试，如 AI 计划生成和旅行数据保存，以及跨 React, Node.js, Firebase 和 Ollama 的彻底集成测试。快速反馈循环实现了对错误的即时识别和解决，确保了稳定的开发基础。",
+    "results": {
+      "technicalAchievements": "成功地将本地大语言模型 (Mistral via Ollama) 集成到 Web 应用程序中，展示了在连接前端、后端和 AI 服务方面的熟练程度。在高度受限的时间范围内使用现代 JavaScript 技术和 Firebase 构建了一个稳健的全栈应用程序。开发了用于 AI 生成的自由文本的智能内容解析逻辑。",
+      "businessImpact": "虽然仍在开发中，但 TripWise 有潜力显著简化旅行规划。通过提供个性化的、由 AI 驱动的建议，它可以减少用户的研究时间和精力，从而实现更愉快、组织更好的旅行，并可能增加用户参与度。",
+      "personalGrowth": "本项目在设置和与本地 AI 模型交互、编排复杂的全栈交互以及在压力下解决问题方面提供了宝贵的经验。它还深化了对管理和利用多种 JavaScript 依赖项来实现特定功能的理解。"
+    },
+    "techStack": {
+      "frontend": "React, React Router DOM, CSS",
+      "backend": "Node.js, Axios, Cors",
+      "tools": "Firebase (BaaS), Ollama (本地 LLM 运行时)",
+      "libraries": "Axios (基于 promise 的 HTTP 客户端), Cors (用于跨域请求的 Node.js 中间件), React Router DOM (客户端路由)"
+    },
+    "learnings": [
+      "通过 Ollama 集成本地运行的 LLM 虽然功能强大，但需要稳健的服务器端中介和对输入/输出的精心处理，以确保可靠性和用户友好性。",
+      "原始的 LLM 输出通常需要被有效地解析和结构化，以便在用户界面中呈现；开发灵活的解析逻辑对于使 AI 生成的内容变得可操作且易于理解至关重要。",
+      "在短时间内将迥异的技术 (React, Node.js, Firebase, Ollama) 成功组合在一起，凸显了模块化设计和清晰的 API 契约对于全栈一致性的重要性。",
+      "战略性地使用 Firebase 等后端即服务 (BaaS) 显著加速了后端开发，使团队能够更多地关注核心功能和复杂的 AI 集成，而不是管理基础设施。"
+    ],
+    "futureEnhancements": [
+      "实施全面的用户身份验证（如 Firebase Authentication）和详细的用户个人资料，以保存旅行历史、偏好和个性化设置。",
+      "启用更动态和交互式的 AI 对话，允许用户实时完善计划、提出后续问题并调整行程。",
+      "探索在应用程序内直接集成用于航班、住宿和活动预订的第三方 API。",
+      "增加用户与朋友或家人分享和协作旅行计划的功能，增强旅行规划的社交属性。",
+      "实施 Service Worker 以允许部分离线访问旅行详情和规划工具，提高可用性和用户体验。"
+    ],
+    "conclusion": "TripWise 是创新 Web 开发的证明，展示了现代前端框架、稳健后端服务与尖端人工智能之间的强大协同作用。该项目成功集成了本地 LLM (Ollama/Mistral) 用于个性化建议，使用 Firebase 管理数据，并使用 React 和 Node.js 提供了无缝的用户体验。它凸显了开发人员强大的基础技能以及为直观、智能和深度个性化的旅行规划未来所采取的前瞻性方法。"
+  },
+  "Scraping": {
+    "title": "EPFL Memento 网页爬虫",
+    "description": "自动化提取 EPFL Memento 事件，确保结构化的数据收集和伦理性的网络交互。",
+    "metadata": {
+      "role": "学生",
+      "category": "Python 开发, 网页抓取",
+      "timeline": "2025年10月",
+      "liveUrl": "null",
+      "githubUrl": "https://github.com/Exowz/Scraping"
+    },
+    "overview": "这个 Python 网页爬虫从 EPFL Memento 网站提取事件信息，通过导航多个页面来收集结构化数据。它导出干净的、供分析使用的 CSV 文件，展示了错误处理、频率限制和数据处理等伦理实践。作为教育项目开发，它展示了使用 Python、BeautifulSoup4 和 requests 进行的具有韧性的数据获取。",
+    "challenge": {
+      "problem": "手动收集 EPFL Memento 事件信息既耗时、容易出错，对于更新或大规模分析也不切实际。HTML 内容的非结构化性质进一步增加了程序化利用数据的复杂性。",
+      "goal": "主要目标是开发一个自动化解决方案，从 EPFL 的分页 Memento 列表中可靠地提取关键事件详情（标题、日期、时间、地点、类别）。提取的数据需要被结构化为机器可读的 CSV 格式以便分析。",
+      "constraints": "该爬虫在很大程度上依赖于网站的 HTML 结构并使用硬编码的分页。它需要稳定的互联网连接并严格遵守伦理性抓取实践。此外，优雅地处理潜在的缺失数据也至关重要。"
+    },
+    "discovery": {
+      "requirements": "核心需求是将动态 HTML 事件列表转换为结构化的表格数据集。这涉及识别每个事件的特定数据点，并理解网站的分页系统以生成通用的 CSV 文件。",
+      "competitiveAnalysis": "本项目通过提供速度、准确性和可扩展性，含蓄地解决了手动数据收集效率低下的问题。与复杂的商业平台相比，这个 Python 脚本为其特定的数据源提供了一个轻量级、可定制且高性价比的解决方案。",
+      "technicalResearch": "研究侧重于用于 HTTP 调用的 `requests`、用于 HTML 解析的 `BeautifulSoup4` 以及用于数据导出的 `csv` 模块。还调查了伦理性抓取实践，如 `User-Agent` 标头、用于频率限制的 `time.sleep` 以及用于稳健错误处理的带指数退避的重试逻辑。"
+    },
+    "architecture": {
+      "informationArchitecture": "脚本遵循线性的三部分架构：初始化标头和数据存储；遍历页面、提取并清理事件数据；最后将积累的数据导出到 CSV 文件。每个事件被编译成一个字典并附加到全局列表中。",
+      "technicalDecisions": "选择 Python 是因为其生态系统，`requests` 和 `BeautifulSoup` 构成了标准的抓取组合。事件数据存储在字典中，以便使用 `csv.DictWriter` 导出。利用 CSS 选择器进行精确的数据定位，并通过带指数退避的重试逻辑和请求超时来优先考虑稳健性，实现伦理性交互。"
+    },
+    "developmentProcess": {
+      "phase1": "初始阶段涉及设置 Python 环境并安装 `requests` 和 `beautifulsoup4`。建立了脚本的基础结构，包括基础 URL、User-Agent 标头和用于页面迭代的循环。",
+      "phase2": "此阶段侧重于核心抓取逻辑：集成 `requests` 获取页面，并使用 `BeautifulSoup` 通过 CSS 选择器解析 HTML。实施了稳健的错误处理，包括指数退避和超时，以及用于频率限制的 `time.sleep`。开发了数据清洗和缺失字段处理功能。",
+      "phase3": "最后阶段侧重于数据持久化和可用性，集成 `csv` 模块将收集的数据写入 `epfl_events.csv`，并带有适当的标头和 UTF-8 编码。增加了技术说明和文档，并在 README 中概述了局限性和未来的改进方向。"
+    },
+    "keyFeatures": [
+      {
+        "title": "多页面抓取",
+        "description": "自动在 EPFL Memento 网站上导航多达 16 个分页的事件列表。",
+        "implementation": "一个 `for` 循环动态构建每个页面的 URL，使用 `requests` 获取 HTML 内容。这确保了收集范围超出初始视图的持续数据。",
+        "challenges": "管理用于分页的动态 URL 结构并保持跨多个页面的持续数据流。"
+      },
+      {
+        "title": "稳健的错误处理",
+        "description": "优雅地处理网络问题、服务器错误和无响应的页面，以防止脚本崩溃。",
+        "implementation": "每个请求最多尝试 3 次，延迟呈指数级增加（2s, 4s, 8s）。HTTP 请求设置了 10 秒超时。如果所有重试都失败，脚本会记录错误并继续处理后续页面。",
+        "challenges": "防止脚本因瞬时网络问题或服务器问题而失败，并在间歇性连接的情况下最大化数据检索。"
+      },
+      {
+        "title": "尊重性的抓取实践",
+        "description": "遵循伦理性网页抓取指南，以最小化服务器负载并避免 IP 封禁。",
+        "implementation": "脚本发送 `User-Agent` 标头以表明自己是现代浏览器，并在页面请求之间包含 `time.sleep(1)` 延迟。重试的指数退避进一步减轻了服务器压力。",
+        "challenges": "平衡数据收集效率与避免可能导致 IP 封锁或服务器性能问题的侵略性行为之间的需求。"
+      },
+      {
+        "title": "结构化数据提取与清洗",
+        "description": "准确地从原始 HTML 中提取特定事件详情，并对其进行清洗以确保一致性和可用性。",
+        "implementation": "`BeautifulSoup4` 解析 HTML，应用特定的 CSS 选择器来定位事件标题、日期、时间、地点和类别。提取的文本使用 `.strip()` 和 `replace()` 进行清洗，对于缺失字段分配“Non trouvé”（未找到）。",
+        "challenges": "在复杂的 HTML 中精确确定动态数据的位置，通过文本清洗确保数据完整性，即使在数据点缺失时也保持结构。"
+      },
+      {
+        "title": "CSV 导出",
+        "description": "将所有收集和处理过的事件数据保存到结构良好的 CSV 文件中，以便随时进行分析。",
+        "implementation": "数据收集后，`csv` 模块的 `DictWriter` 将字典键映射到 CSV 列标题。创建 `epfl_events.csv` 文件时采用了 `UTF-8` 编码以实现广泛的兼容性。",
+        "challenges": "正确将字典键映射到 CSV 标头，处理潜在的编码问题，并确保输出格式具有通用可访问性。"
+      }
+    ],
+    "testing": "测试涉及手动验证 `epfl_events.csv` 的准确性和格式。模拟了诸如暂时断网之类的错误情况，以验证重试机制。通过检查网站的 HTML 来持续验证 CSS 选择器，并检查数据清洗的效果以确保高质量的输出。",
+    "results": {
+      "technicalAchievements": "成功实现了从动态网站自动提取结构化事件数据，消除了手动操作。实施了带重试和指数退避的先进错误处理，产生了一个容错的爬虫。遵循了伦理性抓取实践并产出了干净、格式良好的 CSV 输出。展示了在 `requests`, `BeautifulSoup4` 和 `csv` 方面实现端到端数据获取的熟练程度。",
+      "businessImpact": "显著减少了收集 EPFL 事件数据的时间和资源。为事件趋势分析、日程安排或集成到其他应用程序提供了全面的、结构化的数据集。为对 EPFL 日历感兴趣的活动组织者、学生或研究人员提供了数据驱动的决策支持。",
+      "personalGrowth": "深化了对 HTTP 协议、网页结构和网页抓取错综复杂之处的理解。在设计和实施稳健错误处理和尊重性抓取策略方面获得了实践经验。提高了使用 Python 库进行数据提取、清洗和结构化的技能。"
+    },
+    "techStack": {
+      "frontend": "null",
+      "backend": "Python",
+      "tools": "null",
+      "libraries": "requests (HTTP 客户端), BeautifulSoup4 (HTML 解析器), csv (数据导出), time (频率限制)"
+    },
+    "learnings": [
+      "伦理性抓取至关重要，强调遵循 `robots.txt`、频率限制和适当的 `User-Agent` 标头，以实现负责任和可持续的网络实践。",
+      "构建可靠的爬虫需要全面的错误处理，包括带指数退避的重试机制和请求超时，以优雅地管理网络波动和服务器端问题。",
+      "熟练掌握 `BeautifulSoup4` 和有效的 CSS 选择器是从复杂且通常不一致的 HTML 结构中准确精确定位并提取特定数据的基础。",
+      "提取的原始文本需要大量的清洗，如去除空格、删除前缀和处理缺失值，以生成用于分析的高质量、可用的数据集。"
+    ],
+    "futureEnhancements": [
+      "实施逻辑以自动检测可用的总页数，实现动态收集。",
+      "允许用户通过命令行参数指定输出文件名、页面计数或延迟等参数。",
+      "集成 `tqdm` 等库来显示进度条，以便在抓取期间获得更好的用户反馈。",
+      "增加直接在爬虫内根据特定日期、日期范围或类别过滤事件的选项。",
+      "提供 CSV 之外的替代方案，允许将数据直接保存到关系型或 NoSQL 数据库中，以便进行复杂的存储和查询。"
+    ],
+    "conclusion": "“Scraping”项目有效地展示了 Python 中的稳健网页抓取技术，从错误处理和伦理性交互到精确的数据提取和结构化输出。它提供了一个功能齐全的 EPFL 事件数据收集工具，并突出了构建可靠、伦理且可维护的抓取解决方案的最佳实践。该项目展示了在 Python 开发、数据处理和网络伦理方面的坚实基础。"
+  },
+  "portfolio-projects-ai": {
+    "title": "Portfolio Projects AI",
+    "description": "智能 AI 驱动工具，使用 RAG 和大语言模型自动生成详细的 GitHub 作品集案例研究",
+    "metadata": {
+      "role": "数据工程师",
+      "category": "AI/ML, Python 开发",
+      "timeline": "2025年10月（初始开发冲刺）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/portfolio-projects-ai"
+    },
+    "overview": "`portfolio-projects-ai` 项目是一个创新的智能工具，旨在自动化为 GitHub 作品集项目创建详细案例研究这一乏味且耗时的过程。利用人工智能赋能的代码分析和检索增强生成 (RAG) 的力量，该工具将原始代码仓库转化为引人入胜、结构化且多语言的作品集内容。它旨在通过显著减少展示作品所需的工作量来增强开发人员的能力，使他们能够更多地关注构建，而不是文档撰写。\n\n该系统作为一个精密的内容生成引擎，分析代码库的技术细节，提取关键功能、架构模式和技术选择，然后将这些见解转化为全面的案例研究。通过提供面向现代 Web 应用程序的结构化 JSON 输出和面向通用用途的传统 Markdown 输出，`portfolio-projects-ai` 为任何开发人员的作品集需求提供了灵活的解决方案。其核心在于智能地理解代码并有效地传达其本质。",
+    "challenge": {
+      "problem": "开发人员经常在为作品集编写项目文档时感到挣扎。手动提取技术细节、描述功能并撰写引人入胜的叙事是一项费力、重复且经常被忽视的任务。这导致作品集过时或不完整，尽管代码库中埋藏着丰富的信息，但无法充分展示开发人员的技能和项目影响。",
+      "goal": "创建一个自动化系统，能够分析 GitHub 仓库并以最少的人工干预生成高质量、详细且多语言的案例研究。主要目标是简化作品集更新过程，确保开发人员能够始终如一地展现专业的项目形象。",
+      "constraints": "技术挑战包括跨各种仓库可靠地解析多样的代码结构、通过 RAG 确保 AI 生成内容的准确性而无幻觉、通过智能跳过逻辑实现可扩展性，以及实施稳健的多语言支持。"
+    },
+    "discovery": {
+      "requirements": "核心需求是使开发人员能够毫不费力地维护具有深度案例研究的最新、有影响力的作品集。关键需求包括自动内容生成、技术准确性、对结构化 JSON 和 Markdown 输出的支持、多语言能力以及简单的仓库配置。",
+      "competitiveAnalysis": "现有的作品集生成工具依赖于手动输入或基础模板。没有一个能提供深度 AI 驱动的代码分析和叙事生成。竞争格局显示，对于一个能从语境上理解代码的真正“智能”作品集助手存在巨大的需求缺口。",
+      "technicalResearch": "研究侧重于评估用于复杂文本生成的大语言模型（最终选择了 Google Gemini）、调查通过 RAG 增强准确性、探索用于语义搜索的代码嵌入技术，以及识别合适的向量数据库 (ChromaDB) 以实现高效的相似度搜索。"
+    },
+    "architecture": {
+      "informationArchitecture": "系统遵循清晰的模块化流水线：配置 (repos.yaml) → 仓库获取 → 代码分析（分块、嵌入、ChromaDB 存储、基于 RAG 的提问） → 案例研究生成（模板化 LLM 提示） → 输出格式化 (JSON/Markdown)。每个仓库都有一个唯一的 ChromaDB 集合，以实现隔离、准确的分析。",
+      "technicalDecisions": "选择 Python 是因为其 AI/ML 生态系统。Google Gemini API 提供了先进的 NLU/NLG 能力。选择 ChromaDB 是因为它轻量级、可嵌入的向量存储，并具有确保按仓库组织的动态集合命名。实施 RAG 架构通过相似度搜索将 LLM 响应锚定在实际代码中，防止幻觉。"
+    },
+    "developmentProcess": {
+      "phase1": "基础阶段确立了项目设置、仓库克隆和 ChromaDB 集成。实施了代码分析器 (code_analyzer) 骨架，包括文档加载、嵌入生成和向量库创建。定义了关于结构、技术、功能和架构的核心分析问题。",
+      "phase2": "功能开发侧重于带有相似度搜索和上下文拼接的 RAG 驱动分析逻辑。实施了概述主要部分的案例研究生成器 (case_study_generator)。集成了 Google Gemini API，根据分析出的见解生成文本。开发了支持 JSON 和 Markdown 的输出格式化程序。",
+      "phase3": "润色阶段改进了 LLM 提示词以获得引人入胜的输出，实施了带有语言区域配置的多语言支持，开发了旨在提高效率的智能跳过逻辑，并通过 CLI 选项和全面的 README 指南增强了用户友好性。"
+    },
+    "keyFeatures": [
+      {
+        "title": "基于 RAG 的自动代码分析",
+        "description": "智能解析 GitHub 仓库，将代码库转化为可搜索的知识库，并使用检索增强生成 (RAG) 来回答关于项目的特定问题。",
+        "implementation": "CodeAnalyzer 使用配置的嵌入模型创建嵌入，将其存储在具有唯一仓库集合的 Chroma 向量数据库中。`analyze_with_rag` 方法定义关键问题并执行 `similarity_search` 以检索相关的代码片段，这些片段作为上下文提供给 LLM，以获得详细、有据可查的答案。",
+        "challenges": "通过确保每个见解都由来自项目源代码的直接上下文（通过 RAG）支持，克服了 LLM 幻觉挑战，使分析高度准确且针对特定项目。"
+      },
+      {
+        "title": "多语言案例研究生成",
+        "description": "根据同一代码库分析生成多种语言（英语、法语等）的作品集案例研究。",
+        "implementation": "`repos.yaml` 配置文件包含一个 `locales` 数组。生成过程遍历指定的区域设置，使用特定于区域的提示词指示 LLM 在目标语言中生成地道的文本。",
+        "challenges": "通过精心的提示工程确保高质量、文化适应性强的技术内容，避免了尴尬的字面翻译。"
+      },
+      {
+        "title": "双输出模式：结构化 JSON 和 Markdown",
+        "description": "提供灵活的输出选项——为现代 Web 框架优化的结构化 JSON 或用于更广泛平台的易读 Markdown。",
+        "implementation": "`main.py` 脚本接受 `--structured` 或 `--markdown` 标志。生成逻辑产出原始内容，然后专用格式化程序根据选择的模式进行转换。JSON 确保数据可由 API 消费，而 Markdown 则侧重于可读性。",
+        "challenges": "设计了灵活的内容结构，无缝适应机器可读的 JSON 和以人为中心的 Markdown，而无需重复的生成逻辑。"
+      },
+      {
+        "title": "全面的案例研究结构",
+        "description": "生成完整的案例研究，涵盖从概述到技术深度研究及未来增强的各个重要方面。",
+        "implementation": "`case_study_generator.py` 定义了结构，包括发现、架构、关键功能、结果和未来增强。每个部分都对 LLM 使用量身定制的提示词，并利用高层分析。`full_generator.py` 确保了引人入胜的功能描述和特定的技术部分。",
+        "challenges": "编排 LLM 为不同部分生成多样化的内容，同时保持一致的语气和叙事流，避免重复并确保全面覆盖。"
+      }
+    ],
+    "testing": "采用迭代测试方法，在每个主要功能后进行人工审查。对 LLM 提示词进行广泛的 A/B 测试以保证质量。针对各种结构的仓库进行多样性测试。针对 JSON 架构和 Markdown 渲染进行输出格式验证。对多语言内容的语言质量进行审查。",
+    "results": {
+      "technicalAchievements": "成功集成了复杂的 RAG 流水线，包括代码嵌入、ChromaDB 和 Google Gemini。开发了分离分析、生成和格式化的模块化架构。通过智能跳过逻辑实现了高效处理。展示了稳健的多语言技术文档生成能力。",
+      "businessImpact": "显著减少了创建作品集案例研究的手动工作量。确保了一贯的高质量、详细展示。多语言支持实现了全球覆盖。赋能开发人员专注于开发而非文档撰写。",
+      "personalGrowth": "通过实战 LLM 集成、提示工程和 RAG 架构深化了 AI/ML 专业知识。培养了向量数据库熟练度。强化了系统设计和模块化原则。攻克了将非结构化代码转化为结构化叙事的复杂挑战。"
+    },
+    "techStack": {
+      "frontend": "Python",
+      "backend": "Google Gemini API, ChromaDB, GitHub API",
+      "tools": "Python 3.x, ChromaDB (向量数据库), GitHub API",
+      "libraries": "Google Gemini API (LLM), ChromaDB (向量嵌入), langchain/sentence-transformers (嵌入)"
+    },
+    "learnings": [
+      "提示工程的力量与风险：微小的提示词更改会极大地改变输出质量。迭代和清晰的指示至关重要。",
+      "RAG 在事实准确性中的作用：通过嵌入和查询代码库来实施 RAG，对于将 LLM 响应锚定在事实语境中、最小化幻觉至关重要。",
+      "代码即数据：将代码视为适合嵌入和向量搜索的结构化语义数据，能够实现超越关键词匹配的更深层次的上下文理解。",
+      "模块化设计是应对复杂性的关键：将复杂的任务分解为不同的模块（code_analyzer, case_study_generator, full_generator）极大地提高了可管理性和调试效率。"
+    ],
+    "futureEnhancements": [
+      "支持更多编程语言：将分析扩展到 Python 之外的 JavaScript, Java, Go 等，需要不同的解析策略。",
+      "高级代码指标与见解：加入静态分析工具以获取圈复杂度、代码覆盖率或依赖图。",
+      "交互式反馈循环：允许用户对生成的章节提供反馈，供 LLM 进行优化。",
+      "集成部署/托管：开发 Web 界面或 CI/CD 集成，以便更轻松地配置和发布。",
+      "成本优化：实施令牌使用监控和更聪明的切分策略，以优化 LLM API 成本。",
+      "依赖图可视化：分析 requirements.txt 或 package.json 以生成直观的依赖图。"
+    ],
+    "conclusion": "`portfolio-projects-ai` 展示了人工智能在简化开发人员工作流程方面的变革力量。通过智能地自动化全面的作品集案例研究创建，它解决了常见的痛点，同时展示了强大的 AI 驱动代码分析和 RAG 实施。它代表了数据工程原则的精密融合，从代码摄取和向量化到智能检索和多格式生成，为自动化的作品集管理设定了新标准，并赋予开发人员以前所未有的效率展示其作品的能力。"
+  },
+  "backToProjects": "返回项目列表",
+  "viewCode": "查看代码",
+  "liveDemo": "在线演示",
+  "overview": "概览",
+  "keyFeatures": "关键功能",
+  "technologiesUsed": "所用技术",
+  "notFound": "未找到项目",
+  "sections": {
+    "metadata": "项目元数据",
+    "overview": "概览",
+    "challenge": "面临的挑战",
+    "discovery": "发现与研究",
+    "architecture": "架构与规划",
+    "developmentProcess": "开发过程",
+    "keyFeatures": "关键功能与实施",
+    "testing": "测试与迭代",
+    "results": "结果与影响",
+    "techStack": "技术栈",
+    "learnings": "核心收获",
+    "futureEnhancements": "未来增强",
+    "conclusion": "结论"
+  },
+  "labels": {
+    "role": "角色",
+    "category": "类别",
+    "timeline": "时间线",
+    "problem": "问题",
+    "goal": "目标",
+    "constraints": "限制条件",
+    "requirements": "需求",
+    "competitiveAnalysis": "竞争分析",
+    "technicalResearch": "技术研究",
+    "informationArchitecture": "信息架构",
+    "technicalDecisions": "技术决策",
+    "technicalAchievements": "技术成就",
+    "businessImpact": "业务影响",
+    "personalGrowth": "个人成长",
+    "implementation": "实施细节",
+    "challenges": "面临的挑战",
+    "frontend": "前端",
+    "backend": "后端",
+    "tools": "工具与基础设施",
+    "libraries": "库与框架"
+  }
+}

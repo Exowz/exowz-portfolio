@@ -1,0 +1,60 @@
+{
+  "title": "Lebenslauf",
+  "description": "Ewan Kapoors Lebenslauf — Erfahrung, Fähigkeiten, Ausbildung und Projekte.",
+  "sections": {
+    "summary": "Zusammenfassung",
+    "skills": "Fähigkeiten",
+    "experience": "Erfahrung",
+    "education": "Ausbildung",
+    "projects": "Projekte"
+  },
+  "actions": {
+    "downloadPdf": "PDF herunterladen",
+    "contact": "Kontakt aufnehmen",
+    "visit": "Besuchen",
+    "email": "E-Mail"
+  },
+  "facets": {
+    "all": "Alle",
+    "data-eng": "Data Engineering",
+    "ml": "Machine Learning",
+    "ai-rag": "KI / RAG",
+    "finance": "Finanzen",
+    "web": "Web & Produkt",
+    "sovereignty": "Souveränität"
+  },
+  "labels": {
+    "languages": "Sprachen",
+    "availability": "Verfügbarkeit",
+    "filterHint": "Projekte nach Fokus filtern"
+  },
+  "tailor": {
+    "title": "Diesen Lebenslauf auf eine Rolle zuschneiden",
+    "placeholder": "Rolle oder Stellenbeschreibung einfügen...",
+    "button": "Zuschneiden",
+    "reset": "Zurücksetzen",
+    "tailoredFor": "Zugeschnitten auf",
+    "whyFits": "Warum es passt",
+    "disclaimer": "KI-zugeschnitten - kann ungenau sein",
+    "loading": "Wird zugeschnitten...",
+    "unavailable": "KI-Zuschnitt ist derzeit nicht verfügbar",
+    "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "rateLimited": "Zu viele Anfragen - bitte in einigen Minuten erneut versuchen.",
+    "noMatches": "Keine starken Treffer - vollständiger Lebenslauf wird angezeigt.",
+    "downloadPdf": "Angepassten Lebenslauf herunterladen",
+    "generatingPdf": "Wird erstellt...",
+    "pdfFailed": "Der angepasste Lebenslauf konnte nicht erstellt werden - der Standard-CV wurde heruntergeladen.",
+    "explainerLink": "Wie funktioniert das?",
+    "explainerTitle": "Wie die Anpassung funktioniert",
+    "explainerBody": "Das ist keine generische KI. Es ist ein Agent, der nur auf Ewans echtem, geprüftem CV basiert: seinen Projekten, seiner Erfahrung und seinen eigenen Texten. Er ordnet neu und rahmt ein, was bereits stimmt, passend zur beschriebenen Rolle; er erfindet niemals Erfahrung oder Fähigkeiten.",
+    "pdfSteps": {
+      "reading": "Lebenslauf wird gelesen",
+      "tailoring": "Anpassung an die Rolle",
+      "rendering": "PDF wird erstellt",
+      "finishing": "Fast fertig"
+    }
+  },
+  "projectsSeeAll": "Alle anzeigen",
+  "projectsCollapse": "Highlights anzeigen",
+  "modalClose": "Schließen"
+}

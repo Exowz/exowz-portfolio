@@ -26,15 +26,17 @@ export const FloatingDock = ({
   items,
   desktopClassName,
   mobileClassName,
+  mobileToggleLabel = "Menu",
 }: {
   items: DockItem[];
   desktopClassName?: string;
   mobileClassName?: string;
+  mobileToggleLabel?: string;
 }) => {
   return (
     <>
       <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
+      <FloatingDockMobile items={items} className={mobileClassName} toggleLabel={mobileToggleLabel} />
     </>
   );
 };
@@ -42,9 +44,11 @@ export const FloatingDock = ({
 const FloatingDockMobile = ({
   items,
   className,
+  toggleLabel,
 }: {
   items: DockItem[];
   className?: string;
+  toggleLabel: string;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -59,7 +63,7 @@ const FloatingDockMobile = ({
             {items.map((item, idx) => {
               if (item.isDivider) return null;
 
-              const isExternal = item.href.startsWith('http') || item.href.startsWith('/resume');
+              const isExternal = item.href.startsWith('http');
               const linkContent = (
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-2xl transition-all duration-300"
@@ -111,6 +115,8 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
+        aria-label={toggleLabel}
+        aria-expanded={open}
         className="flex h-10 w-10 items-center justify-center rounded-2xl transition-all duration-300"
         style={{
           background: 'var(--dock-item-bg)',
@@ -188,7 +194,7 @@ function IconContainer({
   const pathname = usePathname();
   const [hovered, setHovered] = useState(false);
 
-  const isExternal = href.startsWith('http') || href.startsWith('/resume');
+  const isExternal = href.startsWith('http');
   const isActive = !isExternal && pathname === href;
 
   // ✅ FIX: Changed 'let' to 'const'
@@ -264,7 +270,7 @@ function IconContainer({
         <div
           className="transition-colors duration-300"
           style={{
-            color: hovered ? 'var(--accent)' : 'var(--dock-text)',
+            color: hovered ? 'var(--accent-text)' : 'var(--dock-text)',
             filter: hovered ? 'drop-shadow(0 0 8px var(--accent))' : 'none'
           }}
         >
@@ -277,7 +283,7 @@ function IconContainer({
         <div
           className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-300"
           style={{
-            backgroundColor: hovered ? 'var(--accent)' : 'var(--dock-text)',
+            backgroundColor: hovered ? 'var(--accent-text)' : 'var(--dock-text)',
             opacity: hovered ? 1 : 0.4,
             boxShadow: hovered ? '0 0 8px var(--accent)' : 'none'
           }}

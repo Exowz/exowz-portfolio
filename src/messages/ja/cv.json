@@ -1,0 +1,60 @@
+{
+  "title": "履歴書",
+  "description": "Ewan Kapoor の履歴書 — 経験、スキル、学歴、プロジェクト。",
+  "sections": {
+    "summary": "概要",
+    "skills": "スキル",
+    "experience": "経験",
+    "education": "学歴",
+    "projects": "プロジェクト"
+  },
+  "actions": {
+    "downloadPdf": "PDFをダウンロード",
+    "contact": "問い合わせる",
+    "visit": "訪問",
+    "email": "メール"
+  },
+  "facets": {
+    "all": "すべて",
+    "data-eng": "データエンジニアリング",
+    "ml": "Machine Learning",
+    "ai-rag": "AI / RAG",
+    "finance": "金融",
+    "web": "Web & プロダクト",
+    "sovereignty": "主権"
+  },
+  "labels": {
+    "languages": "言語",
+    "availability": "対応可能",
+    "filterHint": "フォーカスでプロジェクトを絞り込む"
+  },
+  "tailor": {
+    "title": "このCVを職種に合わせる",
+    "placeholder": "職種または求人内容を貼り付け...",
+    "button": "調整",
+    "reset": "リセット",
+    "tailoredFor": "調整対象",
+    "whyFits": "適合する理由",
+    "disclaimer": "AIによる調整 - 不完全な場合があります",
+    "loading": "調整中...",
+    "unavailable": "AI調整は現在利用できません",
+    "error": "問題が発生しました。もう一度お試しください。",
+    "rateLimited": "リクエストが多すぎます - 数分後に再試行してください。",
+    "noMatches": "強い一致はありません - 完全なCVを表示します。",
+    "downloadPdf": "調整済みCVをダウンロード",
+    "generatingPdf": "生成中...",
+    "pdfFailed": "調整済みCVを生成できなかったため、標準CVをダウンロードしました。",
+    "explainerLink": "仕組みは？",
+    "explainerTitle": "調整の仕組み",
+    "explainerBody": "これは汎用AIではありません。Ewanの実際に確認されたCV、つまりプロジェクト、経験、本人の文章だけに基づくエージェントです。記述された職種に合わせて、すでに事実である内容を並べ替え、表現し直します。経験やスキルを作り出すことはありません。",
+    "pdfSteps": {
+      "reading": "履歴書を読み込み中",
+      "tailoring": "役割に合わせて調整中",
+      "rendering": "PDF を生成中",
+      "finishing": "まもなく完了"
+    }
+  },
+  "projectsSeeAll": "すべて表示",
+  "projectsCollapse": "注目のみ表示",
+  "modalClose": "閉じる"
+}

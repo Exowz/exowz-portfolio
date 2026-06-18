@@ -1,0 +1,15 @@
+{
+  "title": "Einstellungen",
+  "intro": "Konfiguriere dieses kleine Betriebssystem.",
+  "description": "Die Desktop-Einstellungen bündeln die Portfolio-Steuerelemente, die sich eher wie Systemebene als wie Inhaltsebene anfühlen sollten.",
+  "appearance": "Erscheinungsbild",
+  "theme": "Design",
+  "language": "Sprache",
+  "replayIntro": "Intro erneut abspielen",
+  "openSettings": "Einstellungen öffnen...",
+  "commandPalette": "Befehlspalette",
+  "system": "System",
+  "systemDescription": "Dieses Portfolio ist absichtlich als Desktop- und Mobil-Shell konzipiert: lokalisiert, datenschutzorientiert und auf nativ anmutende Interaktionen ausgelegt.",
+  "colophon": "Kolophon",
+  "principles": "Prinzipien"
+}
