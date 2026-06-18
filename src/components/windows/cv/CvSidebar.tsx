@@ -25,7 +25,7 @@ export function CvSidebar() {
     <aside className="flex flex-col gap-4 md:sticky md:top-6 md:h-fit md:w-64">
       <div className="flex items-center gap-3 md:flex-col md:items-start">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl md:h-24 md:w-24">
-          <Image src="/images/about/profile.jpeg" alt="Ewan Kapoor" fill className="object-cover" sizes="96px" />
+          <Image src="/images/about/headshot.jpg" alt="Ewan Kapoor" fill className="object-cover" sizes="96px" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-foreground">Ewan Kapoor</h1>
