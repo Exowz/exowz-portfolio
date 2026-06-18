@@ -202,7 +202,11 @@ function PaletteItem({
       className="flex cursor-default select-none items-center gap-2 rounded-2xl px-3 py-2.5 text-sm outline-none aria-selected:bg-accent/15 aria-selected:text-accent-text"
       style={{ color: 'var(--foreground)' }}
     >
-      {icon && <span className="h-4 w-4 shrink-0 opacity-80">{icon}</span>}
+      {icon && (
+        <span className="flex h-4 w-4 shrink-0 items-center justify-center opacity-80 [&>svg]:h-4 [&>svg]:w-4">
+          {icon}
+        </span>
+      )}
       {children}
     </Command.Item>
   );
