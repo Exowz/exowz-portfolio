@@ -8,10 +8,10 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconMapPin,
-  IconLoader2,
   IconCircleCheck,
   IconCircleX,
 } from '@tabler/icons-react';
+import { StatefulButton } from '@/components/ui/stateful-button';
 
 const CONTACT_EMAIL = 'contact@mke-kapoor.com';
 
@@ -212,21 +212,15 @@ export function ContactWindow() {
             </div>
           )}
 
-          <button
+          <StatefulButton
             type="submit"
-            disabled={status === 'loading'}
-            className="flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+            status={status}
+            loadingLabel={t('status.sending')}
+            className="w-full rounded-full px-6 py-3 text-sm font-semibold text-white hover:brightness-110 disabled:opacity-50"
             style={{ background: 'var(--accent-solid)', boxShadow: '0 2px 12px color-mix(in srgb, var(--accent) 40%, transparent)' }}
           >
-            {status === 'loading' ? (
-              <>
-                <IconLoader2 className="h-5 w-5 animate-spin" />
-                {t('status.sending')}
-              </>
-            ) : (
-              t('submit')
-            )}
-          </button>
+            {t('submit')}
+          </StatefulButton>
         </form>
       </motion.div>
     </div>

@@ -4,6 +4,7 @@ import { FormEvent, useRef, useState } from 'react';
 import { IconDownload, IconSparkles, IconX } from '@tabler/icons-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { resumeHref } from '@/lib/resume';
+import { StatefulButton } from '@/components/ui/stateful-button';
 import type { UseTailor } from './useTailor';
 import { AiTailoredExplainer } from './AiTailoredExplainer';
 
@@ -101,15 +102,17 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <button
+            <StatefulButton
               type="button"
               onClick={downloadTailored}
-              disabled={pdfBusy}
-              className="flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-50"
+              status={pdfBusy ? 'loading' : 'idle'}
+              loadingLabel={t('generatingPdf')}
+              iconClassName="h-4 w-4 shrink-0"
+              className="rounded-full px-4 py-2 text-xs font-semibold hover:brightness-110 disabled:opacity-50"
               style={{ background: 'var(--accent-solid)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
             >
-              <IconDownload className="h-4 w-4" /> {pdfBusy ? t('generatingPdf') : t('downloadPdf')}
-            </button>
+              <IconDownload className="h-4 w-4" /> {t('downloadPdf')}
+            </StatefulButton>
             <button
               type="button"
               onClick={tailor.reset}
@@ -158,14 +161,17 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
           className="min-w-0 flex-1 resize-none overflow-hidden bg-transparent text-sm leading-relaxed outline-none placeholder:opacity-60 disabled:opacity-60"
           style={{ color: 'var(--foreground)', maxHeight: 140 }}
         />
-        <button
+        <StatefulButton
           type="submit"
+          status={status === 'loading' ? 'loading' : 'idle'}
+          loadingLabel={t('loading')}
           disabled={disabled || status === 'loading' || role.trim().length < 3}
-          className="shrink-0 self-end rounded-full px-5 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-40"
+          iconClassName="h-4 w-4 shrink-0"
+          className="shrink-0 self-end rounded-full px-5 py-2 text-xs font-semibold hover:brightness-110 disabled:opacity-40"
           style={{ background: 'var(--accent-solid)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
         >
-          {status === 'loading' ? t('loading') : t('button')}
-        </button>
+          {t('button')}
+        </StatefulButton>
       </div>
       {status === 'unavailable' && (
         <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
