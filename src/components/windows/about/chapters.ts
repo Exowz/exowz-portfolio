@@ -1,4 +1,4 @@
-export type ChapterMedia = 'mauritius' | 'personal' | 'education';
+export type ChapterMedia = 'mauritius' | 'personal' | 'education' | 'cohort';
 
 export interface AboutChapter {
   /** Matches `pages.about.chapters.<id>` label key. */
@@ -18,5 +18,5 @@ export const CHAPTERS: AboutChapter[] = [
   { id: 'fall', beats: ['challenge', 'struggle'] },
   { id: 'return', beats: ['introspection', 'return'], media: 'personal' },
   { id: 'dataAI', beats: ['revelation', 'webdev', 'dataAI', 'building', 'philosophy'], media: 'education' },
-  { id: 'sovereignty', beats: ['sovereignty1', 'sovereignty2', 'comeback'], year: '2026' },
+  { id: 'sovereignty', beats: ['sovereignty1', 'sovereignty2', 'comeback'], year: '2026', media: 'cohort' },
 ];

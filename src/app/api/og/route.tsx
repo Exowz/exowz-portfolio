@@ -16,6 +16,7 @@ export function GET(req: NextRequest) {
   const title = clamp(searchParams.get('title') || 'Exowz', 60);
   const subtitle = clamp(searchParams.get('subtitle') || '', 140);
   const badge = clamp(searchParams.get('badge') || 'Portfolio', 28);
+  const avatar = `${req.nextUrl.origin}/images/about/headshot.jpg`;
 
   return new ImageResponse(
     (
@@ -114,7 +115,17 @@ export function GET(req: NextRequest) {
             color: '#94a3b8',
           }}
         >
-          <div style={{ display: 'flex', fontWeight: 600, color: '#f8fafc' }}>Exowz</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={avatar}
+              width={56}
+              height={56}
+              alt=""
+              style={{ borderRadius: 999, objectFit: 'cover', border: '2px solid rgba(148,163,184,0.4)' }}
+            />
+            <div style={{ display: 'flex', fontWeight: 600, color: '#f8fafc' }}>Exowz</div>
+          </div>
           <div style={{ display: 'flex' }}>mke-kapoor.com</div>
         </div>
       </div>

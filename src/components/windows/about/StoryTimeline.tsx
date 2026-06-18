@@ -47,6 +47,7 @@ function Chapter({ chapter }: { chapter: AboutChapter }) {
         {chapter.media === 'mauritius' && <ImageMoment src="/images/about/mauritius.jpg" caption={t('captions.mauritius')} />}
         {chapter.media === 'personal' && <PersonalDetails />}
         {chapter.media === 'education' && <EducationCard />}
+        {chapter.media === 'cohort' && <ImageMoment src="/images/about/albert-cohort.webp" caption={t('captions.cohort')} />}
       </div>
     </motion.div>
   );

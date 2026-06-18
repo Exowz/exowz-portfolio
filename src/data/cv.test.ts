@@ -27,7 +27,10 @@ describe('cv data', () => {
         expect(e.detail && e.detail.length > 20, `${lang} edu ${e.id} detail`).toBeTruthy();
       }
       const credIds = new Set(c.credentials.map((cr) => cr.id));
-      for (const e of c.education) if (e.badge) expect(credIds.has(e.badge), `${lang} badge ${e.badge}`).toBe(true);
+      for (const e of c.education)
+        for (const b of e.badges ?? []) expect(credIds.has(b), `${lang} badge ${b}`).toBe(true);
+      for (const e of c.education)
+        if (e.logo) expect(existsSync(join(process.cwd(), 'public', e.logo)), `${lang} edu logo ${e.logo}`).toBe(true);
       for (const cr of c.credentials) {
         expect(cr.title && cr.body, `${lang} credential ${cr.id} text`).toBeTruthy();
         expect(existsSync(join(process.cwd(), 'public', cr.image)), `${lang} credential image ${cr.image}`).toBe(true);

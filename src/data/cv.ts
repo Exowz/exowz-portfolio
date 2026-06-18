@@ -24,7 +24,10 @@ export interface CvEducationEntry {
   period: string;
   note?: string;
   detail?: string;
-  badge?: string;
+  /** Institution logo (rendered on a neutral chip so it survives dark mode). */
+  logo?: string;
+  /** Credential ids shown as badges beside the entry. */
+  badges?: string[];
 }
 
 export interface CvCredential {
@@ -121,18 +124,20 @@ const en: CvContent = {
     {
       id: 'msc-albert-mines',
       institution: 'Albert School × Mines de Paris - PSL',
+      logo: '/images/logos/mines-psl.png',
       degree: 'MSc Data & AI for Finance — Admitted (Sep. 2026 start, work-study)',
       period: '2026 — 2028',
       detail: `This is the master's I start in September 2026, by work-study: an MSc in Data & AI for Finance delivered jointly by Mines de Paris - PSL, one of France's most prestigious engineering schools, and Albert School. It pairs a strong technical core (data engineering, machine learning, MLOps) with finance and business. I was admitted to three master's programmes and chose this one, both for the Mines name and because applying data and AI to finance is the direction I want.`,
-      badge: 'grade-master',
+      badges: ['grade-master'],
     },
     {
       id: 'bsc-ece',
       institution: 'ECE Paris',
+      logo: '/images/logos/ece.png',
       degree: 'BSc in Computer Science — Data & AI specialization',
       period: '2024 — 2026',
       detail: `ECE Paris is a French general engineering school (grande école). I'm finishing its computer-science bachelor's with a Data & AI specialisation. The teaching is heavily project-based, and that's where my interest in computer science really clicked, after a more traditional start: building real applications rather than just following lectures. It gave me my foundations in Python, data and machine learning, and most of the projects in my portfolio grew out of it.`,
-      badge: 'rncp',
+      badges: ['rncp'],
     },
     {
       id: 'datascientest',
@@ -140,17 +145,21 @@ const en: CvContent = {
       degree: 'Python for Data Science Certification',
       period: '2024',
       detail: `DataScientest is a well-known French online training provider specialised in data. I completed its Python for Data Science certification alongside my degree, to consolidate the practical foundations: Python, data manipulation and the core libraries used in analysis and machine learning. It was a way to make sure my self-driven learning rested on solid, structured fundamentals rather than scattered tutorials.`,
+      badges: ['datascientest-python'],
     },
     {
       id: 'prep-ece',
       institution: 'ECE Paris',
+      logo: '/images/logos/ece.png',
       degree: 'Integrated Preparatory Cycle',
       period: '2023 — 2024',
       detail: `Before the bachelor's I did ECE Paris's integrated preparatory cycle, the two-year science foundation that precedes the engineering track, which I joined through an accelerated semester. It rebuilt the maths, physics and computer-science base I needed after a non-linear start. It's the stage where I resumed engineering studies in France and found my footing again, and it set up the bachelor's that followed.`,
+      badges: ['diplome-ingenieur'],
     },
     {
       id: 'cpge-pothier',
       institution: 'Lycée Pothier',
+      logo: '/images/logos/lycee-pothier.png',
       degree: 'CPGE PCSI (intensive science prep)',
       period: '2020 — 2021',
       detail: `CPGE PCSI is France's intensive two-year class that prepares for the competitive engineering-school entrance exams, one of the most demanding tracks in the French system, with a physics, chemistry and engineering-science focus. I did my first year at Lycée Pothier in Orléans. It didn't go as planned and I didn't continue, but it gave me real work capacity and resilience, and it's an honest part of a path that later found its direction.`,
@@ -158,6 +167,7 @@ const en: CvContent = {
     {
       id: 'bac-bourdonnais',
       institution: 'Lycée La Bourdonnais',
+      logo: '/images/logos/lycee-labourdonnais.png',
       degree: 'Scientific Baccalaureate — Highest Honors',
       period: '2020',
       detail: `This is the French scientific high-school diploma (Baccalauréat), which I earned with highest honours (mention très bien) at Lycée La Bourdonnais, a French school in Mauritius, where I grew up. My specialisation was physics and chemistry. It marks where my path started, in a French education far from Paris, and the early scientific grounding that pointed me toward engineering and, eventually, data and AI.`,
@@ -175,6 +185,18 @@ const en: CvContent = {
       image: '/images/credentials/rncp.webp',
       title: `RNCP level 6 (Bachelor's / bac+3)`,
       body: `RNCP is France's national register of professional certifications, maintained by the State. A registered title guarantees that a qualification matches defined, verified skills recognised across the job market. The levels run from 3 to 8; level 6 corresponds to the Bachelor's / licence tier (bac+3, EQF level 6). My ECE Paris BSc is registered at RNCP level 6, which means it is officially recognised at Bachelor level, with a competency framework employers can rely on.`,
+    },
+    {
+      id: 'diplome-ingenieur',
+      image: '/images/credentials/diplome-ingenieur.png',
+      title: `State-controlled engineering diploma`,
+      body: `In France, the "Diplôme d'Ingénieur" title is controlled and accredited by the State, through the Commission des Titres d'Ingénieur (CTI). The "contrôlé par l'État" mark certifies that an engineering programme meets a demanding national standard for academic quality and professional relevance. ECE Paris is a State-recognised engineering grande école, and its integrated engineering track carries this CTI-accredited, State-controlled standard.`,
+    },
+    {
+      id: 'datascientest-python',
+      image: '/images/credentials/liora.png',
+      title: `Python for Data Science — Liora (ex DataScientest)`,
+      body: `Liora (formerly DataScientest) is a well-known French data-training organisation. This certification validates the practical Python foundations for data science — data manipulation with pandas, scientific computing and the core libraries used across analysis and machine learning. I completed it alongside my degree to make sure my self-driven learning rested on structured, verifiable fundamentals.`,
     },
   ],
   skills: [
@@ -247,19 +269,21 @@ const fr: CvContent = {
     {
       id: 'msc-albert-mines',
       institution: 'Mines de Paris - PSL × Albert School',
+      logo: '/images/logos/mines-psl.png',
       degree: 'MSc Data & AI for Finance — Admis (rentrée sept. 2026, en alternance)',
       period: '2026 — 2028',
       detail: `C'est le master que je commence en septembre 2026, en alternance : un MSc Data & AI for Finance délivré conjointement par les Mines de Paris - PSL, l'une des plus prestigieuses écoles d'ingénieurs françaises, et l'Albert School. Il associe un socle technique solide (data engineering, machine learning, MLOps) à la finance et au business. J'ai été admis dans trois masters et j'ai choisi celui-ci, pour le nom des Mines et parce qu'appliquer la data et l'IA à la finance est la direction que je veux.`,
-      badge: 'grade-master',
+      badges: ['grade-master'],
     },
     {
       id: 'bsc-ece',
       institution: 'ECE Paris',
+      logo: '/images/logos/ece.png',
       degree: 'Bachelor en Informatique — Spécialisation Data & IA',
       period: '2024 — 2026',
       note: 'Cycle classique axé Data et IA',
       detail: `ECE Paris est une grande école d'ingénieurs généraliste. J'y termine mon Bachelor en informatique, spécialisation Data & IA. L'enseignement est très orienté projets, et c'est là que mon intérêt pour l'informatique a vraiment pris, après un début plus classique : construire de vraies applications plutôt que seulement suivre des cours. Ça m'a donné mes bases en Python, data et machine learning, et la plupart des projets de mon portfolio en sont nés.`,
-      badge: 'rncp',
+      badges: ['rncp'],
     },
     {
       id: 'datascientest',
@@ -267,17 +291,21 @@ const fr: CvContent = {
       degree: 'Certification Python pour la Data Science',
       period: '2024',
       detail: `DataScientest est un organisme de formation français en ligne, reconnu, spécialisé dans la data. J'ai validé sa certification Python pour la Data Science en parallèle de mes études, pour consolider les bases pratiques : Python, manipulation de données et les bibliothèques clés de l'analyse et du machine learning. C'était une façon de m'assurer que mon apprentissage autonome reposait sur des fondamentaux solides et structurés, et non sur des tutoriels épars.`,
+      badges: ['datascientest-python'],
     },
     {
       id: 'prep-ece',
       institution: 'ECE Paris',
+      logo: '/images/logos/ece.png',
       degree: 'Cycle Préparatoire Intégré',
       period: '2023 — 2024',
       detail: `Avant le Bachelor, j'ai suivi le cycle préparatoire intégré de l'ECE Paris, les deux années de socle scientifique qui précèdent le cycle ingénieur, que j'ai rejoint via un semestre accéléré. Il m'a permis de reconstruire les bases en maths, physique et informatique dont j'avais besoin après un parcours non linéaire. C'est l'étape où j'ai repris mes études d'ingénieur en France et retrouvé mon équilibre, et qui a préparé le Bachelor qui a suivi.`,
+      badges: ['diplome-ingenieur'],
     },
     {
       id: 'cpge-pothier',
       institution: 'Lycée Pothier',
+      logo: '/images/logos/lycee-pothier.png',
       degree: 'CPGE PCSI',
       period: '2020 — 2021',
       note: "Physique, Chimie et Sciences de l'Ingénieur",
@@ -286,6 +314,7 @@ const fr: CvContent = {
     {
       id: 'bac-bourdonnais',
       institution: 'Lycée La Bourdonnais',
+      logo: '/images/logos/lycee-labourdonnais.png',
       degree: 'Baccalauréat Scientifique',
       period: '2020',
       note: 'Mention Très Bien',
@@ -304,6 +333,18 @@ const fr: CvContent = {
       image: '/images/credentials/rncp.webp',
       title: `RNCP niveau 6 (Licence / bac+3)`,
       body: `Le RNCP est le Répertoire national des certifications professionnelles, tenu par l'État français. Un titre enregistré garantit qu'une qualification correspond à des compétences définies et vérifiées, reconnues sur le marché du travail. Les niveaux vont de 3 à 8 ; le niveau 6 correspond à la Licence / au grade de licence (bac+3, niveau 6 du cadre européen). Mon BSc de l'ECE Paris est enregistré au niveau RNCP 6, ce qui signifie qu'il est officiellement reconnu au niveau Licence, avec un référentiel de compétences fiable pour les employeurs.`,
+    },
+    {
+      id: 'diplome-ingenieur',
+      image: '/images/credentials/diplome-ingenieur.png',
+      title: `Diplôme d'Ingénieur contrôlé par l'État`,
+      body: `En France, le titre d'« Ingénieur diplômé » est contrôlé et habilité par l'État, via la Commission des Titres d'Ingénieur (CTI). La mention « contrôlé par l'État » certifie qu'une formation d'ingénieur répond à un standard national exigeant de qualité académique et de pertinence professionnelle. L'ECE Paris est une grande école d'ingénieurs reconnue par l'État, et son cycle ingénieur intégré porte ce standard habilité par la CTI et contrôlé par l'État.`,
+    },
+    {
+      id: 'datascientest-python',
+      image: '/images/credentials/liora.png',
+      title: `Python pour la Data Science — Liora (ex DataScientest)`,
+      body: `Liora (anciennement DataScientest) est un organisme de formation français reconnu, spécialisé dans la data. Cette certification valide les bases pratiques de Python pour la data science — manipulation de données avec pandas, calcul scientifique et les bibliothèques clés de l'analyse et du machine learning. Je l'ai validée en parallèle de mes études pour m'assurer que mon apprentissage autonome reposait sur des fondamentaux structurés et vérifiables.`,
     },
   ],
   skills: [

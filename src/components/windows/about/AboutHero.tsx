@@ -11,7 +11,7 @@ export function AboutHero() {
     <header className="flex flex-col items-center gap-4 pt-2 text-center">
       <div className="relative h-28 w-28 overflow-hidden rounded-2xl md:h-32 md:w-32">
         <Image
-          src="/images/about/profile.jpeg"
+          src="/images/about/headshot.jpg"
           alt={t('displayName')}
           fill
           className="object-cover"

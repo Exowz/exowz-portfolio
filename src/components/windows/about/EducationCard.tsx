@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 export function EducationCard() {
   const t = useTranslations('pages.about.education');
@@ -8,17 +9,14 @@ export function EducationCard() {
   return (
     <div className="glass-card my-1 rounded-2xl p-5 md:p-6">
       <div className="flex items-start gap-4">
-        {/* Placeholder for cleared school logos/photo; swap when assets are supplied. */}
+        {/* White plate keeps the dark/coloured school marks legible in both themes. */}
         <div
-          className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-xl text-sm font-semibold sm:flex"
-          style={{
-            border: '1px solid var(--border)',
-            background: 'color-mix(in srgb, var(--foreground) 4%, transparent)',
-            color: 'var(--text-secondary)',
-          }}
+          className="hidden h-16 w-16 shrink-0 flex-col items-center justify-center gap-1.5 rounded-xl p-2 sm:flex"
+          style={{ border: '1px solid var(--border)', background: '#ffffff' }}
           aria-hidden
         >
-          M+A
+          <Image src="/images/logos/mines-psl.png" alt="" width={56} height={27} className="h-auto w-full object-contain" />
+          <Image src="/images/logos/albert-school.png" alt="" width={56} height={8} className="h-auto w-full object-contain" />
         </div>
         <div className="space-y-1">
           <p className="text-base font-semibold text-foreground">{t('programme')}</p>
