@@ -22,9 +22,9 @@ export function ExperienceCard({ entry }: { entry: CvExperience }) {
         <motion.p layoutId={`${layoutId}-title`} className="font-semibold text-foreground">
           {entry.role}
         </motion.p>
-        <p className="text-sm" style={{ color: 'var(--accent-text)' }}>
+        <motion.p layoutId={`${layoutId}-subtitle`} className="text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
           {entry.company}
-        </p>
+        </motion.p>
         <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
           {entry.period} · {entry.location}
         </p>

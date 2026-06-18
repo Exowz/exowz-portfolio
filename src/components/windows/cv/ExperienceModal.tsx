@@ -22,13 +22,12 @@ export function ExperienceModal({
       open={open}
       onClose={onClose}
       title={entry.role}
+      subtitle={entry.company}
       triggerRef={triggerRef}
       layoutId={layoutId}
       titleLayoutId={layoutId ? `${layoutId}-title` : undefined}
+      subtitleLayoutId={layoutId ? `${layoutId}-subtitle` : undefined}
     >
-      <p className="mb-1 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
-        {entry.company}
-      </p>
       <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
         {entry.period} · {entry.location}
       </p>

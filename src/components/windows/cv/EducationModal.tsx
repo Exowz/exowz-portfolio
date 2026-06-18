@@ -22,13 +22,12 @@ export function EducationModal({
       open={open}
       onClose={onClose}
       title={entry.degree}
+      subtitle={entry.institution}
       triggerRef={triggerRef}
       layoutId={layoutId}
       titleLayoutId={layoutId ? `${layoutId}-title` : undefined}
+      subtitleLayoutId={layoutId ? `${layoutId}-subtitle` : undefined}
     >
-      <p className="mb-1 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
-        {entry.institution}
-      </p>
       <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
         {entry.period}
       </p>

@@ -42,7 +42,10 @@ export function EducationRow({ entry, credentials }: { entry: CvEducationEntry; 
             {entry.degree}
           </motion.span>
           <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-            {entry.institution} · {entry.period}
+            <motion.span layoutId={`${layoutId}-subtitle`} className="font-medium" style={{ color: 'var(--accent-text)' }}>
+              {entry.institution}
+            </motion.span>
+            {` · ${entry.period}`}
           </span>
         </span>
       </motion.button>
