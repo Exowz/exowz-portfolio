@@ -146,6 +146,7 @@ const en: CvContent = {
       period: '2024',
       detail: `DataScientest is a well-known French online training provider specialised in data. I completed its Python for Data Science certification alongside my degree, to consolidate the practical foundations: Python, data manipulation and the core libraries used in analysis and machine learning. It was a way to make sure my self-driven learning rested on solid, structured fundamentals rather than scattered tutorials.`,
       logos: ['/images/logos/liora.png'],
+      badges: ['datascientest-python'],
     },
     {
       id: 'prep-ece',
@@ -153,7 +154,9 @@ const en: CvContent = {
       logos: ['/images/logos/ece.png'],
       degree: 'Integrated Preparatory Cycle',
       period: '2023 — 2024',
-      detail: `Before the bachelor's I did ECE Paris's integrated preparatory cycle, the two-year science foundation that precedes the engineering track, which I joined through an accelerated semester. It rebuilt the maths, physics and computer-science base I needed after a non-linear start. It's the stage where I resumed engineering studies in France and found my footing again, and it set up the bachelor's that followed.`,    },
+      detail: `Before the bachelor's I did ECE Paris's integrated preparatory cycle, the two-year science foundation that precedes the engineering track, which I joined through an accelerated semester. It rebuilt the maths, physics and computer-science base I needed after a non-linear start. It's the stage where I resumed engineering studies in France and found my footing again, and it set up the bachelor's that followed.`,
+      badges: ['diplome-ingenieur'],
+    },
     {
       id: 'cpge-pothier',
       institution: 'Lycée Pothier',
@@ -161,6 +164,7 @@ const en: CvContent = {
       degree: 'CPGE PCSI (intensive science prep)',
       period: '2020 — 2021',
       detail: `CPGE PCSI is France's intensive two-year class that prepares for the competitive engineering-school entrance exams, one of the most demanding tracks in the French system, with a physics, chemistry and engineering-science focus. I did my first year at Lycée Pothier in Orléans. It didn't go as planned and I didn't continue, but it gave me real work capacity and resilience, and it's an honest part of a path that later found its direction.`,
+      badges: ['cpge'],
     },
     {
       id: 'bac-bourdonnais',
@@ -190,6 +194,24 @@ const en: CvContent = {
       image: '/images/credentials/baccalaureat.png',
       title: `State-certified Baccalauréat`,
       body: `The Baccalauréat is France's national secondary-school diploma, set and certified by the French Ministry of National Education. That certification guarantees a common national standard across every school that delivers it — including French schools abroad, such as Lycée La Bourdonnais in Mauritius, where I sat it. I earned it with highest honours (mention très bien), specialising in physics and chemistry.`,
+    },
+    {
+      id: 'diplome-ingenieur',
+      image: '/images/credentials/diplome-ingenieur.png',
+      title: `State-controlled engineering school (CTI)`,
+      body: `ECE Paris is an engineering grande école whose Diplôme d'Ingénieur is accredited and controlled by the French State, through the Commission des Titres d'Ingénieur (CTI). The "contrôlé par l'État" status certifies the school's engineering programme meets a demanding national standard — the formation I entered through its integrated preparatory cycle.`,
+    },
+    {
+      id: 'cpge',
+      image: '/images/credentials/cpge.png',
+      title: `State-controlled preparatory class (CPGE)`,
+      body: `The Classe Préparatoire aux Grandes Écoles (CPGE) is France's intensive track preparing for the competitive grande-école entrance exams — one of the most demanding routes in the French system, controlled by the State. The "contrôlée par l'État" status certifies the programme meets a national academic standard. I did my PCSI year (physics, chemistry, engineering science) at Lycée Pothier in Orléans.`,
+    },
+    {
+      id: 'datascientest-python',
+      image: '/images/credentials/datascientest-diploma.png',
+      title: `Python for Data Science — Liora (ex DataScientest)`,
+      body: `Liora (formerly DataScientest) is a recognised French data-training organisation. This diploma certifies completion of its Python for Data Science programme — data manipulation with pandas, scientific computing and the core libraries used across analysis and machine learning. I completed it alongside my degree to ground my self-driven learning in structured, verifiable fundamentals.`,
     },
   ],
   skills: [
@@ -285,6 +307,7 @@ const fr: CvContent = {
       period: '2024',
       detail: `DataScientest est un organisme de formation français en ligne, reconnu, spécialisé dans la data. J'ai validé sa certification Python pour la Data Science en parallèle de mes études, pour consolider les bases pratiques : Python, manipulation de données et les bibliothèques clés de l'analyse et du machine learning. C'était une façon de m'assurer que mon apprentissage autonome reposait sur des fondamentaux solides et structurés, et non sur des tutoriels épars.`,
       logos: ['/images/logos/liora.png'],
+      badges: ['datascientest-python'],
     },
     {
       id: 'prep-ece',
@@ -292,7 +315,9 @@ const fr: CvContent = {
       logos: ['/images/logos/ece.png'],
       degree: 'Cycle Préparatoire Intégré',
       period: '2023 — 2024',
-      detail: `Avant le Bachelor, j'ai suivi le cycle préparatoire intégré de l'ECE Paris, les deux années de socle scientifique qui précèdent le cycle ingénieur, que j'ai rejoint via un semestre accéléré. Il m'a permis de reconstruire les bases en maths, physique et informatique dont j'avais besoin après un parcours non linéaire. C'est l'étape où j'ai repris mes études d'ingénieur en France et retrouvé mon équilibre, et qui a préparé le Bachelor qui a suivi.`,    },
+      detail: `Avant le Bachelor, j'ai suivi le cycle préparatoire intégré de l'ECE Paris, les deux années de socle scientifique qui précèdent le cycle ingénieur, que j'ai rejoint via un semestre accéléré. Il m'a permis de reconstruire les bases en maths, physique et informatique dont j'avais besoin après un parcours non linéaire. C'est l'étape où j'ai repris mes études d'ingénieur en France et retrouvé mon équilibre, et qui a préparé le Bachelor qui a suivi.`,
+      badges: ['diplome-ingenieur'],
+    },
     {
       id: 'cpge-pothier',
       institution: 'Lycée Pothier',
@@ -301,6 +326,7 @@ const fr: CvContent = {
       period: '2020 — 2021',
       note: "Physique, Chimie et Sciences de l'Ingénieur",
       detail: `La CPGE PCSI est la classe préparatoire intensive de deux ans aux concours des écoles d'ingénieurs, l'une des voies les plus exigeantes du système français, à dominante physique, chimie et sciences de l'ingénieur. J'ai fait ma première année au Lycée Pothier, à Orléans. Ça ne s'est pas passé comme prévu et je n'ai pas poursuivi, mais ça m'a donné une vraie capacité de travail et de la résilience, et c'est une partie assumée d'un parcours qui a ensuite trouvé sa direction.`,
+      badges: ['cpge'],
     },
     {
       id: 'bac-bourdonnais',
@@ -331,6 +357,24 @@ const fr: CvContent = {
       image: '/images/credentials/baccalaureat.png',
       title: `Baccalauréat certifié par l'État`,
       body: `Le Baccalauréat est le diplôme national français de fin d'études secondaires, défini et certifié par le Ministère de l'Éducation nationale. Cette certification garantit un standard national commun à tous les établissements qui le délivrent — y compris les écoles françaises à l'étranger, comme le Lycée La Bourdonnais à l'île Maurice, où je l'ai passé. Je l'ai obtenu avec mention très bien, spécialité physique-chimie.`,
+    },
+    {
+      id: 'diplome-ingenieur',
+      image: '/images/credentials/diplome-ingenieur.png',
+      title: `École d'ingénieurs contrôlée par l'État (CTI)`,
+      body: `L'ECE Paris est une grande école d'ingénieurs dont le Diplôme d'Ingénieur est habilité et contrôlé par l'État français, via la Commission des Titres d'Ingénieur (CTI). La mention « contrôlé par l'État » certifie que la formation d'ingénieur de l'école répond à un standard national exigeant — la formation que j'ai intégrée par son cycle préparatoire intégré.`,
+    },
+    {
+      id: 'cpge',
+      image: '/images/credentials/cpge.png',
+      title: `Classe Préparatoire contrôlée par l'État`,
+      body: `La Classe Préparatoire aux Grandes Écoles (CPGE) est la voie intensive qui prépare aux concours des grandes écoles — l'une des plus exigeantes du système français, contrôlée par l'État. La mention « contrôlée par l'État » certifie que la formation répond à un standard académique national. J'ai fait mon année de PCSI (physique, chimie, sciences de l'ingénieur) au Lycée Pothier à Orléans.`,
+    },
+    {
+      id: 'datascientest-python',
+      image: '/images/credentials/datascientest-diploma.png',
+      title: `Python pour la Data Science — Liora (ex DataScientest)`,
+      body: `Liora (anciennement DataScientest) est un organisme de formation français reconnu, spécialisé dans la data. Ce diplôme atteste la réussite de son programme Python pour la Data Science — manipulation de données avec pandas, calcul scientifique et les bibliothèques clés de l'analyse et du machine learning. Je l'ai validé en parallèle de mes études pour ancrer mon apprentissage autonome dans des fondamentaux structurés et vérifiables.`,
     },
   ],
   skills: [
