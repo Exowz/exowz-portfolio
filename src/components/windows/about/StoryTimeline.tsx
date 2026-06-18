@@ -20,7 +20,7 @@ function Chapter({ chapter, last }: { chapter: AboutChapter; last: boolean }) {
       className="relative flex gap-4 pb-10 md:gap-6"
     >
       <div className="relative flex w-3 shrink-0 flex-col items-center md:w-12">
-        <span className="mt-1.5 h-3 w-3 rounded-full" style={{ background: 'var(--accent)' }} />
+        <span className="mt-1.5 h-3 w-3 rounded-full" style={{ background: 'var(--accent-text)' }} />
         {!last && <span className="absolute bottom-[-2.5rem] top-5 w-px" style={{ background: 'var(--window-border)' }} />}
         {chapter.year && (
           <span className="mt-2 hidden text-[10px] md:block" style={{ color: 'var(--text-secondary)' }}>

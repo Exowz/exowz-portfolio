@@ -81,7 +81,7 @@ export function DesktopWidgets() {
           <div className="space-y-2">
             {principles.slice(0, 5).map((item) => (
               <div key={item.title} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--accent-text)' }} />
                 <span>{item.title}</span>
               </div>
             ))}

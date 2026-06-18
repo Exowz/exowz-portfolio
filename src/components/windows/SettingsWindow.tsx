@@ -64,7 +64,7 @@ export function SettingsWindow() {
                   style={{
                     color: 'var(--foreground)',
                     borderColor: active ? 'var(--accent-text)' : 'var(--window-border)',
-                    background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
+                    background: active ? 'color-mix(in srgb, var(--accent-text) 12%, transparent)' : 'transparent',
                   }}
                 >
                   <span className="text-lg">{item.flag}</span>

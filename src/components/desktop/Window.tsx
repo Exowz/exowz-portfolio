@@ -174,12 +174,12 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
           background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: var(--accent);
+          background: var(--accent-text);
           border-radius: 4px;
           opacity: 0.5;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: var(--accent);
+          background: var(--accent-text);
           opacity: 0.8;
         }
       `}</style>

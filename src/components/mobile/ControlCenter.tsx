@@ -113,7 +113,7 @@ export function ControlCenter({ open, onClose }: ControlCenterProps) {
                       className="flex h-10 items-center justify-center rounded-xl text-lg"
                       style={{
                         border: locale === item.locale ? '1px solid var(--accent-text)' : '1px solid var(--window-border)',
-                        background: locale === item.locale ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
+                        background: locale === item.locale ? 'color-mix(in srgb, var(--accent-text) 12%, transparent)' : 'transparent',
                       }}
                     >
                       {item.flag}

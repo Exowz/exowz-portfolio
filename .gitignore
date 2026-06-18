@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Local planning docs (not committed)
 docs/superpowers/
+
+# Superpowers brainstorm sessions
+.superpowers/

@@ -270,7 +270,7 @@ function IconContainer({
         <div
           className="transition-colors duration-300"
           style={{
-            color: hovered ? 'var(--accent)' : 'var(--dock-text)',
+            color: hovered ? 'var(--accent-text)' : 'var(--dock-text)',
             filter: hovered ? 'drop-shadow(0 0 8px var(--accent))' : 'none'
           }}
         >
@@ -283,7 +283,7 @@ function IconContainer({
         <div
           className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full transition-all duration-300"
           style={{
-            backgroundColor: hovered ? 'var(--accent)' : 'var(--dock-text)',
+            backgroundColor: hovered ? 'var(--accent-text)' : 'var(--dock-text)',
             opacity: hovered ? 1 : 0.4,
             boxShadow: hovered ? '0 0 8px var(--accent)' : 'none'
           }}

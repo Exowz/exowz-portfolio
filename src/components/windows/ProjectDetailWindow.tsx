@@ -209,7 +209,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
             <div
               key={phase}
               className="glass-card rounded-xl border-l-2 p-4"
-              style={{ ...cardStyle, borderLeftColor: 'var(--accent)' }}
+              style={{ ...cardStyle, borderLeftColor: 'var(--accent-text)' }}
             >
               <h3 className="mb-1.5 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
                 {`Phase ${index + 1}`}
@@ -236,7 +236,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 </p>
                 <div
                   className="space-y-3 border-l-2 pl-4"
-                  style={{ borderLeftColor: 'color-mix(in srgb, var(--accent) 30%, transparent)' }}
+                  style={{ borderLeftColor: 'color-mix(in srgb, var(--accent-text) 30%, transparent)' }}
                 >
                   <div>
                     <p className="mb-1 text-xs font-semibold" style={{ color: 'var(--accent-text)' }}>
@@ -433,7 +433,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                 className="rounded-full px-3 py-1 text-xs"
                 style={{
                   background: 'color-mix(in srgb, var(--accent) 9%, transparent)',
-                  border: '1px solid color-mix(in srgb, var(--accent) 20%, transparent)',
+                  border: '1px solid color-mix(in srgb, var(--accent-text) 20%, transparent)',
                   color: 'var(--accent-text)',
                 }}
               >
@@ -474,7 +474,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
                         className="block w-full border-l-2 py-1 pl-3 text-left text-xs transition-colors"
                         style={{
                           color: on ? 'var(--accent-text)' : 'var(--text-secondary)',
-                          borderLeftColor: on ? 'var(--accent)' : 'var(--border)',
+                          borderLeftColor: on ? 'var(--accent-text)' : 'var(--border)',
                           fontWeight: on ? 600 : 400,
                         }}
                       >

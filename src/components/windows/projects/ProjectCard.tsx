@@ -25,7 +25,7 @@ export function ProjectCard({ project, featured = false }: { project: Project; f
         background: featured
           ? 'color-mix(in srgb, var(--accent) 7%, var(--window-content-bg))'
           : 'var(--window-content-bg)',
-        borderColor: featured ? 'color-mix(in srgb, var(--accent) 32%, transparent)' : undefined,
+        borderColor: featured ? 'color-mix(in srgb, var(--accent-text) 32%, transparent)' : undefined,
       }}
     >
       {featured && (
@@ -71,7 +71,7 @@ export function ProjectCard({ project, featured = false }: { project: Project; f
             className="rounded-full px-2.5 py-0.5 text-[11px]"
             style={{
               background: 'color-mix(in srgb, var(--accent) 9%, transparent)',
-              border: '1px solid color-mix(in srgb, var(--accent) 20%, transparent)',
+              border: '1px solid color-mix(in srgb, var(--accent-text) 20%, transparent)',
               color: 'var(--accent-text)',
             }}
           >

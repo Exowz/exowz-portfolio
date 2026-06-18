@@ -75,13 +75,13 @@ export function ContactWindow() {
             className="mt-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold"
             style={{
               color: 'var(--accent-text)',
-              background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
-              border: '1px solid color-mix(in srgb, var(--accent) 34%, transparent)',
+              background: 'color-mix(in srgb, var(--accent-text) 12%, transparent)',
+              border: '1px solid color-mix(in srgb, var(--accent-text) 34%, transparent)',
             }}
           >
             <span
               className="h-2 w-2 rounded-full"
-              style={{ background: 'var(--accent)', boxShadow: '0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent)' }}
+              style={{ background: 'var(--accent-text)', boxShadow: '0 0 0 3px color-mix(in srgb, var(--accent-text) 25%, transparent)' }}
             />
             {t('availability')}
           </span>

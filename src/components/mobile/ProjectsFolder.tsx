@@ -130,7 +130,7 @@ export function ProjectsFolder({ open, onClose }: ProjectsFolderProps) {
                     style={{
                       color: active ? 'var(--accent-text)' : 'var(--foreground)',
                       border: active ? '1px solid var(--accent-text)' : '1px solid var(--window-border)',
-                      background: active ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
+                      background: active ? 'color-mix(in srgb, var(--accent-text) 12%, transparent)' : 'transparent',
                     }}
                   >
                     {tCategories(filterLabelKey[currentFilter])}

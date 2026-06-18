@@ -40,7 +40,7 @@ export function StatusBar({
           className="flex h-9 w-16 items-center justify-center gap-1.5 rounded-2xl"
           style={{
             background: controlCenterOpen
-              ? 'color-mix(in srgb, var(--accent) 18%, var(--window-bg))'
+              ? 'color-mix(in srgb, var(--accent-text) 18%, var(--window-bg))'
               : 'var(--window-bg)',
             border: controlCenterOpen ? '1px solid var(--accent-text)' : '1px solid var(--window-border)',
             boxShadow: 'var(--dock-shadow)',
