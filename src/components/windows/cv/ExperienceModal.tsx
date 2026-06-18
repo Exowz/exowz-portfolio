@@ -9,14 +9,16 @@ export function ExperienceModal({
   open,
   onClose,
   triggerRef,
+  layoutId,
 }: {
   entry: CvExperience;
   open: boolean;
   onClose: () => void;
   triggerRef: RefObject<HTMLElement | null>;
+  layoutId?: string;
 }) {
   return (
-    <CvModal open={open} onClose={onClose} title={`${entry.role} · ${entry.company}`} triggerRef={triggerRef}>
+    <CvModal open={open} onClose={onClose} title={`${entry.role} · ${entry.company}`} triggerRef={triggerRef} layoutId={layoutId}>
       <p className="mb-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
         {entry.period} · {entry.location}
       </p>

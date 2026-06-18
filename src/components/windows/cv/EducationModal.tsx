@@ -9,14 +9,16 @@ export function EducationModal({
   open,
   onClose,
   triggerRef,
+  layoutId,
 }: {
   entry: CvEducationEntry;
   open: boolean;
   onClose: () => void;
   triggerRef: RefObject<HTMLElement | null>;
+  layoutId?: string;
 }) {
   return (
-    <CvModal open={open} onClose={onClose} title={entry.institution} triggerRef={triggerRef}>
+    <CvModal open={open} onClose={onClose} title={entry.institution} triggerRef={triggerRef} layoutId={layoutId}>
       <p className="mb-2 text-sm" style={{ color: 'var(--accent-text)' }}>
         {entry.degree}
       </p>

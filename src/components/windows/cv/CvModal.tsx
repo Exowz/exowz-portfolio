@@ -11,12 +11,17 @@ interface CvModalProps {
   onClose: () => void;
   title: string;
   triggerRef?: RefObject<HTMLElement | null>;
+  /** Shared-layout id of the trigger card, enabling an expand-from-card morph. */
+  layoutId?: string;
   children: ReactNode;
 }
 
-export function CvModal({ open, onClose, title, triggerRef, children }: CvModalProps) {
+export function CvModal({ open, onClose, title, triggerRef, layoutId, children }: CvModalProps) {
   const t = useTranslations('cv');
   const reduce = useReducedMotion();
+  // Morph the panel out of its trigger card when we have a shared id and motion
+  // is allowed; otherwise fall back to the plain scale-fade.
+  const morph = Boolean(layoutId) && !reduce;
   const panelRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
   useHistoryOverlay(open, onClose);
@@ -56,9 +61,10 @@ export function CvModal({ open, onClose, title, triggerRef, children }: CvModalP
             aria-modal="true"
             aria-label={title}
             tabIndex={-1}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
+            layoutId={morph ? layoutId : undefined}
+            initial={morph ? { opacity: 0 } : reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
+            animate={morph ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
+            exit={morph ? { opacity: 0 } : reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
             transition={{ type: 'spring', stiffness: 320, damping: 30 }}
             onClick={(event) => event.stopPropagation()}
             style={{ background: 'color-mix(in srgb, var(--card) 92%, transparent)' }}
