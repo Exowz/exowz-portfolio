@@ -98,7 +98,7 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
   if (status === 'ready' && result) {
     return (
       <div className="space-y-2">
-        <MultiStepLoader loading={pdfBusy} steps={pdfSteps} />
+        <MultiStepLoader loading={pdfBusy} loadingStates={pdfSteps.map((text) => ({ text }))} loop={false} />
         {header}
         <div
           className="glass-card flex flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl px-4 py-3.5"
@@ -111,17 +111,15 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <StatefulButton
+            <button
               type="button"
               onClick={downloadTailored}
-              status={pdfBusy ? 'loading' : 'idle'}
-              loadingLabel={t('generatingPdf')}
-              iconClassName="h-4 w-4 shrink-0"
-              className="rounded-full px-4 py-2 text-xs font-semibold hover:brightness-110 disabled:opacity-50"
+              disabled={pdfBusy}
+              className="flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition hover:brightness-110 disabled:opacity-50"
               style={{ background: 'var(--accent-solid)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
             >
               <IconDownload className="h-4 w-4" /> {t('downloadPdf')}
-            </StatefulButton>
+            </button>
             <button
               type="button"
               onClick={tailor.reset}
@@ -173,9 +171,7 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
         <StatefulButton
           type="submit"
           status={status === 'loading' ? 'loading' : 'idle'}
-          loadingLabel={t('loading')}
           disabled={disabled || status === 'loading' || role.trim().length < 3}
-          iconClassName="h-4 w-4 shrink-0"
           className="shrink-0 self-end rounded-full px-5 py-2 text-xs font-semibold hover:brightness-110 disabled:opacity-40"
           style={{ background: 'var(--accent-solid)', color: 'white', boxShadow: '0 2px 10px color-mix(in srgb, var(--accent) 40%, transparent)' }}
         >

@@ -215,7 +215,6 @@ export function ContactWindow() {
           <StatefulButton
             type="submit"
             status={status}
-            loadingLabel={t('status.sending')}
             className="w-full rounded-full px-6 py-3 text-sm font-semibold text-white hover:brightness-110 disabled:opacity-50"
             style={{ background: 'var(--accent-solid)', boxShadow: '0 2px 12px color-mix(in srgb, var(--accent) 40%, transparent)' }}
           >

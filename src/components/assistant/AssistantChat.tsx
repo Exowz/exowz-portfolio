@@ -42,7 +42,7 @@ function StreamingWords({ text }: { text: string }) {
           <motion.span
             key={index}
             className="inline-block"
-            initial={reduce ? false : { opacity: 0, filter: 'blur(6px)', y: 2 }}
+            initial={reduce ? false : { opacity: 0, filter: 'blur(10px)', y: 2 }}
             animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
