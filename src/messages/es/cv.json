@@ -46,7 +46,13 @@
     "pdfFailed": "No se pudo generar el CV adaptado - se descargó el CV estándar.",
     "explainerLink": "¿Cómo funciona?",
     "explainerTitle": "Cómo funciona la adaptación",
-    "explainerBody": "No es IA genérica. Es un agente basado únicamente en el CV real y verificado de Ewan: sus proyectos, experiencia y sus propios textos. Reordena y presenta lo que ya es cierto para ajustarlo al puesto descrito; nunca inventa experiencia ni habilidades."
+    "explainerBody": "No es IA genérica. Es un agente basado únicamente en el CV real y verificado de Ewan: sus proyectos, experiencia y sus propios textos. Reordena y presenta lo que ya es cierto para ajustarlo al puesto descrito; nunca inventa experiencia ni habilidades.",
+    "pdfSteps": {
+      "reading": "Leyendo tu CV",
+      "tailoring": "Adaptando al puesto",
+      "rendering": "Generando el PDF",
+      "finishing": "Casi listo"
+    }
   },
   "projectsSeeAll": "Ver todo",
   "projectsCollapse": "Mostrar destacados",

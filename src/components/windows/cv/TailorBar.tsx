@@ -5,6 +5,7 @@ import { IconDownload, IconSparkles, IconX } from '@tabler/icons-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { resumeHref } from '@/lib/resume';
 import { StatefulButton } from '@/components/ui/stateful-button';
+import { MultiStepLoader } from '@/components/ui/multi-step-loader';
 import type { UseTailor } from './useTailor';
 import { AiTailoredExplainer } from './AiTailoredExplainer';
 
@@ -16,6 +17,13 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
   const [pdfError, setPdfError] = useState(false);
   const { status, result } = tailor;
   const disabled = status === 'unavailable';
+
+  const pdfSteps = [
+    t('pdfSteps.reading'),
+    t('pdfSteps.tailoring'),
+    t('pdfSteps.rendering'),
+    t('pdfSteps.finishing'),
+  ];
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -90,6 +98,7 @@ export function TailorBar({ tailor }: { tailor: UseTailor }) {
   if (status === 'ready' && result) {
     return (
       <div className="space-y-2">
+        <MultiStepLoader loading={pdfBusy} steps={pdfSteps} />
         {header}
         <div
           className="glass-card flex flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl px-4 py-3.5"

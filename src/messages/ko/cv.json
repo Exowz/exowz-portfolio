@@ -46,7 +46,13 @@
     "pdfFailed": "맞춤 CV를 생성하지 못해 기본 CV를 다운로드했습니다.",
     "explainerLink": "어떻게 작동하나요?",
     "explainerTitle": "맞춤 조정 방식",
-    "explainerBody": "이것은 일반적인 AI가 아닙니다. Ewan의 실제 검증된 CV, 즉 프로젝트, 경험, 본인이 쓴 글에만 기반한 에이전트입니다. 설명한 직무에 맞게 이미 사실인 내용을 재정렬하고 표현할 뿐, 경험이나 기술을 절대 만들어내지 않습니다."
+    "explainerBody": "이것은 일반적인 AI가 아닙니다. Ewan의 실제 검증된 CV, 즉 프로젝트, 경험, 본인이 쓴 글에만 기반한 에이전트입니다. 설명한 직무에 맞게 이미 사실인 내용을 재정렬하고 표현할 뿐, 경험이나 기술을 절대 만들어내지 않습니다.",
+    "pdfSteps": {
+      "reading": "이력서를 읽는 중",
+      "tailoring": "직무에 맞춰 조정 중",
+      "rendering": "PDF 생성 중",
+      "finishing": "거의 완료"
+    }
   },
   "projectsSeeAll": "전체 보기",
   "projectsCollapse": "주요 항목 보기",

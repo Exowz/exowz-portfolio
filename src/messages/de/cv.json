@@ -46,7 +46,13 @@
     "pdfFailed": "Der angepasste Lebenslauf konnte nicht erstellt werden - der Standard-CV wurde heruntergeladen.",
     "explainerLink": "Wie funktioniert das?",
     "explainerTitle": "Wie die Anpassung funktioniert",
-    "explainerBody": "Das ist keine generische KI. Es ist ein Agent, der nur auf Ewans echtem, geprüftem CV basiert: seinen Projekten, seiner Erfahrung und seinen eigenen Texten. Er ordnet neu und rahmt ein, was bereits stimmt, passend zur beschriebenen Rolle; er erfindet niemals Erfahrung oder Fähigkeiten."
+    "explainerBody": "Das ist keine generische KI. Es ist ein Agent, der nur auf Ewans echtem, geprüftem CV basiert: seinen Projekten, seiner Erfahrung und seinen eigenen Texten. Er ordnet neu und rahmt ein, was bereits stimmt, passend zur beschriebenen Rolle; er erfindet niemals Erfahrung oder Fähigkeiten.",
+    "pdfSteps": {
+      "reading": "Lebenslauf wird gelesen",
+      "tailoring": "Anpassung an die Rolle",
+      "rendering": "PDF wird erstellt",
+      "finishing": "Fast fertig"
+    }
   },
   "projectsSeeAll": "Alle anzeigen",
   "projectsCollapse": "Highlights anzeigen",
