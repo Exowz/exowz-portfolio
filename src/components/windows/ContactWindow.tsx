@@ -79,10 +79,16 @@ export function ContactWindow() {
               border: '1px solid color-mix(in srgb, var(--accent-text) 34%, transparent)',
             }}
           >
-            <span
-              className="h-2 w-2 rounded-full"
-              style={{ background: 'var(--accent-text)', boxShadow: '0 0 0 3px color-mix(in srgb, var(--accent-text) 25%, transparent)' }}
-            />
+            <span className="relative flex h-2 w-2">
+              <span
+                className="absolute inline-flex h-full w-full rounded-full opacity-75 motion-safe:animate-ping"
+                style={{ background: 'var(--accent-text)' }}
+              />
+              <span
+                className="relative inline-flex h-2 w-2 rounded-full"
+                style={{ background: 'var(--accent-text)' }}
+              />
+            </span>
             {t('availability')}
           </span>
         </header>

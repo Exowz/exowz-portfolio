@@ -44,9 +44,9 @@ export function CvModal({ open, onClose, title, triggerRef, children }: CvModalP
           transition={{ duration: reduce ? 0.12 : 0.2 }}
           className="fixed inset-0 z-[95] flex items-center justify-center p-4"
           style={{
-            background: 'color-mix(in srgb, var(--background) 58%, transparent)',
-            backdropFilter: 'blur(28px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(28px) saturate(140%)',
+            background: 'color-mix(in srgb, var(--background) 78%, transparent)',
+            backdropFilter: 'blur(44px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(44px) saturate(140%)',
           }}
           onClick={onClose}
         >
@@ -61,6 +61,7 @@ export function CvModal({ open, onClose, title, triggerRef, children }: CvModalP
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
             transition={{ type: 'spring', stiffness: 320, damping: 30 }}
             onClick={(event) => event.stopPropagation()}
+            style={{ background: 'color-mix(in srgb, var(--card) 92%, transparent)' }}
             className="glass-card relative max-h-[80vh] w-full max-w-md overflow-y-auto rounded-2xl p-5 outline-none"
           >
             <div className="mb-3 flex items-start justify-between gap-3">
