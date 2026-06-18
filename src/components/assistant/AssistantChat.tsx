@@ -24,6 +24,36 @@ function statusMessage(status: ChatStatus, t: ReturnType<typeof useTranslations<
 const EDGE_FADE = 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)';
 const INLINE_FORMAT_PATTERN = /(\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|\[([^\]\n]+)]\((https?:\/\/[^)\s]+)\))/g;
 
+/**
+ * Live-typing renderer: each word fades + de-blurs in as the stream reveals it.
+ * Whitespace tokens render as plain strings so wrapping/newlines are preserved,
+ * and keying by index keeps already-shown words from re-animating. Once the
+ * message finishes we hand back to `renderAssistantText` for full markdown.
+ */
+function StreamingWords({ text }: { text: string }) {
+  const reduce = useReducedMotion();
+  const tokens = text.split(/(\s+)/);
+  return (
+    <>
+      {tokens.map((token, index) =>
+        /^\s+$/.test(token) || token === '' ? (
+          token
+        ) : (
+          <motion.span
+            key={index}
+            className="inline-block"
+            initial={reduce ? false : { opacity: 0, filter: 'blur(6px)', y: 2 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            {token}
+          </motion.span>
+        ),
+      )}
+    </>
+  );
+}
+
 function renderAssistantText(text: string) {
   const nodes: ReactNode[] = [];
   let lastIndex = 0;
@@ -163,7 +193,11 @@ export function AssistantChat({ open, onClose, variant }: AssistantChatProps) {
                         className={`whitespace-pre-wrap text-[15px] leading-relaxed ${isUser ? 'text-right font-medium' : 'text-left'}`}
                         style={{ color: isUser ? 'var(--accent-text)' : 'var(--foreground)' }}
                       >
-                        {isUser ? message.content : renderAssistantText(message.content)}
+                        {isUser
+                          ? message.content
+                          : streamingHere
+                            ? <StreamingWords text={message.content} />
+                            : renderAssistantText(message.content)}
                         {streamingHere && (
                           <motion.span
                             aria-hidden
