@@ -137,7 +137,7 @@ const en: CvContent = {
       degree: 'BSc in Computer Science — Data & AI specialization',
       period: '2024 — 2026',
       detail: `ECE Paris is a French general engineering school (grande école). I'm finishing its computer-science bachelor's with a Data & AI specialisation. The teaching is heavily project-based, and that's where my interest in computer science really clicked, after a more traditional start: building real applications rather than just following lectures. It gave me my foundations in Python, data and machine learning, and most of the projects in my portfolio grew out of it.`,
-      badges: ['rncp', 'grade-licence'],
+      badges: ['rncp'],
     },
     {
       id: 'datascientest',
@@ -153,9 +153,7 @@ const en: CvContent = {
       logos: ['/images/logos/ece.png'],
       degree: 'Integrated Preparatory Cycle',
       period: '2023 — 2024',
-      detail: `Before the bachelor's I did ECE Paris's integrated preparatory cycle, the two-year science foundation that precedes the engineering track, which I joined through an accelerated semester. It rebuilt the maths, physics and computer-science base I needed after a non-linear start. It's the stage where I resumed engineering studies in France and found my footing again, and it set up the bachelor's that followed.`,
-      badges: ['diplome-ingenieur'],
-    },
+      detail: `Before the bachelor's I did ECE Paris's integrated preparatory cycle, the two-year science foundation that precedes the engineering track, which I joined through an accelerated semester. It rebuilt the maths, physics and computer-science base I needed after a non-linear start. It's the stage where I resumed engineering studies in France and found my footing again, and it set up the bachelor's that followed.`,    },
     {
       id: 'cpge-pothier',
       institution: 'Lycée Pothier',
@@ -171,6 +169,7 @@ const en: CvContent = {
       degree: 'Scientific Baccalaureate — Highest Honors',
       period: '2020',
       detail: `This is the French scientific high-school diploma (Baccalauréat), which I earned with highest honours (mention très bien) at Lycée La Bourdonnais, a French school in Mauritius, where I grew up. My specialisation was physics and chemistry. It marks where my path started, in a French education far from Paris, and the early scientific grounding that pointed me toward engineering and, eventually, data and AI.`,
+      badges: ['baccalaureat'],
     },
   ],
   credentials: [
@@ -187,16 +186,10 @@ const en: CvContent = {
       body: `RNCP is France's national register of professional certifications, maintained by the State. A registered title guarantees that a qualification matches defined, verified skills recognised across the job market. The levels run from 3 to 8; level 6 corresponds to the Bachelor's / licence tier (bac+3, EQF level 6). My ECE Paris BSc is registered at RNCP level 6, which means it is officially recognised at Bachelor level, with a competency framework employers can rely on.`,
     },
     {
-      id: 'diplome-ingenieur',
-      image: '/images/credentials/diplome-ingenieur.png',
-      title: `State-controlled engineering diploma`,
-      body: `In France, the "Diplôme d'Ingénieur" title is controlled and accredited by the State, through the Commission des Titres d'Ingénieur (CTI). The "contrôlé par l'État" mark certifies that an engineering programme meets a demanding national standard for academic quality and professional relevance. ECE Paris is a State-recognised engineering grande école, and its integrated engineering track carries this CTI-accredited, State-controlled standard.`,
-    },
-    {
-      id: 'grade-licence',
-      image: '/images/credentials/grade-licence.png',
-      title: `State-conferred Licence grade (bac+3)`,
-      body: `In France, a degree "conferring the grade of Licence" is officially recognised by the State as equivalent to a national Bachelor's (bac+3, EQF level 6). The grade is granted and controlled by the Ministry of Education, after an evaluation of the programme's academic quality. It guarantees the diploma meets a recognised national standard, valid in France and across the European higher-education area.`,
+      id: 'baccalaureat',
+      image: '/images/credentials/baccalaureat.png',
+      title: `State-certified Baccalauréat`,
+      body: `The Baccalauréat is France's national secondary-school diploma, set and certified by the French Ministry of National Education. That certification guarantees a common national standard across every school that delivers it — including French schools abroad, such as Lycée La Bourdonnais in Mauritius, where I sat it. I earned it with highest honours (mention très bien), specialising in physics and chemistry.`,
     },
   ],
   skills: [
@@ -283,7 +276,7 @@ const fr: CvContent = {
       period: '2024 — 2026',
       note: 'Cycle classique axé Data et IA',
       detail: `ECE Paris est une grande école d'ingénieurs généraliste. J'y termine mon Bachelor en informatique, spécialisation Data & IA. L'enseignement est très orienté projets, et c'est là que mon intérêt pour l'informatique a vraiment pris, après un début plus classique : construire de vraies applications plutôt que seulement suivre des cours. Ça m'a donné mes bases en Python, data et machine learning, et la plupart des projets de mon portfolio en sont nés.`,
-      badges: ['rncp', 'grade-licence'],
+      badges: ['rncp'],
     },
     {
       id: 'datascientest',
@@ -299,9 +292,7 @@ const fr: CvContent = {
       logos: ['/images/logos/ece.png'],
       degree: 'Cycle Préparatoire Intégré',
       period: '2023 — 2024',
-      detail: `Avant le Bachelor, j'ai suivi le cycle préparatoire intégré de l'ECE Paris, les deux années de socle scientifique qui précèdent le cycle ingénieur, que j'ai rejoint via un semestre accéléré. Il m'a permis de reconstruire les bases en maths, physique et informatique dont j'avais besoin après un parcours non linéaire. C'est l'étape où j'ai repris mes études d'ingénieur en France et retrouvé mon équilibre, et qui a préparé le Bachelor qui a suivi.`,
-      badges: ['diplome-ingenieur'],
-    },
+      detail: `Avant le Bachelor, j'ai suivi le cycle préparatoire intégré de l'ECE Paris, les deux années de socle scientifique qui précèdent le cycle ingénieur, que j'ai rejoint via un semestre accéléré. Il m'a permis de reconstruire les bases en maths, physique et informatique dont j'avais besoin après un parcours non linéaire. C'est l'étape où j'ai repris mes études d'ingénieur en France et retrouvé mon équilibre, et qui a préparé le Bachelor qui a suivi.`,    },
     {
       id: 'cpge-pothier',
       institution: 'Lycée Pothier',
@@ -319,6 +310,7 @@ const fr: CvContent = {
       period: '2020',
       note: 'Mention Très Bien',
       detail: `C'est le Baccalauréat scientifique français, que j'ai obtenu avec mention très bien au Lycée La Bourdonnais, un établissement français à l'île Maurice, où j'ai grandi. Ma spécialité était physique-chimie. Il marque le point de départ de mon parcours, dans une scolarité française loin de Paris, et la première formation scientifique qui m'a orienté vers l'ingénierie puis, plus tard, vers la data et l'IA.`,
+      badges: ['baccalaureat'],
     },
   ],
   credentials: [
@@ -335,16 +327,10 @@ const fr: CvContent = {
       body: `Le RNCP est le Répertoire national des certifications professionnelles, tenu par l'État français. Un titre enregistré garantit qu'une qualification correspond à des compétences définies et vérifiées, reconnues sur le marché du travail. Les niveaux vont de 3 à 8 ; le niveau 6 correspond à la Licence / au grade de licence (bac+3, niveau 6 du cadre européen). Mon BSc de l'ECE Paris est enregistré au niveau RNCP 6, ce qui signifie qu'il est officiellement reconnu au niveau Licence, avec un référentiel de compétences fiable pour les employeurs.`,
     },
     {
-      id: 'diplome-ingenieur',
-      image: '/images/credentials/diplome-ingenieur.png',
-      title: `Diplôme d'Ingénieur contrôlé par l'État`,
-      body: `En France, le titre d'« Ingénieur diplômé » est contrôlé et habilité par l'État, via la Commission des Titres d'Ingénieur (CTI). La mention « contrôlé par l'État » certifie qu'une formation d'ingénieur répond à un standard national exigeant de qualité académique et de pertinence professionnelle. L'ECE Paris est une grande école d'ingénieurs reconnue par l'État, et son cycle ingénieur intégré porte ce standard habilité par la CTI et contrôlé par l'État.`,
-    },
-    {
-      id: 'grade-licence',
-      image: '/images/credentials/grade-licence.png',
-      title: `Diplôme conférant le grade de Licence (bac+3)`,
-      body: `En France, un diplôme « conférant le grade de Licence » est officiellement reconnu par l'État comme équivalent à une Licence nationale (bac+3, niveau 6 du cadre européen). Ce grade est accordé et contrôlé par le Ministère, après évaluation de la qualité académique du programme. Il garantit que le diplôme répond à un standard national reconnu, valable en France et dans l'espace européen de l'enseignement supérieur.`,
+      id: 'baccalaureat',
+      image: '/images/credentials/baccalaureat.png',
+      title: `Baccalauréat certifié par l'État`,
+      body: `Le Baccalauréat est le diplôme national français de fin d'études secondaires, défini et certifié par le Ministère de l'Éducation nationale. Cette certification garantit un standard national commun à tous les établissements qui le délivrent — y compris les écoles françaises à l'étranger, comme le Lycée La Bourdonnais à l'île Maurice, où je l'ai passé. Je l'ai obtenu avec mention très bien, spécialité physique-chimie.`,
     },
   ],
   skills: [
