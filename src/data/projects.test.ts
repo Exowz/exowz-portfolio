@@ -4,8 +4,8 @@ import enProjects from '../messages/en-GB/projects.json';
 import frProjects from '../messages/fr/projects.json';
 
 describe('projects data', () => {
-  it('contains exactly 16 projects', () => {
-    expect(projects).toHaveLength(16);
+  it('contains exactly 17 projects', () => {
+    expect(projects).toHaveLength(17);
   });
 
   it('has unique slugs', () => {
@@ -15,7 +15,7 @@ describe('projects data', () => {
 
   it('marks exactly 3 featured projects', () => {
     expect(projects.filter((p) => p.featured).map((p) => p.slug).sort()).toEqual([
-      'portfolio-projects-ai',
+      'green-ai-scanner',
       'risk-lens',
       'thoraxai',
     ]);
