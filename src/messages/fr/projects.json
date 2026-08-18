@@ -165,6 +165,89 @@
     ],
     "conclusion": "ThoraxAI démontre qu'il est possible de concevoir une IA médicale performante et transparente en un laps de temps condensé. En plaçant l'explicabilité visuelle au cœur de son architecture logicielle, le projet établit un pont de confiance nécessaire entre le clinicien et l'algorithme."
   },
+  "Green-AI-Scanner": {
+    "title": "Green-AI-Scanner",
+    "description": "Plateforme analytique évaluant l'impact carbone, la souveraineté et la qualité sémantique des LLM.",
+    "metadata": {
+      "role": "Data & AI Engineer / Développeur Fullstack Green IT",
+      "category": "Intelligence Artificielle, Éco-conception (Green IT) & Souveraineté des Données",
+      "timeline": "Décembre 2025 - Mars 2026",
+      "liveUrl": "https://green-ai.deepskal.com",
+      "githubUrl": "https://github.com/Le-skal/Green-AI-Scanner"
+    },
+    "overview": "Green-AI-Scanner est une plateforme d'évaluation comparative qui interroge simultanément quatre moteurs d'IA (Gemini, Mistral, Hugging Face, Cohere). Elle analyse et note leurs réponses en temps réel selon des critères sémantiques, écologiques et légaux pour guider le choix des entreprises.",
+    "challenge": {
+      "problem": "L'usage des LLM est opaque : les entreprises ignorent l'impact carbone réel de leurs requêtes, le niveau de souveraineté et de conformité RGPD de leurs données, ainsi que la qualité relative des réponses générées.",
+      "goal": "Développer un agrégateur multi-API capable d'évaluer scientifiquement l'impact Green IT, l'indice de souveraineté et la pertinence sémantique des réponses via un tableau de bord interactif.",
+      "constraints": "Gérer la latence des appels asynchrones en parallèle, contourner les limites de requêtes des API gratuites et exécuter des calculs NLP complexes (ROUGE, BM25) directement sur un serveur Node.js sans l'alourdir."
+    },
+    "discovery": {
+      "requirements": "Les décideurs techniques et responsables RSE ont besoin d'un score écologique lisible (type Nutri-Score), d'une transparence juridique sur la localisation des serveurs et de visualisations interactives pour orienter leurs choix d'IA.",
+      "competitiveAnalysis": "Les outils existants se limitent au coût financier et à la latence. Aucune solution n'intègre l'impact carbone dynamique ou un indice de souveraineté pondéré, positionnant Green-AI-Scanner comme pionnier.",
+      "technicalResearch": "Node.js a été choisi pour son orchestration asynchrone non-bloquante performante. React avec Zustand offre une gestion d'état globale ultra-légère, tandis que Tailwind CSS assure un design éco-conçu sobre."
+    },
+    "architecture": {
+      "informationArchitecture": "L'application applique les principes SOLID. Le backend sépare l'orchestration des services dédiés aux API, aux calculs NLP et aux scores d'impact, tandis que le frontend sépare les composants par fonctionnalités (prompts, visualisations, historique).",
+      "technicalDecisions": "L'orchestration est centralisée dans un service découplé permettant d'intégrer de nouveaux modèles en moins de 15 minutes. La gestion des secrets est externalisée vers la solution souveraine Infisical pour éliminer tout risque d'exposition. L'interface utilise Recharts et Chart.js pour restituer dynamiquement les données."
+    },
+    "developmentProcess": {
+      "phase1": "Sprints 1-2 : Initialisation de l'architecture Node.js/React, intégration des API d'IA (Google, Mistral, Cohere, Hugging Face) et implémentation d'une gestion d'erreurs robuste avec timeouts personnalisés.",
+      "phase2": "Sprints 3-4 : Développement du moteur NLP (TF-IDF, BM25, ROUGE) et du modèle d'évaluation de l'empreinte carbone. Conception des graphiques de visualisation de données dynamiques.",
+      "phase3": "Sprints 5-6 : Migration de la gestion des secrets vers la plateforme Infisical, refactoring complet selon les principes SOLID et rédaction de la documentation d'API interactive via Swagger UI."
+    },
+    "keyFeatures": [
+      {
+        "title": "Orchestration Multi-LLM Parallèle",
+        "description": "Lancement synchrone du prompt sur 4 architectures d'IA différentes.",
+        "implementation": "Utilisation de Promise.allSettled() au sein du service orchestrateur backend pour exécuter les requêtes en parallèle.",
+        "challenges": "Éviter qu'une API en panne ou en timeout ne bloque l'ensemble du flux d'analyse de la plateforme."
+      },
+      {
+        "title": "Calculateur d'Impact Écologique",
+        "description": "Évaluation de la dépense en énergie (Wh) et de la génération équivalente en CO2 (gCO2e) par modèle d'IA.",
+        "implementation": "Algorithme basé sur la taille estimée du modèle, l'efficacité énergétique du matériel cible et le mix carbone du pays d'hébergement pour attribuer un Eco-Score de A à E.",
+        "challenges": "Modéliser de manière réaliste et dynamique des données de consommation d'infrastructure souvent opaques."
+      },
+      {
+        "title": "Évaluation Algorithmique de la Souveraineté",
+        "description": "Notation mathématique de l'indice de protection et de confidentialité des données soumises.",
+        "implementation": "Formule pondérant la localisation physique des serveurs (50 pts), la nationalité de l'entreprise émettrice (30 pts) et le type de licence (20 pts).",
+        "challenges": "Traduire des contraintes réglementaires et géopolitiques complexes (RGPD, Cloud Act) en un score quantifiable fiable."
+      },
+      {
+        "title": "Tableau de Bord Comparatif (DataViz)",
+        "description": "Visualisation scientifique immédiate des métriques de performance et de qualité des réponses.",
+        "implementation": "Intégration d'un graphique radar de performance, d'une heatmap de similarité sémantique via BM25 et d'un nuage de mots-clés interactif.",
+        "challenges": "Rendre digestes et exploitables des données complexes de traitement automatique du langage naturel pour des profils non techniques."
+      }
+    ],
+    "testing": "La validation de la plateforme s'appuie sur des tests d'intégration simulant des pannes d'API réseau pour garantir la résilience de l'orchestrateur. Des tests unitaires ont permis d'ajuster les pondérations des formules sémantiques (ROUGE, TF-IDF). L'API REST a été auditée et validée de manière standardisée via Swagger UI.",
+    "results": {
+      "technicalAchievements": "Zéro fuite de secrets grâce à l'intégration d'Infisical. Architecture SOLID validée réduisant le temps d'ajout d'une nouvelle API d'IA à moins de 15 minutes. Temps de calcul NLP local inférieur à 80ms, assurant une réactivité totale de l'interface.",
+      "businessImpact": "Apporte une aide à la décision concrète pour l'arbitrage entre performances techniques, souveraineté légale et impact carbone. Les rapports d'évaluation sont exportables pour alimenter directement les bilans RSE des entreprises.",
+      "personalGrowth": "Maîtrise des principes de l'éco-conception logicielle (Green IT), approfondissement de l'orchestration asynchrone robuste en Node.js et perfectionnement de l'architecture logicielle modulaire."
+    },
+    "techStack": {
+      "frontend": "React 18, Vite 5, Tailwind CSS, Zustand",
+      "backend": "Node.js v18, Express 4, MongoDB Atlas, Mongoose",
+      "tools": "Infisical, Swagger / OpenAPI, Git, npm",
+      "libraries": "Recharts, Chart.js, APIs (Gemini, Mistral, Hugging Face, Cohere)"
+    },
+    "learnings": [
+      "La sobriété numérique doit s'anticiper dès la conception de l'architecture backend en optimisant et parallélisant les flux d'appels réseau.",
+      "L'application des patterns SOLID (notamment SRP) élimine le code spaghetti et simplifie drastiquement la maintenance d'intégrations tierces multiples.",
+      "L'abandon des fichiers .env locaux au profit de gestionnaires cloud de secrets comme Infisical est indispensable pour sécuriser le travail collaboratif.",
+      "La datavisualisation interactive est essentielle pour démocratiser des indicateurs complexes de souveraineté et de Green IT auprès des décideurs."
+    ],
+    "futureEnhancements": [
+      "Intégration d'API d'intensité carbone en temps réel (ex: ElectricityMap) pour ajuster l'Eco-Score selon l'état actuel du réseau électrique des serveurs.",
+      "Support des modèles d'IA exécutés localement (via Ollama ou Llama.cpp) pour comparer des LLM privés on-premise avec les modèles cloud.",
+      "Génération et exportation de rapports PDF automatisés et prêts à l'emploi pour les audits de conformité RSE ou RGPD.",
+      "Calcul précis du coût financier par requête en intégrant des tokenizers spécifiques pour chaque modèle d'IA évalué.",
+      "Mise en place d'une base de données vectorielle (Vector DB) pour simuler et évaluer des architectures RAG sur des bases documentaires souveraines."
+    ],
+    "conclusion": "Green-AI-Scanner démontre qu'innovation technologique et responsabilité environnementale sont conciliables. En mariant une architecture SOLID moderne à des métriques novatrices de souveraineté et d'empreinte carbone, ce projet propose une alternative concrète pour piloter une transition vers une IA de confiance, sobre et performante."
+  },
   "shiatsuGuyane": {
     "title": "Shiatsu Guyane",
     "description": "Plateforme web sophistiquée pour une pratique de thérapie Shiatsu avec système de design botanique unique",

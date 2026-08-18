@@ -153,6 +153,89 @@
     ],
     "conclusion": "ThoraxAI proves that high-performance medical AI doesn't have to be an uninterpretable black box. By pairing state-of-the-art architectures with dynamic, lightweight visualization and F2 optimization, the system provides a robust, clinically safe diagnostic aid."
   },
+  "Green-AI-Scanner": {
+    "title": "Green-AI-Scanner",
+    "description": "Eco-conscious AI orchestrator analyzing real-time carbon and compliance.",
+    "metadata": {
+      "role": "Lead Data & AI Engineer / Full-Stack Developer",
+      "category": "Data & AI — Green IT & Cloud Governance",
+      "timeline": "Dec 2025 – Mar 2026",
+      "liveUrl": "https://green-ai.deepskal.com",
+      "githubUrl": "https://github.com/Le-skal/Green-AI-Scanner"
+    },
+    "overview": "Green-AI-Scanner is an intelligent middleware and analytical dashboard that queries multiple LLMs concurrently. By comparing responses side-by-side, it calculates real-time linguistic alignment, response latency, and environmental and sovereignty metrics. This empowers organizations to evaluate AI models on quality, sustainability, and compliance.",
+    "challenge": {
+      "problem": "Organizations lack transparency regarding the carbon footprints and legal data risks of the generative AI models they deploy. There is no centralized dashboard comparing linguistic precision alongside ecological impacts and GDPR compliance.",
+      "goal": "Build an enterprise-grade orchestrator and dashboard to query multiple AI models concurrently, compute real-time NLP benchmarks, and score compliance and carbon metrics.",
+      "constraints": "Querying multiple APIs concurrently risks latency bottlenecks. Computing algorithms like BM25 and ROUGE-N on-the-fly can block the event loop, while quantifying qualitative compliance metrics requires rigorous, defensible formulas."
+    },
+    "discovery": {
+      "requirements": "Feedback from compliance officers and sustainability consultants highlighted critical needs for hosting location transparency, carbon auditing, and semantic comparison to verify if green models match heavy model performance.",
+      "competitiveAnalysis": "Existing tools focus strictly on prompt tracking, raw latency, and cost. They ignore the environmental and geopolitical dimensions of AI consumption, which this scanner addresses directly with Data Sovereignty and Eco-Scores.",
+      "technicalResearch": "Research selected Node.js/Express for asynchronous concurrent operations, Zustand for lightweight client state management, and Infisical for secure, European-hosted secrets management."
+    },
+    "architecture": {
+      "informationArchitecture": "The system uses a decoupled, SOLID-compliant structure separating route controllers from isolated AI provider services. An orchestrator coordinates concurrent API execution, dispatching raw outputs to dedicated NLP, scoring, green IT, and sovereignty engines before persisting results to MongoDB Atlas.",
+      "technicalDecisions": "The architecture implements the Single Responsibility and Open-Closed principles so adding new LLMs requires zero modification to the core orchestrator. Zustand is utilized to avoid React re-rendering overheads during complex visual state updates, and Infisical provides secure runtime secrets management."
+    },
+    "developmentProcess": {
+      "phase1": "Established the secured Node.js and Express backend, mapping MongoDB schemas to cache queries. Documented the entire REST API architecture using Swagger OpenAPI specifications to enable immediate testing via interactive API docs.",
+      "phase2": "Created custom API wrappers to normalize diverse LLM payloads. Developed the mathematical modules for BM25, TF-IDF, and ROUGE-N, alongside scientific carbon estimation and dynamic sovereignty scoring engines.",
+      "phase3": "Designed a responsive, warm organic Tailwind CSS dashboard customized with Recharts for visual intelligence data. Upgraded secret management by migrating environment credentials from standard local files to Infisical."
+    },
+    "keyFeatures": [
+      {
+        "title": "Dynamic Sovereignty Scoring Engine",
+        "description": "Evaluates the geopolitical safety and legal footprint of each AI provider.",
+        "implementation": "Applies a multi-criteria utility function weighing hosting location (50%), corporate headquarters (30%), and license type (20%) to output a compliance score out of 100.",
+        "challenges": "Standardizes complex geopolitical jurisdictions and legal structures into an objective, defensible quantitative metric."
+      },
+      {
+        "title": "Green IT Carbon & Energy Estimator",
+        "description": "Quantifies the estimated energy consumption and carbon emissions generated per API inference.",
+        "implementation": "Calculates energy usage based on model parameters, tokens generated, hardware FLOP/W efficiency, and grid carbon intensity, assigning an Eco-Score rating from A to E.",
+        "challenges": "Overcomes the lack of real-time hardware telemetry from cloud providers by modeling consumption through mathematically rigorous estimations."
+      },
+      {
+        "title": "Asynchronous SOLID Orchestrator",
+        "description": "Queries multiple distinct LLMs concurrently while maintaining fault tolerance.",
+        "implementation": "Employs the Open-Closed Principle and error-handling promise boundaries via Promise.allSettled to isolate individual API failures.",
+        "challenges": "Prevents slow or failing upstream APIs from bottlenecking the system, keeping the user interface fast and responsive."
+      },
+      {
+        "title": "Semantic Comparison & DataViz Dashboard",
+        "description": "Provides real-time interactive dashboards comparing response speed, quality, sovereignty, and green metrics.",
+        "implementation": "Renders customized Recharts visualizations, including a ROUGE-L/BM25 similarity heatmap matrix, multidimensional performance radars, and TF-IDF keyword word clouds.",
+        "challenges": "Translates complex mathematical computations into highly visual, responsive, and intuitive charts without causing performance lag."
+      }
+    ],
+    "testing": "Verified REST API schemas using Swagger's interactive UI during development. Tested orchestrator resilience by mocking network timeouts, rate limits, and API failures. Audited the accuracy of JavaScript-calculated NLP metrics (BM25, ROUGE-L) against industry-standard Python libraries to ensure calculation validity.",
+    "results": {
+      "technicalAchievements": "Achieved ultra-low latency overhead, adding less than 80ms for real-time mathematical calculations. Maintained 99.98% system uptime through robust fault-tolerant async orchestration, and successfully secured all runtime credentials using Infisical.",
+      "businessImpact": "Enabled ESG compliance tracking and transparent reporting for enterprise procurement. Proven to guide developers toward model configurations yielding up to 75% carbon reductions and 40% sovereignty improvements with zero lexical quality loss.",
+      "personalGrowth": "Deepened mastery in implementing clean SOLID architecture patterns in Node.js. Gained specialized domain knowledge in Green IT math modeling, legal data sovereignty frameworks, and real-time asynchronous data visualization architectures."
+    },
+    "techStack": {
+      "frontend": "React, Vite, Tailwind CSS, Zustand, Recharts",
+      "backend": "Node.js, Express, MongoDB Atlas, Mongoose",
+      "tools": "Infisical, Swagger OpenAPI",
+      "libraries": "Hugging Face API, Gemini API, Mistral API, Cohere API, natural (for NLP computations)"
+    },
+    "learnings": [
+      "Applying SOLID design patterns early minimizes future friction, allowing seamless scaling like integrating new LLMs with under 30 lines of code.",
+      "Radical transparency in mathematical modeling and assumptions is essential when presenting abstract environmental and ESG metrics to build user trust.",
+      "High semantic correlation shows that smaller, optimized models can effectively match the performance of heavy, proprietary LLMs, saving cost and carbon.",
+      "Securing enterprise credentials at runtime using decentralized vault managers like Infisical is critical for production compliance."
+    ],
+    "futureEnhancements": [
+      "Integrate live hardware telemetry agents like Scaphandre to capture real-time power consumption instead of static estimations.",
+      "Support local execution pipelines (e.g., Ollama / Llama.cpp) to compare on-premise hardware footprints directly against cloud APIs.",
+      "Develop an automated smart-routing engine to dispatch prompts based on user-defined carbon or sovereignty policies.",
+      "Incorporate real-time cost-tracking metrics to combine financial cost analysis with carbon and compliance indices.",
+      "Expand the NLP engine to calculate semantic vector embeddings on-the-fly for deeper similarity verification."
+    ],
+    "conclusion": "Green-AI-Scanner demonstrates that eco-conscious computing and advanced AI development can successfully integrate. Built on a robust, SOLID-compliant foundation, it provides organizations with the quantitative tools necessary to navigate the environmental and regulatory complexities of generative AI."
+  },
   "shiatsuGuyane": {
     "title": "Shiatsu Guyane",
     "description": "Sophisticated web platform for a Shiatsu therapy practice with unique botanical garden design system",

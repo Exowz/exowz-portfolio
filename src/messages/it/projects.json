@@ -153,6 +153,89 @@
     ],
     "conclusion": "ThoraxAI dimostra che l'IA medica ad alte prestazioni non deve essere una scatola nera ininterpretabile. Abbinando architetture all'avanguardia con una visualizzazione dinamica e leggera e l'ottimizzazione F2, il sistema fornisce un supporto diagnostico robusto e clinicamente sicuro."
   },
+  "Green-AI-Scanner": {
+    "title": "Green-AI-Scanner",
+    "description": "Orchestratore AI attento all'ambiente che analizza il carbonio e la conformità in tempo reale.",
+    "metadata": {
+      "role": "Capo ingegnere dati e intelligenza artificiale/sviluppatore full-stack",
+      "category": "Dati e intelligenza artificiale: IT verde e governance del cloud",
+      "timeline": "Dicembre 2025 – Marzo 2026",
+      "liveUrl": "https://green-ai.deepskal.com",
+      "githubUrl": "https://github.com/Le-skal/Green-AI-Scanner"
+    },
+    "overview": "Green-AI-Scanner è un middleware intelligente e un dashboard analitico che interroga più LLM contemporaneamente. Confrontando le risposte fianco a fianco, calcola l'allineamento linguistico in tempo reale, la latenza della risposta e le metriche ambientali e di sovranità. Ciò consente alle organizzazioni di valutare i modelli di intelligenza artificiale in termini di qualità, sostenibilità e conformità.",
+    "challenge": {
+      "problem": "Le organizzazioni mancano di trasparenza riguardo all’impronta di carbonio e ai rischi legali legati ai dati dei modelli di intelligenza artificiale generativa che implementano. Non esiste un dashboard centralizzato che confronti la precisione linguistica con gli impatti ecologici e la conformità al GDPR.",
+      "goal": "Costruisci un orchestratore e un dashboard di livello aziendale per eseguire query su più modelli di intelligenza artificiale contemporaneamente, elaborare benchmark NLP in tempo reale e valutare la conformità e le metriche di carbonio.",
+      "constraints": "L'esecuzione di query su più API contemporaneamente rischia di creare colli di bottiglia in termini di latenza. Algoritmi informatici come BM25 e ROUGE-N al volo possono bloccare il ciclo degli eventi, mentre la quantificazione dei parametri di conformità qualitativa richiede formule rigorose e difendibili."
+    },
+    "discovery": {
+      "requirements": "Il feedback dei responsabili della conformità e dei consulenti in materia di sostenibilità ha evidenziato le esigenze fondamentali in termini di trasparenza della sede di hosting, verifica del carbonio e confronto semantico per verificare se i modelli ecologici corrispondono alle prestazioni dei modelli pesanti.",
+      "competitiveAnalysis": "Gli strumenti esistenti si concentrano esclusivamente sul monitoraggio tempestivo, sulla latenza grezza e sui costi. Ignorano le dimensioni ambientali e geopolitiche del consumo di intelligenza artificiale, che questo scanner affronta direttamente con Data Sovereignty e Eco-Score.",
+      "technicalResearch": "La ricerca ha selezionato Node.js/Express per operazioni simultanee asincrone, Zustand per la gestione leggera dello stato del client e Infisical per la gestione sicura dei segreti ospitata in Europa."
+    },
+    "architecture": {
+      "informationArchitecture": "Il sistema utilizza una struttura disaccoppiata e conforme a SOLID che separa i controller di percorso dai servizi isolati del fornitore di intelligenza artificiale. Un orchestratore coordina l'esecuzione simultanea di API, inviando output grezzi a NLP dedicati, punteggi, IT verde e motori di sovranità prima di rendere persistenti i risultati a MongoDB Atlas.",
+      "technicalDecisions": "L'architettura implementa i principi di responsabilità unica e apertura-chiusura, quindi l'aggiunta di nuovi LLM non richiede alcuna modifica all'orchestratore principale. Zustand viene utilizzato per evitare il sovraccarico del re-rendering di React durante complessi aggiornamenti dello stato visivo e Infisical fornisce una gestione sicura dei segreti di runtime."
+    },
+    "developmentProcess": {
+      "phase1": "Stabilito il backend protetto Node.js e Express, mappando gli schemi MongoDB per le query della cache. Documentato l'intera architettura REST API utilizzando le specifiche Swagger OpenAPI per consentire test immediati tramite documenti API interattivi.",
+      "phase2": "Creati wrapper API personalizzati per normalizzare diversi payload LLM. Sviluppato i moduli matematici per BM25, TF-IDF e ROUGE-N, insieme ai motori per la stima scientifica del carbonio e il punteggio dinamico della sovranità.",
+      "phase3": "Progettato un dashboard Tailwind CSS reattivo, caldo e organico, personalizzato con Recharts per i dati di intelligenza visiva. Gestione dei segreti migliorata mediante la migrazione delle credenziali dell'ambiente dai file locali standard a Infisical."
+    },
+    "keyFeatures": [
+      {
+        "title": "Motore di punteggio dinamico della sovranità",
+        "description": "Valuta la sicurezza geopolitica e l'impronta legale di ciascun fornitore di intelligenza artificiale.",
+        "implementation": "Applica una funzione di utilità multicriterio che valuta la posizione di hosting (50%), la sede centrale (30%) e il tipo di licenza (20%) per ottenere un punteggio di conformità su 100.",
+        "challenges": "Standardizza complesse giurisdizioni geopolitiche e strutture giuridiche in una metrica quantitativa oggettiva e difendibile."
+      },
+      {
+        "title": "Stima del carbonio e dell'energia Green IT",
+        "description": "Quantifica il consumo energetico stimato e le emissioni di carbonio generate in base all'inferenza API.",
+        "implementation": "Calcola il consumo di energia in base ai parametri del modello, ai token generati, all'efficienza dell'hardware FLOP/W e all'intensità di carbonio della rete, assegnando una valutazione Eco-Score da A a E.",
+        "challenges": "Supera la mancanza di telemetria hardware in tempo reale da parte dei fornitori di servizi cloud modellando il consumo attraverso stime matematicamente rigorose."
+      },
+      {
+        "title": "Orchestratore asincrono SOLID",
+        "description": "Interroga più LLM distinti contemporaneamente mantenendo la tolleranza agli errori.",
+        "implementation": "Utilizza il principio di apertura-chiusura e i limiti di promessa di gestione degli errori tramite Promise.allSettled per isolare i singoli guasti API.",
+        "challenges": "Impedisce agli API upstream lenti o difettosi di creare colli di bottiglia nel sistema, mantenendo l'interfaccia utente veloce e reattiva."
+      },
+      {
+        "title": "Confronto semantico e dashboard DataViz",
+        "description": "Fornisce dashboard interattivi in ​​tempo reale che confrontano velocità di risposta, qualità, sovranità e parametri ecologici.",
+        "implementation": "Esegue il rendering di visualizzazioni Recharts personalizzate, tra cui una matrice di mappe di calore di somiglianza ROUGE-L/BM25, radar di prestazioni multidimensionali e word cloud di parole chiave TF-IDF.",
+        "challenges": "Traduce calcoli matematici complessi in grafici altamente visivi, reattivi e intuitivi senza causare ritardi nelle prestazioni."
+      }
+    ],
+    "testing": "Schemi REST API verificati utilizzando l'interfaccia utente interattiva di Swagger durante lo sviluppo. Testata la resilienza dell'agente di orchestrazione simulando timeout di rete, limiti di velocità ed errori API. Verificata l'accuratezza dei parametri NLP calcolati da JavaScript (BM25, ROUGE-L) rispetto alle librerie Python standard del settore per garantire la validità dei calcoli.",
+    "results": {
+      "technicalAchievements": "Raggiunto un sovraccarico di latenza estremamente basso, aggiungendo meno di 80 ms per calcoli matematici in tempo reale. Mantenuto un tempo di attività del sistema del 99,98% attraverso una solida orchestrazione asincrona con tolleranza agli errori e protette con successo tutte le credenziali di runtime utilizzando Infisical.",
+      "businessImpact": "Abilitato il monitoraggio della conformità ESG e il reporting trasparente per gli appalti aziendali. Dimostrato di guidare gli sviluppatori verso configurazioni di modelli che consentono riduzioni di carbonio fino al 75% e miglioramenti della sovranità del 40% con perdita di qualità lessicale pari a zero.",
+      "personalGrowth": "Approfondita padronanza nell'implementazione di modelli di architettura SOLID puliti in Node.js. Acquisita una conoscenza specializzata del settore nella modellazione matematica del Green IT, nei quadri legali di sovranità dei dati e nelle architetture di visualizzazione dei dati asincrone in tempo reale."
+    },
+    "techStack": {
+      "frontend": "React, Vite, Tailwind CSS, Zustand, Recharts",
+      "backend": "Node.js, Express, MongoDB Atlas, Mongoose",
+      "tools": "Infisical, Swagger OpenAPI",
+      "libraries": "Hugging Face API, Gemini API, Mistral API, Cohere API, natural (per calcoli NLP)"
+    },
+    "learnings": [
+      "L'applicazione anticipata dei modelli di progettazione SOLID riduce al minimo gli attriti futuri, consentendo un ridimensionamento continuo come l'integrazione di nuovi LLM con meno di 30 righe di codice.",
+      "La trasparenza radicale nella modellazione e nelle ipotesi matematiche è essenziale quando si presentano metriche ambientali astratte e ESG per creare fiducia negli utenti.",
+      "L'elevata correlazione semantica mostra che modelli più piccoli e ottimizzati possono effettivamente eguagliare le prestazioni dei pesanti LLM proprietari, risparmiando costi e emissioni di carbonio.",
+      "La protezione delle credenziali aziendali in fase di esecuzione utilizzando gestori di vault decentralizzati come Infisical è fondamentale per la conformità della produzione."
+    ],
+    "futureEnhancements": [
+      "Integra agenti di telemetria hardware in tempo reale come Scaphandre per acquisire il consumo energetico in tempo reale anziché stime statiche.",
+      "Supporta pipeline di esecuzione locale (ad esempio, Ollama / Llama.cpp) per confrontare le impronte hardware on-premise direttamente con gli API cloud.",
+      "Sviluppa un motore di routing intelligente automatizzato per inviare richieste basate su politiche di carbonio o sovranità definite dall'utente.",
+      "Incorpora metriche di monitoraggio dei costi in tempo reale per combinare l'analisi dei costi finanziari con indici di carbonio e conformità.",
+      "Espandi il motore NLP per calcolare al volo gli incorporamenti di vettori semantici per una verifica della somiglianza più approfondita."
+    ],
+    "conclusion": "Green-AI-Scanner dimostra che l'informatica eco-consapevole e lo sviluppo avanzato dell'intelligenza artificiale possono integrarsi con successo. Costruito su una base solida e conforme a SOLID, fornisce alle organizzazioni gli strumenti quantitativi necessari per affrontare le complessità ambientali e normative dell'intelligenza artificiale generativa."
+  },
   "shiatsuGuyane": {
     "title": "Shiatsu Guyane",
     "description": "Sofisticata piattaforma web per uno studio di terapia Shiatsu con un sistema di design unico ispirato a un giardino botanico",
