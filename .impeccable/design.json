@@ -1,0 +1,568 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-04T00:35:37Z",
+  "title": "Design System: Exowz Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "glacier-blue": {
+        "role": "primary",
+        "displayName": "Glacier Blue",
+        "canonical": "oklch(74.8% 0.123 244.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.123 244.7)",
+          "oklch(26.4% 0.123 244.7)",
+          "oklch(37.9% 0.123 244.7)",
+          "oklch(49.3% 0.123 244.7)",
+          "oklch(60.7% 0.123 244.7)",
+          "oklch(72.1% 0.123 244.7)",
+          "oklch(83.6% 0.123 244.7)",
+          "oklch(95.0% 0.123 244.7)"
+        ]
+      },
+      "glacier-blue-deep": {
+        "role": "primary",
+        "displayName": "Glacier Blue Deep",
+        "canonical": "oklch(56.5% 0.163 253.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.163 253.3)",
+          "oklch(26.4% 0.163 253.3)",
+          "oklch(37.9% 0.163 253.3)",
+          "oklch(49.3% 0.163 253.3)",
+          "oklch(60.7% 0.163 253.3)",
+          "oklch(72.1% 0.163 253.3)",
+          "oklch(83.6% 0.163 253.3)",
+          "oklch(95.0% 0.163 253.3)"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95.0% 0 0)"
+        ]
+      },
+      "mist-grey": {
+        "role": "neutral",
+        "displayName": "Mist Grey",
+        "canonical": "oklch(97.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95.0% 0 0)"
+        ]
+      },
+      "field-mist": {
+        "role": "neutral",
+        "displayName": "Field Mist",
+        "canonical": "oklch(95.9% 0.007 247.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 247.9)",
+          "oklch(26.4% 0.007 247.9)",
+          "oklch(37.9% 0.007 247.9)",
+          "oklch(49.3% 0.007 247.9)",
+          "oklch(60.7% 0.007 247.9)",
+          "oklch(72.1% 0.007 247.9)",
+          "oklch(83.6% 0.007 247.9)",
+          "oklch(95.0% 0.007 247.9)"
+        ]
+      },
+      "charcoal-dark": {
+        "role": "neutral",
+        "displayName": "Charcoal Dark",
+        "canonical": "oklch(21.8% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95.0% 0 0)"
+        ]
+      },
+      "charcoal-panel": {
+        "role": "neutral",
+        "displayName": "Charcoal Panel",
+        "canonical": "oklch(28.5% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95.0% 0 0)"
+        ]
+      },
+      "charcoal-base": {
+        "role": "neutral",
+        "displayName": "Charcoal Base",
+        "canonical": "oklch(32.1% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95.0% 0 0)"
+        ]
+      },
+      "charcoal-light": {
+        "role": "neutral",
+        "displayName": "Charcoal Light",
+        "canonical": "oklch(40.9% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95.0% 0 0)"
+        ]
+      },
+      "slate-ink": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "oklch(52.2% 0.036 227.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.036 227.9)",
+          "oklch(26.4% 0.036 227.9)",
+          "oklch(37.9% 0.036 227.9)",
+          "oklch(49.3% 0.036 227.9)",
+          "oklch(60.7% 0.036 227.9)",
+          "oklch(72.1% 0.036 227.9)",
+          "oklch(83.6% 0.036 227.9)",
+          "oklch(95.0% 0.036 227.9)"
+        ]
+      },
+      "slate-hint": {
+        "role": "neutral",
+        "displayName": "Slate Hint",
+        "canonical": "oklch(63.9% 0.033 229.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.033 229.5)",
+          "oklch(26.4% 0.033 229.5)",
+          "oklch(37.9% 0.033 229.5)",
+          "oklch(49.3% 0.033 229.5)",
+          "oklch(60.7% 0.033 229.5)",
+          "oklch(72.1% 0.033 229.5)",
+          "oklch(83.6% 0.033 229.5)",
+          "oklch(95.0% 0.033 229.5)"
+        ]
+      },
+      "cool-gray-dark": {
+        "role": "neutral",
+        "displayName": "Cool Gray Dark",
+        "canonical": "oklch(70.6% 0.027 229.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.027 229.3)",
+          "oklch(26.4% 0.027 229.3)",
+          "oklch(37.9% 0.027 229.3)",
+          "oklch(49.3% 0.027 229.3)",
+          "oklch(60.7% 0.027 229.3)",
+          "oklch(72.1% 0.027 229.3)",
+          "oklch(83.6% 0.027 229.3)",
+          "oklch(95.0% 0.027 229.3)"
+        ]
+      },
+      "cool-gray-base": {
+        "role": "neutral",
+        "displayName": "Cool Gray Base",
+        "canonical": "oklch(79.3% 0.018 229.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.018 229.1)",
+          "oklch(26.4% 0.018 229.1)",
+          "oklch(37.9% 0.018 229.1)",
+          "oklch(49.3% 0.018 229.1)",
+          "oklch(60.7% 0.018 229.1)",
+          "oklch(72.1% 0.018 229.1)",
+          "oklch(83.6% 0.018 229.1)",
+          "oklch(95.0% 0.018 229.1)"
+        ]
+      },
+      "cool-gray-light": {
+        "role": "neutral",
+        "displayName": "Cool Gray Light",
+        "canonical": "oklch(87.7% 0.011 226.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 226.0)",
+          "oklch(26.4% 0.011 226.0)",
+          "oklch(37.9% 0.011 226.0)",
+          "oklch(49.3% 0.011 226.0)",
+          "oklch(60.7% 0.011 226.0)",
+          "oklch(72.1% 0.011 226.0)",
+          "oklch(83.6% 0.011 226.0)",
+          "oklch(95.0% 0.011 226.0)"
+        ]
+      },
+      "cool-gray-hint": {
+        "role": "neutral",
+        "displayName": "Cool Gray Hint",
+        "canonical": "oklch(67.4% 0.023 236.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.023 236.9)",
+          "oklch(26.4% 0.023 236.9)",
+          "oklch(37.9% 0.023 236.9)",
+          "oklch(49.3% 0.023 236.9)",
+          "oklch(60.7% 0.023 236.9)",
+          "oklch(72.1% 0.023 236.9)",
+          "oklch(83.6% 0.023 236.9)",
+          "oklch(95.0% 0.023 236.9)"
+        ]
+      },
+      "traffic-red": {
+        "role": "tertiary",
+        "displayName": "Traffic Red",
+        "canonical": "oklch(69.4% 0.196 26.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.196 26.4)",
+          "oklch(26.4% 0.196 26.4)",
+          "oklch(37.9% 0.196 26.4)",
+          "oklch(49.3% 0.196 26.4)",
+          "oklch(60.7% 0.196 26.4)",
+          "oklch(72.1% 0.196 26.4)",
+          "oklch(83.6% 0.196 26.4)",
+          "oklch(95.0% 0.196 26.4)"
+        ]
+      },
+      "traffic-amber": {
+        "role": "tertiary",
+        "displayName": "Traffic Amber",
+        "canonical": "oklch(83.8% 0.162 81.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.162 81.1)",
+          "oklch(26.4% 0.162 81.1)",
+          "oklch(37.9% 0.162 81.1)",
+          "oklch(49.3% 0.162 81.1)",
+          "oklch(60.7% 0.162 81.1)",
+          "oklch(72.1% 0.162 81.1)",
+          "oklch(83.6% 0.162 81.1)",
+          "oklch(95.0% 0.162 81.1)"
+        ]
+      },
+      "traffic-green": {
+        "role": "tertiary",
+        "displayName": "Traffic Green",
+        "canonical": "oklch(73.4% 0.218 144.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.218 144.9)",
+          "oklch(26.4% 0.218 144.9)",
+          "oklch(37.9% 0.218 144.9)",
+          "oklch(49.3% 0.218 144.9)",
+          "oklch(60.7% 0.218 144.9)",
+          "oklch(72.1% 0.218 144.9)",
+          "oklch(83.6% 0.218 144.9)",
+          "oklch(95.0% 0.218 144.9)"
+        ]
+      },
+      "destructive": {
+        "role": "tertiary",
+        "displayName": "Destructive Red",
+        "canonical": "oklch(63.7% 0.208 25.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.208 25.3)",
+          "oklch(26.4% 0.208 25.3)",
+          "oklch(37.9% 0.208 25.3)",
+          "oklch(49.3% 0.208 25.3)",
+          "oklch(60.7% 0.208 25.3)",
+          "oklch(72.1% 0.208 25.3)",
+          "oklch(83.6% 0.208 25.3)",
+          "oklch(95.0% 0.208 25.3)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Stanley. The name on the desktop and the mobile identity widget. Once per screen at most."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section openers inside windows."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Window titles, card headings, section labels."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "The dominant size across the system — window prose, descriptions, form text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "App labels, tooltips, badges, metadata, dock captions."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Geist Mono. BIOS screen, menu-bar clock, anything quoting machine output."
+      },
+      "script": {
+        "displayName": "Script",
+        "purpose": "TakenByVultures. Boot sequence and About accents only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 6px 24px rgba(0,0,0,0.09), 0 1px 2px rgba(0,0,0,0.04)",
+        "purpose": "Default floating state for glass cards. Dark mode deepens to 0.35/0.2 alpha."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 10px 30px rgba(100,181,246,0.22), 0 0 0 1px rgba(100,181,246,0.25)",
+        "purpose": "Lift plus accent tint; the border drops to transparent so the ring becomes the edge."
+      },
+      {
+        "name": "window",
+        "value": "0 8px 32px rgba(0,0,0,0.12), 0 0 60px rgba(100,181,246,0.08)",
+        "purpose": "Panel depth plus a wide faint accent bloom tying the window to the fluid field behind it."
+      },
+      {
+        "name": "dock",
+        "value": "0 8px 24px rgba(0,0,0,0.15)",
+        "purpose": "The dock bar floats above the wallpaper."
+      },
+      {
+        "name": "dock-item",
+        "value": "0 4px 12px rgba(0,0,0,0.08)",
+        "purpose": "Items float within the bar — progressive elevation."
+      },
+      {
+        "name": "dock-item-hover",
+        "value": "0 4px 16px rgba(100,181,246,0.25), 0 0 20px rgba(100,181,246,0.15)",
+        "purpose": "Double-layered: a tight lift plus an ambient accent glow."
+      },
+      {
+        "name": "accent-glow",
+        "value": "0 0 20px rgba(100,181,246,0.2)",
+        "purpose": "Standalone emphasis with no offset — pure bloom. Hover raises to 30px/0.3."
+      }
+    ],
+    "motion": [
+      {
+        "name": "window-enter",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Window entry over 0.3s from scale 0.95 / y +20. The house 'settles into place' curve."
+      },
+      {
+        "name": "surface-transition",
+        "value": "0.25s ease",
+        "purpose": "Glass card shadow, border-color and transform transitions."
+      },
+      {
+        "name": "chrome-transition",
+        "value": "0.3s ease",
+        "purpose": "Dock items, header buttons, traffic lights — all interactive chrome."
+      },
+      {
+        "name": "theme-transition",
+        "value": "0.3s",
+        "purpose": "Background and text colour cross-fade when the theme flips."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "materials": [
+      {
+        "name": "chrome-blur",
+        "value": "blur(20px) saturate(180%)",
+        "purpose": "The house material. Windows, dock, header, app icons, assistant pill."
+      },
+      {
+        "name": "overlay-blur",
+        "value": "blur(15px) saturate(150%)",
+        "purpose": "Nested and secondary surfaces only — tooltips, small overlays."
+      },
+      {
+        "name": "sheet-scrim",
+        "value": "color-mix(in srgb, var(--background) 40%, transparent)",
+        "purpose": "Mobile sheet veil; one definition that adapts to both themes automatically."
+      },
+      {
+        "name": "wallpaper-light",
+        "value": "linear-gradient(135deg, #f5f5f5 0%, #ffffff 50%, #64b5f6 100%)",
+        "purpose": "Static mobile wallpaper and the fluid simulation's light palette — identical three stops."
+      },
+      {
+        "name": "wallpaper-dark",
+        "value": "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #64b5f6 100%)",
+        "purpose": "Dark counterpart, same three-stop structure."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one high-emphasis action per surface. Accent fill, white label, soft accent shadow.",
+      "html": "<button class=\"ds-btn-primary\">Send message</button>",
+      "css": ".ds-btn-primary{background:var(--accent-solid,#1976d2);color:#fff;border:none;border-radius:9999px;padding:12px 24px;font-size:.875rem;font-weight:600;font-family:inherit;cursor:pointer;box-shadow:0 2px 12px color-mix(in srgb, var(--accent,#64b5f6) 40%, transparent);transition:filter .2s ease,transform .2s ease}.ds-btn-primary:hover{filter:brightness(1.1)}.ds-btn-primary:active{transform:scale(.98)}.ds-btn-primary:focus-visible{outline:3px solid color-mix(in srgb, var(--accent,#64b5f6) 50%, transparent);outline-offset:2px}.ds-btn-primary:disabled{opacity:.5;cursor:not-allowed}"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Quiet field on a real soft surface. Focus shifts the border to accent — no glow, no ring.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Paste a role or job description...\" />",
+      "css": ".ds-input{width:100%;background:var(--field-bg,#eef2f6);color:var(--foreground,#333);border:1px solid var(--field-border,rgba(0,0,0,.10));border-radius:14px;padding:10px 16px;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .2s ease}.ds-input::placeholder{color:var(--text-tertiary,#78909c)}.ds-input:focus{border-color:var(--accent-text,#1976d2)}.ds-input:disabled{opacity:.6}"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "glass-card",
+      "description": "Floating content surface. Separates by diffuse shadow, not by outline; hover tints toward the accent.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">RiskLens</h3><p class=\"ds-card-body\">Credit-risk scoring with an explainable model and a retrieval layer over filings.</p></div>",
+      "css": ".ds-card{border:1px solid var(--card-border,rgba(0,0,0,.06));border-radius:16px;padding:24px;background:var(--card,#fff);color:var(--foreground,#333);box-shadow:var(--card-shadow,0 6px 24px rgba(0,0,0,.09),0 1px 2px rgba(0,0,0,.04));transition:box-shadow .25s ease,border-color .25s ease,transform .25s ease}.ds-card:hover{border-color:transparent;box-shadow:var(--card-shadow-hover,0 10px 30px rgba(100,181,246,.22),0 0 0 1px rgba(100,181,246,.25))}.ds-card-title{margin:0 0 8px;font-size:1.125rem;font-weight:600;line-height:1.4}.ds-card-body{margin:0;font-size:.875rem;line-height:1.6;color:var(--text-secondary,#546e7a)}"
+    },
+    {
+      "name": "Window Panel",
+      "kind": "custom",
+      "refersTo": "window-panel",
+      "description": "The signature surface. Frosted panel with a stratified title bar and macOS traffic lights that reveal glyphs on hover.",
+      "html": "<div class=\"ds-window\"><div class=\"ds-window-bar\"><div class=\"ds-lights\"><span class=\"ds-light ds-light-red\"></span><span class=\"ds-light ds-light-amber\"></span><span class=\"ds-light ds-light-green\"></span></div><span class=\"ds-window-title\">Colophon</span></div><div class=\"ds-window-body\">On desktop it behaves like an operating system.</div></div>",
+      "css": ".ds-window{border-radius:16px;overflow:hidden;border:1px solid var(--window-border,rgba(0,0,0,.05));background: var(--window-bg, rgba(255,255,255,0.25));backdrop-filter: blur(20px) saturate(180%);-webkit-backdrop-filter: blur(20px) saturate(180%);box-shadow:var(--window-shadow,0 8px 32px rgba(0,0,0,.12),0 0 60px rgba(100,181,246,.08));color:var(--foreground,#333)}.ds-window-bar{position:relative;display:flex;align-items:center;padding:12px 16px;background:var(--window-titlebar-bg,rgba(255,255,255,.3));border-bottom:1px solid var(--window-border,rgba(0,0,0,.05))}.ds-lights{display:flex;gap:8px}.ds-light{width:12px;height:12px;border-radius:9999px;display:block;transition:transform .3s ease}.ds-light:hover{transform:scale(1.1)}.ds-light-red{background:#ff5f57}.ds-light-amber{background:#ffbd2e}.ds-light-green{background:#28ca42}.ds-window-title{position:absolute;left:50%;transform:translateX(-50%);font-size:.875rem;font-weight:600}.ds-window-body{padding:24px;font-size:.875rem;line-height:1.6;background:var(--window-content-bg,rgba(255,255,255,.2))}"
+    },
+    {
+      "name": "Dock",
+      "kind": "nav",
+      "refersTo": "dock-item",
+      "description": "Floating desktop navigation. Items magnify and pick up an accent glow on hover; a gradient divider splits navigation from external links.",
+      "html": "<div class=\"ds-dock\"><button class=\"ds-dock-item\" aria-label=\"Home\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l-2 0 9-9 9 9-2 0\"/><path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7\"/></svg></button><button class=\"ds-dock-item\" aria-label=\"Projects\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2\"/></svg></button><span class=\"ds-dock-divider\"></span><button class=\"ds-dock-item\" aria-label=\"GitHub\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21\"/></svg></button></div>",
+      "css": ".ds-dock{display:inline-flex;align-items:center;gap:16px;height:64px;padding:0 16px;border-radius:16px;border:1px solid var(--dock-border,rgba(0,0,0,.1));background:var(--dock-bg,rgba(255,255,255,.15));backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--dock-shadow,0 8px 24px rgba(0,0,0,.15))}.ds-dock-item{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:16px;cursor:pointer;color:var(--dock-text,#333);background:var(--dock-item-bg,rgba(255,255,255,.25));backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--dock-item-border,rgba(0,0,0,.08));box-shadow:var(--dock-item-shadow,0 4px 12px rgba(0,0,0,.08));transition:all .3s ease}.ds-dock-item svg{width:20px;height:20px}.ds-dock-item:hover{transform:translateY(-4px) scale(1.08);background:var(--dock-item-hover-bg,rgba(255,255,255,.4));border-color:var(--dock-item-hover-border,rgba(100,181,246,.4));box-shadow:var(--dock-item-hover-shadow,0 4px 16px rgba(100,181,246,.25),0 0 20px rgba(100,181,246,.15))}.ds-dock-item:focus-visible{outline:2px solid var(--accent,#64b5f6);outline-offset:2px}.ds-dock-divider{width:1px;height:32px;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.15) 20%,rgba(0,0,0,.15) 80%,transparent)}"
+    },
+    {
+      "name": "App Icon",
+      "kind": "custom",
+      "refersTo": "app-icon",
+      "description": "Mobile springboard tile. Same 16px panel radius as the desktop chrome, at touch scale, with a theme-aware label shadow for legibility over the wallpaper.",
+      "html": "<div class=\"ds-app\"><div class=\"ds-app-tile\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"/><path d=\"M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z\"/></svg></div><span class=\"ds-app-label\">CV</span></div>",
+      "css": ".ds-app{display:inline-flex;flex-direction:column;align-items:center;width:72px}.ds-app-tile{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:16px;color:var(--dock-text,#333);background:var(--dock-item-bg,rgba(255,255,255,.25));backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--dock-item-border,rgba(0,0,0,.08));box-shadow:var(--dock-item-shadow,0 4px 12px rgba(0,0,0,.08));transition:transform .2s ease}.ds-app-tile svg{width:26px;height:26px}.ds-app-tile:active{transform:scale(.92)}.ds-app-label{margin-top:4px;max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.75rem;line-height:1.3;text-align:center;color:var(--dock-text,#333);text-shadow:var(--label-shadow,0 0 3px rgba(255,255,255,.7))}"
+    },
+    {
+      "name": "Assistant Pill",
+      "kind": "custom",
+      "refersTo": "assistant-pill",
+      "description": "Glass capsule entry point to the RAG assistant. Uses dock tokens so it reads as chrome; the prompt text cross-fades inside a fixed-height clip so it never reflows across twelve languages.",
+      "html": "<button class=\"ds-pill\"><svg class=\"ds-pill-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z\"/></svg><span class=\"ds-pill-text\">Ask Ewan...</span></button>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;min-width:13rem;padding:0 16px;border-radius:9999px;cursor:pointer;font-size:.875rem;font-weight:500;font-family:inherit;color:var(--foreground,#333);background:var(--dock-bg,rgba(255,255,255,.15));border:1px solid var(--dock-border,rgba(0,0,0,.1));backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:var(--dock-shadow,0 8px 24px rgba(0,0,0,.15));transition:transform .2s ease,box-shadow .2s ease}.ds-pill:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(100,181,246,.3)}.ds-pill:focus-visible{outline:2px solid var(--accent,#64b5f6);outline-offset:2px}.ds-pill-icon{width:16px;height:16px;flex-shrink:0;color:var(--accent-text,#1976d2)}.ds-pill-text{display:block;height:20px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}"
+    },
+    {
+      "name": "Tooltip",
+      "kind": "custom",
+      "refersTo": "window-panel",
+      "description": "Nested overlay at the secondary blur level (15px/150%), used for dock labels and icon hints.",
+      "html": "<span class=\"ds-tooltip\">Curriculum Vitae</span>",
+      "css": ".ds-tooltip{display:inline-block;border-radius:14px;padding:6px 12px;font-size:.75rem;white-space:pre;color:var(--foreground,#333);background:var(--dock-item-bg,rgba(255,255,255,.25));border:1px solid var(--dock-item-border,rgba(0,0,0,.08));backdrop-filter:blur(15px) saturate(150%);-webkit-backdrop-filter:blur(15px) saturate(150%);box-shadow:0 4px 12px rgba(0,0,0,.08)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Frosted Workstation",
+    "overview": "Every surface in this system is a pane you see through. Nothing is painted on; everything is a translucent sheet of frosted glass suspended over a field that is quietly alive underneath it. The wallpaper is not a backdrop — on capable hardware it is a running WebGL fluid simulation that reacts to the cursor, and on everything else it steps down to the same three-stop gradient rendered statically. Chrome floats above that field at blur(20px) saturate(180%), thick enough to read against but thin enough that the movement below never fully disappears.\n\nThe temperament is weightless, atmospheric, and fluid. Panels drift in rather than snap, edges stay indistinct, and depth is carried by blur and diffuse shadow rather than by drawn lines. The palette is almost entirely colourless — white, mist, charcoal, and cool grey — so that the single chromatic voice, Glacier Blue, reads as precision wherever it lands.\n\nThis is an operating system, not a page. The design language exists to make a browser tab feel like a machine you booted: a menu bar, a dock, draggable windows, traffic lights, a BIOS screen, a springboard. That framing is a fixed product commitment, so the visual system's job is to make the illusion hold — which means restraint everywhere the OS metaphor isn't speaking, and total conviction everywhere it is.",
+    "keyCharacteristics": [
+      "Translucent glass over a living fluid field; blur(20px) saturate(180%) is the house material",
+      "One chromatic accent (Glacier Blue) against an otherwise neutral palette",
+      "Depth by blur and diffuse shadow, never by a hard outline",
+      "Dual shell: macOS-like windows on desktop, iOS springboard on mobile, from one content source",
+      "Motion is soft and physical — things drift, scale, and glow rather than cutting",
+      "Fully token-driven so light and dark are one system, not two designs"
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Glacier Blue is the only chromatic colour in the system. If a new element needs to 'stand out with colour', the answer is almost always more contrast or more space, not a second hue. The traffic lights are the sole licensed exception, and only because they are quoting macOS.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Cut Accent Rule",
+        "body": "Never use --accent as text on a light background, and never place white on it. Use --accent-text for text/icons and --accent-solid for fills behind white. These collapse to the same value in dark mode, so writing the token — never the hex — is what keeps both themes correct.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tertiary Ceiling Rule",
+        "body": "--text-tertiary is for hints and large text only. It does not meet body-copy contrast in light mode and must never carry a sentence the user is expected to read.",
+        "section": "colors"
+      },
+      {
+        "name": "The Small-Type System Rule",
+        "body": "This system is built at 0.875rem body and 0.75rem label — deliberately compact, because it is imitating OS chrome, not a reading page. Do not scale a new component up to web-marketing sizes; it will immediately read as foreign.",
+        "section": "typography"
+      },
+      {
+        "name": "The Display-Once Rule",
+        "body": "Stanley is an identity mark, not a heading font. One display element per screen. Section headings use Geist Sans at Headline or Title, never Stanley.",
+        "section": "typography"
+      },
+      {
+        "name": "The Twelve-Language Rule",
+        "body": "Every type decision must survive Arabic (RTL), Japanese, Korean, Chinese, and long-compound German. No fixed-width text containers, no white-space: nowrap on translated strings, no layouts that assume English word length.",
+        "section": "typography"
+      },
+      {
+        "name": "The Depth Never Draws A Line Rule",
+        "body": "Separation comes from blur, fill, and diffuse shadow. A hard 1px outline is never the primary separator. Hairlines exist only to support a shadow, never to replace one — which is why every border in this system is an alpha value and never a solid grey.",
+        "section": "elevation"
+      },
+      {
+        "name": "The House Blur Rule",
+        "body": "Chrome blurs at blur(20px) saturate(180%); secondary and nested surfaces drop to blur(15px) saturate(150%). Two levels, no improvising a third.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Glow Belongs To The Accent Rule",
+        "body": "Coloured shadows are always Glacier Blue at low alpha. A shadow tinted any other hue does not exist in this system.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do write tokens, never hex. var(--accent-text) and var(--accent-solid) exist precisely because the correct value differs between themes; hardcoding either breaks one of them.",
+      "Do use blur(20px) saturate(180%) for chrome and blur(15px) saturate(150%) for nested overlays. Those are the only two blur levels in the system.",
+      "Do reach for 16px radius on any new panel, card, icon tile, or dock element. It is the signature that unifies the desktop and mobile shells.",
+      "Do give every new surface a diffuse resting shadow before considering a border.",
+      "Do keep new components at body 0.875rem / label 0.75rem. This is OS chrome, not a marketing page.",
+      "Do provide a non-gestural equivalent for every drag, swipe, or hover-only affordance — keyboard, button, or command palette. The OS metaphor's biggest accessibility risk is interaction that only exists as a gesture.",
+      "Do honour prefers-reduced-motion and let deviceCapability.ts step the fluid background down. The static gradient fallback uses the identical three stops, so the atmosphere survives the downgrade.",
+      "Do test every layout in Arabic and Japanese before calling it finished."
+    ],
+    "donts": [
+      "Don't introduce a second chromatic colour. If something needs to stand out, use contrast, scale, or space — not a new hue.",
+      "Don't separate surfaces with a hard, solid border. Every border in this system is an alpha value supporting a shadow, never a drawn line doing the job alone.",
+      "Don't put white text on --accent, or --accent text on a light background. Use --accent-solid and --accent-text respectively.",
+      "Don't branch on theme === 'dark' in a component. The one licensed exception is Desktop.tsx, where the fluid simulation needs literal colour values as JS props for a WebGL canvas; everything reachable from CSS uses tokens.",
+      "Don't use --text-tertiary for body copy. It is a hint colour and fails contrast in light mode.",
+      "Don't use Stanley for section headings. It is an identity mark, used once per screen at most.",
+      "Don't tint a shadow any colour but Glacier Blue.",
+      "Don't drift toward the generic AI-SaaS landing page — purple-blue gradient heroes, bento feature grids, gradient text, or 'trusted by' logo walls. This is a confirmed anti-reference, and the portfolio has no logos or testimonials to put in such a wall.",
+      "Don't drift toward flat corporate Material — opaque hard-edged cards, solid fills, and heavy drop shadows in place of translucency.",
+      "Don't drift toward maximalist neobrutalism — thick black borders, hard offset shadows, clashing saturated colour.",
+      "Don't drift toward skeuomorphic OS pastiche — fake wood, brushed metal, or glossy Aqua buttons. This system quotes the structure of an operating system, never its dated textures."
+    ]
+  }
+}
