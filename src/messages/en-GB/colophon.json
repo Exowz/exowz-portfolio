@@ -8,7 +8,7 @@
     },
     {
       "heading": "Stack",
-      "body": "Built with Next.js 16 (App Router, Turbopack, React 19), TypeScript and Tailwind CSS. It's fully bilingual through next-intl, with identical content in English and French."
+      "body": "Built with Next.js 16 (App Router, Turbopack, React 19), TypeScript and Tailwind CSS. It speaks twelve languages through next-intl. English and French are mine, and my Spanish is somewhere around B2 — the rest are there so the site can reach people I'd otherwise miss."
     },
     {
       "heading": "Design & type",

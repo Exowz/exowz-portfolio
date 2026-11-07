@@ -8,7 +8,7 @@
     },
     {
       "heading": "기술 스택",
-      "body": "Next.js 16(App Router, Turbopack, React 19), TypeScript, Tailwind CSS로 구축되었습니다. next-intl을 통해 완벽하게 이중 언어를 지원하며, 영어와 프랑스어로 동일한 콘텐츠를 제공합니다."
+      "body": "Next.js 16(App Router, Turbopack, React 19), TypeScript, Tailwind CSS로 구축되었습니다. next-intl을 통해 12개 언어를 지원합니다. 영어와 프랑스어는 제 언어이고 스페인어는 B2 정도이며, 나머지는 그렇지 않았다면 닿지 못했을 분들에게 다가가기 위한 것입니다."
     },
     {
       "heading": "디자인 및 타이포그래피",

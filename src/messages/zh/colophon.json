@@ -8,7 +8,7 @@
     },
     {
       "heading": "技术栈",
-      "body": "使用 Next.js 16（App Router, Turbopack, React 19）、TypeScript 和 Tailwind CSS 构建。通过 next-intl 实现完全双语，英语和法语内容完全一致。"
+      "body": "使用 Next.js 16（App Router, Turbopack, React 19）、TypeScript 和 Tailwind CSS 构建。借助 next-intl，网站支持十二种语言。英语和法语是我自己的语言，西班牙语大约在 B2 水平；其余语言是为了让网站触及我原本无法接触到的人。"
     },
     {
       "heading": "设计与字体",
