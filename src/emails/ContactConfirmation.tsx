@@ -23,7 +23,7 @@ export function ContactConfirmation({ name, message }: Props) {
             </Section>
             <Text style={{ color: '#666', lineHeight: 1.6 }}>
               I typically respond within 24-48 hours. If urgent, reach me at{' '}
-              <Link href="mailto:ewan@mke-kapoor.com" style={{ color: '#64b5f6' }}>ewan@mke-kapoor.com</Link>.
+              <Link href="mailto:contact@mke-kapoor.com" style={{ color: '#64b5f6' }}>contact@mke-kapoor.com</Link>.
             </Text>
             <Text style={{ color: '#666', lineHeight: 1.6 }}>Best regards,<br />Ewan Kapoor</Text>
             <Hr style={{ borderColor: '#e0e0e0' }} />
