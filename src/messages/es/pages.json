@@ -3,10 +3,10 @@
     "title": "Sobre mí",
     "description": "Conoce más sobre mi trayectoria y lo que hago",
     "name": "Mathew Kristoffer Ewan KAPOOR",
-    "jobTitle": "Estudiante de Datos e IA · MSc Albert School × Mines de Paris",
+    "jobTitle": "Jefe de proyecto digital, Automatización e IA · Prosper Conseil",
     "pitch": "Construyo herramientas de datos e IA con las que la gente realmente pueda decidir, cerrando la brecha entre 'funciona técnicamente' y 'es genuinamente útil'. Una ambición recorre todo lo que hago: contribuir a la soberanía digital europea.",
     "story": {
-      "intro1": "¡Hola! Mi nombre es Mathew Kristoffer Ewan KAPOOR, pero normalmente me llaman Ewan. Tengo 24 años, soy de Mauricio y vivo en París. Estoy terminando mi Grado en Datos e IA en ECE París, y este septiembre comienzo el MSc Data & AI for Finance, una doble titulación entre Albert School y Mines de Paris - PSL, como aprendiz en modalidad de formación dual.",
+      "intro1": "¡Hola! Mi nombre es Mathew Kristoffer Ewan KAPOOR, pero normalmente me llaman Ewan. Tengo 24 años, soy de Mauricio y vivo en París. Tras mi Grado en Datos e IA en ECE París, ahora curso el MSc Data & AI for Finance, una titulación conjunta entre Albert School y Mines de Paris - PSL, en formación dual en Prosper Conseil.",
       "intro2": "Voy a contarte mi historia. Porque más allá del desarrollador que soy, más allá de este portafolio, hay una persona real, llena de sueños y ambición.",
       "origins1": "Mi historia comienza en marzo de 2002, en un pequeño paraíso en el Océano Índico: Mauricio. Crecí rodeado de padres amorosos que todavía me apoyan hoy. Mi vida estuvo marcada por la playa, la familia, las deliciosas comidas de mi madre y los deportes. Una vida sencilla, pero feliz.",
       "family": "Mis padres me lo enseñaron todo. Mi madre, ama de casa, me transmitió el arte de la organización y despertó mi pasión por la cocina (¡que ahora es uno de mis pasatiempos favoritos!). Mi padre, ingeniero mecánico en una central térmica, fue mi primera inspiración. Me dio el gusto por la ciencia, los cálculos y siempre admiró a Francia. Él fue quien me inscribió en una escuela francesa, transmitiéndome su amor por este país, su cultura y su historia.",
@@ -19,18 +19,18 @@
       "revelation": "Entendí que no era la informática lo que no me gustaba, sino la forma en que me la enseñaban en la preparatoria. En el Grado, todo se basaba en casos prácticos, proyectos innovadores. Mi pasión dormida se despertó de repente.",
       "webdev": "El desarrollo web me fascinó primero. Me permitió expresar mi creatividad y ser dueño de un proyecto de la A a la Z. Soy un gran admirador de Apple, de su capacidad para crear productos que son innovadores, potentes, útiles y hermosos a la vez, y es una filosofía que aplico a todo lo que construyo.",
       "dataAI": "Luego, una nueva materia lo cambió todo: Datos e IA. Y me di cuenta de que mi desvío era en realidad una ventaja: saber cómo lanzar una aplicación completa significa que no solo entreno un modelo, sino que sé cómo exponerlo a través de una API, conectarlo a un back-end y ponerlo frente a un usuario real. El desarrollo y los datos dejaron de ser dos caminos y se convirtieron en uno solo.",
-      "building": "Desde entonces, lo he puesto en práctica. En Purecontrol trabajo en aprendizaje automático de producción real, pipelines ETL, detección de anomalías para fugas de agua, pronóstico en series temporales de IoT. Por mi cuenta he lanzado RiskLens, una plataforma de riesgo cuantitativo donde una capa de caché redujo los tiempos de respuesta de 2.8s a 45ms; ThoraxAI, un clasificador de radiografías de tórax que alcanza 0.971 AUC con predicciones explicables; una herramienta RAG que escribe sus propios estudios de caso; y este mismo portafolio. Incluso construí Career Agent, una herramienta que redacta mis CV y cartas de presentación personalizados.",
+      "building": "Desde entonces, lo he puesto en práctica. En Purecontrol trabajé en aprendizaje automático en producción real: pipelines ETL, detección de anomalías para fugas de agua, pronóstico en series temporales de IoT. Hoy, en Prosper Conseil, una firma independiente de asesoría patrimonial, dirijo proyectos de automatización e IA para mejorar sus herramientas internas. Por mi cuenta he lanzado RiskLens, una plataforma de riesgo cuantitativo donde una capa de caché redujo los tiempos de respuesta de 2.8s a 45ms; ThoraxAI, un clasificador de radiografías de tórax que alcanza 0.971 AUC con predicciones explicables; una herramienta RAG que escribe sus propios estudios de caso; y este mismo portafolio. Incluso construí Career Agent, una herramienta que redacta mis CV y cartas de presentación personalizados.",
       "philosophy": "Si hay un hilo conductor en todo esto, es este: la distancia entre 'funciona técnicamente' y 'alguien puede usarlo para decidir'. Un modelo que se ejecuta una vez en un notebook es un prototipo; un modelo que se ejecuta limpiamente en cada actualización de datos, sin intervención, es un producto. Un panel que nadie abre es un proyecto fallido. Esa distancia es la que quiero cerrar, cada vez.",
       "sovereignty1": "También comprendí la importancia de nuestros datos, el oro de este siglo, y, con cierto temor, lo rezagada y dependiente que se ha vuelto Europa. Cuando un puñado de hiperescaladores estadounidenses controlan la mayor parte de la nube, y una sola actualización de Windows puede inmovilizar aeropuertos, es aterrador para nuestra independencia.",
       "sovereignty2": "La independencia me importa profundamente, e intento vivirla en lugar de predicarla: alojo en proveedores europeos como Scaleway e Infomaniak, y me apoyo en herramientas que respetan la privacidad. Es por eso que me estoy especializando en Datos e IA para las finanzas; la infraestructura de datos financieros de Europa es exactamente el tipo de cosa que no podemos permitirnos subcontratar. Un continente tan rico en historia y cultura no puede quedarse tan atrás.",
-      "comeback": "Y el círculo se ha cerrado de una manera que nunca esperé. Después de fracasar en las mismas clases preparatorias por las que había cruzado un océano, fui admitido en tres programas de máster y elegí el que más significaba: una doble titulación con Mines de Paris - PSL, una de las escuelas de ingeniería más prestigiosas de Francia. La 'grande école' que una vez me fue inalcanzable es exactamente hacia donde me dirijo ahora.",
-      "closing": "Esa es mi historia, ahora conoces un poco mejor quién está detrás de esta computadora y quién podría ser tu próximo colaborador. Actualmente estoy buscando una formación dual en ingeniería de datos e IA a partir de septiembre de 2026, así que no dudes en contactarme, sea cual sea el proyecto. ¡Que tengas un día maravilloso!",
+      "comeback": "Y el círculo se ha cerrado de una manera que nunca esperé. Después de fracasar en las mismas clases preparatorias por las que había cruzado un océano, fui admitido en tres programas de máster y elegí el que más significaba: una titulación conjunta con Mines de Paris - PSL, una de las escuelas de ingeniería más prestigiosas de Francia. La 'grande école' que una vez me fue inalcanzable es exactamente donde estudio ahora.",
+      "closing": "Esa es mi historia, ahora conoces un poco mejor quién está detrás de esta computadora y quién podría ser tu próximo colaborador. Sigo abierto a proyectos freelance y colaboraciones, así que no dudes en contactarme, sea cual sea el proyecto. ¡Que tengas un día maravilloso!",
       "signature": "EXOWZ"
     },
-    "displayName": "Ewan Kapoor",
+    "displayName": "Mathew Kristoffer Ewan Kapoor",
     "status": {
       "degree": "MSc Data & IA · Albert × Mines",
-      "seeking": "Buscando aprendizaje · Sept. 2026"
+      "seeking": "Aprendiz · Prosper Conseil"
     },
     "toolkit": {
       "dataAILabel": "Datos & IA",
@@ -83,7 +83,7 @@
     "location": "París, Francia",
     "submit": "Enviar mensaje",
     "subtitle": "Abierto a oportunidades y colaboraciones — suelo responder en un día.",
-    "availability": "Disponible para alternancia · Septiembre de 2026",
+    "availability": "Abierto a freelance y colaboraciones",
     "status": {
       "sending": "Enviando…",
       "success": "Mensaje enviado — ¡gracias! Te responderé pronto.",

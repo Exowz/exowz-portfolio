@@ -10,7 +10,7 @@ web
 
 Four audiences, **explicitly co-equal — none is primary** (confirmed by the owner when asked to rank them). The site must serve all four without collapsing into a single funnel:
 
-- **Apprenticeship recruiters and hiring managers.** Evaluating Ewan for a work-study (alternance) contract tied to the MSc Data & AI for Finance. They arrive with limited time and need credibility, evidence, and a way to act.
+- **Apprenticeship recruiters and hiring managers.** Evaluating Ewan for a work-study (alternance) contract tied to the MSc Data & AI for Finance. They arrive with limited time and need credibility, evidence, and a way to act. *(Update, November 2026: the apprenticeship was secured at Prosper Conseil in September 2026. Whether this audience now means future employers rather than apprenticeship recruiters is an open question for the owner; the four-audience model itself is unchanged.)*
 - **Freelance clients.** Prospects assessing him for paid web and automation work. They need proof of shipped, live client projects and a clear route to contact.
 - **Engineering peers and the wider community.** Developers who found a repository, a project, or the site itself. They judge on craft and depth, and reward exploration.
 - **Academic and MSc network.** Faculty, programme contacts, and potential research collaborators at Albert School × Mines Paris-PSL and ECE Paris.
@@ -23,7 +23,7 @@ The personal portfolio of **Ewan Kapoor** — a working demonstration that he ca
 
 The site is simultaneously the argument and the evidence: rather than describing craft, it *is* the artifact being evaluated. Success is a visitor from any of the four audiences leaving convinced enough to act — an interview, a project enquiry, a follow, or a collaboration.
 
-Immediate objective (confirmed August 2026, **still searching**): landing a work-study apprenticeship starting September 2026.
+Immediate objective: **achieved.** The work-study apprenticeship was secured at **Prosper Conseil** (Digital Project Manager — Automation & AI) and started in September 2026, alongside the MSc. The public status is now "open to freelance projects and collaborations".
 
 ## Positioning
 
@@ -68,7 +68,7 @@ The second differentiator is the substance behind it: a genuine Data & AI track 
 
 ## Brand Commitments
 
-- **Name.** Full legal name is **Mathew Kristoffer Ewan Kapoor**. He goes by **Ewan**; **Exowz** is his nickname and online handle. Conversational and personal surfaces use "Ewan"; formal documents may carry the full name; "Exowz" is the handle. *"Mathew Kapoor" as a standalone public byline is not how he presents himself* — the README and SEO metadata currently use it and are out of date.
+- **Name.** Full legal name is **Mathew Kristoffer Ewan Kapoor**. He goes by **Ewan**; **Exowz** is his nickname and online handle. Conversational and personal surfaces use "Ewan"; displayed names (SEO titles and descriptions, bylines, author blocks, the About display name) use the **full name**, which he prefers; "Exowz" is the handle. *"Mathew Kapoor" as a standalone public byline is not how he presents himself* and must not be used.
 - **The OS metaphor is a fixed commitment.** Confirmed directly: *"I love the OS metaphor and I do not wish to change it."* No future work may abandon or dilute it. It is the differentiator, not an implementation detail.
 - **Hand-built is the point.** No templates, no page builders. Every window, gesture, and animation is hand-coded, and the Colophon says so publicly. Work that undermines this claim damages the core argument.
 - **Published personal principles** (site content, in `principles.json`, and genuine convictions rather than marketing): useful *and* beautiful (an explicit Apple influence — power and pleasure, never one at the cost of the other); European digital sovereignty; own your data (minimal tracking, clear purpose, EU-friendly hosting); build it end to end; always learning.
@@ -79,8 +79,8 @@ The second differentiator is the substance behind it: a genuine Data & AI track 
 
 **Real and verifiable — use this instead of inventing anything**
 
-- **Employment:** Purecontrol (Rennes) — AI Engineer, Data Science intern, Apr–Sep 2026: ML forecasting on IoT time series in production, a water-leak anomaly-detection algorithm, ETL pipelines into production PostgreSQL. Freelance full-stack developer since Jul 2025. Body Iron Guyane, Jul–Sep 2025. REM Cutting Edge Nutrition Ltd (Mauritius), 2021–2022, e-commerce & operations manager.
-- **Education:** final-year BSc Data & AI at ECE Paris; admitted to MSc Data & AI for Finance (Albert School × Mines Paris-PSL); ECE prep, CPGE at Lycée Pothier, Liora diploma from DataScientest. Institution logos and credential badges are present as assets.
+- **Employment:** Prosper Conseil (independent wealth-management advisory firm) — Digital Project Manager, Automation & AI, work-study apprenticeship since September 2026: internal-tool improvement projects, n8n/API/Python automations, AI assistants. Purecontrol (Rennes) — AI Engineer, Data Science intern, Apr–Aug 2026: ML forecasting on IoT time series in production, a water-leak anomaly-detection algorithm, ETL pipelines into production PostgreSQL. Freelance full-stack developer since Jul 2025. Body Iron Guyane, Jul–Sep 2025. REM Cutting Edge Nutrition Ltd (Mauritius), 2021–2022, e-commerce & operations manager.
+- **Education:** MSc Data & AI for Finance (Albert School × Mines Paris-PSL), in progress since September 2026 (work-study); BSc Data & AI at ECE Paris (2024–2026, completed); ECE prep, CPGE at Lycée Pothier, Liora diploma from DataScientest. Institution logos and credential badges are present as assets.
 - **18 real projects** with genuine GitHub repositories (`src/data/projects.ts`), including RiskLens, ThoraxAI, Blue Gold Analytics, ReviewAI Platform, and the Purecontrol ML technical test.
 - **Two publicly live demos:** `thoraxai-exowz.streamlit.app` and `shiatsu-guyane.com` (a real, shipped multilingual client site).
 - **Contact facts:** contact@mke-kapoor.com (public; the CV uses ewan@mke-kapoor.com) · Paris (75017) · remote or on-site · mke-kapoor.com · linkedin.com/in/mke-kapoor · github.com/Exowz.

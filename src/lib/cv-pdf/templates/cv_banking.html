@@ -134,7 +134,7 @@
     {%- for b in contact_bits %}{{ b }}{% if not loop.last %}<span class="sep">|</span>{% endif %}{% endfor -%}
   </div>
   {% if objective or target %}
-  <div class="objective">{{ objective | default('À la recherche d\'une alternance en Data & IA à partir de septembre 2026.' if fr else 'Seeking a Data & AI work-study placement starting September 2026.', true) }}</div>
+  <div class="objective">{{ objective | default('Alternant Data & IA chez Prosper Conseil.' if fr else 'Data & AI apprentice at Prosper Conseil.', true) }}</div>
   {% endif %}
 
   <!-- ── Formation ──────────────────────────────────────────────────── -->

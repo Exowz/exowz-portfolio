@@ -4,7 +4,7 @@
 
 ### _A portfolio you explore like an operating system_
 
-<p><em>The personal site of Ewan Kapoor (Exowz): Data, AI, and the products built around them</em></p>
+<p><em>The personal site of Mathew Kristoffer Ewan Kapoor (Exowz): Data, AI, and the products built around them</em></p>
 
 ![Status](https://img.shields.io/badge/status-live-success?style=flat)
 ![Locales](https://img.shields.io/badge/locales-12-blue?style=flat)
@@ -463,8 +463,9 @@ They answer different questions. Reduced motion is about what the user wants. Ca
 ## Author
 
 - **Mathew Kristoffer Ewan Kapoor** (Ewan · Exowz)
+  - MSc Data & AI for Finance, Albert School × Mines Paris-PSL (2026–2028)
+  - Digital Project Manager, Automation & AI, at Prosper Conseil (work-study)
   - BSc Data & AI, ECE Paris
-  - Admitted to the MSc Data & AI for Finance, Albert School × Mines Paris-PSL
   - Website: [mke-kapoor.com](https://mke-kapoor.com)
   - Email: [contact@mke-kapoor.com](mailto:contact@mke-kapoor.com)
   - LinkedIn: [linkedin.com/in/mke-kapoor](https://linkedin.com/in/mke-kapoor)

@@ -3,10 +3,10 @@
     "title": "Über mich",
     "description": "Erfahren Sie mehr über meinen Weg und das, was ich tue",
     "name": "Mathew Kristoffer Ewan KAPOOR",
-    "jobTitle": "Student für Daten & KI · MSc Albert School × Mines de Paris",
+    "jobTitle": "Digital-Projektmanager Automatisierung & KI · Prosper Conseil",
     "pitch": "Ich baue Daten- und KI-Tools, mit denen Menschen tatsächlich Entscheidungen treffen können, und schließe die Lücke zwischen 'es funktioniert technisch' und 'es ist wirklich nützlich'. Ein Ziel zieht sich durch alles, was ich tue: ein Beitrag zur europäischen digitalen Souveränität.",
     "story": {
-      "intro1": "Hallo! Mein Name ist Mathew Kristoffer Ewan KAPOOR, aber ich werde meistens Ewan genannt. Ich bin 24, komme aus Mauritius und lebe in Paris. Ich schließe gerade meinen Bachelor in Daten & KI an der ECE Paris ab und beginne diesen September den MSc Data & AI for Finance, einen gemeinsamen Studiengang der Albert School und Mines de Paris - PSL, im Rahmen eines dualen Studiums.",
+      "intro1": "Hallo! Mein Name ist Mathew Kristoffer Ewan KAPOOR, aber ich werde meistens Ewan genannt. Ich bin 24, komme aus Mauritius und lebe in Paris. Nach meinem Bachelor in Daten & KI an der ECE Paris studiere ich jetzt im MSc Data & AI for Finance, einem gemeinsamen Studiengang der Albert School und Mines de Paris - PSL, dual bei Prosper Conseil.",
       "intro2": "Ich werde Ihnen meine Geschichte erzählen. Denn hinter dem Entwickler, der ich bin, hinter diesem Portfolio, steckt ein echter Mensch, voller Träume und Ambitionen.",
       "origins1": "Meine Geschichte beginnt im März 2002 auf einem kleinen Paradies im Indischen Ozean: Mauritius. Ich bin behütet bei liebevollen Eltern aufgewachsen, die mich bis heute unterstützen. Mein Leben war geprägt vom Strand, der Familie, dem köstlichen Essen meiner Mutter und Sport. Ein einfaches, aber glückliches Leben.",
       "family": "Meine Eltern haben mir alles beigebracht. Meine Mutter, eine Hausfrau, hat mir die Kunst der Organisation vermittelt und meine Leidenschaft für das Kochen geweckt (was heute eines meiner Lieblingshobbys ist!). Mein Vater, Maschinenbauingenieur in einem Wärmekraftwerk, war meine erste Inspiration. Er gab mir die Vorliebe für Naturwissenschaften und Berechnungen mit und bewunderte Frankreich schon immer. Er war es auch, der mich an einer französischen Schule anmeldete und mir seine Liebe zu diesem Land, seiner Kultur und seiner Geschichte weitergab.",
@@ -19,18 +19,18 @@
       "revelation": "Ich begriff, dass es nicht die Informatik war, die ich nicht mochte, sondern die Art und Weise, wie sie mir in der Vorbereitungsschule beigebracht wurde. Im Bachelor-Studiengang basierte alles auf praktischen Fällen und innovativen Projekten. Meine schlummernde Leidenschaft erwachte schlagartig.",
       "webdev": "Zuerst faszinierte mich die Webentwicklung. Sie ermöglichte es mir, meine Kreativität auszudrücken und ein Projekt von A bis Z zu verantworten. Ich bin ein großer Bewunderer von Apple und ihrer Fähigkeit, Produkte zu schaffen, die innovativ, leistungsstark, nützlich und gleichzeitig schön sind – eine Philosophie, die ich in alles einfließen lasse, was ich baue.",
       "dataAI": "Dann änderte ein neues Fach alles: Daten und KI. Und mir wurde klar, dass mein Umweg eigentlich ein Vorteil war: Zu wissen, wie man eine vollständige Anwendung veröffentlicht, bedeutet, dass ich nicht nur ein Modell trainiere, sondern weiß, wie ich es über eine API bereitstelle, mit einem Backend verbinde und einem echten Benutzer präsentiere. Entwicklung und Daten waren nicht mehr zwei Pfade, sondern wurden zu einem.",
-      "building": "Seitdem habe ich das in die Praxis umgesetzt. Bei Purecontrol arbeite ich an echtem Machine Learning in der Produktion, ETL-Pipelines, Anomalieerkennung für Wasserlecks und Vorhersagen auf IoT-Zeitreihen. Auf eigene Faust habe ich RiskLens veröffentlicht, eine quantitative Risikoplattform, bei der eine Caching-Ebene die Antwortzeiten von 2,8 s auf 45 ms senkte; ThoraxAI, ein Klassifikator für Thorax-Röntgenbilder, der 0,971 AUC mit erklärbaren Vorhersagen erreicht; ein RAG-Tool, das seine eigenen Fallstudien schreibt; und dieses Portfolio hier. Ich habe sogar Career Agent gebaut, ein Tool, das meine maßgeschneiderten Lebensläufe und Anschreiben erstellt.",
+      "building": "Seitdem habe ich das in die Praxis umgesetzt. Bei Purecontrol habe ich an echtem Machine Learning in der Produktion gearbeitet: ETL-Pipelines, Anomalieerkennung für Wasserlecks und Vorhersagen auf IoT-Zeitreihen. Heute leite ich bei Prosper Conseil, einer unabhängigen Vermögensberatung, Automatisierungs- und KI-Projekte, die die internen Tools des Unternehmens verbessern. Auf eigene Faust habe ich RiskLens veröffentlicht, eine quantitative Risikoplattform, bei der eine Caching-Ebene die Antwortzeiten von 2,8 s auf 45 ms senkte; ThoraxAI, ein Klassifikator für Thorax-Röntgenbilder, der 0,971 AUC mit erklärbaren Vorhersagen erreicht; ein RAG-Tool, das seine eigenen Fallstudien schreibt; und dieses Portfolio hier. Ich habe sogar Career Agent gebaut, ein Tool, das meine maßgeschneiderten Lebensläufe und Anschreiben erstellt.",
       "philosophy": "Wenn es einen roten Faden durch all das gibt, dann diesen: die Distanz zwischen 'es funktioniert technisch' und 'jemand kann es zur Entscheidungsfindung nutzen'. Ein Modell, das einmal in einem Notebook läuft, ist ein Prototyp; ein Modell, das bei jeder Datenaktualisierung sauber und unangetastet läuft, ist ein Produkt. Ein Dashboard, das niemand öffnet, ist ein gescheitertes Projekt. Diese Distanz möchte ich schließen, jedes einzelne Mal.",
       "sovereignty1": "Ich habe auch begriffen, wie wichtig unsere Daten sind – das Gold dieses Jahrhunderts – und mit einigem Erschrecken festgestellt, wie weit Europa zurückgefallen und wie abhängig es geworden ist. Wenn eine Handvoll US-Hyperscaler den Großteil der Cloud betreiben und ein einziges Windows-Update Flughäfen lahmlegen kann, ist das beängstigend für unsere Unabhängigkeit.",
       "sovereignty2": "Unabhängigkeit ist mir sehr wichtig, und ich versuche sie zu leben, anstatt sie nur zu predigen: Ich hoste bei europäischen Anbietern wie Scaleway und Infomaniak und setze auf datenschutzfreundliche Tools. Deshalb spezialisiere ich mich auf Daten & KI für das Finanzwesen – die europäische Finanzdateninfrastruktur ist genau die Art von Dingen, die wir uns nicht leisten können auszulagern. Ein Kontinent mit einer so reichen Geschichte und Kultur darf nicht so weit zurückbleiben.",
-      "comeback": "Und der Kreis hat sich auf eine Weise geschlossen, die ich nie erwartet hätte. Nachdem ich genau an den Vorbereitungsklassen gescheitert war, für die ich einen Ozean überquert hatte, wurde ich für drei Masterstudiengänge zugelassen. Ich entschied mich für den, der mir am meisten bedeutete: ein gemeinsamer Abschluss mit Mines de Paris - PSL, einer der renommiertesten Ingenieurschulen Frankreichs. Die Grande École, an der ich einst gescheitert war, ist genau das Ziel, auf das ich jetzt zusteuere.",
-      "closing": "Das ist meine Geschichte. Nun wissen Sie ein wenig besser, wer hinter diesem Computer steckt und wer Ihr nächster Partner sein könnte. Ich suche derzeit nach einem dualen Studium im Bereich Data Engineering und KI ab September 2026, also zögern Sie nicht, mich zu kontaktieren – egal, um welches Projekt es geht. Ich wünsche Ihnen einen wundervollen Tag!",
+      "comeback": "Und der Kreis hat sich auf eine Weise geschlossen, die ich nie erwartet hätte. Nachdem ich genau an den Vorbereitungsklassen gescheitert war, für die ich einen Ozean überquert hatte, wurde ich für drei Masterstudiengänge zugelassen. Ich entschied mich für den, der mir am meisten bedeutete: ein gemeinsamer Abschluss mit Mines de Paris - PSL, einer der renommiertesten Ingenieurschulen Frankreichs. Die Grande École, an der ich einst gescheitert war, ist genau der Ort, an dem ich jetzt studiere.",
+      "closing": "Das ist meine Geschichte. Nun wissen Sie ein wenig besser, wer hinter diesem Computer steckt und wer Ihr nächster Partner sein könnte. Für Freelance-Projekte und Kooperationen bin ich weiterhin offen, also zögern Sie nicht, mich zu kontaktieren – egal, um welches Projekt es geht. Ich wünsche Ihnen einen wundervollen Tag!",
       "signature": "EXOWZ"
     },
-    "displayName": "Ewan Kapoor",
+    "displayName": "Mathew Kristoffer Ewan Kapoor",
     "status": {
       "degree": "MSc Data & AI · Albert × Mines",
-      "seeking": "Suche duale Ausbildung · Sept. 2026"
+      "seeking": "Dualer Student · Prosper Conseil"
     },
     "toolkit": {
       "dataAILabel": "Daten & KI",
@@ -83,7 +83,7 @@
     "location": "Paris, Frankreich",
     "submit": "Nachricht senden",
     "subtitle": "Offen für Möglichkeiten und Zusammenarbeit — ich antworte meist innerhalb eines Tages.",
-    "availability": "Offen für duales Studium · September 2026",
+    "availability": "Offen für Freelance & Kooperationen",
     "status": {
       "sending": "Senden…",
       "success": "Nachricht gesendet — danke! Ich melde mich bald.",

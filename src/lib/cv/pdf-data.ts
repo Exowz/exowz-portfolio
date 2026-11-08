@@ -9,11 +9,11 @@ export interface PdfProject {
 const PDF_META = {
   fr: {
     target:
-      'Recherche une alternance en Data Science / Data Engineering / IA à partir de septembre 2026, en lien avec mon MSc Data & AI for Finance. Ouvert aux secteurs finance, industrie et tech.',
-    program: 'Admis : MSc Mines de Paris - PSL × Albert School',
+      'Chef de projet digital Automatisation & IA en alternance chez Prosper Conseil depuis septembre 2026, en parallèle de mon MSc Data & AI for Finance.',
+    program: 'MSc Mines de Paris - PSL × Albert School',
     rhythm: '4 jours entreprise / 1 jour école',
-    duration: '12 à 24 mois',
-    start_date: 'Septembre 2026',
+    duration: '2026 — 2028',
+    start_date: 'Depuis sept. 2026',
     soft_skills: [
       'Autonomie',
       'Adaptabilité',
@@ -27,11 +27,11 @@ const PDF_META = {
   },
   en: {
     target:
-      'Seeking a work-study (alternance) role in Data Science / Data Engineering / AI from September 2026, aligned with my MSc Data & AI for Finance. Open to finance, industry and tech.',
-    program: 'Admitted: MSc Mines de Paris - PSL × Albert School',
+      'Apprentice Digital Project Manager, Automation & AI, at Prosper Conseil since September 2026, alongside my MSc Data & AI for Finance.',
+    program: 'MSc Mines de Paris - PSL × Albert School',
     rhythm: '4 days company / 1 day school',
-    duration: '12 to 24 months',
-    start_date: 'September 2026',
+    duration: '2026 — 2028',
+    start_date: 'Since Sept. 2026',
     soft_skills: ['Autonomy', 'Adaptability', 'Analytical mindset', 'Versatility', 'Teamwork', 'Reliability', 'Agile method'],
     interests: 'Fitness & Kickboxing, Guitar, Literature, Nutrition, Cooking',
   },

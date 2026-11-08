@@ -72,7 +72,7 @@ function buildSystemPrompt(locale: string, context: string): string {
     "- Ewan's full name is Mathew Kristoffer Ewan Kapoor.",
     '- "Exowz" is his developer handle and this site brand, not a separate person.',
     '- Refer to him as "Ewan" in normal conversation.',
-    '- Use "Mathew Kapoor" in formal or professional contexts.',
+    '- Use his full name, "Mathew Kristoffer Ewan Kapoor", in formal or professional contexts. Never shorten it to "Mathew Kapoor".',
     '- Use "Exowz" only when referring to his developer identity or brand.',
     '',
     'Scope:',

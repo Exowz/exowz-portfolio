@@ -69,18 +69,30 @@ const contact: CvContact = {
 };
 
 const en: CvContent = {
-  title: 'Data & AI Student · Admitted to MSc Data & AI for Finance (Albert × Mines Paris-PSL)',
+  title: 'MSc Data & AI for Finance (Albert × Mines Paris-PSL) · Apprentice at Prosper Conseil',
   objective:
-    'Data & AI engineer building data pipelines and ML products end to end — seeking a work-study apprenticeship from September 2026.',
+    'Data & AI engineer building data pipelines, automation and ML products end to end — now Digital Project Manager, Automation & AI, at Prosper Conseil.',
   summary:
-    'Final-year BSc Data & AI student at ECE Paris, admitted to the MSc Data & AI for Finance (Albert School × Mines Paris-PSL). I build end-to-end data solutions, from data engineering to ML models and generative AI, always focused on making data useful for decisions.',
+    'MSc Data & AI for Finance student (Albert School × Mines Paris-PSL) on a work-study contract at Prosper Conseil, after a BSc in Data & AI at ECE Paris. I build end-to-end data solutions, from data engineering to ML models and generative AI, always focused on making data useful for decisions.',
   contact: { ...contact, availability: 'Remote or on-site' },
   experience: [
+    {
+      id: 'prosper-conseil',
+      company: 'Prosper Conseil',
+      role: 'Digital Project Manager — Automation & AI (Apprentice)',
+      period: 'Since Sep. 2026',
+      location: 'Paris, France — Remote',
+      highlights: [
+        'Projects to improve internal tools: benchmarking, rolling out new solutions and coordinating with vendors.',
+        'Automations and AI assistants built with n8n, APIs and Python, including the deployment stack they need.',
+      ],
+      detail: `Prosper Conseil is an independent wealth-management advisory firm. Since September 2026 I've been its Digital Project Manager for automation and AI, on a work-study contract alongside my MSc, working directly with the head of IT and the business teams. I run projects to improve internal tools and processes: benchmarking and rolling out new solutions, building workflows with n8n and APIs, bringing AI into day-to-day work and creating internal assistants. It's also a direct line into finance, the field my MSc is about.`,
+    },
     {
       id: 'purecontrol',
       company: 'Purecontrol',
       role: 'AI Engineer — Data Science (Intern)',
-      period: 'Apr. 2026 — Sep. 2026',
+      period: 'Apr. 2026 — Aug. 2026',
       location: 'Rennes, France',
       highlights: [
         'Tuning and optimization of ML forecasting models on IoT time series, integrated into a production architecture.',
@@ -99,7 +111,7 @@ const en: CvContent = {
         'Custom websites (Next.js, Node.js, SQL) and business automation via n8n.',
         'Deployment on Infomaniak VPS via Dokploy (European-sovereign approach).',
       ],
-      detail: `Since July 2025 I've worked as an independent full-stack web developer, building custom websites (Next.js, Node.js, SQL) and business-automation workflows for clients, deployed on European infrastructure (an Infomaniak VPS via Dokploy). One public example is shiatsu-guyane.fr, a multilingual site for a practitioner. It keeps my product sense sharp: I own a project from design to deployment, which is exactly what lets me take a data model all the way to a usable application.`,
+      detail: `Since July 2025 I've worked as an independent full-stack web developer, building custom websites (Next.js, Node.js, SQL) and business-automation workflows for clients, deployed on European infrastructure (an Infomaniak VPS via Dokploy). One public example is shiatsu-guyane.com, a multilingual site for a practitioner. It keeps my product sense sharp: I own a project from design to deployment, which is exactly what lets me take a data model all the way to a usable application.`,
     },
     {
       id: 'body-iron',
@@ -125,9 +137,9 @@ const en: CvContent = {
       id: 'msc-albert-mines',
       institution: 'Albert School × Mines de Paris - PSL',
       logos: ['/images/logos/mines-psl.png', '/images/logos/albert-school.png'],
-      degree: 'MSc Data & AI for Finance — Admitted (Sep. 2026 start, work-study)',
+      degree: 'MSc Data & AI for Finance — In progress (work-study)',
       period: '2026 — 2028',
-      detail: `This is the master's I start in September 2026, by work-study: an MSc in Data & AI for Finance delivered jointly by Mines de Paris - PSL, one of France's most prestigious engineering schools, and Albert School. It pairs a strong technical core (data engineering, machine learning, MLOps) with finance and business. I was admitted to three master's programmes and chose this one, both for the Mines name and because applying data and AI to finance is the direction I want.`,
+      detail: `This is the master's I started in September 2026, by work-study alongside my apprenticeship at Prosper Conseil: an MSc in Data & AI for Finance delivered jointly by Mines de Paris - PSL, one of France's most prestigious engineering schools, and Albert School. It pairs a strong technical core (data engineering, machine learning, MLOps) with finance and business. I was admitted to three master's programmes and chose this one, both for the Mines name and because applying data and AI to finance is the direction I want.`,
       badges: ['grade-master'],
     },
     {
@@ -136,7 +148,7 @@ const en: CvContent = {
       logos: ['/images/logos/ece.png'],
       degree: 'BSc in Computer Science — Data & AI specialization',
       period: '2024 — 2026',
-      detail: `ECE Paris is a French general engineering school (grande école). I'm finishing its computer-science bachelor's with a Data & AI specialisation. The teaching is heavily project-based, and that's where my interest in computer science really clicked, after a more traditional start: building real applications rather than just following lectures. It gave me my foundations in Python, data and machine learning, and most of the projects in my portfolio grew out of it.`,
+      detail: `ECE Paris is a French general engineering school (grande école). I completed its computer-science bachelor's there, with a Data & AI specialisation. The teaching is heavily project-based, and that's where my interest in computer science really clicked, after a more traditional start: building real applications rather than just following lectures. It gave me my foundations in Python, data and machine learning, and most of the projects in my portfolio grew out of it.`,
       badges: ['rncp'],
     },
     {
@@ -229,18 +241,30 @@ const en: CvContent = {
 };
 
 const fr: CvContent = {
-  title: 'Étudiant Data & IA · Admis au MSc Data & AI for Finance (Albert × Mines Paris-PSL)',
+  title: 'MSc Data & AI for Finance (Albert × Mines Paris-PSL) · Alternant chez Prosper Conseil',
   objective:
-    "Développeur Data & IA — pipelines de données et industrialisation de modèles ML de bout en bout. En recherche d'alternance dès septembre 2026.",
+    "Développeur Data & IA — pipelines de données, automatisation et industrialisation de modèles ML de bout en bout. Chef de projet digital Automatisation & IA chez Prosper Conseil.",
   summary:
-    "Étudiant en dernière année de Bachelor Data & IA à l'ECE Paris, admis au MSc Data & AI for Finance (Albert School × Mines Paris-PSL). Je conçois des solutions data de bout en bout, de l'ingénierie des données aux modèles ML et à l'IA générative, avec le souci de rendre la donnée utile à la décision.",
+    "Étudiant en MSc Data & AI for Finance (Albert School × Mines Paris-PSL), en alternance chez Prosper Conseil, après un Bachelor Data & IA à l'ECE Paris. Je conçois des solutions data de bout en bout, de l'ingénierie des données aux modèles ML et à l'IA générative, avec le souci de rendre la donnée utile à la décision.",
   contact: { ...contact, availability: 'Télétravail ou présentiel' },
   experience: [
+    {
+      id: 'prosper-conseil',
+      company: 'Prosper Conseil',
+      role: 'Chef de projet digital — Automatisation & IA (Alternance)',
+      period: 'Depuis sept. 2026',
+      location: 'Paris, France — Télétravail',
+      highlights: [
+        "Pilotage de projets d'amélioration des outils internes : benchmark, déploiement de solutions et coordination avec les prestataires.",
+        'Automatisations et assistants métier via n8n, API, Python et IA, avec la configuration des briques de déploiement nécessaires.',
+      ],
+      detail: `Prosper Conseil est un cabinet indépendant de conseil en gestion de patrimoine. Depuis septembre 2026, j'y suis chef de projet digital Automatisation & IA, en alternance avec mon MSc, en lien direct avec le responsable informatique et les équipes métier. Je pilote des projets d'amélioration des outils et des processus internes : benchmark et déploiement de nouvelles solutions, workflows avec n8n et des API, intégration de l'IA au quotidien et création d'assistants internes. C'est aussi une porte d'entrée directe vers la finance, le domaine de mon MSc.`,
+    },
     {
       id: 'purecontrol',
       company: 'Purecontrol',
       role: 'Ingénieur IA — Data Science (Stagiaire)',
-      period: 'Avr. 2026 — Sept. 2026',
+      period: 'Avr. 2026 — Août 2026',
       location: 'Rennes, France',
       highlights: [
         'Optimisation et paramétrage de modèles ML de prévision sur séries temporelles IoT, avec intégration en architecture de production.',
@@ -259,7 +283,7 @@ const fr: CvContent = {
         'Sites web sur mesure (Next.js, Node.js, SQL) et automatisation métier via n8n.',
         'Déploiement sur VPS Infomaniak via Dokploy (approche souveraine européenne).',
       ],
-      detail: `Depuis juillet 2025, je travaille comme développeur web full-stack indépendant : sites sur mesure (Next.js, Node.js, SQL) et automatisations métier pour des clients, déployés sur une infrastructure européenne (VPS Infomaniak via Dokploy). Un exemple public est shiatsu-guyane.fr, un site multilingue pour une praticienne. Ça entretient mon sens produit : je gère un projet de la conception au déploiement, ce qui me permet justement d'amener un modèle data jusqu'à une application utilisable.`,
+      detail: `Depuis juillet 2025, je travaille comme développeur web full-stack indépendant : sites sur mesure (Next.js, Node.js, SQL) et automatisations métier pour des clients, déployés sur une infrastructure européenne (VPS Infomaniak via Dokploy). Un exemple public est shiatsu-guyane.com, un site multilingue pour une praticienne. Ça entretient mon sens produit : je gère un projet de la conception au déploiement, ce qui me permet justement d'amener un modèle data jusqu'à une application utilisable.`,
     },
     {
       id: 'body-iron',
@@ -285,9 +309,9 @@ const fr: CvContent = {
       id: 'msc-albert-mines',
       institution: 'Mines de Paris - PSL × Albert School',
       logos: ['/images/logos/mines-psl.png', '/images/logos/albert-school.png'],
-      degree: 'MSc Data & AI for Finance — Admis (rentrée sept. 2026, en alternance)',
+      degree: 'MSc Data & AI for Finance — En cours (alternance)',
       period: '2026 — 2028',
-      detail: `C'est le master que je commence en septembre 2026, en alternance : un MSc Data & AI for Finance délivré conjointement par les Mines de Paris - PSL, l'une des plus prestigieuses écoles d'ingénieurs françaises, et l'Albert School. Il associe un socle technique solide (data engineering, machine learning, MLOps) à la finance et au business. J'ai été admis dans trois masters et j'ai choisi celui-ci, pour le nom des Mines et parce qu'appliquer la data et l'IA à la finance est la direction que je veux.`,
+      detail: `C'est le master que j'ai commencé en septembre 2026, en alternance chez Prosper Conseil : un MSc Data & AI for Finance délivré conjointement par les Mines de Paris - PSL, l'une des plus prestigieuses écoles d'ingénieurs françaises, et l'Albert School. Il associe un socle technique solide (data engineering, machine learning, MLOps) à la finance et au business. J'ai été admis dans trois masters et j'ai choisi celui-ci, pour le nom des Mines et parce qu'appliquer la data et l'IA à la finance est la direction que je veux.`,
       badges: ['grade-master'],
     },
     {
@@ -297,7 +321,7 @@ const fr: CvContent = {
       degree: 'Bachelor en Informatique — Spécialisation Data & IA',
       period: '2024 — 2026',
       note: 'Cycle classique axé Data et IA',
-      detail: `ECE Paris est une grande école d'ingénieurs généraliste. J'y termine mon Bachelor en informatique, spécialisation Data & IA. L'enseignement est très orienté projets, et c'est là que mon intérêt pour l'informatique a vraiment pris, après un début plus classique : construire de vraies applications plutôt que seulement suivre des cours. Ça m'a donné mes bases en Python, data et machine learning, et la plupart des projets de mon portfolio en sont nés.`,
+      detail: `ECE Paris est une grande école d'ingénieurs généraliste. J'y ai effectué mon Bachelor en informatique, spécialisation Data & IA. L'enseignement est très orienté projets, et c'est là que mon intérêt pour l'informatique a vraiment pris, après un début plus classique : construire de vraies applications plutôt que seulement suivre des cours. Ça m'a donné mes bases en Python, data et machine learning, et la plupart des projets de mon portfolio en sont nés.`,
       badges: ['rncp'],
     },
     {
