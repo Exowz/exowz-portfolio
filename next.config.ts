@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/api/cv/pdf': ['./node_modules/@sparticuz/chromium/bin/**'],
   },
+  experimental: {
+    // Next 16 enables Turbopack's persistent dev cache (.next/dev) by default.
+    // `next dev` was crashing the whole machine while `next build` (no persistent
+    // cache) ran fine, so keep the dev cache off. Cost: slightly slower dev start-up.
+    turbopackFileSystemCacheForDev: false,
+  },
 };
 
 export default withNextIntl(nextConfig);
