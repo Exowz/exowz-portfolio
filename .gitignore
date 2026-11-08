@@ -46,3 +46,6 @@ docs/superpowers/
 
 # Superpowers brainstorm sessions
 .superpowers/
+
+# impeccable live-edit local state
+.impeccable/live/

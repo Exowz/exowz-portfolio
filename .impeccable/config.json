@@ -1,0 +1,28 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "src/lib/cv-pdf/templates/cv_print.html"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          "src/app/api/cv/pdf/route.ts"
+        ],
+        "createdAt": "2026-11-08T02:24:09.202Z",
+        "reason": "User confirmed: CV PDF route maps Helvetica Neue to bundled Arimo for the print template; outside the site design system"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "src/app/api/cv/pdf/route.ts"
+        ],
+        "createdAt": "2026-11-08T02:24:14.959Z",
+        "reason": "User confirmed: CV PDF route maps Helvetica Neue to bundled Arimo for the print template; outside the site design system"
+      }
+    ]
+  }
+}
