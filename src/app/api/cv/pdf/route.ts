@@ -82,19 +82,26 @@ export async function POST(request: NextRequest) {
 
     try {
       const page = await browser.newPage();
+      // Measure at A4 width in print media, so the fit-to-page zoom below sees the
+      // same layout Chrome prints. Measuring at the default 800px screen viewport
+      // let unbreakable blocks (cv_print's table body) spill onto page 2, which
+      // pageRanges: '1' then silently dropped.
+      await page.setViewport({ width: 794, height: 1123 });
+      await page.emulateMediaType('print');
       await page.setContent(html, { waitUntil: 'load' });
       await page.waitForNetworkIdle({ idleTime: 250, timeout: 2000 }).catch(() => {});
       await page.evaluate(() => document.fonts.ready);
       await page.evaluate(() => {
-        const a4HeightAt96Dpi = 1122.5;
+        // 2% headroom: an exact fit can still tip over at print time.
+        const fitHeight = 1122.5 * 0.98;
         const height = document.body.scrollHeight;
-        if (height > a4HeightAt96Dpi) {
-          (document.body.style as unknown as { zoom: string }).zoom = String(a4HeightAt96Dpi / height);
+        if (height > fitHeight) {
+          (document.body.style as unknown as { zoom: string }).zoom = String(fitHeight / height);
         }
       });
 
       const pdf = await page.pdf({ format: 'A4', printBackground: true, pageRanges: '1', preferCSSPageSize: true });
-      const filename = `Ewan_Kapoor_CV${label ? '_' + label.replace(/\s+/g, '_') : ''}.pdf`;
+      const filename = `MKE_KAPOOR_CV${label ? '_' + label.replace(/\s+/g, '_') : ''}.pdf`;
 
       return new NextResponse(Buffer.from(pdf), {
         headers: {
