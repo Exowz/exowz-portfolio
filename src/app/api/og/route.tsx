@@ -6,17 +6,25 @@ export const runtime = 'edge';
 const WIDTH = 1200;
 const HEIGHT = 630;
 
+// Bundled with the route rather than fetched from our own origin: next/og blocks
+// image URLs that resolve to private addresses (SSRF protection), such as
+// localhost, and a self-fetch is a wasted round trip anyway.
+const avatarData = fetch(new URL('../../../../public/images/about/headshot.jpg', import.meta.url)).then((res) =>
+  res.arrayBuffer(),
+);
+
 function clamp(value: string, max: number): string {
   const trimmed = value.trim();
   return trimmed.length > max ? `${trimmed.slice(0, max - 1).trimEnd()}…` : trimmed;
 }
 
-export function GET(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const title = clamp(searchParams.get('title') || 'Exowz', 60);
   const subtitle = clamp(searchParams.get('subtitle') || '', 140);
   const badge = clamp(searchParams.get('badge') || 'Portfolio', 28);
-  const avatar = `${req.nextUrl.origin}/images/about/headshot.jpg`;
+  // Satori accepts an ArrayBuffer as an img src; the DOM typings only allow strings.
+  const avatar = (await avatarData) as unknown as string;
 
   return new ImageResponse(
     (
