@@ -3,7 +3,7 @@
 import { IconWorld } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
-import { LanguageButtonProps } from './language-types';
+import type { LanguageButtonProps } from './language-types';
 
 export default function LanguageButtonMobile({ isActive, toggleMenu }: LanguageButtonProps) {
   const { theme } = useTheme();
@@ -44,7 +44,7 @@ export default function LanguageButtonMobile({ isActive, toggleMenu }: LanguageB
   };
 
   return (
-    <button
+    <button type="button"
       onClick={toggleMenu}
       className="relative rounded-2xl cursor-pointer transition-all duration-200 w-12 h-12 flex items-center justify-center active:scale-95"
       style={getStyles()}

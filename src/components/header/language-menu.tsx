@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import LanguageButton from './language-button';
 import LanguagePanel from './language-panel';
-import { Locale, languages } from './language-types';
+import { type Locale, languages } from './language-types';
 import { DesktopMorphingMenu } from './DesktopMorphingMenu';
 
 export default function LanguageMenu() {

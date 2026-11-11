@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useSound from "@/components/hooks/useSound";
 import localFont from 'next/font/local';
 

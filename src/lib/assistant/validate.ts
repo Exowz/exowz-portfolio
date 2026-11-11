@@ -47,7 +47,7 @@ export function validateAssistantRequest(body: unknown): ValidationResult {
   }
 
   const last = messages[messages.length - 1];
-  if (!last || last.role !== 'user' || last.content.trim() === '') {
+  if (last?.role !== 'user' || last.content.trim() === '') {
     return { ok: false, error: 'last message must be a non-empty user message' };
   }
 

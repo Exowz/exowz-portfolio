@@ -7,7 +7,7 @@ describe('buildAlternates', () => {
     const a = buildAlternates('en-GB', '');
     expect(a.canonical).toBe(`${SITE_URL}/en-GB`);
     expect(a.languages['en-GB']).toBe(`${SITE_URL}/en-GB`);
-    expect(a.languages['fr']).toBe(`${SITE_URL}/fr`);
+    expect(a.languages.fr).toBe(`${SITE_URL}/fr`);
     expect(a.languages['x-default']).toBe(`${SITE_URL}/en-GB`);
   });
 
@@ -15,7 +15,7 @@ describe('buildAlternates', () => {
     const a = buildAlternates('fr', 'projects/risk-lens');
     expect(a.canonical).toBe(`${SITE_URL}/fr/projects/risk-lens`);
     expect(a.languages['en-GB']).toBe(`${SITE_URL}/en-GB/projects/risk-lens`);
-    expect(a.languages['fr']).toBe(`${SITE_URL}/fr/projects/risk-lens`);
+    expect(a.languages.fr).toBe(`${SITE_URL}/fr/projects/risk-lens`);
     expect(a.languages['x-default']).toBe(`${SITE_URL}/en-GB/projects/risk-lens`);
   });
 

@@ -1,6 +1,6 @@
 import { Mistral } from '@mistralai/mistralai';
 import { getTranslations } from 'next-intl/server';
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { projects } from '@/data/projects';
 import { cvFor } from '@/data/cv';
 import { routing } from '@/i18n/routing';

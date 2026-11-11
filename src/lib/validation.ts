@@ -26,6 +26,7 @@ export function validateContact(input: unknown): ValidationResult {
   const body = input as Record<string, unknown>;
   const rawName = typeof body.name === 'string' ? body.name : '';
   // Strip control chars (e.g. CR/LF) to prevent email header injection in the subject line.
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: matching control chars is the point
   const name = rawName.replace(/[\x00-\x1f\x7f]/g, '').trim();
   const email = typeof body.email === 'string' ? body.email.trim() : '';
   const message = typeof body.message === 'string' ? body.message.trim() : '';

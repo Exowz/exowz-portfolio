@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, RefObject, useEffect, useRef } from 'react';
+import { type ReactNode, type RefObject, useEffect, useRef } from 'react';
 import { IconX } from '@tabler/icons-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';

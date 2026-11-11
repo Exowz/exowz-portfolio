@@ -1,6 +1,7 @@
 'use client';
 
-import React, { ReactNode, useEffect, useState } from 'react';
+import type React from 'react';
+import { type ReactNode, useEffect, useState } from 'react'
 import { motion } from 'framer-motion';
 import { IconX, IconMinus, IconMaximize } from '@tabler/icons-react';
 import { useWindowManager } from './WindowManager';
@@ -84,7 +85,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
         }}
       >
         {/* Mobile: single clear, always-visible close (touch-friendly) */}
-        <button
+        <button type="button"
           onClick={handleClose}
           className="flex md:hidden w-7 h-7 rounded-full items-center justify-center transition-transform hover:scale-110 active:scale-95"
           style={{ background: 'var(--window-close-btn)' }}
@@ -95,7 +96,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
 
         {/* Traffic Lights (macOS style) — desktop only */}
         <div className="hidden md:flex items-center gap-2">
-          <button
+          <button type="button"
             onClick={handleClose}
             className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
             style={{
@@ -108,7 +109,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
               style={{ color: 'var(--window-btn-icon)' }}
             />
           </button>
-          <button
+          <button type="button"
             onClick={handleMinimize}
             className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
             style={{
@@ -121,7 +122,7 @@ export function Window({ id, title, icon, children, className = '' }: WindowProp
               style={{ color: 'var(--window-btn-icon)' }}
             />
           </button>
-          <button
+          <button type="button"
             onClick={handleMaximize}
             className="group w-3 h-3 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110"
             style={{

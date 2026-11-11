@@ -1,5 +1,5 @@
 import { Mistral } from '@mistralai/mistralai';
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { allowAssistantRequest } from '@/lib/assistant/rateLimit';
 import {
   createAssistantQdrantClient,

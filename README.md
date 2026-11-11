@@ -396,7 +396,7 @@ Each feature that depends on these **degrades gracefully** when its keys are abs
 bun dev                    # Development server (Turbopack)
 bun run build              # Production build (Turbopack)
 bun start                  # Serve the production build
-bun lint                   # ESLint
+bun lint                   # Biome lint
 bun test                   # Vitest suite
 bun run test:watch         # Vitest in watch mode
 bun run assistant:ingest   # (Re)build the assistant's Qdrant index

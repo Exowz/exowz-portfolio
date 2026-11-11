@@ -151,7 +151,6 @@
   --secondary-foreground: var(--text-primary);
   --muted: var(--bg-secondary);
   --muted-foreground: var(--text-secondary);
-  --accent: var(--accent);
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;

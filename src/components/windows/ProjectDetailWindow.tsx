@@ -21,6 +21,7 @@ function useScrollSpy(ids: string[]) {
   const key = ids.join(',');
   const [active, setActive] = useState(ids[0] ?? '');
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: keyed on the joined ids string so a new array with the same ids does not re-subscribe
   useEffect(() => {
     if (!ids.length) return;
     const observer = new IntersectionObserver(
@@ -37,7 +38,6 @@ function useScrollSpy(ids: string[]) {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
   return active;
@@ -91,6 +91,7 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
   }
 
   // ---- Section nav model (only sections that actually render) -----------------
+  // biome-ignore lint/correctness/useExhaustiveDependencies: deps are the lengths that decide which sections render, plus slug
   const navItems = useMemo(() => {
     if (!hasMetadata) return [] as Array<{ id: string; label: string }>;
     const items: Array<{ id: string; label: string }> = [
@@ -108,7 +109,6 @@ export default function ProjectDetailWindow({ slug, hideBackLink = false }: Proj
     if (futureEnhancements.length > 0) items.push({ id: 'future', label: tSections('futureEnhancements') });
     items.push({ id: 'conclusion', label: tSections('conclusion') });
     return items;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMetadata, keyFeatures.length, techStackFields.length, learnings.length, futureEnhancements.length, slug]);
 
   const activeId = useScrollSpy(navItems.map((n) => n.id));

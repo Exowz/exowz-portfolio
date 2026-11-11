@@ -116,7 +116,7 @@ export function GET(req: NextRequest) {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {/* biome-ignore lint/performance/noImgElement: next/og (Satori) renders plain img, not next/image */}
             <img
               src={avatar}
               width={56}

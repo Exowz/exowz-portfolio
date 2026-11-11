@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { type FormEvent, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { IconSparkles, IconX } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';

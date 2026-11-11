@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { Mistral } from '@mistralai/mistralai';
+import type { Mistral } from '@mistralai/mistralai';
 import { QdrantClient } from '@qdrant/js-client-rest';
 
 export const DEFAULT_QDRANT_COLLECTION = 'portfolio_assistant';

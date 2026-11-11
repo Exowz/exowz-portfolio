@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
-import { join } from 'path';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { join } from 'node:path';
 import { CHAPTERS } from './chapters';
 import enPages from '@/messages/en-GB/pages.json';
 

@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import path from 'path';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import chromium from '@sparticuz/chromium';
 import { projects as ALL_PROJECTS } from '@/data/projects';
 import { cvFor } from '@/data/cv';
@@ -8,7 +8,7 @@ import { allowCvPdfRequest } from '@/lib/assistant/rateLimit';
 import { buildCvPdfData, type PdfProject } from '@/lib/cv/pdf-data';
 import { selectPdfProjects } from '@/lib/cv/select-projects';
 import { getTranslations } from 'next-intl/server';
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import nunjucks from 'nunjucks';
 import puppeteer from 'puppeteer-core';
 
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
       });
 
       const pdf = await page.pdf({ format: 'A4', printBackground: true, pageRanges: '1', preferCSSPageSize: true });
-      const filename = `MKE_KAPOOR_CV${label ? '_' + label.replace(/\s+/g, '_') : ''}.pdf`;
+      const filename = `MKE_KAPOOR_CV${label ? `_${label.replace(/\s+/g, '_')}` : ''}.pdf`;
 
       return new NextResponse(Buffer.from(pdf), {
         headers: {

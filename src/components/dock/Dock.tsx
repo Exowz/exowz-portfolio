@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { FloatingDock, DockItem } from "@/components/ui/floating-dock";
+import { FloatingDock, type DockItem } from "@/components/ui/floating-dock";
 import {
   IconHome,
   IconFolder,

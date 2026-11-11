@@ -7,7 +7,7 @@ import { useRouter, usePathname } from '@/i18n/routing';
 import { useTheme } from 'next-themes';
 import LanguageButtonMobile from './language-button-mobile';
 import { IconCheck } from '@tabler/icons-react';
-import { Locale, languages } from './language-types';
+import { type Locale, languages } from './language-types';
 
 export default function LanguageMenuMobile() {
   const locale = useLocale();
@@ -119,7 +119,7 @@ export default function LanguageMenuMobile() {
             {Object.entries(languages).map(([key, language]) => {
               const isActive = currentLang === key;
               return (
-                <button
+                <button type="button"
                   key={key}
                   onClick={() => switchLocale(language.locale)}
                   className={`flex w-full items-center gap-3 px-3 py-2.5 transition-colors ${

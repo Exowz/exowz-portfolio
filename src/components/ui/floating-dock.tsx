@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
   AnimatePresence,
-  MotionValue,
+  type MotionValue,
   motion,
   useMotionValue,
   useSpring,
@@ -113,7 +113,7 @@ const FloatingDockMobile = ({
           </motion.div>
         )}
       </AnimatePresence>
-      <button
+      <button type="button"
         onClick={() => setOpen(!open)}
         aria-label={toggleLabel}
         aria-expanded={open}

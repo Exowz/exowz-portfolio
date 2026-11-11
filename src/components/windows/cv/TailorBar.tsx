@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useRef, useState } from 'react';
+import { type FormEvent, useRef, useState } from 'react';
 import { IconDownload, IconSparkles, IconX } from '@tabler/icons-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { resumeHref } from '@/lib/resume';

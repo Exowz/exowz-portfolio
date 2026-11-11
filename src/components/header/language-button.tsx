@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IconWorld } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
-import { LanguageButtonProps } from './language-types';
+import type { LanguageButtonProps } from './language-types';
 
 export default function LanguageButton({ isActive, toggleMenu, currentLocale }: LanguageButtonProps) {
   const { theme } = useTheme();

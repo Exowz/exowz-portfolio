@@ -1,6 +1,6 @@
 'use client';
 
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 import type { CvEducationEntry } from '@/data/cv';
 import { CvModal } from './CvModal';
 

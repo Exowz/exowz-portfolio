@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import type React from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { IUniform } from 'three';
+import type { IUniform } from 'three';
 
 // #region Prop and Type Definitions
 
@@ -1138,7 +1139,7 @@ export default function LiquidEther({
           Mouse.dispose();
           if (Common.renderer) {
             const canvas = Common.renderer.domElement;
-            if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
+            if (canvas?.parentNode) canvas.parentNode.removeChild(canvas);
             Common.renderer.dispose();
           }
         } catch { /* noop */ }

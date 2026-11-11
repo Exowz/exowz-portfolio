@@ -90,7 +90,7 @@ export default function LanguagePanel({ languages, currentLang, onLanguageClick 
                   transformStyle: 'preserve-3d',
                 }}
               >
-                <button
+                <button type="button"
                   onClick={() => switchLocale(language.locale)}
                   className={`
                     grid grid-cols-[36px_minmax(0,1fr)_24px] items-center gap-3

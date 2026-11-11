@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Desktop } from '@/components/desktop/Desktop';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export function LayoutContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();

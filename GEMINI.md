@@ -56,7 +56,7 @@ bun start        # Starts production server
 
 ### Linting
 ```bash
-bun lint         # Runs ESLint
+bun lint         # Runs Biome lint
 ```
 
 ## 📁 Key Directories

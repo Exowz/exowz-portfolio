@@ -1,4 +1,4 @@
-import { type Project } from '@/data/projects';
+import type { Project } from '@/data/projects';
 
 export type ProjectCategory = 'AI' | 'Data' | 'Web' | 'Open Source';
 
