@@ -16,7 +16,7 @@ import { WindowManagerProvider } from '@/components/desktop/WindowManager';
 import { CommandPaletteProvider } from '@/components/command/CommandPaletteProvider';
 import { LayoutContent } from '@/components/layout/LayoutContent';
 import BootWrapper from '@/components/boot/BootWrapper';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import "../globals.css";
 
 const geistSans = Geist({
