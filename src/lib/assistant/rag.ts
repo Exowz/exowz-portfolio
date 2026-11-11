@@ -188,14 +188,14 @@ export async function retrieveAssistantContext({
   const [vector] = await embedTexts(mistral, [query], config.embeddingModel);
   if (!vector) return [];
 
-  const results = await qdrant.search(config.qdrantCollection, {
-    vector,
+  const { points } = await qdrant.query(config.qdrantCollection, {
+    query: vector,
     limit,
     with_payload: true,
     with_vector: false,
   });
 
-  return results.flatMap((result) => {
+  return points.flatMap((result) => {
     const payload = (result.payload || {}) as QdrantPayload;
     if (typeof payload.text !== 'string') return [];
 
