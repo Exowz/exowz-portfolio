@@ -51,6 +51,9 @@
     "tegaki": "^1",
     "three": "^0.187.0"
   },
+  "overrides": {
+    "undici": "^7.30.1"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.6.6",
     "@tailwindcss/postcss": "^4.3.5",
