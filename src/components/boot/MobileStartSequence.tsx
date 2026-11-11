@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';

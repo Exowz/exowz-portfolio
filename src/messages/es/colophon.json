@@ -12,7 +12,7 @@
     },
     {
       "heading": "Diseño y tipografía",
-      "body": "El movimiento se gestiona con Framer Motion, y el fondo fluido es un efecto WebGL de three.js (LiquidEther) que se reduce con elegancia en dispositivos más débiles o cuando el movimiento reducido está activado. El saludo de arranque está escrito a mano con Tegaki, y los proyectos se presentan a través de un carrusel Embla. La tipografía combina dos fuentes de visualización personalizadas, Stanley y TakenByVultures, con Geist para la interfaz de usuario y mono."
+      "body": "El movimiento se gestiona con Motion, y el fondo fluido es un efecto WebGL de three.js (LiquidEther) que se reduce con elegancia en dispositivos más débiles o cuando el movimiento reducido está activado. El saludo de arranque está escrito a mano con Tegaki, y los proyectos se presentan a través de un carrusel Embla. La tipografía combina dos fuentes de visualización personalizadas, Stanley y TakenByVultures, con Geist para la interfaz de usuario y mono."
     },
     {
       "heading": "Alojamiento y privacidad",

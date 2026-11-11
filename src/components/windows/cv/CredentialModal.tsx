@@ -1,7 +1,7 @@
 'use client';
 
 import type { RefObject } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import type { CvCredential } from '@/data/cv';
 import { CvModal } from './CvModal';

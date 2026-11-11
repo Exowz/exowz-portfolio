@@ -9,7 +9,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-} from "framer-motion"; // Changed to framer-motion, your 'motion/react' import is also fine.
+} from "motion/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useRef, useState } from "react";

@@ -12,7 +12,7 @@
     },
     {
       "heading": "Design & Typografie",
-      "body": "Animationen werden mit Framer Motion gesteuert, und der flüssige Hintergrund ist ein three.js WebGL-Effekt (LiquidEther), der auf schwächeren Geräten oder bei aktivierter Option 'reduzierte Bewegung' elegant herunterskaliert. Der Boot-Gruß ist mit Tegaki handgeschrieben, und die Projekte laufen durch ein Embla-Karussell. Die Typografie kombiniert zwei spezielle Display-Schriften, Stanley und TakenByVultures, mit Geist für die Benutzeroberfläche und Mono."
+      "body": "Animationen werden mit Motion gesteuert, und der flüssige Hintergrund ist ein three.js WebGL-Effekt (LiquidEther), der auf schwächeren Geräten oder bei aktivierter Option 'reduzierte Bewegung' elegant herunterskaliert. Der Boot-Gruß ist mit Tegaki handgeschrieben, und die Projekte laufen durch ein Embla-Karussell. Die Typografie kombiniert zwei spezielle Display-Schriften, Stanley und TakenByVultures, mit Geist für die Benutzeroberfläche und Mono."
     },
     {
       "heading": "Hosting & Datenschutz",

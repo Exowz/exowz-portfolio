@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useInView, useMotionValue, useSpring } from "motion/react";
 import GradientText from "@/components/GradientText";
 import LiquidEther from "@/components/desktop/LiquidEther";
 

@@ -7,7 +7,7 @@ Personal portfolio website for Mathew Kapoor (Exowz), featuring a sophisticated 
 - **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4 (using `@theme inline` in `globals.css`)
-- **Animation:** Framer Motion, Motion, Three.js (`@react-three/fiber`)
+- **Animation:** Motion (`motion/react`), Three.js (`@react-three/fiber`)
 - **Internationalization:** `next-intl` (12 fully translated modular locales: `en-GB`, `fr`, `es`, `pt`, `de`, `it`, `zh`, `ja`, `ru`, `ko`, `hi`, `ar`)
 - **Theme:** `next-themes` (Dark/Light mode with system detection)
 - **UI Components:** shadcn/ui (Radix UI), Aceternity UI, custom "Stanley" font
@@ -78,7 +78,7 @@ bun lint         # Runs Biome lint
 
 ### Components
 - Functional components with TypeScript interfaces for props.
-- Utilize `framer-motion` for interaction-heavy animations.
+- Utilize Motion (`motion/react`) for interaction-heavy animations.
 - UI components follow the **shadcn/ui** pattern (Radix primitives + `cva` for variants).
 
 ### Internationalization

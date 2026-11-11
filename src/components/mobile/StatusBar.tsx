@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import { IconWifi, IconBattery3 } from '@tabler/icons-react';

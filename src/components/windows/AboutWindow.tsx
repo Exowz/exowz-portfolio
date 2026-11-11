@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import localFont from 'next/font/local';
 import { AboutHero } from './about/AboutHero';
 import { PrinciplesRow } from './about/PrinciplesRow';

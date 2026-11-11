@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 /** Springboard identity widget — the mobile home for the desktop hero. */
 export function IdentityWidget() {

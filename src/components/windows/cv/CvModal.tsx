@@ -2,7 +2,7 @@
 
 import { type ReactNode, type RefObject, useEffect, useRef } from 'react';
 import { IconX } from '@tabler/icons-react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useHistoryOverlay } from '@/components/hooks/useHistoryOverlay';
 import { useOutsideClick } from '@/components/hooks/useOutsideClick';

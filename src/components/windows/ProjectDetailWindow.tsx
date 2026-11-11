@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from '@/i18n/routing';
 import { IconArrowLeft, IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';

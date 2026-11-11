@@ -12,7 +12,7 @@
     },
     {
       "heading": "Design & type",
-      "body": "Motion is handled with Framer Motion, and the fluid background is a three.js WebGL effect (LiquidEther) that gracefully steps down on weaker devices or when reduced-motion is on. The boot greeting is handwritten with Tegaki, and the projects run through an Embla carousel. Type pairs two custom display faces, Stanley and TakenByVultures, with Geist for UI and mono."
+      "body": "Animation is handled with Motion, and the fluid background is a three.js WebGL effect (LiquidEther) that gracefully steps down on weaker devices or when reduced-motion is on. The boot greeting is handwritten with Tegaki, and the projects run through an Embla carousel. Type pairs two custom display faces, Stanley and TakenByVultures, with Geist for UI and mono."
     },
     {
       "heading": "Hosting & privacy",

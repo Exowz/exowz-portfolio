@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { IconBook2, IconScale, IconX } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';

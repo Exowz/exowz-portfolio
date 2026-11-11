@@ -2,7 +2,7 @@
 
 import type React from 'react';
 import { type ReactNode, useEffect, useState } from 'react'
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { IconX, IconMinus, IconMaximize } from '@tabler/icons-react';
 import { useWindowManager } from './WindowManager';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { CvBento } from './CvBento';
 import { CvSidebar } from './CvSidebar';
 import { useTailor } from './useTailor';

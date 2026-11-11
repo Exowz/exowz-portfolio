@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { TracingBeam } from '@/components/ui/tracing-beam';
 import { CHAPTERS, type AboutChapter } from './chapters';

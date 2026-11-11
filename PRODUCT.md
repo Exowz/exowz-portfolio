@@ -60,7 +60,7 @@ The second differentiator is the substance behind it: a genuine Data & AI track 
 - **Motion respects the user.** `prefers-reduced-motion` is honoured, and the WebGL background (LiquidEther, three.js) steps down on low-capability devices via an explicit device-capability check.
 - **Third-party UI adapts to this project, never the reverse.** Components sourced from Aceternity, shadcn/ui, or elsewhere must be conformed to the project's tokens, i18n, and reduced-motion behaviour before use.
 - Runtime secrets required for full function: `MISTRAL_API_KEY`, `QDRANT_URL` / `QDRANT_API_KEY`, `RESEND_API_KEY`, `CONTACT_TO` / `CONTACT_FROM` / `CONTACT_CONFIRM_FROM`, `REDIS_URL`. Every dependent feature must degrade gracefully when they are absent.
-- Stack: Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4, next-intl, next-themes, Framer Motion, three.js. Tests run on Vitest; package manager is Bun.
+- Stack: Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4, next-intl, next-themes, Motion, three.js. Tests run on Vitest; package manager is Bun.
 
 **Explicitly undecided**
 

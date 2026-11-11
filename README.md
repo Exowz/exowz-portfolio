@@ -17,7 +17,7 @@
 ![React](https://img.shields.io/badge/React-19.1-61DAFB?style=flat&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer-Motion-0055FF?style=flat&logo=framer&logoColor=white)
+![Motion](https://img.shields.io/badge/Motion-0055FF?style=flat&logo=framer&logoColor=white)
 ![three.js](https://img.shields.io/badge/three.js-0.180-000000?style=flat&logo=three.js&logoColor=white)
 
 ![Mistral](https://img.shields.io/badge/Mistral-AI-FA520F?style=flat)
@@ -200,7 +200,7 @@ Messages are split **per namespace** (`cv.json`, `projects.json`, `nav.json`, `b
 │               StatusBar, ProjectsFolder, NowOverlay          │
 │                                                              │
 │  UI: shadcn/ui · Aceternity UI · liquid-glass-react · cmdk   │
-│  Motion: Framer Motion / Motion · Tegaki handwriting         │
+│  Animation: Motion · Tegaki handwriting                      │
 │  i18n: next-intl (12 locales) · Theme: next-themes           │
 └──────────────────────┬───────────────────────────────────────┘
                        │ fetch / streaming

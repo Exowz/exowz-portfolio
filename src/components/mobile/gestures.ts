@@ -1,5 +1,5 @@
 /**
- * Gesture-completion thresholds for framer-motion drags.
+ * Gesture-completion thresholds for Motion drags.
  * `offset` is total pixels dragged from the start; `velocity` is px/s at release.
  * Downward = positive Y; upward = negative Y.
  */

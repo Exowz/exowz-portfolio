@@ -12,7 +12,7 @@
     },
     {
       "heading": "디자인 및 타이포그래피",
-      "body": "모션은 Framer Motion으로 처리되며, 유동적인 배경은 three.js WebGL 효과(LiquidEther)로 구현되어 성능이 낮은 기기나 '동작 줄이기' 설정이 켜져 있을 때 적절히 조절됩니다. 부팅 인사말은 Tegaki로 직접 썼으며, 프로젝트는 Embla carousel을 통해 보여집니다. 글꼴은 두 개의 커스텀 디스플레이 서체인 Stanley와 TakenByVultures, 그리고 UI 및 고정폭용 Geist를 조합했습니다."
+      "body": "모션은 Motion으로 처리되며, 유동적인 배경은 three.js WebGL 효과(LiquidEther)로 구현되어 성능이 낮은 기기나 '동작 줄이기' 설정이 켜져 있을 때 적절히 조절됩니다. 부팅 인사말은 Tegaki로 직접 썼으며, 프로젝트는 Embla carousel을 통해 보여집니다. 글꼴은 두 개의 커스텀 디스플레이 서체인 Stanley와 TakenByVultures, 그리고 UI 및 고정폭용 Geist를 조합했습니다."
     },
     {
       "heading": "호스팅 및 개인정보 보호",

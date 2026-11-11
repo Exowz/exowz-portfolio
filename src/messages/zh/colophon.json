@@ -12,7 +12,7 @@
     },
     {
       "heading": "设计与字体",
-      "body": "动画由 Framer Motion 处理，流体背景是 three.js WebGL 效果（LiquidEther），在性能较弱的设备上或开启“减少动态效果”时会自动降级。开机问候语是用 Tegaki 手写的，项目展示使用 Embla carousel。字体结合了两种自定义展示字体 Stanley 和 TakenByVultures，以及用于 UI 和等宽字体的 Geist。"
+      "body": "动画由 Motion 处理，流体背景是 three.js WebGL 效果（LiquidEther），在性能较弱的设备上或开启“减少动态效果”时会自动降级。开机问候语是用 Tegaki 手写的，项目展示使用 Embla carousel。字体结合了两种自定义展示字体 Stanley 和 TakenByVultures，以及用于 UI 和等宽字体的 Geist。"
     },
     {
       "heading": "托管与隐私",

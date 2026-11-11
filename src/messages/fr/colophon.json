@@ -12,7 +12,7 @@
     },
     {
       "heading": "Design & typographie",
-      "body": "Les animations reposent sur Framer Motion, et le fond fluide est un effet WebGL en three.js (LiquidEther) qui s'allège automatiquement sur les appareils modestes ou quand le mode mouvement réduit est activé. Le message d'accueil au démarrage est écrit à la main avec Tegaki, et les projets défilent dans un carrousel Embla. La typographie associe deux polices d'affichage sur mesure, Stanley et TakenByVultures, à Geist pour l'interface et le mono."
+      "body": "Les animations reposent sur Motion, et le fond fluide est un effet WebGL en three.js (LiquidEther) qui s'allège automatiquement sur les appareils modestes ou quand le mode mouvement réduit est activé. Le message d'accueil au démarrage est écrit à la main avec Tegaki, et les projets défilent dans un carrousel Embla. La typographie associe deux polices d'affichage sur mesure, Stanley et TakenByVultures, à Geist pour l'interface et le mono."
     },
     {
       "heading": "Hébergement & vie privée",
