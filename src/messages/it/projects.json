@@ -1524,5 +1524,308 @@
     "backend": "Backend",
     "tools": "Strumenti e infrastruttura",
     "libraries": "Librerie e framework"
+  },
+  "argos": {
+    "title": "Argos",
+    "description": "Risponde a domande economiche usando fonti della Banque de France, cita ogni cifra e si astiene quando non può verificarla.",
+    "metadata": {
+      "role": "Sviluppatore unico (progetto per la certificazione di sviluppatore IA)",
+      "category": "IA generativa, RAG, ingegneria dei dati, MLOps",
+      "timeline": "Da ottobre a novembre 2026 (discusso il 6 novembre 2026)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/argos"
+    },
+    "overview": "Argos risponde in francese a domande economiche usando fonti pubbliche: Webstat, Bloc-notes Éco e Bulletin della Banque de France, oltre a Eurostat. Ogni cifra nelle risposte ha una citazione e, quando non esiste una risposta verificabile, si astiene o chiede chiarimenti. Le statistiche vengono calcolate in Python sulle serie ufficiali, quindi il modello linguistico si limita a formulare un risultato che non ha calcolato. Tutto gira in locale e nessun dato va a terzi. L'ho realizzato da solo per la certificazione RNCP 37827 (sviluppatore IA), partendo da un argomento del corso di IA generativa del mio MSc.",
+    "challenge": {
+      "problem": "Se si chiede a un modello linguistico dell'inflazione francese o del tasso sui depositi della BCE, spesso restituisce un numero plausibile senza fonte. Per un analista, una risposta non verificabile è peggio di nessuna risposta.",
+      "goal": "Rispondere solo con pubblicazioni e serie ufficiali, mostrare la fonte di ogni affermazione e considerare il rifiuto o l'astensione risultati normali.",
+      "constraints": "Tutto doveva funzionare su un portatile Apple Silicon con 16 GB, senza API a pagamento né dati in uscita dal computer. Un membro della commissione è ipovedente, quindi l'interfaccia doveva funzionare con tastiera, lettore di schermo e zoom al 400 %."
+    },
+    "discovery": {
+      "requirements": "Ho raccolto 15 pubblicazioni (12 articoli di blog e 3 rapporti), 5 serie Webstat (depositi presso la BCE, inflazione francese, tasso di cambio del dollaro e due aggregati creditizi) e 3.533.048 righe di Eurostat, conservando la provenienza di ogni elemento dal download alla risposta.",
+      "competitiveAnalysis": "I chatbot generici rispondono con scioltezza ma raramente citano la serie o il passaggio preciso e non rifiutano le previsioni. Webstat è affidabile, ma bisogna sapere quale serie aprire. Argos si colloca tra i due: una domanda in francese semplice e una risposta legata ai dati ufficiali.",
+      "technicalResearch": "Prima di scegliere un modello, ho valutato quattro modelli locali serviti da Ollama sulle stesse domande, con due esecuzioni ciascuno. gemma4-e2b ha ottenuto il punteggio migliore (0,85), senza errori fattuali, mentre llama3.2-3b ha seguito una prompt injection e inventato una previsione. Ho scelto gemma4-e2b, con granite-embedding-278m per gli embedding multilingue."
+    },
+    "architecture": {
+      "informationArchitecture": "Next.js serve l'interfaccia e mantiene la sessione: il browser non chiama mai direttamente FastAPI. FastAPI espone un'API per i dati (pubblicazioni, statistiche) e una per l'IA (instradamento, ricerca, risposta), protette da JWT di Better Auth con ruoli lettore e amministratore. PostgreSQL conserva i dati, Qdrant i passaggi, Ollama esegue i modelli tramite LiteLLM, e Prometheus e Grafana monitorano il sistema.",
+      "technicalDecisions": "Un router supervisionato decide prima se una domanda riguarda documenti, statistiche o entrambi, oppure va rifiutata. Sotto una confidenza di 0,40 si astiene e chiede chiarimenti senza chiamare il modello. Un verificatore controlla poi che ogni citazione esista e che ogni numero della risposta sia sostenuto da una fonte."
+    },
+    "developmentProcess": {
+      "phase1": "Raccolta ed ETL: collector per Bloc-notes Éco, i PDF del Bulletin e l'API Webstat, un livello di staging con quarantena e deduplicazione, poi caricamento idempotente nelle tabelle canoniche. Le esportazioni contengono impronte SHA-256, così il database può essere ricostruito e verificato.",
+      "phase2": "Router: ho convalidato a mano 326 domande etichettate, dividendole per famiglia perché domande quasi duplicate non finissero sia nel training sia nel test. Poi ho congelato il set di test e fissato le soglie di promozione prima del primo addestramento.",
+      "phase3": "RAG e distribuzione: ricerca ibrida (BM25 e vettori densi combinati con RRF), verificatore delle risposte, pagina dell'assistente Next.js, un workflow GitHub Actions che riaddestra il router e lo pubblica come release, e monitoraggio con Prometheus e Grafana."
+    },
+    "keyFeatures": [
+      {
+        "title": "Risposte verificabili",
+        "description": "Ogni risposta cita i passaggi [S…] e le statistiche [T…], e ogni citazione apre la sua fonte.",
+        "implementation": "Le statistiche vengono calcolate in Python sulle serie ufficiali e fornite al modello come risultati. Il verificatore rifiuta una risposta se una citazione non esiste o un numero non è sostenuto da una fonte.",
+        "challenges": "All'inizio il verificatore ha rifiutato una risposta corretta (1,1593 dollari statunitensi per euro) perché non accettava i numeri ricavati dall'unità di una serie. L'ho scoperto durante la valutazione e corretto."
+      },
+      {
+        "title": "Un router che sa quando rifiutare",
+        "description": "Prima di ogni ricerca, un classificatore invia la domanda ai documenti, alle statistiche o a entrambi, rifiuta previsioni e domande fuori ambito e si astiene in caso di incertezza.",
+        "implementation": "TF-IDF su parole e caratteri con regressione logistica, addestrato su 326 domande convalidate. Un filtro di sicurezza deterministico e una regola sulle previsioni agiscono prima del modello, e il router si astiene sotto una confidenza di 0,40.",
+        "challenges": "La prima versione addestrata aveva buoni risultati, ma non l'ho promossa: un fallback sulla confidenza trasformava i rifiuti in ricerche tra i documenti. Ho corretto l'ordine delle decisioni e ripetuto la valutazione prima della pubblicazione."
+      },
+      {
+        "title": "Accessibile fin dalla progettazione",
+        "description": "Uso da tastiera, VoiceOver e zoom dal 200 % al 400 % erano requisiti fin dal primo giorno, perché un membro della commissione è ipovedente.",
+        "implementation": "I grafici hanno un nome, una descrizione e un'alternativa tabellare, nessuna informazione dipende solo dal colore e la preferenza per il movimento ridotto è rispettata. In CI, un percorso Playwright esegue axe su 9 schermate.",
+        "challenges": "La densità dei dati finanziari e la leggibilità sono esigenze in tensione. Ho mantenuto la densità, ma affiancato unità, periodo, fonte e provenienza a ogni cifra."
+      }
+    ],
+    "testing": "I test Python coprono raccolta, ETL, database, API (risposte 200, 401, 403, 404 e 422), sicurezza JWT, router, client LLM e catena RAG, con una soglia minima di copertura dell'80 % che fa fallire la CI. Vitest e Playwright con axe coprono l'interfaccia. La CI non chiama mai un modello reale: benchmark, valutazione RAG e verifiche di fedeltà sono eseguiti in locale e riportati separatamente.",
+    "results": {
+      "technicalAchievements": "Sul set di test congelato, il router servito raggiunge un macro-F1 di 0,804 e individua il 90,9 % delle domande fuori ambito, senza falsi rifiuti (un controllo di regressione, dato che avevo già esaminato il set). La ricerca ibrida trova ogni passaggio di riferimento nei primi 8 risultati. Su 15 domande di sviluppo, nessuna risposta conteneva una cifra inventata.",
+      "businessImpact": "Nessun utente reale e nessun uso in produzione. Il progetto dimostra un metodo: un assistente verificabile che si astiene quando serve e funziona senza inviare dati fuori dal computer.",
+      "personalGrowth": "Fissare le soglie prima dell'addestramento, congelare il set di test e annotare ogni decisione con la data ha cambiato il mio modo di lavorare. Ho anche imparato che un modello può superare le sue metriche e non meritare comunque la promozione."
+    },
+    "techStack": {
+      "frontend": "Next.js, TypeScript, Better Auth, Zod, Vitest, Playwright con axe-core",
+      "backend": "FastAPI (Python 3.12), PostgreSQL con Alembic, Qdrant, Ollama tramite LiteLLM",
+      "tools": "uv, Docker, GitHub Actions, Prometheus, Grafana",
+      "libraries": "scikit-learn (router), gemma4-e2b (generazione), granite-embedding-278m (embedding), ricerca ibrida BM25 e RRF, Pytest"
+    },
+    "learnings": [
+      "L'anello debole era il router, non la ricerca o la generazione: 5 delle 15 domande di sviluppo sono fallite per un'astensione o un instradamento errato, nessuna per una cifra inventata.",
+      "Fissare le soglie di promozione prima del primo addestramento elimina la tentazione di spostarle in seguito.",
+      "Un reranker non è automaticamente migliore: sulle mie domande ha abbassato il recall top-1 da 0,833 a 0,611 e aggiunto circa 1,2 GB di memoria, quindi l'ho escluso.",
+      "Un set di test che hai già esaminato serve solo come controllo di regressione. Una misura indipendente richiede domande che il modello non ha mai visto."
+    ],
+    "futureEnhancements": [
+      "Scrivere nuove domande per arricchire il set di dati del router, poi valutare una nuova versione su domande mai viste.",
+      "Ridurre le astensioni sulle domande fattuali semplici (18,6 % sul set di test congelato).",
+      "Ridurre il tempo di risposta, attualmente di diversi secondi sul portatile, e alzare il limite di 400 token che può troncare le risposte lunghe.",
+      "Aggiungere altre serie Webstat e pubblicazioni."
+    ],
+    "conclusion": "Argos è il mio esempio più chiaro di IA verificabile: ogni cifra risale a una fonte ufficiale, l'astensione è una risposta normale e i limiti sono documentati invece di essere nascosti."
+  },
+  "clausier": {
+    "title": "Clausier",
+    "description": "Classifica e trova clausole contrattuali, con un audit dei casi in cui il modello funziona e di quelli in cui non ci si deve fidare.",
+    "metadata": {
+      "role": "Team di due: dati, classificatori, test appaiati e audit dei bias (ricerca delle clausole a cura del mio compagno)",
+      "category": "NLP, deep learning, valutazione dei modelli",
+      "timeline": "Ottobre 2026 (discusso il 23 ottobre 2026)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/clausier-ledgar"
+    },
+    "overview": "Clausier è il nucleo NLP di un assistente per la revisione dei contratti. Classifica le clausole nei 100 tipi di LEDGAR, trova clausole simili in una raccolta di 60.000 e documenta dove funziona e dove no. L'abbiamo sviluppato in due per il corso Deep Learning for NLP alla Albert School. Mi sono occupato dei dati, di tutti i classificatori (TF-IDF, LSTM, BERT, Legal-BERT e LoRA), dei test appaiati e dell'audit dei bias; il mio compagno Wiyao ha sviluppato la ricerca delle clausole.",
+    "challenge": {
+      "problem": "Gli avvocati impiegano tempo per classificare le clausole e cercare precedenti. Un classificatore può aiutare, ma solo se si sa quali tipi sbaglia e quando la sua confidenza ha davvero significato.",
+      "goal": "Confrontare in modo equo una baseline economica e transformer ottimizzati, scegliere il modello in base alle prove e pubblicare una scheda del modello che dica per cosa non va usato.",
+      "constraints": "LEDGAR è fortemente sbilanciato (da 3.167 a 23 clausole di training per tipo), 2.241 clausole di test sono copie o quasi copie di clausole di training, e l'addestramento su GPU doveva rientrare in una sola T4 di Colab."
+    },
+    "discovery": {
+      "requirements": "Ogni cifra doveva provenire da uno script. Il confronto principale e il piano di audit sono stati scritti e registrati nel repository prima del codice che li misura, così i risultati non potevano influenzare le domande.",
+      "competitiveAnalysis": "I risultati LexGLUE pubblicati si riferiscono all'intero set di test. Poiché più di un quinto copia i dati di training, ho riportato ogni risultato anche sulle 7.759 clausole di test deduplicate.",
+      "technicalResearch": "Ho confrontato TF-IDF con regressione logistica, LSTM con e senza GloVe, BERT-base, Legal-BERT e Legal-BERT con LoRA (0,34 % dei parametri addestrati), poi aggiunto calibrazione, astensione e insiemi di predizione conformale dalla letteratura pubblicata."
+    },
+    "architecture": {
+      "informationArchitecture": "Un pacchetto Python con un modulo per fase: dati e deduplicazione, baseline, LSTM, transformer, test appaiati, recupero e audit. Ogni modello espone la stessa interfaccia predict_proba, e gli obiettivi make ricostruiscono ogni tabella dalle directory delle esecuzioni.",
+      "technicalDecisions": "La regola decisionale era stata fissata in anticipo: se Legal-BERT non supera significativamente TF-IDF sul set di test deduplicato, vince il modello meno costoso. Non l'ha superato, quindi il modello raccomandato è TF-IDF, che si addestra in 44 secondi sulla CPU di un portatile e non richiede GPU."
+    },
+    "developmentProcess": {
+      "phase1": "Dati: suddivisioni ufficiali di LEDGAR, rilevamento delle clausole di test identiche o quasi (coseno TF-IDF di almeno 0,9) e sottoinsiemi ricavati dal testo, come famiglia contrattuale, giurisdizione e lunghezza.",
+      "phase2": "Modelli: prima la baseline TF-IDF, poi LSTM e transformer addestrati con un ciclo PyTorch scritto a mano su Colab (migliore esecuzione Legal-BERT: epoca 9, 2 h 10 su una T4), confrontati con test di McNemar e bootstrap appaiato.",
+      "phase3": "Audit e app: errori per classe, sottoinsiemi con intervalli al 95 %, test controfattuali, calibrazione e astensione, poi una demo Flask per classificare una clausola, cercare nella raccolta, esaminare un contratto e sottoporre una clausola a stress test in tempo reale."
+    },
+    "keyFeatures": [
+      {
+        "title": "Un confronto equo tra modelli",
+        "description": "TF-IDF e Legal-BERT sono confrontati sulle stesse clausole con test di significatività, non con un singolo punteggio.",
+        "implementation": "McNemar con correzione di continuità per l'accuratezza e bootstrap appaiato per il macro-F1 (1.000 ricampionamenti), sia sul set completo sia su quello deduplicato.",
+        "challenges": "Il transformer ha concluso 0,001 punti di macro-F1 dietro sul set completo. La parte difficile è stata accettare il risultato e raccomandare il modello più semplice."
+      },
+      {
+        "title": "Sapere quando passare a una persona",
+        "description": "Sotto una soglia di confidenza calibrata, una clausola passa a una persona invece di ricevere automaticamente un'etichetta.",
+        "implementation": "Temperature scaling per Legal-BERT (T = 1,42, errore di calibrazione sceso da 0,085 a 0,031), con soglie scelte in validazione per il 95 % di accuratezza. Nel test circa il 17 % delle clausole passa a una persona e il resto è corretto per circa il 95 %.",
+        "challenges": "Le probabilità grezze di Legal-BERT sono troppo sicure, quindi una soglia funziona solo sui valori calibrati."
+      },
+      {
+        "title": "Un audit dei bias pianificato in anticipo",
+        "description": "Tre test controfattuali verificano che il tipo previsto non cambi per ragioni sbagliate.",
+        "implementation": "Scambiare i ruoli delle parti, spostare la legge applicabile in Inghilterra e Galles e riscrivere i formati numerici, ognuno con una modifica di controllo e una regola di superamento fissata prima dell'esecuzione. Entrambi i modelli superano tutti i test.",
+        "challenges": "Il tasso di cambiamento di Legal-BERT sui ruoli delle parti era appena sopra il 2 %, ma non maggiore del controllo: reagisce a qualsiasi variazione delle parole che indicano le parti, non a quale parte occupa il ruolo."
+      }
+    ],
+    "testing": "19 file pytest coprono pipeline dei dati, baseline, calibrazione, confronti appaiati, audit, misurazione dei costi e app; make test gira senza GPU. make final ricostruisce ogni tabella, test appaiato e audit dalle directory delle esecuzioni, con seed 42 e versioni fissate.",
+    "results": {
+      "technicalAchievements": "TF-IDF raggiunge un macro-F1 di test di 0,826 (0,788 dopo deduplicazione) e Legal-BERT 0,825 (0,787), senza differenza significativa. Con l'astensione, le clausole gestite automaticamente sono corrette per circa il 95 %. Circa un quinto degli errori nasce da etichette sovrapposte come Governing Laws e Applicable Laws.",
+      "businessImpact": "Nessun utente reale: è un progetto di corso su contratti pubblici statunitensi. Per un team legal-tech mostra come scegliere un modello sulla base delle prove e documentarne i limiti prima che qualcuno vi faccia affidamento.",
+      "personalGrowth": "Ho imparato a scrivere la regola decisionale prima di vedere i risultati e a considerare la scheda del modello parte del prodotto, non semplice burocrazia."
+    },
+    "techStack": {
+      "frontend": "Demo Flask con cinque viste: classificazione, ricerca, revisione contratti, stress test e prove",
+      "backend": null,
+      "tools": "Python 3.11, Google Colab (GPU T4), make, pytest, Slidev per la discussione",
+      "libraries": "PyTorch, Hugging Face Transformers e Datasets, sentence-transformers (MiniLM), scikit-learn, Legal-BERT"
+    },
+    "learnings": [
+      "Su un set come LEDGAR, un TF-IDF ben ottimizzato può eguagliare un transformer fine-tuned a una frazione del costo: 0,09 ms per clausola su CPU contro 31,8 ms.",
+      "I duplicati tra training e test gonfiano i punteggi: il set deduplicato riduce il valore di quasi 4 punti nel macro-F1.",
+      "Molti errori dipendono dalle etichette, non dal modello: la stessa clausola compare sia in Governing Laws sia in Applicable Laws.",
+      "Un punteggio di confidenza è utile solo dopo la calibrazione."
+    ],
+    "futureEnhancements": [
+      "Valutare contratti europei: i modelli hanno visto solo documenti statunitensi depositati presso la SEC e qui non è stata misurata la loro capacità di leggere altro.",
+      "Addestrare più seed per modello per misurare la variazione tra esecuzioni.",
+      "Unire o ridefinire con esperti legali le coppie di etichette sovrapposte.",
+      "Permettere a Legal-BERT di leggere clausole oltre 256 token (il 12 % delle clausole di training viene tagliato)."
+    ],
+    "conclusion": "Clausier riguarda meno il punteggio migliore e più le risposte sincere: quale modello usare, quando passare a una persona e per cosa il modello non deve mai essere usato."
+  },
+  "stayline": {
+    "title": "Stayline",
+    "description": "Un agente IA protetto che applica sequestri disposti dal tribunale ai contratti di assicurazione sulla vita: il contratto giusto e nient'altro.",
+    "metadata": {
+      "role": "Team di due: grafo dell'agente, server dell'assicuratore, sistema di valutazione, API e schermata delle esecuzioni",
+      "category": "IA agentica, valutazione LLM, misure di sicurezza",
+      "timeline": "Novembre 2026 (discusso il 20 novembre 2026)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/Stayline"
+    },
+    "overview": "Durante un'indagine penale, un giudice può sequestrare il contratto di assicurazione sulla vita di un sospettato e l'assicuratore deve bloccare esattamente cinque operazioni su quel contratto. Stayline è un agente IA nel back office di un assicuratore fittizio che svolge questo lavoro solo su dati simulati. Viene valutato per lo stato che lascia nel database, non per ciò che dice. L'abbiamo costruito in due per il corso Agentic Workflows. Ho realizzato il grafo dell'agente, il server dell'assicuratore, il sistema di valutazione e il valutatore, le tracce, l'API e la schermata delle esecuzioni; la mia compagna Khadidja ha realizzato il server della giustizia, la memoria a lungo termine, il recupero dai guasti e la schermata del registro.",
+    "challenge": {
+      "problem": "Oggi una persona legge l'atto giudiziario, trova il contratto e applica il blocco a mano. Un agente potrebbe farlo, ma bloccare troppo poco è un errore e lo è anche bloccare troppo: la Cour de cassation ha stabilito che un sequestro può produrre solo gli effetti previsti dalla legge.",
+      "goal": "Applicare le cinque restrizioni dell'article 706-155 del codice di procedura penale francese al contratto giusto e a nessun altro, rifiutare i casi esclusi dalla legge e chiedere all'operatore quando i registri non chiariscono quale contratto sia inteso.",
+      "constraints": "Il modello non deve mai scrivere da solo. Il testo dell'atto non è affidabile e può contenere istruzioni iniettate. Ogni scrittura rischiosa richiede che una persona approvi un'azione esatta e versionata."
+    },
+    "discovery": {
+      "requirements": "Abbiamo tradotto legge e giurisprudenza in regole: quale autorità può ordinare un sequestro in quale procedimento, le cinque restrizioni e i rifiuti (contraente deceduto, autorità incompetente, contratto di un altro assicuratore, contratto già riscattato, secondo sequestro).",
+      "competitiveAnalysis": "La maggior parte delle demo di agenti viene valutata sul messaggio finale. Noi abbiamo valutato la nostra sullo stato finale del database, perché una risposta cortese accanto a un blocco sbagliato resta un errore.",
+      "technicalResearch": "Abbiamo confrontato due modelli sugli stessi 30 scenari, tre esecuzioni ciascuno. DeepSeek V4.1 Flash ha superato 88 esecuzioni su 90 e Mistral Small 60 su 90. Mistral costava e impiegava circa la metà, ma ha bloccato troppo quattro volte e tentato 13 chiamate vietate, tutte respinte dal server."
+    },
+    "architecture": {
+      "informationArchitecture": "Un agente LangGraph comunica con due server MCP: uno per i contratti e il registro delle restrizioni dell'assicuratore, l'altro per il riferimento giudiziario (autorità e procedure). Un servizio FastAPI trasmette le esecuzioni a un'interfaccia React via SSE, e SQLite contiene i dati simulati precaricati.",
+      "technicalDecisions": "Ogni scrittura rischiosa segue un percorso codificato che il modello non può saltare: creare un'anteprima di approvazione dai dati del backend, fermarsi per una persona, scrivere la versione esatta approvata con una chiave di idempotenza e poi rileggere il contratto. Il server ricontrolla ogni regola nella transazione, qualunque cosa abbia chiesto il modello."
+    },
+    "developmentProcess": {
+      "phase1": "Regole e dati: regole giuridiche nel codice, due server MCP e un database precaricato con refusi, omonimi e varianti ortografiche, per verificare l'abbinamento dei contratti nei casi difficili.",
+      "phase2": "Agente e protezione: grafo LangGraph con approvazione tramite interrupt, budget nel codice (limiti ai passaggi e alle chiamate del modello) e motivi di arresto letti dallo stato, mai dalle parole del modello.",
+      "phase3": "Valutazione e interfaccia: 30 scenari (normali, ambigui, impossibili e avversariali), un valutatore dello stato finale del database, tracce JSONL redatte, confronto dei modelli e schermate delle esecuzioni e del registro."
+    },
+    "keyFeatures": [
+      {
+        "title": "Una protezione che il modello non può saltare",
+        "description": "Il modello legge e decide, ma un percorso codificato crea la scheda di approvazione, attende una persona e ricontrolla ogni regola sul server.",
+        "implementation": "Preparare, approvare (un interrupt di LangGraph), scrivere con la versione esatta approvata e una chiave di idempotenza, poi verificare rileggendo. Una versione obsoleta riporta l'esecuzione alla preparazione, così la persona approva il nuovo stato.",
+        "challenges": "In uno scenario con istruzioni iniettate, Mistral ha seguito una falsa istruzione in tutte e tre le esecuzioni e ha tentato di eseguire richieste in sospeso. Il server ha respinto ogni tentativo: è proprio la ragione per un secondo controllo fuori dal modello."
+      },
+      {
+        "title": "Valutato sullo stato finale",
+        "description": "Ogni scenario è valutato sullo stato del database che lascia: blocchi insufficienti o eccessivi, modifiche al contratto sbagliato e chiamate vietate.",
+        "implementation": "30 scenari vengono eseguiti tre volte ciascuno a temperatura 0 con un approvatore che dice sempre sì, così si valuta solo il giudizio dell'agente. I risultati includono intervalli di Wilson, pass^3, costo per successo e latenza.",
+        "challenges": "Con 90 esecuzioni per modello gli intervalli restano ampi (dall'83,3 % al 99,4 % per il modello principale), quindi li abbiamo riportati invece di un unico punteggio."
+      },
+      {
+        "title": "Tracce con tutela della privacy",
+        "description": "Ogni esecuzione registra ogni chiamata al modello e agli strumenti, e i dati personali vengono sostituiti prima del salvataggio.",
+        "implementation": "Span JSONL per l'agente, ogni chiamata al modello (token e costo) e ogni chiamata a uno strumento, inviati facoltativamente ad Arize Phoenix tramite OpenTelemetry. Un redattore sostituisce nomi, date, luoghi e testo non affidabile con segnaposto stabili.",
+        "challenges": "Le tracce dovevano restare utili per il debug senza dati personali. Segnaposto stabili come <PERSON_1> conservano i collegamenti tra gli span senza i nomi, e un test verifica che le somme degli span coincidano con i risultati."
+      }
+    ],
+    "testing": "23 file pytest coprono le regole giuridiche, entrambi i server MCP, il grafo, la memoria, l'iniezione di guasti, le tracce, il valutatore e l'API. I 30 scenari sono il test comportamentale: girano con il modello reale e sono valutati solo sullo stato finale del database.",
+    "results": {
+      "technicalAchievements": "Con DeepSeek V4.1 Flash, 88 esecuzioni su 90 sono riuscite (Wilson al 95 %: dall'83,3 % al 99,4 %), senza blocchi insufficienti o eccessivi né modifiche al contratto sbagliato. Quando una scrittura è andata in timeout con esito ignoto, l'agente ha riletto il registro e non ha scritto due volte.",
+      "businessImpact": "Solo dati simulati, nessun assicuratore reale. Il progetto mostra come un agente possa svolgere lavoro di back office in cui un solo errore costa caro: una persona approva l'azione esatta e il server ha l'ultima parola.",
+      "personalGrowth": "Ho imparato a valutare gli agenti sui risultati anziché sulle parole e a mettere le regole di sicurezza nel codice del server, dove nessun prompt può raggiungerle."
+    },
+    "techStack": {
+      "frontend": "React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Vite, Bun",
+      "backend": "Python 3.12, LangGraph, due server MCP, FastAPI con SSE, SQLite",
+      "tools": "OpenRouter (DeepSeek V4.1 Flash e Mistral Small), OpenTelemetry, Arize Phoenix, pytest",
+      "libraries": null
+    },
+    "learnings": [
+      "Un agente va valutato sullo stato che lascia, non su ciò che dice.",
+      "Le regole di sicurezza appartengono al server: un modello può essere convinto a fare una chiamata vietata, il server no.",
+      "Un modello più economico e veloce può costare di più se esegue una sola scrittura errata. La scelta del modello principale si è basata sull'affidabilità, non sul prezzo.",
+      "Gli intervalli di confidenza ampi fanno parte del risultato: 90 esecuzioni offrono poche prove."
+    ],
+    "futureEnhancements": [
+      "Adattare il prompt a Mistral e ripetere il test: il prompt è stato scritto e fissato su DeepSeek, quindi il confronto era equo ma non ottimizzato.",
+      "Aumentare le ripetizioni e gli scenari per restringere gli intervalli.",
+      "Verificare l'autenticità dei documenti giudiziari reali, che il flusso simulato dà per scontata."
+    ],
+    "conclusion": "Stayline riguarda la parte dell'IA agentica a cui tengo di più: assicurare che l'agente faccia esattamente ciò che deve e che l'ultima parola spetti a una persona e al server, non al modello."
+  },
+  "boulangere-augmentee": {
+    "title": "La Boulangère Augmentée",
+    "description": "Un agente IA che aiuta una panettiera a gestire il negozio da Notion e non invia mai un ordine senza la sua approvazione.",
+    "metadata": {
+      "role": "Sviluppatore unico (prova tecnica)",
+      "category": "IA agentica, Full-Stack, supervisione umana",
+      "timeline": "Luglio 2026",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/boulangere-augmentee"
+    },
+    "overview": "Un agente conversazionale per Madeleine, una panettiera immaginaria, costruito sui database Notion forniti con il brief: magazzino, vendite, catalogo e ordini. Risponde alle sue domande in francese semplice, prevede cosa preparare, segnala scorte basse e prepara ordini ai fornitori. L'ho costruito da solo come prova tecnica per un ruolo di ingegneria IA. La vera sfida non era chiamare un modello, ma rendere affidabili le sue risposte e lasciare a una persona il controllo dell'unica azione irreversibile: inviare un ordine.",
+    "challenge": {
+      "problem": "Una panettiera tiene traccia di scorte, vendite e fornitori in posti diversi e non ha tempo per i fogli di calcolo. Un chatbot potrebbe aiutare, ma se invia da solo un ordine per errore costa denaro reale.",
+      "goal": "Lasciare che l'agente legga tutto e prepari ordini, ma rendere impossibile l'invio senza un sì esplicito della panettiera.",
+      "constraints": "Nessun budget, quindi serviva un modello con un piano gratuito utilizzabile. Altri vincoli erano hosting europeo per i dati commerciali, chiamate affidabili a sette strumenti e un'utente che non sa nulla di computer."
+    },
+    "discovery": {
+      "requirements": "I dati Notion comprendevano quattro database (magazzino, catalogo, vendite e ordini) e nessuna distinta base che collegasse i prodotti agli ingredienti, quindi le previsioni dovevano basarsi solo sullo storico delle vendite.",
+      "competitiveAnalysis": "Ho confrontato Mistral, Claude, GPT, Gemini e un Llama ospitato in proprio rispetto a quattro vincoli: costo di accesso, hosting, affidabilità delle chiamate agli strumenti e francese. Mistral era l'unico con un piano gratuito utilizzabile, hosting UE e francese nativo.",
+      "technicalResearch": "Ho scelto LangGraph perché interrupt() offre al grafo un vero punto di arresto, con un checkpointer che riprende esattamente da dove si era fermato. Un ciclo implicito dell'agente avrebbe fornito solo un'istruzione nel prompt."
+    },
+    "architecture": {
+      "informationArchitecture": "Un frontend Next.js con parser SSE tipizzato, un backend FastAPI con tre route (/chat, /resume e /health), un agente LangGraph con sette strumenti e un livello Notion dedicato che normalizza i dati in modelli Pydantic. Una modalità simulata riproduce uno snapshot registrato nel repository per test e demo offline.",
+      "technicalDecisions": "Una variabile d'ambiente sceglie il fornitore del modello: Mistral per impostazione predefinita, oppure Claude o OpenAI senza modificare l'agente. Le email vengono scritte di default in file .eml o inviate a una sandbox Mailtrap, così nessun vero fornitore riceve email durante i test."
+    },
+    "developmentProcess": {
+      "phase1": "Livello dati: client Notion, normalizzazione in modelli Pydantic e snapshot simulato, così ogni strumento riceve dati puliti e strutturati.",
+      "phase2": "L'agente: grafo LangGraph, sette strumenti (magazzino, vendite, catalogo, previsione di produzione, avvisi di riordino, margini e ordine al fornitore), streaming via SSE e tentativi ripetuti con backoff per i limiti di frequenza.",
+      "phase3": "Protezione e interfaccia: interruzione prima dell'invio, flusso di approvazione e interfaccia ispirata al laboratorio, dove le chiamate agli strumenti appaiono come comande e l'ordine come una ricevuta da timbrare."
+    },
+    "keyFeatures": [
+      {
+        "title": "Nessun ordine senza un sì",
+        "description": "Preparare un ordine mette in pausa il grafo e non viene inviato nulla finché la panettiera non approva.",
+        "implementation": "Lo strumento per gli ordini crea una bozza e chiama interrupt(), che il backend trasforma in un evento action_required. Solo dopo un sì chiaro, POST /resume esegue una funzione deterministica che invia l'email e registra l'ordine in Notion.",
+        "challenges": "L'approvazione doveva essere rigorosa: una risposta negativa, vuota o ambigua non invia mai nulla, e i test coprono ogni caso."
+      },
+      {
+        "title": "Sette strumenti scelti dall'agente",
+        "description": "L'agente sceglie lo strumento giusto per ogni domanda: magazzino, vendite, catalogo, previsione di produzione, avvisi di riordino, margini o ordine al fornitore.",
+        "implementation": "Un LangGraph StateGraph con un nodo agente e un ToolNode, un checkpointer in memoria per thread di conversazione e streaming token per token di risposte e chiamate agli strumenti.",
+        "challenges": "Senza distinta base, le previsioni usano la media delle vendite nello stesso giorno della settimana più un margine di sicurezza, mentre i margini usano i campi di costo del catalogo. Ho dichiarato queste ipotesi invece di nasconderle."
+      },
+      {
+        "title": "Pensato per chi non è esperto di tecnologia",
+        "description": "Francese semplice, chiamate agli strumenti visibili ed errori spiegati con la voce dell'assistente.",
+        "implementation": "Le chiamate agli strumenti appaiono come comande e l'ordine al fornitore come una ricevuta timbrata, così la panettiera vede cosa ha fatto l'agente. Risposte Markdown, font ospitati in proprio e supporto per il movimento ridotto.",
+        "challenges": "Non mostrare mai un errore tecnico grezzo: ogni guasto viene spiegato con le stesse parole semplici usate per le risposte."
+      }
+    ],
+    "testing": "Passano 48 test. Verificano che il grafo si fermi prima dell'invio, che una decisione negativa o vuota non avvii mai l'invio e che il flusso completo /chat poi /resume emetta action_required e invii solo dopo la conferma. La modalità simulata di Notion permette di eseguire la suite offline, senza token.",
+    "results": {
+      "technicalAchievements": "Un agente funzionante con sette strumenti, risposte in streaming e un passaggio di approvazione che non si può aggirare riformulando la richiesta, perché è imposto dal grafo e non dal prompt.",
+      "businessImpact": "Creato per una prova tecnica su un negozio immaginario, quindi senza utenti reali. Mostra il modello che userei per una piccola impresa: l'agente legge e prepara, la titolare decide.",
+      "personalGrowth": "Ho imparato a mettere la sicurezza nel codice invece che nel prompt e a documentare le ipotesi sui dati, così chi esamina il lavoro può contestarle."
+    },
+    "techStack": {
+      "frontend": "Next.js 16.2, TypeScript, Tailwind CSS, shadcn/ui, Bun",
+      "backend": "FastAPI, Python 3.11, uv, Pydantic v2, LangGraph",
+      "tools": "Docker Compose, API Notion, Mailtrap",
+      "libraries": "Mistral AI (mistral-large-latest per impostazione predefinita), notion-client, server-sent events"
+    },
+    "learnings": [
+      "La supervisione umana conta solo quando è un meccanismo nel codice. Una frase nel prompt può essere aggirata.",
+      "Rendere il fornitore del modello un dettaglio di configurazione mantiene reversibile la scelta.",
+      "La scelta di un modello parte dai vincoli (budget, hosting, lingua e chiamate agli strumenti), non dalle classifiche.",
+      "Modalità simulate e file .eml rendono sicuri i test di un agente che produce effetti esterni."
+    ],
+    "futureEnhancements": [
+      "Aggiungere l'autenticazione all'API prima di qualsiasi distribuzione esterna.",
+      "Usare un checkpointer persistente (Postgres o Redis) affinché un'approvazione in sospeso sopravviva a un riavvio.",
+      "Aggiungere una distinta base per trasformare le previsioni di vendita in fabbisogno di ingredienti e costi reali.",
+      "Creare un sistema di valutazione con scenari per rilevare regressioni nel comportamento prima di cambiare il prompt o il modello."
+    ],
+    "conclusion": "La Boulangère Augmentée è un piccolo progetto costruito sulla regola che applico a ogni agente: può leggere e preparare quanto vuole, ma l'azione irreversibile spetta a una persona."
   }
 }
