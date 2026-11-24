@@ -1524,5 +1524,308 @@
     "backend": "Backend",
     "tools": "Tools & Infrastructure",
     "libraries": "Libraries & Frameworks"
+  },
+  "argos": {
+    "title": "Argos",
+    "description": "Answers economic questions from Banque de France sources, cites every figure, and refuses when it can't verify.",
+    "metadata": {
+      "role": "Solo developer (RNCP AI developer certification project)",
+      "category": "Generative AI, RAG, Data Engineering, MLOps",
+      "timeline": "October to November 2026 (defended on 6 November 2026)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/argos"
+    },
+    "overview": "Argos answers economic questions in French from public sources: the Banque de France's Webstat, Bloc-notes Éco and Bulletin, plus Eurostat. Every figure in an answer is cited, and when no verifiable answer exists, it refuses or asks for clarification. Statistics are computed in Python on the official series, so the language model only puts into words a result it didn't calculate. Everything runs locally and no data goes to a third party. I built it alone for my RNCP 37827 certification (AI developer), starting from a subject in my MSc's generative AI course.",
+    "challenge": {
+      "problem": "Ask a language model about French inflation or the ECB deposit rate and it will often give a plausible number with no source. For an analyst, an answer that can't be checked is worse than no answer.",
+      "goal": "Answer only from official publications and series, show the source of every claim, and treat refusing or abstaining as normal outcomes rather than errors.",
+      "constraints": "Everything had to run on a 16 GB Apple Silicon laptop, with no paid API and no data leaving the machine. One jury member is visually impaired, so the interface had to work with a keyboard, a screen reader and 400% zoom."
+    },
+    "discovery": {
+      "requirements": "I collected 15 publications (12 blog posts and 3 reports), 5 Webstat series (ECB deposit facility, French inflation, the dollar exchange rate and two credit aggregates) and 3,533,048 Eurostat rows, keeping the provenance of each one from download to answer.",
+      "competitiveAnalysis": "General-purpose chatbots answer fluently but rarely cite the exact series or passage, and they don't refuse forecasts. Webstat itself is reliable, but you need to know which series to open. Argos sits between the two: a question in plain French, an answer tied to the official data.",
+      "technicalResearch": "Before choosing a model, I benchmarked four local models served by Ollama on the same questions, each run twice. gemma4-e2b scored best (0.85) with no factual error, while llama3.2-3b gave in to a prompt injection and invented a forecast. I chose gemma4-e2b, with granite-embedding-278m for multilingual embeddings."
+    },
+    "architecture": {
+      "informationArchitecture": "Next.js serves the interface and holds the session: the browser never calls FastAPI directly. FastAPI exposes a data API (publications, statistics) and an AI API (route, search, answer) behind Better Auth JWTs with reader and admin roles. PostgreSQL holds the data, Qdrant the passages, Ollama runs the models through LiteLLM, and Prometheus and Grafana monitor it all.",
+      "technicalDecisions": "A supervised router decides first whether a question goes to documents, statistics or both, or gets refused. Below a confidence of 0.40 it abstains and asks for clarification without calling the model. A verifier then checks that every citation exists and that every number in the answer is backed by a source."
+    },
+    "developmentProcess": {
+      "phase1": "Collection and ETL: collectors for the Bloc-notes Éco, the Bulletin PDFs and the Webstat API, a staging layer with quarantine and deduplication, then idempotent loading into canonical tables. Exports carry SHA-256 fingerprints, so the database can be rebuilt and checked.",
+      "phase2": "The router: I validated 326 labelled questions by hand, split them by family so near-duplicates never end up in both train and test, then froze the test set and set the promotion thresholds before the first training run.",
+      "phase3": "RAG and delivery: hybrid search (BM25 and dense vectors fused with RRF), the answer verifier, the Next.js assistant page, a GitHub Actions workflow that retrains the router and publishes it as a release, and monitoring with Prometheus and Grafana."
+    },
+    "keyFeatures": [
+      {
+        "title": "Answers you can check",
+        "description": "Each answer cites its passages [S…] and statistics [T…], and every citation opens its source.",
+        "implementation": "Statistics are computed in Python on the official series and given to the model as results. The verifier rejects an answer if a citation doesn't exist or a number isn't backed by a source.",
+        "challenges": "At first the verifier rejected a correct answer (1.1593 US dollars per euro) because it didn't accept numbers taken from a series' unit. I found it during evaluation and fixed it."
+      },
+      {
+        "title": "A router that knows when to refuse",
+        "description": "Before any search, a classifier sends the question to documents, statistics or both, refuses forecasts and out-of-scope questions, and abstains when unsure.",
+        "implementation": "TF-IDF on words and characters with logistic regression, trained on 326 validated questions. A deterministic safety filter and a forecast rule run before the model, and it abstains below 0.40 confidence.",
+        "challenges": "The first trained version scored well but I didn't promote it: a confidence fallback was turning refusals into document searches. I fixed the decision order and re-evaluated before publishing."
+      },
+      {
+        "title": "Accessible by design",
+        "description": "Keyboard use, VoiceOver and 200% to 400% zoom were requirements from day one, because a jury member is visually impaired.",
+        "implementation": "Charts have a name, a description and a table alternative, no information relies on colour alone, and reduced motion is respected. In CI, a Playwright journey runs axe on 9 screens.",
+        "challenges": "Dense financial data and readability pull in opposite directions. I kept the density but put the unit, period, source and provenance next to every figure."
+      }
+    ],
+    "testing": "Python tests cover collection, ETL, the database, the API (200, 401, 403, 404 and 422 responses), JWT security, the router, the LLM client and the RAG chain, with an 80% coverage floor that fails CI. Vitest and Playwright with axe cover the interface. CI never calls a real model: the benchmark, the RAG evaluation and the faithfulness checks run locally and are reported separately.",
+    "results": {
+      "technicalAchievements": "On the frozen test set, the served router reaches a macro-F1 of 0.804 and catches 90.9% of out-of-scope questions, with no false refusal (a regression check, since I had already looked at that set). Hybrid search finds every reference passage in its top 8. On 15 development questions, no answer contained an invented figure.",
+      "businessImpact": "No real users and no production use. What it demonstrates is a method: an assistant that can be audited, refuses when it should, and runs without sending data off the machine.",
+      "personalGrowth": "Setting thresholds before training, freezing the test set and writing down every decision with its date changed how I work. I also learned that a model can pass its metrics and still not deserve promotion."
+    },
+    "techStack": {
+      "frontend": "Next.js, TypeScript, Better Auth, Zod, Vitest, Playwright with axe-core",
+      "backend": "FastAPI (Python 3.12), PostgreSQL with Alembic, Qdrant, Ollama behind LiteLLM",
+      "tools": "uv, Docker, GitHub Actions, Prometheus, Grafana",
+      "libraries": "scikit-learn (router), gemma4-e2b (generation), granite-embedding-278m (embeddings), BM25 and RRF hybrid search, Pytest"
+    },
+    "learnings": [
+      "The weak link was the router, not search or generation: 5 of the 15 development questions failed through an abstention or a wrong route, and none through an invented figure.",
+      "Setting promotion thresholds before the first training run removes the temptation to move them afterwards.",
+      "A reranker isn't automatically better: on my questions it lowered top-1 recall from 0.833 to 0.611 and added about 1.2 GB of memory, so I left it out.",
+      "A test set you've already looked at only gives you a regression check. An independent measure needs questions the model has never seen."
+    ],
+    "futureEnhancements": [
+      "Write new questions to enrich the routing dataset, then evaluate a new router version on questions it has never seen.",
+      "Reduce abstentions on simple factual questions (18.6% on the frozen test set).",
+      "Cut the response time, currently several seconds on the laptop, and lift the 400-token limit that can truncate long answers.",
+      "Add more Webstat series and publications."
+    ],
+    "conclusion": "Argos is my clearest example of AI you can check: every figure traces back to an official source, refusing is a normal answer, and the limits are written down rather than hidden."
+  },
+  "clausier": {
+    "title": "Clausier",
+    "description": "Sorts and finds contract clauses, with an audit of where the model works and where it must not be trusted.",
+    "metadata": {
+      "role": "Team of two: data, classifiers, paired tests and bias audit (clause search by my teammate)",
+      "category": "NLP, Deep Learning, Model Evaluation",
+      "timeline": "October 2026 (defended on 23 October 2026)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/clausier-ledgar"
+    },
+    "overview": "Clausier is the NLP core of a contract-review assistant. It sorts contract clauses into the 100 LEDGAR clause types, finds similar clauses in a bank of 60,000, and documents where it works and where it doesn't. We built it as a team of two for the Deep Learning for NLP course at Albert School. I handled the data, every classifier (TF-IDF, LSTM, BERT, Legal-BERT and LoRA), the paired tests and the bias audit, and my teammate Wiyao built clause search.",
+    "challenge": {
+      "problem": "Lawyers spend time sorting clauses and hunting for precedents. A classifier can help, but only if you know which clause types it gets wrong and when its confidence actually means something.",
+      "goal": "Compare a cheap baseline with fine-tuned transformers fairly, choose the model on evidence, and publish a model card that says what it must not be used for.",
+      "constraints": "LEDGAR is heavily imbalanced (from 3,167 down to 23 training clauses per type), 2,241 test clauses are copies or near copies of training clauses, and GPU training had to fit on a single Colab T4."
+    },
+    "discovery": {
+      "requirements": "Every number had to come from a script, and the main comparison and the audit plan were written and committed before the code that measures them, so the results couldn't shape the questions.",
+      "competitiveAnalysis": "Published LexGLUE results are reported on the full test set. Since more than a fifth of that set copies the training data, I also reported every result on the 7,759 deduplicated test clauses.",
+      "technicalResearch": "I compared TF-IDF with logistic regression, LSTMs with and without GloVe, BERT-base, Legal-BERT and Legal-BERT with LoRA (0.34% of parameters trained), then added calibration, abstention and conformal prediction sets from published work."
+    },
+    "architecture": {
+      "informationArchitecture": "A Python package with one module per stage: data and deduplication, baseline, LSTM, transformers, paired tests, retrieval and audit. Every model exposes the same predict_proba interface, and make targets rebuild every table from the run directories.",
+      "technicalDecisions": "The decision rule was fixed in advance: if Legal-BERT doesn't significantly beat TF-IDF on the deduplicated test set, the cheaper model wins. It didn't, so the recommended model is TF-IDF, which trains in 44 seconds on a laptop CPU and needs no GPU."
+    },
+    "developmentProcess": {
+      "phase1": "Data: the official LEDGAR splits, detection of exact and near-duplicate test clauses (TF-IDF cosine of 0.9 or more), and slices derived from the text, such as contract family, jurisdiction and length.",
+      "phase2": "Models: the TF-IDF baseline, then LSTMs and transformers trained with a hand-written PyTorch loop on Colab (best Legal-BERT run: epoch 9, 2 h 10 on a T4), compared with McNemar tests and a paired bootstrap.",
+      "phase3": "Audit and app: failures per class, slices with 95% intervals, counterfactual tests, calibration and abstention, then a Flask demo app to classify a clause, search the bank, review a contract and stress-test a clause live."
+    },
+    "keyFeatures": [
+      {
+        "title": "A fair model comparison",
+        "description": "TF-IDF and Legal-BERT are compared on the same clauses with significance tests, not a single score.",
+        "implementation": "McNemar with continuity correction on accuracy and a paired bootstrap on macro-F1 (1,000 resamples), on both the full and the deduplicated test sets.",
+        "challenges": "The transformer finished 0.001 macro-F1 behind on the full test set. The hard part was accepting that result and recommending the simpler model."
+      },
+      {
+        "title": "Knowing when to hand over to a person",
+        "description": "Below a calibrated confidence, a clause goes to a person instead of being labelled automatically.",
+        "implementation": "Temperature scaling for Legal-BERT (T = 1.42, calibration error down from 0.085 to 0.031), with thresholds chosen on validation for 95% accuracy. On test, about 17% of clauses go to a person and the rest are about 95% accurate.",
+        "challenges": "Raw Legal-BERT probabilities are overconfident, so a threshold only works on calibrated scores."
+      },
+      {
+        "title": "A bias audit planned in advance",
+        "description": "Three counterfactual tests check that the predicted type doesn't change for the wrong reasons.",
+        "implementation": "Swapping party roles, moving the governing law to England and Wales, and rewriting number formats, each with a control edit and a pass rule fixed before the run. Every test passes for both models.",
+        "challenges": "Legal-BERT's flip rate on party roles was just above 2%, but no higher than its control: it reacts to any change in the party words, not to which side holds the role."
+      }
+    ],
+    "testing": "19 pytest files cover the data pipeline, the baseline, calibration, the paired comparisons, the audit, cost measurement and the app, and make test runs without a GPU. make final rebuilds every table, paired test and audit from the run directories, with seed 42 and pinned versions.",
+    "results": {
+      "technicalAchievements": "TF-IDF reaches a test macro-F1 of 0.826 (0.788 deduplicated) and Legal-BERT 0.825 (0.787), with no significant difference. With abstention, the clauses handled automatically are about 95% accurate. About a fifth of the errors come from overlapping labels such as Governing Laws and Applicable Laws.",
+      "businessImpact": "No real users: it's a course project on public US contracts. For a legal-tech team, it shows how to choose a model on evidence and document its limits before anyone relies on it.",
+      "personalGrowth": "I learned to write the decision rule before seeing the results, and to treat the model card as part of the product rather than paperwork."
+    },
+    "techStack": {
+      "frontend": "Flask demo app with five views: classify, search, contract review, stress test and evidence",
+      "backend": null,
+      "tools": "Python 3.11, Google Colab (T4 GPU), make, pytest, Slidev for the defence",
+      "libraries": "PyTorch, Hugging Face Transformers and Datasets, sentence-transformers (MiniLM), scikit-learn, Legal-BERT"
+    },
+    "learnings": [
+      "On a dataset like LEDGAR, a well-tuned TF-IDF model can match a fine-tuned transformer at a fraction of the cost: 0.09 ms per clause on a CPU against 31.8 ms.",
+      "Duplicates between train and test inflate scores: the deduplicated test set takes almost 4 points off macro-F1.",
+      "Many errors come from the label set, not the model: the same clause appears under both Governing Laws and Applicable Laws.",
+      "A confidence score is only useful once it's calibrated."
+    ],
+    "futureEnhancements": [
+      "Evaluate on European contracts: the models have only seen US SEC filings, and nothing here measures how well they read anything else.",
+      "Train several seeds per model to measure the variation between runs.",
+      "Merge or redefine the overlapping label pairs with legal experts.",
+      "Let Legal-BERT read clauses longer than 256 tokens (12% of training clauses are cut)."
+    ],
+    "conclusion": "Clausier is less about the best score than about honest answers: which model to use, when to hand over to a person, and what the model must never be used for."
+  },
+  "stayline": {
+    "title": "Stayline",
+    "description": "A guarded AI agent that applies court-ordered seizures to life-insurance contracts: the right contract, and nothing more.",
+    "metadata": {
+      "role": "Team of two: agent graph, insurer server, evaluation harness, API and run screen",
+      "category": "Agentic AI, LLM Evaluation, Guardrails",
+      "timeline": "November 2026 (defended on 20 November 2026)",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/Stayline"
+    },
+    "overview": "During a criminal investigation, a judge can seize a suspect's life-insurance contract, and the insurer must then block exactly five operations on it. Stayline is an AI agent in the back office of a fictional insurer that does this work, on mock data only, and it's graded on what it leaves in the database, not on what it says. We built it as a team of two for the Agentic Workflows course. I built the agent graph, the insurer server, the evaluation harness and grader, the traces, the API and the run screen, and my teammate Khadidja built the justice server, long-term memory, failure recovery and the ledger screen.",
+    "challenge": {
+      "problem": "Today a person reads the court notice, finds the contract and applies the freeze by hand. An agent could do it, but blocking too little is a failure, and so is blocking too much: the Cour de cassation has ruled that a seizure can only have the effects the law lists.",
+      "goal": "Apply the five restrictions of article 706-155 of the code of criminal procedure to the right contract and nothing else, refuse the cases the law excludes, and ask the operator when the records don't settle which contract is meant.",
+      "constraints": "The model must never write alone. Notice text is untrusted and may contain injected instructions. Every dangerous write needs a human to approve one exact, versioned action."
+    },
+    "discovery": {
+      "requirements": "We turned the law and case law into rules: which authority may order a seizure in which procedure, the five restrictions, and the refusals (a deceased subscriber, an authority that isn't competent, another insurer's contract, a contract already surrendered, a second seizure).",
+      "competitiveAnalysis": "Most agent demos are judged on their final message. We judged ours on the final state of the database, because a polite answer next to a wrong freeze is still a failure.",
+      "technicalResearch": "We compared two models on the same 30 scenarios, three runs each. DeepSeek V4.1 Flash passed 88 of 90 runs and Mistral Small 60 of 90. Mistral was about twice as cheap and fast, but over-blocked four times and attempted 13 forbidden calls, all refused by the server."
+    },
+    "architecture": {
+      "informationArchitecture": "A LangGraph agent talks to two MCP servers: one for the insurer's contracts and restriction ledger, one for the justice reference (authorities and procedures). A FastAPI service streams runs to a React interface over SSE, and SQLite holds the seeded mock data.",
+      "technicalDecisions": "Every dangerous write goes through a coded path the model can't skip: build an approval preview from backend data, pause for a human, write the exact approved version with an idempotency key, then read the contract back. The server re-checks every rule inside the transaction, whatever the model asked for."
+    },
+    "developmentProcess": {
+      "phase1": "Rules and data: the legal rules as code, the two MCP servers, and a seeded database with typos, namesakes and spelling variants, so contract matching is tested on hard cases.",
+      "phase2": "The agent and its guard: the LangGraph graph with interrupt-based approval, budgets in code (step and model-call limits) and stop reasons read from the state, never from the model's wording.",
+      "phase3": "Evaluation and interface: 30 scenarios (normal, ambiguous, impossible and adversarial), a grader on the final database state, redacted JSONL traces, the model comparison, and the run and ledger screens."
+    },
+    "keyFeatures": [
+      {
+        "title": "A guard the model can't skip",
+        "description": "The model reads and decides, but a coded path builds the approval card, waits for a human and re-checks every rule on the server.",
+        "implementation": "Prepare, approve (a LangGraph interrupt), write with the exact approved version and an idempotency key, then verify by reading back. A stale version sends the run back to prepare, so the human approves the new state.",
+        "challenges": "In one injected scenario, Mistral followed a fake instruction in all three runs and tried to execute pending requests. The server refused every attempt, which is exactly the argument for a second check outside the model."
+      },
+      {
+        "title": "Graded on the final state",
+        "description": "Each scenario is graded on the database it leaves behind: under-blocking, over-blocking, changes to the wrong contract and forbidden calls.",
+        "implementation": "30 scenarios run three times at temperature 0 with an always-yes approver, so only the agent's judgment is tested. Results include Wilson intervals, pass^3, cost per success and latency.",
+        "challenges": "With 90 runs per model the intervals stay wide (83.3% to 99.4% for the main model), so we reported them instead of a single score."
+      },
+      {
+        "title": "Traces with privacy built in",
+        "description": "Every run records each model and tool call, and personal data is replaced before anything is saved.",
+        "implementation": "JSONL spans for the agent, each model call (tokens and cost) and each tool call, optionally sent to Arize Phoenix through OpenTelemetry. A redactor replaces names, dates, places and untrusted text with stable placeholders.",
+        "challenges": "Traces had to stay useful for debugging without personal data. Stable placeholders such as <PERSON_1> keep the links between spans without the names, and a test checks that span totals match the results."
+      }
+    ],
+    "testing": "23 pytest files cover the legal rules, both MCP servers, the graph, memory, fault injection, tracing, the grader and the API. The 30 scenarios are the behavioural test: they run against the real model and are graded only on the final database state.",
+    "results": {
+      "technicalAchievements": "With DeepSeek V4.1 Flash, 88 of 90 runs passed (Wilson 95%: 83.3% to 99.4%), with no under-blocking, no over-blocking and no change to the wrong contract. When a write timed out with an unknown outcome, the agent read the ledger back and didn't write twice.",
+      "businessImpact": "Mock data only, no real insurer. The design shows how an agent can take on back-office work where one wrong action is costly: a human approves the exact action, and the server has the last word.",
+      "personalGrowth": "I learned to grade agents on outcomes rather than words, and to put the safety rules in code on the server, where no prompt can reach them."
+    },
+    "techStack": {
+      "frontend": "React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Vite, Bun",
+      "backend": "Python 3.12, LangGraph, two MCP servers, FastAPI with SSE, SQLite",
+      "tools": "OpenRouter (DeepSeek V4.1 Flash and Mistral Small), OpenTelemetry, Arize Phoenix, pytest",
+      "libraries": null
+    },
+    "learnings": [
+      "An agent should be graded on the state it leaves, not on what it says.",
+      "Safety rules belong on the server: a model can be talked into a forbidden call, the server can't.",
+      "A cheaper, faster model can cost more if it makes one wrong write. Reliability chose the main model, not price.",
+      "Wide confidence intervals are part of the result: 90 runs isn't much evidence."
+    ],
+    "futureEnhancements": [
+      "Tune the prompt for Mistral and test it again: the prompt was written and fixed on DeepSeek, so the comparison was fair but not optimised.",
+      "Run more repeats and more scenarios to narrow the intervals.",
+      "Handle the authenticity of real court documents, which the mock feed takes for granted."
+    ],
+    "conclusion": "Stayline is about the part of agentic AI I care most about: making sure the agent does exactly what it should, and that a person and the server, not the model, have the final say."
+  },
+  "boulangere-augmentee": {
+    "title": "La Boulangère Augmentée",
+    "description": "An AI agent that helps a baker run her shop from Notion, and never sends an order without her approval.",
+    "metadata": {
+      "role": "Solo developer (technical test)",
+      "category": "Agentic AI, Full-Stack, Human in the Loop",
+      "timeline": "July 2026",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/boulangere-augmentee"
+    },
+    "overview": "A conversational agent for Madeleine, a fictional baker, built on the Notion databases provided with the brief: stock, sales, catalogue and orders. It answers her questions in plain French, forecasts what to bake, flags low stock and prepares supplier orders. I built it alone as a technical test for an AI engineering role. The real challenge wasn't calling a model, but making its outputs reliable and keeping a person in charge of the one irreversible action: sending an order.",
+    "challenge": {
+      "problem": "A baker tracks stock, sales and suppliers in several places and has no time for spreadsheets. A chatbot could help, but one that sends an order on its own by mistake costs real money.",
+      "goal": "Let the agent read everything freely and prepare orders, but make sending impossible without an explicit yes from the baker.",
+      "constraints": "No budget, so the model needed a usable free tier. European hosting for commercial data, reliable tool calling across seven tools, and a user who knows nothing about computers."
+    },
+    "discovery": {
+      "requirements": "The Notion data had four databases (stock, catalogue, sales and orders) and no bill of materials linking products to ingredients, so forecasts had to rely on sales history alone.",
+      "competitiveAnalysis": "I compared Mistral, Claude, GPT, Gemini and a self-hosted Llama against four constraints: cost of access, hosting, tool-calling reliability and French. Mistral was the only one with a usable free tier, EU hosting and native French.",
+      "technicalResearch": "I chose LangGraph because interrupt() gives the graph a real stopping point, with a checkpointer that resumes exactly where it paused. An implicit agent loop would only have offered an instruction in the prompt."
+    },
+    "architecture": {
+      "informationArchitecture": "A Next.js frontend with a typed SSE parser, a FastAPI backend with three routes (/chat, /resume and /health), a LangGraph agent with seven tools, and a dedicated Notion layer that normalises the data into Pydantic models. A mock mode replays a committed snapshot for offline tests and demos.",
+      "technicalDecisions": "One environment variable chooses the model provider: Mistral by default, Claude or OpenAI without touching the agent. Emails are written to .eml files by default, or sent to a Mailtrap sandbox, so no real supplier can be emailed during tests."
+    },
+    "developmentProcess": {
+      "phase1": "Data layer: the Notion client, normalisation into Pydantic models and the mock snapshot, so every tool receives clean, structured data.",
+      "phase2": "The agent: the LangGraph graph, the seven tools (stock, sales, catalogue, production forecast, restock alerts, margins and supplier order), streaming over SSE, and retries with backoff for rate limits.",
+      "phase3": "Guard and interface: the interrupt before sending, the approval flow, and a workshop-style interface where tool calls appear as kitchen tickets and the order as a slip to stamp."
+    },
+    "keyFeatures": [
+      {
+        "title": "No order without a yes",
+        "description": "Preparing an order pauses the graph, and nothing is sent until the baker approves it.",
+        "implementation": "The order tool builds a draft and calls interrupt(), which the backend turns into an action_required event. Only after a clear yes does POST /resume run a deterministic function that sends the email and records the order in Notion.",
+        "challenges": "Approval had to be strict: a negative, empty or ambiguous answer never sends anything, and tests cover each case."
+      },
+      {
+        "title": "Seven tools, chosen by the agent",
+        "description": "The agent picks the right tool for each question: stock, sales, catalogue, production forecast, restock alerts, margins or a supplier order.",
+        "implementation": "A LangGraph StateGraph with an agent node and a ToolNode, a memory checkpointer per conversation thread, and token-by-token streaming of answers and tool calls.",
+        "challenges": "Without a bill of materials, forecasts use the average sales of the same weekday plus a safety margin, and margins use the catalogue's cost fields. I stated these assumptions instead of hiding them."
+      },
+      {
+        "title": "Built for someone who isn't technical",
+        "description": "Plain French, visible tool calls, and errors explained in the assistant's own voice.",
+        "implementation": "Tool calls appear as kitchen tickets and the supplier order as a stamped slip, so the baker can see what the agent did. Markdown answers, self-hosted fonts and reduced-motion support.",
+        "challenges": "Never showing a raw technical error: every failure is explained in the same simple words as the answers."
+      }
+    ],
+    "testing": "48 tests pass. They check that the graph stops before sending, that a negative or empty decision never triggers the send, and that the full /chat then /resume flow emits action_required and sends only after confirmation. The Notion mock mode lets the suite run offline, without a token.",
+    "results": {
+      "technicalAchievements": "A working agent with seven tools, streamed answers and an approval step that can't be bypassed by rewording the request, because the graph enforces it, not the prompt.",
+      "businessImpact": "Built for a technical test on a fictional shop, so no real users. It shows the pattern I'd use for a small business: the agent reads and prepares, the owner decides.",
+      "personalGrowth": "I learned to put the safety in the code rather than the prompt, and to write down data assumptions so a reviewer can challenge them."
+    },
+    "techStack": {
+      "frontend": "Next.js 16.2, TypeScript, Tailwind CSS, shadcn/ui, Bun",
+      "backend": "FastAPI, Python 3.11, uv, Pydantic v2, LangGraph",
+      "tools": "Docker Compose, Notion API, Mailtrap",
+      "libraries": "Mistral AI (mistral-large-latest by default), notion-client, server-sent events"
+    },
+    "learnings": [
+      "A human in the loop only counts when it's a mechanism in the code. A sentence in the prompt can be talked around.",
+      "Making the model provider a configuration detail keeps the choice reversible.",
+      "Choosing a model starts from the constraints (budget, hosting, language and tool calling), not from leaderboards.",
+      "Mock modes and .eml files make an agent with side effects safe to test."
+    ],
+    "futureEnhancements": [
+      "Add authentication to the API before any external deployment.",
+      "Use a persistent checkpointer (Postgres or Redis) so a pending approval survives a restart.",
+      "Add a bill of materials to turn sales forecasts into ingredient needs and real costs.",
+      "Build an evaluation harness of scenarios to catch behaviour regressions before changing the prompt or the model."
+    ],
+    "conclusion": "La Boulangère Augmentée is a small project built on the rule I apply to every agent: it can read and prepare as much as it likes, but the irreversible action belongs to a person."
   }
 }

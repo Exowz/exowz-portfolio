@@ -1524,5 +1524,308 @@
     "backend": "后端",
     "tools": "工具与基础设施",
     "libraries": "库与框架"
+  },
+  "argos": {
+    "title": "Argos",
+    "description": "依据 Banque de France 的资料回答经济问题，为每个数字注明来源，无法核实时拒绝回答。",
+    "metadata": {
+      "role": "独立开发者（RNCP AI 开发者认证项目）",
+      "category": "生成式 AI、RAG、数据工程、MLOps",
+      "timeline": "2026 年 10 月至 11 月（2026 年 11 月 6 日答辩）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/argos"
+    },
+    "overview": "Argos 根据公开资料用法语回答经济问题，资料包括 Banque de France 的 Webstat、Bloc-notes Éco 和 Bulletin，以及 Eurostat。回答中的每个数字都有引用；没有可核实的答案时，它会拒绝回答或请求澄清。统计数据由 Python 根据官方时间序列计算，语言模型只负责表述自己没有计算的结果。所有组件都在本地运行，数据不会发送给第三方。我以硕士课程的生成式 AI 课题为起点，独立完成了这个 RNCP 37827 认证（AI 开发者）项目。",
+    "challenge": {
+      "problem": "向语言模型询问法国通胀率或欧洲央行存款利率，它经常给出一个看似可信却没有来源的数字。对分析师而言，无法核实的回答比没有回答更糟。",
+      "goal": "仅依据官方出版物和时间序列回答，展示每项陈述的来源，并将拒绝或暂不回答视为正常结果，而不是错误。",
+      "constraints": "所有内容都必须在一台配备 16 GB 内存的 Apple Silicon 笔记本上运行，不使用付费 API，也不将数据传出本机。一位评委有视力障碍，因此界面必须支持键盘、屏幕阅读器和 400% 缩放。"
+    },
+    "discovery": {
+      "requirements": "我收集了 15 份出版物（12 篇博客文章、3 份报告）、5 条 Webstat 序列（欧洲央行存款利率、法国通胀率、美元汇率和两项信贷总量）以及 3,533,048 行 Eurostat 数据，从下载到回答都保留每条数据的来源。",
+      "competitiveAnalysis": "通用聊天机器人回答流畅，却很少引用准确的序列或段落，也不会拒绝预测问题。Webstat 本身可靠，但使用者必须知道该打开哪条序列。Argos 将简单的法语问题与有官方数据依据的回答连接起来。",
+      "technicalResearch": "选模型前，我用 Ollama 在相同问题上测试了四个本地模型，每个运行两次。gemma4-e2b 得分最高（0.85），没有事实错误；llama3.2-3b 则受提示词注入影响，编造了预测。我选用 gemma4-e2b，并用 granite-embedding-278m 生成多语言嵌入。"
+    },
+    "architecture": {
+      "informationArchitecture": "Next.js 提供界面并管理会话，浏览器不会直接调用 FastAPI。FastAPI 在带有读者和管理员角色的 Better Auth JWT 后提供数据 API（出版物、统计数据）和 AI API（路由、搜索、回答）。PostgreSQL 存储数据，Qdrant 存储段落，Ollama 通过 LiteLLM 运行模型，Prometheus 和 Grafana 监控整个系统。",
+      "technicalDecisions": "监督学习路由器首先决定将问题交给文档、统计数据、两者，还是直接拒绝。置信度低于 0.40 时，它不调用模型，而是暂不回答并请求澄清。之后验证器检查每条引用是否存在，以及回答中的每个数字是否有来源支持。"
+    },
+    "developmentProcess": {
+      "phase1": "采集与 ETL：为 Bloc-notes Éco、Bulletin PDF 和 Webstat API 编写采集器；建立带隔离和去重机制的暂存层，再以幂等方式载入规范化表。导出文件带有 SHA-256 指纹，以便重建并核查数据库。",
+      "phase2": "路由器：我手工核对了 326 个已标注问题，按问题家族划分，防止近似重复项同时进入训练和测试。第一次训练前就固定了测试集和模型晋级门槛。",
+      "phase3": "RAG 与交付：用 RRF 融合 BM25 与稠密向量的混合搜索、回答验证器、Next.js 助手页面、重新训练路由器并将其作为版本发布的 GitHub Actions 工作流，以及 Prometheus 和 Grafana 监控。"
+    },
+    "keyFeatures": [
+      {
+        "title": "可核实的回答",
+        "description": "每条回答引用段落 [S…] 和统计数据 [T…]，点击每条引用都能打开其来源。",
+        "implementation": "Python 根据官方序列计算统计数据，只把结果交给模型。若引用不存在或数字没有来源，验证器就拒绝回答。",
+        "challenges": "起初，验证器错误地拒绝了一条正确回答（每欧元 1.1593 美元），因为它不接受来自序列单位的数字。我在评估时发现并修复了这个问题。"
+      },
+      {
+        "title": "知道何时拒绝的路由器",
+        "description": "搜索前，分类器将问题送往文档、统计数据或两者，拒绝预测和超出范围的问题，并在不确定时暂不回答。",
+        "implementation": "对词和字符使用 TF-IDF，并用 326 个核实过的问题训练逻辑回归。模型运行前先执行确定性的安全过滤器和预测规则，置信度低于 0.40 时暂不回答。",
+        "challenges": "首个训练版本得分不错，但我没有将其晋级：置信度不足时的回退路径把应拒绝的问题变成了文档搜索。我修正决策顺序并重新评估后才发布。"
+      },
+      {
+        "title": "从一开始就考虑无障碍",
+        "description": "由于一位评委有视力障碍，键盘操作、VoiceOver 及 200% 至 400% 缩放从第一天起就是要求。",
+        "implementation": "图表有名称、说明和表格替代形式，信息不会只靠颜色传达，并尊重减少动态效果的设置。CI 中，Playwright 流程在 9 个页面运行 axe。",
+        "challenges": "密集的财务数据与可读性难以兼顾。我保留了数据密度，但在每个数字旁标明单位、时期、来源和数据溯源信息。"
+      }
+    ],
+    "testing": "Python 测试覆盖采集、ETL、数据库、API（200、401、403、404 和 422 响应）、JWT 安全、路由器、LLM 客户端及 RAG 链，覆盖率低于 80% 就会使 CI 失败。界面使用 Vitest 和集成 axe 的 Playwright 测试。CI 从不调用真实模型；基准测试、RAG 评估和忠实度检查在本地运行并单独报告。",
+    "results": {
+      "technicalAchievements": "在固定测试集上，已部署的路由器达到 0.804 的 macro-F1，识别出 90.9% 的范围外问题，没有错误拒绝（由于我已查看过该测试集，这只能算回归检查）。混合搜索在前 8 个结果中找到所有参考段落。在 15 个开发问题中，没有回答编造数字。",
+      "businessImpact": "没有真实用户，也没有生产环境使用。项目展示的是一种方法：让助手可供审计，在该拒绝时拒绝，并且不把数据传出本机。",
+      "personalGrowth": "训练前设定门槛、固定测试集并记录每项决策及日期，改变了我的工作方式。我也明白模型即使通过指标，也未必值得晋级。"
+    },
+    "techStack": {
+      "frontend": "Next.js, TypeScript, Better Auth, Zod, Vitest, Playwright 与 axe-core",
+      "backend": "FastAPI (Python 3.12), PostgreSQL 与 Alembic, Qdrant, Ollama（经由 LiteLLM）",
+      "tools": "uv, Docker, GitHub Actions, Prometheus, Grafana",
+      "libraries": "scikit-learn（路由器）, gemma4-e2b（生成）, granite-embedding-278m（嵌入）, BM25 与 RRF 混合搜索, Pytest"
+    },
+    "learnings": [
+      "薄弱环节是路由器，而非搜索或生成：15 个开发问题中有 5 个因暂不回答或路由错误而失败，没有一个因编造数字而失败。",
+      "在第一次训练前设定晋级门槛，可以避免事后调整门槛的诱惑。",
+      "重排序器并非一定更好：在我的问题上，它使 top-1 召回率从 0.833 降至 0.611，还增加约 1.2 GB 内存占用，所以我没有采用。",
+      "已经看过的测试集只能用于回归检查。独立测量需要模型从未见过的问题。"
+    ],
+    "futureEnhancements": [
+      "编写新问题以扩充路由数据集，再用模型从未见过的问题评估新版路由器。",
+      "减少简单事实问题上的暂不回答比例（固定测试集上为 18.6%）。",
+      "缩短目前在笔记本上需要数秒的响应时间，并提高可能截断长答案的 400 token 限制。",
+      "增加 Webstat 序列和出版物。"
+    ],
+    "conclusion": "Argos 是我最清楚的可核实 AI 实例：每个数字都能追溯到官方来源，拒绝是正常回答，局限被记录下来而非掩盖。"
+  },
+  "clausier": {
+    "title": "Clausier",
+    "description": "分类并检索合同条款，同时审查模型在哪些地方可靠、哪些地方不能信任。",
+    "metadata": {
+      "role": "两人团队：数据、分类器、配对检验与偏差审查（条款搜索由队友负责）",
+      "category": "NLP、深度学习、模型评估",
+      "timeline": "2026 年 10 月（2026 年 10 月 23 日答辩）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/clausier-ledgar"
+    },
+    "overview": "Clausier 是合同审阅助手的 NLP 核心。它将合同条款分为 LEDGAR 的 100 种类型，在 60,000 条条款的库中寻找相似内容，并记录模型适用和不适用的情况。我们两人在 Albert School 的 Deep Learning for NLP 课程中完成了它。我负责数据、所有分类器（TF-IDF、LSTM、BERT、Legal-BERT 和 LoRA）、配对检验及偏差审查；队友 Wiyao 负责条款搜索。",
+    "challenge": {
+      "problem": "律师花时间分类条款和寻找先例。分类器可以帮忙，但前提是知道它会弄错哪些条款类型，以及它的置信度何时真正有意义。",
+      "goal": "公平比较低成本基线模型与微调后的 Transformer，依据证据选择模型，并发布模型卡，说明模型不能用于哪些场景。",
+      "constraints": "LEDGAR 类别严重不均衡，每类训练条款从 3,167 条到 23 条不等；测试条款中有 2,241 条是训练条款的复制或近似复制；GPU 训练还必须在单块 Colab T4 上完成。"
+    },
+    "discovery": {
+      "requirements": "每个数字都必须来自脚本。主要比较方法和审查计划在测量代码编写前就已写入并提交，以免结果反过来影响提出的问题。",
+      "competitiveAnalysis": "已发表的 LexGLUE 结果基于完整测试集。由于其中超过五分之一复制了训练数据，我还报告了去重后 7,759 条测试条款上的全部结果。",
+      "technicalResearch": "我比较了搭配逻辑回归的 TF-IDF、使用和不使用 GloVe 的 LSTM、BERT-base、Legal-BERT，以及搭配 LoRA 的 Legal-BERT（仅训练 0.34% 的参数），随后依据已发表研究加入校准、暂不分类和保形预测集合。"
+    },
+    "architecture": {
+      "informationArchitecture": "这是一个 Python 包，各阶段分别有模块：数据与去重、基线、LSTM、Transformer、配对检验、检索和审查。每个模型都提供相同的 predict_proba 接口，make 目标可以从运行目录重建所有表格。",
+      "technicalDecisions": "决策规则预先确定：如果 Legal-BERT 在去重测试集上没有显著优于 TF-IDF，就选成本更低的模型。结果确实如此，因此推荐 TF-IDF；它在笔记本 CPU 上训练只需 44 秒，不需要 GPU。"
+    },
+    "developmentProcess": {
+      "phase1": "数据：使用 LEDGAR 官方划分，识别测试条款的完全重复和近似重复（TF-IDF 余弦相似度至少 0.9），并根据文本划分合同类别、司法管辖区和长度等切片。",
+      "phase2": "模型：建立 TF-IDF 基线，在 Colab 上用手写 PyTorch 训练循环训练 LSTM 和 Transformer（最佳 Legal-BERT 运行到第 9 轮，在 T4 上耗时 2 小时 10 分钟），再用 McNemar 检验和配对自助法比较。",
+      "phase3": "审查与应用：分析各类别错误、带 95% 区间的数据切片、反事实测试、校准及暂不分类；随后制作 Flask 演示应用，用于条款分类、资料库搜索、合同审阅及实时条款压力测试。"
+    },
+    "keyFeatures": [
+      {
+        "title": "公平的模型比较",
+        "description": "在相同条款上比较 TF-IDF 和 Legal-BERT，并使用显著性检验，而非只看单一分数。",
+        "implementation": "在完整和去重测试集上，准确率使用带连续性校正的 McNemar 检验，macro-F1 使用配对自助法（1,000 次重采样）。",
+        "challenges": "在完整测试集上，Transformer 的 macro-F1 低了 0.001。难点是接受结果并推荐更简单的模型。"
+      },
+      {
+        "title": "知道何时交给人处理",
+        "description": "若校准后的置信度低于阈值，条款就交给人处理，而不是自动标注。",
+        "implementation": "对 Legal-BERT 使用温度缩放（T = 1.42，校准误差从 0.085 降至 0.031），在验证集上选择达到 95% 准确率的阈值。测试时约 17% 的条款交给人处理，其余自动分类的准确率约为 95%。",
+        "challenges": "Legal-BERT 的原始概率过于自信，因此阈值只有用于校准后的分数才有意义。"
+      },
+      {
+        "title": "预先规划的偏差审查",
+        "description": "三项反事实测试检查预测类型会不会因不当原因改变。",
+        "implementation": "交换当事人角色、将管辖法律改为 英格兰和威尔士，以及改写数字格式。每项都有对照编辑和运行前固定的通过规则。两个模型均通过全部测试。",
+        "challenges": "Legal-BERT 在交换当事人角色时的预测翻转率略高于 2%，但并不高于对照组；它对当事人用词的任何变化都有反应，而不是对由哪一方承担某种角色有反应。"
+      }
+    ],
+    "testing": "19 个 pytest 文件覆盖数据流程、基线模型、校准、配对比较、审查、成本测量和应用，make test 不需要 GPU。make final 使用 seed 42 和固定版本，从运行目录重建所有表格、配对检验和审查结果。",
+    "results": {
+      "technicalAchievements": "TF-IDF 的测试集 macro-F1 为 0.826（去重后 0.788），Legal-BERT 为 0.825（去重后 0.787），差异不显著。启用暂不分类后，自动处理的条款准确率约为 95%。约五分之一的错误来自 Governing Laws 与 Applicable Laws 等重叠标签。",
+      "businessImpact": "没有真实用户：这是一个使用美国公开合同的课程项目。对法律技术团队而言，它展示了如何基于证据选择模型，并在投入使用前记录局限。",
+      "personalGrowth": "我学会了在看到结果前写下决策规则，也学会将模型卡视为产品的一部分，而非例行文书。"
+    },
+    "techStack": {
+      "frontend": "五个视图的 Flask 演示应用：分类、搜索、合同审阅、压力测试和证据",
+      "backend": null,
+      "tools": "Python 3.11, Google Colab (T4 GPU), make, pytest, 用于答辩的 Slidev",
+      "libraries": "PyTorch, Hugging Face Transformers, Datasets, sentence-transformers (MiniLM), scikit-learn, Legal-BERT"
+    },
+    "learnings": [
+      "在 LEDGAR 这样的数据集上，调校得当的 TF-IDF 可以用低得多的成本达到与微调 Transformer 相当的表现：CPU 上每条 0.09 ms，而后者为 31.8 ms。",
+      "训练与测试间的重复项会抬高分数：去重测试集的 macro-F1 低了将近 4 个百分点。",
+      "许多错误来自标签体系而非模型：同一条款可能同时出现在 Governing Laws 和 Applicable Laws 下。",
+      "置信度分数只有经过校准才有用。"
+    ],
+    "futureEnhancements": [
+      "在欧洲合同上评估：模型只见过美国 SEC 申报文件，尚未测量其阅读其他文件的能力。",
+      "为每个模型使用多个随机种子训练，以测量运行之间的差异。",
+      "与法律专家一起合并或重新定义重叠的标签对。",
+      "让 Legal-BERT 阅读超过 256 token 的条款（12% 的训练条款被截断）。"
+    ],
+    "conclusion": "Clausier 的重点与其说是最高分，不如说是诚实回答：该用哪个模型、何时交给人处理，以及哪些事绝不能让模型做。"
+  },
+  "stayline": {
+    "title": "Stayline",
+    "description": "一个受规则约束的 AI 智能体，将法院下令的扣押措施应用于人寿保险合同：只处理正确的合同，不多做任何限制。",
+    "metadata": {
+      "role": "两人团队：智能体图、保险公司服务器、评估工具、API 与运行界面",
+      "category": "智能体 AI、LLM 评估、安全约束",
+      "timeline": "2026 年 11 月（2026 年 11 月 20 日答辩）",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/Stayline"
+    },
+    "overview": "刑事调查期间，法官可以扣押嫌疑人的人寿保险合同，保险公司随后必须准确冻结该合同上的五项操作。Stayline 是虚构保险公司后台中处理这项工作的 AI 智能体，只使用模拟数据，并根据它最终留在数据库中的状态而非说了什么评分。我们两人在 Agentic Workflows 课程中完成了它。我负责智能体图、保险公司服务器、评估工具和评分器、追踪记录、API 及运行界面；队友 Khadidja 负责司法服务器、长期记忆、故障恢复和登记簿界面。",
+    "challenge": {
+      "problem": "目前由工作人员阅读法院通知、找到合同并手工冻结。智能体可以帮忙，但冻结不足是错误，冻结过多也是错误：Cour de cassation 已裁定扣押只能产生法律列明的效果。",
+      "goal": "将法国刑事诉讼法 article 706-155 的五项限制只应用于正确的合同，对法律排除的情形予以拒绝，并在记录无法确定目标合同时询问操作员。",
+      "constraints": "模型绝不能独自写入数据。通知文本不可信，可能包含注入指令。每项危险写入都必须由人批准一个精确且绑定版本的操作。"
+    },
+    "discovery": {
+      "requirements": "我们把法律和判例转为规则：哪个机关可在哪种程序中下令扣押、五项限制以及拒绝情形（投保人已去世、机关无权、合同属于其他保险公司、合同已退保、第二次扣押）。",
+      "competitiveAnalysis": "大多数智能体演示根据最终回复评分。我们依据数据库的最终状态评分，因为冻结错误时，即使回复礼貌也仍是失败。",
+      "technicalResearch": "我们在相同的 30 个场景中对两个模型各运行三次。DeepSeek V4.1 Flash 在 90 次运行中通过 88 次，Mistral Small 在 90 次运行中通过 60 次。Mistral 成本约为前者的一半，速度也更快，但有 4 次过度冻结，并尝试了 13 次禁止调用，全部被服务器拒绝。"
+    },
+    "architecture": {
+      "informationArchitecture": "LangGraph 智能体与两个 MCP 服务器通信：一个负责保险公司的合同和限制登记簿，另一个负责司法参考资料（机关与程序）。FastAPI 服务通过 SSE 将运行过程推送至 React 界面，SQLite 存储预置的模拟数据。",
+      "technicalDecisions": "每项危险写入都经过模型无法跳过的代码路径：根据后端数据生成审批预览、等待人工批准、用幂等键写入获批的准确版本，然后重新读取合同。无论模型请求了什么，服务器都会在事务内重新检查每条规则。"
+    },
+    "developmentProcess": {
+      "phase1": "规则与数据：将法律规则写成代码，建立两个 MCP 服务器，并预置带有错别字、同名者和拼写变体的数据库，以测试困难情况下的合同匹配。",
+      "phase2": "智能体与保护机制：带中断审批的 LangGraph 图、代码中的执行预算（步骤和模型调用次数上限），以及从状态而非模型措辞中读取的停止原因。",
+      "phase3": "评估与界面：30 个场景（正常、模糊、无法完成及对抗性）、依据最终数据库状态评分的评分器、脱敏 JSONL 追踪、模型对比，以及运行和登记簿界面。"
+    },
+    "keyFeatures": [
+      {
+        "title": "模型无法跳过的保护机制",
+        "description": "模型读取信息并做判断，但代码路径负责生成审批卡、等待人工决定，并在服务器上重新检查所有规则。",
+        "implementation": "先准备，再审批（一次 LangGraph 中断），用准确获批的版本和幂等键写入，最后重新读取验证。若版本过期，运行返回准备阶段，让人批准新的状态。",
+        "challenges": "在一个注入场景中，Mistral 三次都遵循了伪造指令，试图执行待处理请求。服务器拒绝了每次尝试，这正说明为什么需要模型之外的第二道检查。"
+      },
+      {
+        "title": "依据最终状态评分",
+        "description": "每个场景按留下的数据库状态评分：冻结不足、冻结过多、修改错误合同以及禁止调用。",
+        "implementation": "30 个场景在温度 0 下各运行三次，审批者始终同意，以便只测试智能体的判断。结果包括 Wilson 区间、pass^3、每次成功的成本和延迟。",
+        "challenges": "每个模型只有 90 次运行，区间仍然很宽（主模型为 83.3% 至 99.4%），因此我们报告了区间，而不是单一分数。"
+      },
+      {
+        "title": "保护隐私的追踪记录",
+        "description": "每次运行都记录每个模型和工具调用，个人信息在保存前被替换。",
+        "implementation": "为智能体、每次模型调用（token 数及成本）和每次工具调用记录 JSONL span，并可通过 OpenTelemetry 选择性发送至 Arize Phoenix。脱敏器用稳定占位符替换姓名、日期、地点和不可信文本。",
+        "challenges": "追踪记录必须在不包含个人信息的情况下仍能用于调试。<PERSON_1> 等稳定占位符保留 span 之间的关联而不泄露姓名，测试会核对 span 汇总与结果是否一致。"
+      }
+    ],
+    "testing": "23 个 pytest 文件覆盖法律规则、两个 MCP 服务器、图、记忆、故障注入、追踪、评分器和 API。30 个场景构成行为测试：它们运行真实模型，只依据最终数据库状态评分。",
+    "results": {
+      "technicalAchievements": "使用 DeepSeek V4.1 Flash 时，90 次运行通过 88 次（Wilson 95%：83.3% 至 99.4%），没有冻结不足、过度冻结或修改错误合同的情况。一次写入超时且结果未知时，智能体重新读取登记簿，没有重复写入。",
+      "businessImpact": "只有模拟数据，没有真实保险公司。该设计展示了智能体如何承担一次错误就可能代价高昂的后台工作：人批准确切操作，服务器作最终决定。",
+      "personalGrowth": "我学会了根据结果而非言辞评价智能体，也学会把安全规则放进服务器代码，使提示词无法绕过它们。"
+    },
+    "techStack": {
+      "frontend": "React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Vite, Bun",
+      "backend": "Python 3.12, LangGraph, 两个 MCP 服务器, FastAPI（SSE）, SQLite",
+      "tools": "OpenRouter (DeepSeek V4.1 Flash 与 Mistral Small), OpenTelemetry, Arize Phoenix, pytest",
+      "libraries": null
+    },
+    "learnings": [
+      "评价智能体应看它留下的状态，而非它说了什么。",
+      "安全规则应放在服务器：模型可能被说服发起禁止调用，服务器不会因此放行。",
+      "更便宜、更快的模型若做出一次错误写入，也可能代价更高。主模型是依据可靠性而非价格选定的。",
+      "宽泛的置信区间也是结果的一部分：90 次运行提供的证据仍有限。"
+    ],
+    "futureEnhancements": [
+      "针对 Mistral 调整提示词并重测：提示词是为 DeepSeek 编写并固定的，所以比较公平，但没有针对 Mistral 优化。",
+      "增加重复次数和场景数量，以缩小区间。",
+      "处理真实法院文件的真实性问题，模拟数据流目前默认文件真实。"
+    ],
+    "conclusion": "Stayline 关乎我最在意的智能体 AI 问题：确保智能体只做它该做的事，最终决定权在人和服务器，而不是模型。"
+  },
+  "boulangere-augmentee": {
+    "title": "La Boulangère Augmentée",
+    "description": "一个通过 Notion 帮助面包师管理店铺的 AI 智能体，未经她批准绝不发送订单。",
+    "metadata": {
+      "role": "独立开发者（技术测试）",
+      "category": "智能体 AI、全栈开发、人工参与决策",
+      "timeline": "2026 年 7 月",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Exowz/boulangere-augmentee"
+    },
+    "overview": "这是为虚构的面包师 Madeleine 构建的对话智能体，使用题目提供的 Notion 数据库：库存、销售、商品目录和订单。它用简单法语回答问题、预测生产量、提示库存不足并准备供应商订单。我独立完成了这个 AI 工程师岗位的技术测试。真正的难点不是调用模型，而是让回答可靠，并把唯一不可撤销的动作，也就是发送订单，留给人来决定。",
+    "challenge": {
+      "problem": "面包师在多个地方记录库存、销售和供应商信息，没有时间处理电子表格。助手可以帮忙，但若擅自误发订单，就会造成真实金钱损失。",
+      "goal": "让智能体自由读取全部数据并准备订单，同时确保没有面包师明确同意就无法发送。",
+      "constraints": "没有预算，因此模型需要可用的免费层级。还需要为商业数据提供欧洲托管、可靠调用七个工具，并照顾不懂电脑的用户。"
+    },
+    "discovery": {
+      "requirements": "Notion 数据有四个数据库（库存、商品目录、销售和订单），但没有连接商品与原料的物料清单，因此预测只能依据历史销售数据。",
+      "competitiveAnalysis": "我从访问成本、托管地点、工具调用可靠性和法语能力四个条件比较了 Mistral、Claude、GPT、Gemini 和自行托管的 Llama。只有 Mistral 同时提供可用的免费层级、欧洲托管和自然的法语。",
+      "technicalResearch": "我选择 LangGraph，因为 interrupt() 能让图真正停止，checkpointer 则能从停止的准确位置恢复。隐式的智能体循环只能在提示词中写一条指令。"
+    },
+    "architecture": {
+      "informationArchitecture": "系统由带类型化 SSE 解析器的 Next.js 前端、具有 /chat、/resume 和 /health 三个路由的 FastAPI 后端、带七个工具的 LangGraph 智能体，以及将数据规范化为 Pydantic 模型的独立 Notion 层组成。模拟模式可重放提交到仓库的快照，供离线测试和演示使用。",
+      "technicalDecisions": "一个环境变量选择模型提供商：默认为 Mistral，无须修改智能体即可改用 Claude 或 OpenAI。邮件默认写入 .eml 文件，也可发往 Mailtrap 沙盒，因此测试时不会给真实供应商发邮件。"
+    },
+    "developmentProcess": {
+      "phase1": "数据层：Notion 客户端、到 Pydantic 模型的规范化及模拟快照，让每个工具接收干净且结构化的数据。",
+      "phase2": "智能体：LangGraph 图、七个工具（库存、销售、商品目录、生产预测、补货提醒、利润率和供应商订单）、SSE 流式传输，以及遇到速率限制时带退避的重试。",
+      "phase3": "保护机制与界面：发送前中断、审批流程和工作坊风格界面。工具调用显示为厨房单据，订单则显示为待盖章的单据。"
+    },
+    "keyFeatures": [
+      {
+        "title": "没有同意就不发送订单",
+        "description": "准备订单时图会暂停，在面包师批准前不会发送任何内容。",
+        "implementation": "订单工具创建草稿并调用 interrupt()，后端将其转换成 action_required 事件。只有明确同意后，POST /resume 才运行确定性函数，发送邮件并在 Notion 中记录订单。",
+        "challenges": "审批必须严格：否定、空白或含糊的回答都不会发送，测试覆盖了每种情况。"
+      },
+      {
+        "title": "由智能体选择的七个工具",
+        "description": "智能体根据问题选择合适工具：库存、销售、商品目录、生产预测、补货提醒、利润率或供应商订单。",
+        "implementation": "采用带智能体节点和 ToolNode 的 LangGraph StateGraph、按会话线程区分的内存 checkpointer，并逐 token 流式传输回答和工具调用。",
+        "challenges": "由于没有物料清单，预测采用相同星期几的平均销量并加安全余量，利润率则使用商品目录中的成本字段。我明确写出这些假设。"
+      },
+      {
+        "title": "为非技术用户设计",
+        "description": "使用简单法语，显示工具调用，并用助手的语气解释错误。",
+        "implementation": "工具调用呈现为厨房单据，供应商订单呈现为盖章单据，让面包师看到智能体做了什么。支持 Markdown 回答、自托管字体和减少动态效果。",
+        "challenges": "不直接显示原始技术错误：每次失败都用与回答同样简单的语言解释。"
+      }
+    ],
+    "testing": "48 项测试通过。它们检查图是否在发送前停止，否定或空白决定是否绝不触发发送，以及从 /chat 到 /resume 的完整流程是否发出 action_required，并只在确认后发送。Notion 模拟模式允许测试在没有 token 的离线环境中运行。",
+    "results": {
+      "technicalAchievements": "这个可运行的智能体有七个工具、流式回答，以及无法通过改写请求绕过的审批步骤，因为它由图强制执行，而非提示词。",
+      "businessImpact": "项目是基于虚构店铺的技术测试，因此没有真实用户。它展示了我会用于小企业的方式：智能体读取和准备，店主决定。",
+      "personalGrowth": "我学会了把安全机制放在代码而非提示词中，并写明数据假设，以便审阅者提出质疑。"
+    },
+    "techStack": {
+      "frontend": "Next.js 16.2, TypeScript, Tailwind CSS, shadcn/ui, Bun",
+      "backend": "FastAPI, Python 3.11, uv, Pydantic v2, LangGraph",
+      "tools": "Docker Compose, Notion API, Mailtrap",
+      "libraries": "Mistral AI（默认 mistral-large-latest）, notion-client, server-sent events"
+    },
+    "learnings": [
+      "人工参与只有成为代码中的实际机制才算数。提示词中的一句话可能被绕过。",
+      "将模型提供商作为配置项，可以保留更换选择的余地。",
+      "选择模型应从约束出发（预算、托管、语言和工具调用），而非排行榜。",
+      "模拟模式和 .eml 文件使具有外部副作用的智能体可以安全测试。"
+    ],
+    "futureEnhancements": [
+      "在任何外部部署前为 API 添加身份验证。",
+      "使用持久化 checkpointer（Postgres 或 Redis），使待批准操作在重启后仍保留。",
+      "加入物料清单，将销售预测转为原料需求和真实成本。",
+      "建立场景评估工具，在修改提示词或模型前发现行为回归。"
+    ],
+    "conclusion": "La Boulangère Augmentée 是一个小项目，遵循我对每个智能体采用的规则：它可以尽量读取和准备，但不可撤销的行动属于人。"
   }
 }

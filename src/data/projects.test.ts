@@ -4,8 +4,8 @@ import enProjects from '../messages/en-GB/projects.json';
 import frProjects from '../messages/fr/projects.json';
 
 describe('projects data', () => {
-  it('contains exactly 17 projects', () => {
-    expect(projects).toHaveLength(17);
+  it('contains exactly 21 projects', () => {
+    expect(projects).toHaveLength(21);
   });
 
   it('has unique slugs', () => {
